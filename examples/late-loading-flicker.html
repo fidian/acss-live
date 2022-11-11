@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Late Loading - Flicker</title>
+        <script src="interactivity.js"></script>
+    </head>
+
+    <body class="D(b)">
+        <h1 class="D(f) Jc(c) Ai(c)">Late Loading - Flicker</h1>
+
+        <p>
+            This shows a problem when loading a script late (after elements are
+            in the DOM). You may see a flicker as styles are generated. If not,
+            try reloading several times and watch the header carefully.
+        </p>
+
+        <p>
+            One method for addressing this is to simply
+            <a href="late-loading-hide.html">hide the content</a> until
+            acss-live is loaded. Another solution is to move the
+            <tt>script</tt> tag into the head of your page.
+        </p>
+    </body>
+
+    <!-- Intentionally load late in order to prove that styling exising
+        elements works and to test if there is an unstyled flicker -->
+    <script src="../acss-live.js"></script>
+</html>

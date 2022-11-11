@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Debugging</title>
+
+        <script>
+            /* Optional configuration for acss-live. Here, the debug statements
+             * are enabled. Debugging is only possible with the non-minified build
+             * because the debug code is removed during minification.
+             *
+             * This must be done before acss-live is loaded. */
+            acssLiveConfig = {
+                debug: true
+            };
+        </script>
+
+        <script src="../acss-live.js"></script>
+        <script src="interactivity.js"></script>
+    </head>
+
+    <body>
+        <h1 class="D(f) Jc(c) Ai(c)">Debugging</h1>
+
+        <p>
+            Acss-Live is able to show some extra debugging information about how
+            long it takes to process elements, the found classes, and when the
+            mutation observer is fired. This all goes to the console and is
+            enabled by adding <tt>debug: true</tt> to <tt>acssLiveConfig</tt>.
+        </p>
+    </body>
+</html>
