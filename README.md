@@ -7,9 +7,9 @@ This is an in-browser implementaion of Atomic CSS. When gzipped, it is about the
 Usage
 -----
 
-Add this in your `<head>` of your document.
+Add this in your `<head>` of your document. (I hope to have an UMD build soon to host on unpkg.com.)
 
-    <script src="https://unpkg.com/acss-live/acss-live.min.js"></script>
+    <script src="...../acss-live.min.js"></script>
 
 Now you can use Atomic CSS within your element's class lists.
 
