@@ -30,6 +30,15 @@ Add some JavaScript to set a global object with the sections you want to configu
         // true: start = right, end = left
         rightToLeft: false,
 
+        // Values that you could use as shorthands in rules. This is a great
+        // way to define your color palette. These are NOT the same as CSS
+        // variables. You would use them like the following classes:
+        // Bgc(buttonColor) Bgc(buttonColorHover):h
+        values: {
+            buttonColor: "#0a95ff",
+            buttonColorHover: "#0074cc"
+        }
+
         // Add additional CSS classes and their rules. Here, we make up rules
         // in order to show off the different things that are supported.
         classes: {
