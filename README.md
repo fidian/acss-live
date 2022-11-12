@@ -1,17 +1,39 @@
 ACSS-LIVE
 =========
 
-This is an in-browser implementaion of Atomic CSS. When gzipped, it is about the same size as most gzipped CSS resources (under 6k), so it's fairly small. The library relies on evergreen browsers and uses `MutationObserver` to detect element changes where new CSS classes may be needed. Each class is generated only once.
+This is an in-browser implementation of Atomic CSS. When gzipped, it is about the same size as most gzipped CSS resources (under 6k), so it's fairly small even though it can handle all of the CSS you can imagine. The library relies on evergreen browsers and uses `MutationObserver` to detect element changes where new CSS classes may be needed. Each class is generated only once.
+
+The project was inspired by [atomizer-browser](https://github.com/acss-io/acss-browser) - a discussion of the differences is farther below.
 
 
 Usage
 -----
 
-Add this in your `<head>` of your document. (I hope to have an UMD build soon to host on unpkg.com.)
+Add this in your `<head>` of your document, then you're done.
 
-    <script src="...../acss-live.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fidian/acss-live/acss-live.min.js"></script>
 
-Now you can use Atomic CSS within your element's class lists.
+Now you can use Atomic CSS within your element's class lists. Configuration is optional.
+
+I recommend using the minified version because it provides a minor speed boost due to the lack of debugging code.
+
+
+What is Supported
+-----------------
+
+Everything from [Atomic CSS Reference](https://acss.io/reference.html), including a parent selector, parent pseudoclass, descendant selector, atomic class, parameters, pseudoclass, pseudoelement, and at-rule. Any exceptions are called out farther below.
+
+
+Troubleshooting
+---------------
+
+If you are not getting the classes you expect, try these steps:
+
+1. Use the non-minified build to allow debugging to work.
+2. Enable `debug: true` in your `acssLiveConfig` - see below or look at the debugging example.
+3. Search the console messages for the CSS rules you expected to have added.
+
+If you see the rule in the console, then the browser was instructed to add it. When you inspect the target element and it still does not have the class, then the browser found the rule to be invalid. For instance `D(asdf)` would get changed into the CSS rule `.D\(asdf\) { display: asdf }`, but the browser will silently reject it. When inspecting the element, you may only see that the class was defined and no rules were included. If this happens to you, *please look at the generated CSS in the console* and confirm the values are correctly spelled and that they work if you were to copy and paste the CSS definition into a `<style>` tag.
 
 
 Configuring
@@ -67,8 +89,7 @@ Add some JavaScript to set a global object with the sections you want to configu
                 // A mapping that changes shorthand values into longer forms.
                 // Arguments are found with $0, $1, ... in the rules.
                 args: {
-                    a: "⧉"
-                    s: "⧉"
+                    s: "⧉" // double squares
                 },
 
                 // The styles to apply as an array
@@ -80,7 +101,7 @@ Add some JavaScript to set a global object with the sections you want to configu
                 // Additional rules that need to be created
                 '@media only screen': {
                     '[class*=linkIcon]:after': [
-                        "content: $0"
+                        'content: "$0"'
                     ]
                 }
             }
@@ -91,20 +112,28 @@ Add some JavaScript to set a global object with the sections you want to configu
             s: '@media only screen',
             sl: "@media screen and (max-width: 992px)",
             sm: "@media screen and (max-width: 768px)",
-            ss: "@media screen and (max-width: 575px)"
-        }
+            ss: "@media screen and (max-width: 575px)",
+        },
+
+        // Optional namespace to nest all rules under. Defaults to no
+        // namespace. When used with "#example ", the class "D(b)" will generate
+        // a CSS selector of "#example .D\(b\)". You can use this to change the
+        // specificity of rules, making Atomic rules take a higher priority, or
+        // to enable ACSS classes only underneath specific elements. Please note
+        // the trailing space!
+        namespace: "body "
     };
     </script>
-    <script src="https://unpkg.com/acss-live/acss-live.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fidian/acss-live/acss-live.min.js"></script>
 
 
 Similarities and Differences
 ----------------------------
 
-Follows the same shorthand as [Atomizer](https://acss.io/reference.html) with a few tradeoffs:
+Follows the same shorthand as [Atomizer](https://acss.io/reference.html) and [acss-browser](https://github.com/acss-io/acss-browser) with a few trade-offs:
 
 * This does not change color codes from short to long.
-* Atomizer's `Bd` helper (not `Bd(...)` rule) is renamed to `BdAll`.
+* Atomizer's `Bd` helper (not `Bd(...)` rule) is renamed to `BdAll` to not conflict with `Bd`.
 * Helpers can get arguments, but they get ignored. Extra arguments can be passed to rules and they are likewise ignored.
 * Does not consolidate styles in the same way as Atomizer. This will generate one rule per class.
 * Renamed `Dropshadow` to `DropShadow` to be consistent with other named filters.
@@ -112,3 +141,6 @@ Follows the same shorthand as [Atomizer](https://acss.io/reference.html) with a 
 * Fixed `Matrix3d` and `Rotate3d` to use the 3D transforms instead of 2D.
 * Colors and other properties are not restricted to a list.
 * `Mw(ini)` changed to `Mw(i)`, similar to `Trsdu(i)` for consistency.
+* Old IE hacks (star hacks and `Zoom`) are removed.
+
+This project's code is under 50k of source, under 20k minified, under 6k gzipped. Compare this to acss-browser's nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount.

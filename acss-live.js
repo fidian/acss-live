@@ -692,6 +692,7 @@
                         "[class*=LineClamp]": ["display:block"]
                     }
                 },
+                styles: ["-webkit-line-clamp:$0", "max-height:$1"],
                 args: {}
             },
 
@@ -889,7 +890,7 @@
 
             // Contain boxes on a row
             Row: [
-                "clear:both;display:inline-block;vertical-align:top;width:100%;box-sizing:border-box;*display:block;*width:auto;zoom:1"
+                "clear:both;display:inline-block;vertical-align:top;width:100%;box-sizing:border-box"
             ],
 
             // Stretches a box inside its containing block
@@ -1146,10 +1147,7 @@
             ],
 
             // Z-index
-            Z: ["z-index:$0", { a: "auto" }],
-
-            // Hack for old IE to create block formatting context
-            Zoom: ["zoom:1"]
+            Z: ["z-index:$0", { a: "auto" }]
         };
 
         for (const [k, v] of Object.entries(unprocessed)) {
@@ -1228,7 +1226,10 @@
                 dark: "@media(prefers-color-scheme:dark)",
                 light: "@media(prefers-color-scheme:light)",
                 p: "@media print"
-            }
+            },
+
+            // Optional namespace to nest all rules underneath
+            namespace: ""
         };
     }
 
@@ -1260,6 +1261,7 @@
 
     function addRule(atRule, ruleSelector, rules, args, values, important) {
         let rule =
+            config.namespace +
             ruleSelector +
             "{" +
             rules
@@ -1387,37 +1389,57 @@
         // DEBUG_END
     }
 
-    function processElement(e) {
-        // DEBUG_START
-        if (config.debug) {
-            let msg = `Process element: ${e.tagName}`;
+    // DEBUG_START
+    function getElementIdentifier(e) {
+        let s = e.tagName;
 
-            if (e.id) {
-                msg += `#${e.id}`;
-            }
-
-            for (const c of e.classList || []) {
-                msg += `.${c}`;
-            }
-
-            console.log("ACSS-ELEMENT", msg);
+        if (e.id) {
+            s += `#${e.id}`;
         }
-        // DEBUG_END
 
         for (const c of e.classList || []) {
-            if (!definedClasses[c]) {
-                definedClasses[c] = 1;
-                processRule(c);
+            s += `.${c}`;
+        }
+
+        return s;
+    }
+    // DEBUG_END
+
+    function processElement(e, elementMap) {
+        if (elementMap.has(e)) {
+            // DEBUG_START
+            console.log(
+                "ACSS-ELEMENT",
+                `Already scanned: ${getElementIdentifier(e)}`
+            );
+            // DEBUG_END
+        } else {
+            // DEBUG_START
+            if (config.debug) {
+                console.log(
+                    "ACSS-ELEMENT",
+                    `Process element: ${getElementIdentifier(e)}`
+                );
+            }
+            // DEBUG_END
+
+            elementMap.set(e, 0);
+
+            for (const c of e.classList || []) {
+                if (!definedClasses[c]) {
+                    definedClasses[c] = 1;
+                    processRule(c);
+                }
             }
         }
     }
 
-    function processElementAndChildren(node) {
+    function processElementAndChildren(node, elementMap) {
         const list = [node];
 
         while (list.length) {
             const n = list.shift();
-            processElement(n);
+            processElement(n, elementMap);
             iterateNodeList(n.children, (child) => {
                 list.push(child);
             });
@@ -1450,7 +1472,7 @@
         }
         // DEBUG_END
 
-        processElementAndChildren(document.body);
+        processElementAndChildren(document.body, new Map());
 
         // DEBUG_START
         if (config.debug) {
@@ -1460,16 +1482,22 @@
     }
 
     const mutationInstance = new MutationObserver((mutations) => {
-        // DEBUG_START
         if (config.debug) {
-            console.log("ACSS-MUTATION", "Detected mutation");
+            console.log("ACSS-MUTATION", "Detected mutations", mutations);
             console.time("ACSS-MUTATION");
         }
-        // DEBUG_END
+
+        const elementMap = new Map();
 
         for (const mutation of mutations) {
-            processElement(mutation.target);
-            iterateNodeList(mutation.addedNodes, processElementAndChildren);
+            // characterData
+            if (mutation.type[2] === "a") {
+                processElement(mutation.target, elementMap);
+            }
+
+            iterateNodeList(mutation.addedNodes, (n) =>
+                processElementAndChildren(n, elementMap)
+            );
         }
 
         // DEBUG_START

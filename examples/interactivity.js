@@ -1,18 +1,3 @@
-/*
-         * <button onclick="addContent()">Add more content</button>
-        <div id="interactiveTarget"></div>
-// Optional configuration for acss-live
-function addContent() {
-    const e = document.getElementById('target');
-    const p = document.createElement("p");
-    p.classList.add('Fw(b)');
-    p.classList.add('C(green)');
-    const t = document.createTextNode("Additional content - " + new Date().toString());
-    p.appendChild(t);
-    e.appendChild(p);
-}
-*/
-
 /* global document, m, window */
 "use strict";
 
@@ -22,7 +7,6 @@ class Interactivity {
             {
                 label: "Add current date",
                 callback: () => {
-                    console.log("asdf");
                     this.add(m("tt", new Date().toString()));
                 }
             },
@@ -41,6 +25,42 @@ class Interactivity {
                         ])
                     );
                 }
+            },
+            {
+                label: "Explain: This was loaded after?",
+                callback: () => {
+                    this.add([
+                        m(
+                            "span",
+                            { class: "Fw(b) Fz(1.2em)" },
+                            "How was this loaded?"
+                        ),
+                        m("br"),
+                        [
+                            "When the document loaded in the browser, the ",
+                            m("tt", "load"),
+                            " event was fired, which loaded ",
+                            m(
+                                "a",
+                                {
+                                    href: "https://mithril.js.org/"
+                                },
+                                "Mithril.js"
+                            ),
+                            " via a ",
+                            m("tt", "<script>"),
+                            " tag. After that loaded, Mithril's was told to render a component into a blank element added to the bottom of the document. ",
+                            m("br"),
+                            m(
+                                "span",
+                                {
+                                    class: "C(white) Fz(2em) Tsh(outlineShadow)"
+                                },
+                                "Presto!"
+                            )
+                        ]
+                    ]);
+                }
             }
         ];
         this.additions = [];
@@ -49,16 +69,12 @@ class Interactivity {
     add(content) {
         const classBase = "Trsdu(0.3s) Trstf(eio) Trsp(a)";
         const data = {
-            obj: {
-                class: `${classBase} Op(0)`
-            },
+            class: `${classBase} Op(0)`,
             content
         };
         this.additions.push(data);
         setTimeout(() => {
-            data.obj = {
-                class: classBase
-            };
+            data.class = classBase;
             m.redraw();
         }, 100);
     }
@@ -82,10 +98,22 @@ class Interactivity {
                     )
                 )
             ),
-            this.additions.map((item) => m("p", item.obj, item.content))
+            this.additions.map((item) =>
+                m("p", { class: item.class }, item.content)
+            )
         ];
     }
 }
+
+if (!window.acssLiveConfig) {
+    window.acssLiveConfig = {};
+}
+
+if (!window.acssLiveConfig.values) {
+    window.acssLiveConfig.values = {};
+}
+
+window.acssLiveConfig.values.outlineShadow = "-1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000";
 
 window.addEventListener("load", () => {
     const interactivityDiv = document.createElement("div");
