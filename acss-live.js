@@ -1,13 +1,110 @@
 /* global MutationObserver, window */
 "use strict";
 (function (window) {
-    function defaultConfig() {
-        const classes = {};
+    const config = {
+        settings: {
+            // DEBUG_START
+            // Set to true to show debug. Use your console for filtering.
+            // Only honored with NON-MINIFIED builds.
+            debug: false,
+            // DEBUG_END
 
+            // Set to true if you want to support right to left instead.
+            rightToLeft: false,
+
+            // Optional namespace to nest all rules underneath
+            namespace: ""
+        },
+
+        // Colors for rules that use them
+        colors: {
+            cc: "currentColor",
+            n: "none",
+            t: "transparent"
+        },
+
+        pseudoClasses: {
+            a: "active",
+            c: "checked",
+            d: "default",
+            di: "disabled",
+            e: "empty",
+            en: "enabled",
+            fi: "first",
+            fc: "first-child",
+            fot: "first-of-type",
+            fs: "fullscreen",
+            f: "focus",
+            fw: "focus-within",
+            fv: "focus-visible",
+            h: "hover",
+            ind: "indeterminate",
+            ir: "in-range",
+            inv: "invalid",
+            lc: "last-child",
+            lot: "last-of-type",
+            l: "left",
+            li: "link",
+            oc: "only-child",
+            oot: "only-of-type",
+            o: "optional",
+            oor: "out-of-range",
+            ps: "placeholder-shown",
+            ro: "read-only",
+            rw: "read-write",
+            req: "required",
+            r: "right",
+            rt: "root",
+            s: "scope",
+            t: "target",
+            va: "valid",
+            vi: "visited"
+        },
+
+        pseudoElements: {
+            b: "before",
+            a: "after",
+            fl: "first-letter",
+            fli: "first-line",
+            ph: "placeholder"
+        },
+
+        // Values can be passed as parameters. They also can have spaces,
+        // which helps for box-shadow.
+        values: {
+            inh: "inherit"
+        },
+
+        // Media queries and other at-rules
+        atRules: {
+            // Color schemes
+            dark: "@media(prefers-color-scheme:dark)",
+            light: "@media(prefers-color-scheme:light)",
+
+            // Print version
+            p: "@media print",
+
+            // Generally accepted screen sizes
+            // S = mobile
+            // M = tablets
+            // L = small screens, eg. laptops
+            // Default is desktop / tv / large format
+            s: "@media(max-width:480px)",
+            sm: "@media(max-width:768px)",
+            m: "@media(min-width:481px)and(max-width:768px)",
+            sml: "@media(max-width:1024px)",
+            ml: "@media(min-width:481px)and(max-width:1024px)",
+            l: "@media(min-width:1025)and(max-width:1024px)"
+        },
+
+        // __START__ and __END__ are replaced with left and right
+        // (depending on the rightToLeft setting).
+        // $0 through $9 are replaced with arguments
+        //
         // Keep the arguments expanded as their own lists. It adds about 2k to
         // the minified version, but gzip compression is able to compress about
         // 10% better, which is not what I had expected.
-        const unprocessed = {
+        classes: {
             // Animation
             Anim: ["animation:$0"],
             Animdel: ["animation-delay:$0"],
@@ -1101,109 +1198,10 @@
 
             // Z-index
             Z: ["z-index:$0", { a: "auto" }]
-        };
-
-        for (const [k, v] of Object.entries(unprocessed)) {
-            let def = v;
-
-            if (Array.isArray(def)) {
-                def = {
-                    args: def[1],
-                    styles: def[0].split(";")
-                };
-            }
-
-            def.args = def.args || {};
-            classes[k] = def;
         }
+    };
 
-        return {
-            // DEBUG_START
-            // Set to true to show debug. Use your console for filtering.
-            // Only honored with NON-MINIFIED builds.
-            debug: false,
-            // DEBUG_END
-
-            // Set to true if you want to support right to left instead.
-            rightToLeft: false,
-
-            // __START__ and __END__ are replaced with left and right
-            // (depending on the rightToLeft setting).
-            // $0 through $9 are replaced with arguments
-            classes,
-
-            // Colors for rules that use them
-            colors: {
-                cc: "currentColor",
-                n: "none",
-                t: "transparent"
-            },
-
-            pseudoClasses: {
-                a: "active",
-                c: "checked",
-                d: "default",
-                di: "disabled",
-                e: "empty",
-                en: "enabled",
-                fi: "first",
-                fc: "first-child",
-                fot: "first-of-type",
-                fs: "fullscreen",
-                f: "focus",
-                fw: "focus-within",
-                fv: "focus-visible",
-                h: "hover",
-                ind: "indeterminate",
-                ir: "in-range",
-                inv: "invalid",
-                lc: "last-child",
-                lot: "last-of-type",
-                l: "left",
-                li: "link",
-                oc: "only-child",
-                oot: "only-of-type",
-                o: "optional",
-                oor: "out-of-range",
-                ps: "placeholder-shown",
-                ro: "read-only",
-                rw: "read-write",
-                req: "required",
-                r: "right",
-                rt: "root",
-                s: "scope",
-                t: "target",
-                va: "valid",
-                vi: "visited"
-            },
-
-            pseudoElements: {
-                b: "before",
-                a: "after",
-                fl: "first-letter",
-                fli: "first-line",
-                ph: "placeholder"
-            },
-
-            // Values can be passed as parameters. They also can have spaces,
-            // which helps for box-shadow.
-            values: {
-                inh: "inherit"
-            },
-
-            // Media queries and other at-rules
-            atRules: {
-                dark: "@media(prefers-color-scheme:dark)",
-                light: "@media(prefers-color-scheme:light)",
-                p: "@media print"
-            },
-
-            // Optional namespace to nest all rules underneath
-            namespace: ""
-        };
-    }
-
-    const config = defaultConfig();
+    // Merge default config with any from user
     const more = window.acssLiveConfig || {};
 
     for (const [configKey, configValue] of Object.entries(config)) {
@@ -1213,15 +1211,30 @@
     }
 
     // DEBUG_START
-    if (config.debug) {
+    if (config.settings.debug) {
         console.log("ACSS-SETUP", "Starting setup");
         console.time("ACSS-SETUP");
     }
     // DEBUG_END
 
+    // Expand rules
+    for (const [k, v] of Object.entries(config.classes)) {
+        let def = v;
+
+        if (Array.isArray(def)) {
+            def = {
+                args: def[1],
+                styles: def[0].split(";")
+            };
+        }
+
+        def.args = def.args || {};
+        config.classes[k] = def;
+    }
+
     function addRule(atRule, ruleSelector, rules, args, values, important) {
         let rule =
-            config.namespace +
+            config.settings.namespace +
             ruleSelector +
             "{" +
             rules
@@ -1240,8 +1253,8 @@
         }
 
         rule = rule
-            .replace(/__START__/g, config.rightToLeft ? "right" : "left")
-            .replace(/__END__/g, config.rightToLeft ? "left" : "right")
+            .replace(/__START__/g, config.settings.rightToLeft ? "right" : "left")
+            .replace(/__END__/g, config.settings.rightToLeft ? "left" : "right")
             .replace(/\$([0-9]+)/g, (paramNumber) => {
                 const v = (values.split(",") || [])[+paramNumber[1]];
 
@@ -1253,7 +1266,7 @@
             });
 
         // DEBUG_START
-        if (config.debug) {
+        if (config.settings.debug) {
             console.log("ACSS-RULE", `Add rule: ${rule}`);
         }
         // DEBUG_END
@@ -1285,7 +1298,7 @@
 
     function processRule(selector) {
         // DEBUG_START
-        if (config.debug) {
+        if (config.settings.debug) {
             console.log("ACSS-RULE", `Parsing selector: ${selector}`);
             console.time("ACSS-RULE");
         }
@@ -1295,7 +1308,7 @@
 
         if (!match) {
             // DEBUG_START
-            if (config.debug) {
+            if (config.settings.debug) {
                 console.log("ACSS-RULE", `Did not match pattern`);
                 console.timeEnd("ACSS-RULE");
             }
@@ -1308,7 +1321,7 @@
 
         if (!def) {
             // DEBUG_START
-            if (config.debug) {
+            if (config.settings.debug) {
                 console.log("ACSS-RULE", `No class matches: ${match[4]}`);
                 console.timeEnd("ACSS-RULE");
             }
@@ -1343,7 +1356,7 @@
         }
 
         // DEBUG_START
-        if (config.debug) {
+        if (config.settings.debug) {
             console.timeEnd("ACSS-RULE");
         }
         // DEBUG_END
@@ -1358,7 +1371,9 @@
         }
 
         for (const c of e.classList || []) {
-            s += `.${c}`;
+            if (c) {
+                s += `.${c}`;
+            }
         }
 
         return s;
@@ -1375,7 +1390,7 @@
             // DEBUG_END
         } else {
             // DEBUG_START
-            if (config.debug) {
+            if (config.settings.debug) {
                 console.log(
                     "ACSS-ELEMENT",
                     `Process element: ${getElementIdentifier(e)}`
@@ -1426,7 +1441,7 @@
 
     if (document.body) {
         // DEBUG_START
-        if (config.debug) {
+        if (config.settings.debug) {
             console.log("ACSS-SETUP", "Process current elements");
             console.time("ACSS-SCAN-BODY");
         }
@@ -1435,14 +1450,14 @@
         processElementAndChildren(document.body, new Map());
 
         // DEBUG_START
-        if (config.debug) {
+        if (config.settings.debug) {
             console.timeEnd("ACSS-SCAN-BODY");
         }
         // DEBUG_END
     }
 
     const mutationInstance = new MutationObserver((mutations) => {
-        if (config.debug) {
+        if (config.settings.debug) {
             console.log("ACSS-MUTATION", "Detected mutations", mutations);
             console.time("ACSS-MUTATION");
         }
@@ -1461,7 +1476,7 @@
         }
 
         // DEBUG_START
-        if (config.debug) {
+        if (config.settings.debug) {
             console.timeEnd("ACSS-MUTATION");
         }
         // DEBUG_END
@@ -1474,7 +1489,7 @@
     });
 
     // DEBUG_START
-    if (config.debug) {
+    if (config.settings.debug) {
         console.timeEnd("ACSS-SETUP");
     }
     // DEBUG_END

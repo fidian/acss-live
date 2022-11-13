@@ -43,14 +43,26 @@ Add some JavaScript to set a global object with the sections you want to configu
 
     <script>
     window.acssLiveConfig = {
-        // Enable debugging in the console. Only works if you use acss-live.js
-        // instead of acss-live.min.js.
-        debug: false,
+        // Settings where the values are not objects.
+        settings: {
+            // Enable debugging in the console. Only works if you use
+            // acss-live.js instead of acss-live.min.js.
+            debug: false,
 
-        // Set to true when your language starts on the right and goes left.
-        // false: start = left, end = right
-        // true: start = right, end = left
-        rightToLeft: false,
+            // Set to true when your language starts on the right and goes
+            // left.
+            // false: start = left, end = right
+            // true: start = right, end = left
+            rightToLeft: false,
+
+            // Optional namespace to nest all rules under. Defaults to no
+            // namespace. When used with "#example ", the class "D(b)" will
+            // generate a CSS selector of "#example .D\(b\)". You can use this
+            // to change the specificity of rules, making Atomic rules take a
+            // higher priority, or to enable ACSS classes only underneath
+            // specific elements. Please note the trailing space!
+            namespace: "body "
+        },
 
         // Values that you could use as shorthands in rules. This is a great
         // way to define your color palette. These are NOT the same as CSS
@@ -116,9 +128,18 @@ Add some JavaScript to set a global object with the sections you want to configu
         // Media queries, breakpoints, and other useful at-rules
         atRules: {
             s: '@media only screen',
-            sl: "@media screen and (max-width: 992px)",
-            sm: "@media screen and (max-width: 768px)",
-            ss: "@media screen and (max-width: 575px)",
+
+            // Generally accepted screen sizes
+            // S = mobile
+            // M = tablets
+            // L = small screens, eg. laptops
+            // Default is desktop / tv / large format
+            s: "@media(max-width:480px)",
+            sm: "@media(max-width:768px)",
+            m: "@media(min-width:481px)and(max-width:768px)",
+            sml: "@media(max-width:1024px)",
+            ml: "@media(min-width:481px)and(max-width:1024px)",
+            l: "@media(min-width:1025)and(max-width:1024px)"
         },
 
         // Set up your own colors. These are merged with the internal list of
@@ -134,15 +155,7 @@ Add some JavaScript to set a global object with the sections you want to configu
             gray1: "#ededff",
             gray2: "#d2e0e7",
             alert: "#f7213d"
-        },
-
-        // Optional namespace to nest all rules under. Defaults to no
-        // namespace. When used with "#example ", the class "D(b)" will generate
-        // a CSS selector of "#example .D\(b\)". You can use this to change the
-        // specificity of rules, making Atomic rules take a higher priority, or
-        // to enable ACSS classes only underneath specific elements. Please note
-        // the trailing space!
-        namespace: "body "
+        }
     };
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@fidian/acss-live/acss-live.min.js"></script>
