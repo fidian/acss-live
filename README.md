@@ -84,6 +84,12 @@ Add some JavaScript to set a global object with the sections you want to configu
                 l: '5px'
             }]
 
+            // Maybe you would like to use something that looks up colors?
+            // This technique will look up the "colors" property in the config
+            // and use that for shorthand values. You can specify any property.
+            // C() is a much shorter method of doing the same thing.
+            Color: ["color:$0", 'colors'],
+
             // Show an icon after a link, but only on the screen
             linkIcon: {
                 // A mapping that changes shorthand values into longer forms.
@@ -115,6 +121,21 @@ Add some JavaScript to set a global object with the sections you want to configu
             ss: "@media screen and (max-width: 575px)",
         },
 
+        // Set up your own colors. These are merged with the internal list of
+        // allowed color values and are used for all rules that use colors.
+        colors: {
+            b: "blue",
+            g: "green",
+            o: "orange",
+            r: "red",
+            y: "yellow"
+
+            // Or colors from your own theme
+            gray1: "#ededff",
+            gray2: "#d2e0e7",
+            alert: "#f7213d"
+        },
+
         // Optional namespace to nest all rules under. Defaults to no
         // namespace. When used with "#example ", the class "D(b)" will generate
         // a CSS selector of "#example .D\(b\)". You can use this to change the
@@ -144,3 +165,9 @@ Follows the same shorthand as [Atomizer](https://acss.io/reference.html) and [ac
 * Old IE hacks (star hacks and `Zoom`) are removed.
 
 This project's code is under 50k of source, under 20k minified, under 6k gzipped. Compare this to acss-browser's nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount.
+
+There are a couple things that I believe are better.
+
+* Breakpoints are renamed as atRules because they are media queries or other at-rules according to the CSS spec. More than just breakpoints can be used, such as `--p` at the end of a rule to enable it only for print.
+* The list of colors is split out to a separate list. Adding colors as colors instead of custom values is now possible.
+* Defining new classes has less boilerplate.

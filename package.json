@@ -1,11 +1,12 @@
 {
     "name": "@fidian/acss-live",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "description": "ACSS rules generated live in your browser using a small library.",
     "scripts": {
-        "build": "npm run minify ; npm run sizes",
+        "build": "npm run minify; npm run sizes",
+        "compress": "gzip -9 < acss-live.min.js > acss-live.min.js.gz",
         "minify": "sed '/DEBUG_START/,/DEBUG_END/d' acss-live.js | uglifyjs -m -c > acss-live.min.js",
-        "sizes": "wc -c acss-live.*"
+        "sizes": "gzip -9 < acss-live.min.js > acss-live.min.js.gz; wc -c acss-live.js acss-live.min.js acss-live.min.js.gz; rm acss-live.min.js.gz"
     },
     "devDependencies": {
         "uglify-js": "^3.17.4"

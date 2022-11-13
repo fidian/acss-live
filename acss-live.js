@@ -4,32 +4,13 @@
     function defaultConfig() {
         const classes = {};
 
-        function addClass(selector, def) {
-            if (!def.args) {
-                def.args = {};
-            }
-
-            classes[selector] = def;
-        }
-
-        function makeDef(v) {
-            if (Array.isArray(v)) {
-                return {
-                    args: v[1],
-                    styles: v[0].split(";")
-                };
-            }
-
-            return v;
-        }
-
         // Keep the arguments expanded as their own lists. It adds about 2k to
         // the minified version, but gzip compression is able to compress about
         // 10% better, which is not what I had expected.
         const unprocessed = {
             // Animation
-            Anim: ["animation:$0", {}],
-            Animdel: ["animation-delay:$0", {}],
+            Anim: ["animation:$0"],
+            Animdel: ["animation-delay:$0"],
             AnimDir: [
                 "animation-direction:$0",
                 {
@@ -39,7 +20,7 @@
                     r: "reverse"
                 }
             ],
-            Animdur: ["animation-duration:$0", {}],
+            Animdur: ["animation-duration:$0"],
             Animfm: [
                 "animation-fill-mode:$0",
                 {
@@ -107,10 +88,7 @@
                     s: "scroll"
                 }
             ],
-            Bgc: [
-                "background-color:$0",
-                { n: "none", t: "transparent", cc: "currentColor" }
-            ],
+            Bgc: ["background-color:$0", "colors"],
             Bgcp: [
                 "background-clip:$0",
                 { bb: "border-box", cb: "content-box", pb: "padding-box" }
@@ -172,12 +150,12 @@
 
             // Border
             Bd: ["border:$0", { n: "none" }],
-            Bdx: ["border-__START__:$0;border-__END__:$0", {}],
-            Bdy: ["border-top:$0;border-bottom:$0", {}],
-            Bdt: ["border-top:$0", {}],
-            Bdend: ["border-__END__:$0", {}],
-            Bdb: ["border-bottom:$0", {}],
-            Bdstart: ["border-__START__:$0", {}],
+            Bdx: ["border-__START__:$0;border-__END__:$0"],
+            Bdy: ["border-top:$0;border-bottom:$0"],
+            Bdt: ["border-top:$0"],
+            Bdend: ["border-__END__:$0"],
+            Bdb: ["border-bottom:$0"],
+            Bdstart: ["border-__START__:$0"],
             Bdcl: [
                 "border-collapse:$0",
                 {
@@ -185,26 +163,11 @@
                     s: "separate"
                 }
             ],
-            Bdc: [
-                "border-color:$0",
-                { n: "none", t: "transparent", cc: "currentColor" }
-            ],
-            Bdct: [
-                "border-color-top:$0",
-                { n: "none", t: "transparent", cc: "currentColor" }
-            ],
-            Bdcend: [
-                "border-color-__END__:$0",
-                { n: "none", t: "transparent", cc: "currentColor" }
-            ],
-            Bdcb: [
-                "border-color-bottom:$0",
-                { n: "none", t: "transparent", cc: "currentColor" }
-            ],
-            Bdcstart: [
-                "border-color-__START__:$0",
-                { n: "none", t: "transparent", cc: "currentColor" }
-            ],
+            Bdc: ["border-color:$0", "colors"],
+            Bdct: ["border-color-top:$0", "colors"],
+            Bdcend: ["border-color-__END__:$0", "colors"],
+            Bdcb: ["border-color-bottom:$0", "colors"],
+            Bdcstart: ["border-color-__START__:$0", "colors"],
             Bdsp: ["border-spacing:$0 $1", { i: "inherit" }],
             Bds: [
                 "border-style:$0",
@@ -298,11 +261,11 @@
                 "border-__START__-width:$0",
                 { m: "medium", t: "thin", th: "thick" }
             ],
-            Bdrs: ["border-radius:$0", {}],
-            Bdrstend: ["border-radius-top-__END__:$0", {}],
-            Bdrsbend: ["border-radius-bottom-__END__:$0", {}],
-            Bdrsbstart: ["border-radius-bottom-__START__:$0", {}],
-            Bdrststart: ["border-radius-top-__START__:$0", {}],
+            Bdrs: ["border-radius:$0"],
+            Bdrstend: ["border-radius-top-__END__:$0"],
+            Bdrsbend: ["border-radius-bottom-__END__:$0"],
+            Bdrsbstart: ["border-radius-bottom-__START__:$0"],
+            Bdrststart: ["border-radius-top-__START__:$0"],
 
             // Box shadow
             Bxsh: ["box-shadow:$0", { n: "none" }],
@@ -340,14 +303,11 @@
             },
 
             // Color
-            C: [
-                "color:$0",
-                { n: "none", t: "transparent", cc: "currentColor" }
-            ],
+            C: ["color:$0", "colors"],
 
             // Columns
-            Colm: ["columns:$0", {}],
-            Colmc: ["column-count:$0", {}],
+            Colm: ["columns:$0"],
+            Colmc: ["column-count:$0"],
             Colmf: [
                 "column-fill:$0",
                 {
@@ -355,9 +315,9 @@
                     b: "balance"
                 }
             ],
-            Colmg: ["column-gap:$0", {}],
-            Colmr: ["column-rule:$0", {}],
-            Colmrc: ["column-rule-color:$0", {}],
+            Colmg: ["column-gap:$0"],
+            Colmr: ["column-rule:$0"],
+            Colmrc: ["column-rule-color:$0"],
             Colmrs: [
                 "column-rule-style:$0",
                 {
@@ -373,7 +333,7 @@
                     s: "solid"
                 }
             ],
-            Colmrw: ["column-rule-width:$0", {}],
+            Colmrw: ["column-rule-width:$0"],
             Colms: [
                 "column-span:$0",
                 {
@@ -381,7 +341,7 @@
                     n: "none"
                 }
             ],
-            Colmw: ["column-width:$0", {}],
+            Colmw: ["column-width:$0"],
 
             // Contain
             Ctn: [
@@ -501,22 +461,22 @@
             },
 
             // Filter
-            Fil: ["filter:$0", {}],
-            Blur: ["filter:blur($0)", {}],
-            Brightness: ["filter:brightness($0)", {}],
-            Contrast: ["filter:contrast($0)", {}],
-            DropShadow: ["filter:drop-shadow($0)", {}],
-            Grayscale: ["filter:grayscale($0)", {}],
-            HueRotate: ["filter:hue-rotate($0)", {}],
-            Invert: ["filter:invert($0)", {}],
-            Opacity: ["filter:opacity($0)", {}],
-            Saturate: ["filter:saturate($0)", {}],
-            Sepia: ["filter:sepia($0)", {}],
+            Fil: ["filter:$0"],
+            Blur: ["filter:blur($0)"],
+            Brightness: ["filter:brightness($0)"],
+            Contrast: ["filter:contrast($0)"],
+            DropShadow: ["filter:drop-shadow($0)"],
+            Grayscale: ["filter:grayscale($0)"],
+            HueRotate: ["filter:hue-rotate($0)"],
+            Invert: ["filter:invert($0)"],
+            Opacity: ["filter:opacity($0)"],
+            Saturate: ["filter:saturate($0)"],
+            Sepia: ["filter:sepia($0)"],
 
             // Flex
             Fx: ["flex:$0", { a: "auto", n: "none" }],
-            Fxg: ["flex-grow:$0", {}],
-            Fxs: ["flex-shrink:$0", {}],
+            Fxg: ["flex-grow:$0"],
+            Fxs: ["flex-shrink:$0"],
             Fxb: ["flex-basis:$0", { a: "auto", n: "none" }],
             As: [
                 "align-self:$0",
@@ -571,7 +531,7 @@
                     s: "stretch"
                 }
             ],
-            Order: ["order:$0", {}],
+            Order: ["order:$0"],
             Jc: [
                 "justify-content:$0",
                 {
@@ -609,7 +569,7 @@
                     n: "normal"
                 }
             ],
-            Fz: ["font-size:$0", {}],
+            Fz: ["font-size:$0"],
             Fs: [
                 "font-style:$0",
                 {
@@ -692,8 +652,7 @@
                         "[class*=LineClamp]": ["display:block"]
                     }
                 },
-                styles: ["-webkit-line-clamp:$0", "max-height:$1"],
-                args: {}
+                styles: ["-webkit-line-clamp:$0", "max-height:$1"]
             },
 
             // Line height
@@ -800,7 +759,7 @@
             Start: ["__START__:$0", { a: "auto" }],
 
             // Opacity
-            Op: ["opacity:$0", {}],
+            Op: ["opacity:$0"],
 
             // Outline
             O: ["outline:$0", { n: "none" }],
@@ -827,13 +786,13 @@
             ],
 
             // Paddings
-            P: ["padding:$0", {}],
-            Px: ["padding-__START__:$0;padding-__END__:$0", {}],
-            Py: ["padding-top:$0;padding-bottom:$0", {}],
-            Pt: ["padding-top:$0", {}],
-            Pend: ["padding-__END__:$0", {}],
-            Pb: ["padding-bottom:$0", {}],
-            Pstart: ["padding-__START__:$0", {}],
+            P: ["padding:$0"],
+            Px: ["padding-__START__:$0;padding-__END__:$0"],
+            Py: ["padding-top:$0;padding-bottom:$0"],
+            Pt: ["padding-top:$0"],
+            Pend: ["padding-__END__:$0"],
+            Pb: ["padding-bottom:$0"],
+            Pstart: ["padding-__START__:$0"],
 
             // Perspective
             Prs: ["perspective:$0", { n: "none" }],
@@ -897,14 +856,8 @@
             StretchedBox: ["position:absolute;top:0;right:0;bottom:0;left:0"],
 
             // SVG
-            Fill: [
-                "fill:$0",
-                { n: "none", t: "transparent", cc: "currentColor" }
-            ],
-            Stk: [
-                "stroke:$0",
-                { n: "none", t: "transparent", cc: "currentColor" }
-            ],
+            Fill: ["fill:$0", "colors"],
+            Stk: ["stroke:$0", "colors"],
             Stkw: ["stroke-width:$0", { i: "inherit" }],
             Stklc: [
                 "stroke-linecap:$0",
@@ -969,7 +922,7 @@
                     u: "underline"
                 }
             ],
-            Ti: ["text-indent:$0", {}],
+            Ti: ["text-indent:$0"],
             Tov: [
                 "text-overflow:$0",
                 {
@@ -999,7 +952,7 @@
             Tsh: ["text-shadow:$0", { n: "none" }],
 
             // Transform
-            Trf: ["transform:$0", {}],
+            Trf: ["transform:$0"],
             Trfo: [
                 "transform-origin:$0 $1",
                 {
@@ -1017,35 +970,35 @@
                     p: "preserve-3d"
                 }
             ],
-            Matrix: ["transform:matrix($0)", {}],
-            Matrix3d: ["transform:matrix3d($0)", {}],
-            Rotate: ["transform:rotate($0)", {}],
-            Rotate3d: ["transform:rotate3d($0)", {}],
-            RotateX: ["transform:rotateX($0)", {}],
-            RotateY: ["transform:rotateY($0)", {}],
-            RotateZ: ["transform:rotateZ($0)", {}],
-            Scale: ["transform:scale($0)", {}],
-            Scale3d: ["transform:scale3d($0)", {}],
-            ScaleX: ["transform:scaleX($0)", {}],
-            ScaleY: ["transform:scaleY($0)", {}],
-            Skew: ["transform:skew($0)", {}],
-            SkewX: ["transform:skewX($0)", {}],
-            SkewY: ["transform:skewY($0)", {}],
-            Translate: ["transform:translate($0,$1)", {}],
-            Translate3d: ["transform:translate3d($0,$1,$2)", {}],
-            TranslateX: ["transform:translateX($0)", {}],
-            TranslateY: ["transform:translateY($0)", {}],
-            TranslateZ: ["transform:translateZ($0)", {}],
+            Matrix: ["transform:matrix($0)"],
+            Matrix3d: ["transform:matrix3d($0)"],
+            Rotate: ["transform:rotate($0)"],
+            Rotate3d: ["transform:rotate3d($0)"],
+            RotateX: ["transform:rotateX($0)"],
+            RotateY: ["transform:rotateY($0)"],
+            RotateZ: ["transform:rotateZ($0)"],
+            Scale: ["transform:scale($0)"],
+            Scale3d: ["transform:scale3d($0)"],
+            ScaleX: ["transform:scaleX($0)"],
+            ScaleY: ["transform:scaleY($0)"],
+            Skew: ["transform:skew($0)"],
+            SkewX: ["transform:skewX($0)"],
+            SkewY: ["transform:skewY($0)"],
+            Translate: ["transform:translate($0,$1)"],
+            Translate3d: ["transform:translate3d($0,$1,$2)"],
+            TranslateX: ["transform:translateX($0)"],
+            TranslateY: ["transform:translateY($0)"],
+            TranslateZ: ["transform:translateZ($0)"],
 
             // Transition
-            Trs: ["transition:$0", {}],
+            Trs: ["transition:$0"],
             Trsde: [
                 "transition-delay:$0",
                 {
                     i: "initial"
                 }
             ],
-            Trsdu: ["transition-duration:$0", {}],
+            Trsdu: ["transition-duration:$0"],
             Trsp: ["transition-property:$0", { a: "all" }],
             Trstf: [
                 "transition-timing-function:$0",
@@ -1151,7 +1104,17 @@
         };
 
         for (const [k, v] of Object.entries(unprocessed)) {
-            addClass(k, makeDef(v));
+            let def = v;
+
+            if (Array.isArray(def)) {
+                def = {
+                    args: def[1],
+                    styles: def[0].split(";")
+                };
+            }
+
+            def.args = def.args || {};
+            classes[k] = def;
         }
 
         return {
@@ -1168,6 +1131,13 @@
             // (depending on the rightToLeft setting).
             // $0 through $9 are replaced with arguments
             classes,
+
+            // Colors for rules that use them
+            colors: {
+                cc: "currentColor",
+                n: "none",
+                t: "transparent"
+            },
 
             pseudoClasses: {
                 a: "active",
@@ -1233,7 +1203,14 @@
         };
     }
 
-    const config = merge(defaultConfig(), window.acssLiveConfig || {});
+    const config = defaultConfig();
+    const more = window.acssLiveConfig || {};
+
+    for (const [configKey, configValue] of config) {
+        for (const [k, v] of more[configKey] || {}) {
+            configValue[k] = v;
+        }
+    }
 
     // DEBUG_START
     if (config.debug) {
@@ -1241,23 +1218,6 @@
         console.time("ACSS-SETUP");
     }
     // DEBUG_END
-
-    // Modifies the destination object
-    function merge(dest, src) {
-        for (const [k, v] of Object.entries(src)) {
-            if (v && typeof v === "object") {
-                if (!v || typeof v !== "object") {
-                    dest[k] = {};
-                }
-
-                merge(dest[k], v);
-            } else {
-                dest[k] = v;
-            }
-        }
-
-        return dest;
-    }
 
     function addRule(atRule, ruleSelector, rules, args, values, important) {
         let rule =
@@ -1368,7 +1328,7 @@
                 match[9],
                 ruleSelector,
                 def.styles,
-                def.args,
+                config[`${def.args}`] || def.args,
                 match[5],
                 match[6]
             );

@@ -67,7 +67,7 @@ class Interactivity {
     }
 
     add(content) {
-        const classBase = "Trsdu(0.3s) Trstf(eio) Trsp(a)";
+        const classBase = "Trsdu(0.2s) Trstf(eo) Trsp(a)";
         const data = {
             class: `${classBase} Op(0)`,
             content
