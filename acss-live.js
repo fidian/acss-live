@@ -1,4 +1,4 @@
-/* global MutationObserver */
+/* global MutationObserver, window */
 "use strict";
 (function (window) {
     function defaultConfig() {
@@ -1478,4 +1478,4 @@
         console.timeEnd("ACSS-SETUP");
     }
     // DEBUG_END
-})(this);
+})(window);
