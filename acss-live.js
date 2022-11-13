@@ -1206,8 +1206,8 @@
     const config = defaultConfig();
     const more = window.acssLiveConfig || {};
 
-    for (const [configKey, configValue] of config) {
-        for (const [k, v] of more[configKey] || {}) {
+    for (const [configKey, configValue] of Object.entries(config)) {
+        for (const [k, v] of Object.entries(more[configKey] || {})) {
             configValue[k] = v;
         }
     }
