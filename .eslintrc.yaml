@@ -163,10 +163,6 @@ rules:
     semi: error
     semi-spacing: error
     sort-imports: error
-    sort-vars:
-        - error
-        -
-            ignoreCase: true
     space-before-blocks: error
     space-before-function-paren:
         - error
@@ -195,5 +191,4 @@ rules:
             requireReturn: false
             requireReturnDescription: false
     valid-typeof: error
-    vars-on-top: error
     yield-star-spacing: error

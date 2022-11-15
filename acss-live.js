@@ -1,7 +1,7 @@
-/* global MutationObserver, window */
+/* global document, MutationObserver, window */
 "use strict";
-(function (window) {
-    const config = {
+(function (window, document) {
+    var config = {
         settings: {
             // DEBUG_START
             // Set to true to show debug. Use your console for filtering.
@@ -21,6 +21,20 @@
             cc: "currentColor",
             n: "none",
             t: "transparent"
+        },
+
+        // Border styles
+        borderStyle: {
+            d: "dotted",
+            da: "dashed",
+            do: "double",
+            g: "groove",
+            h: "hidden",
+            i: "inset",
+            n: "none",
+            o: "outset",
+            r: "ridge",
+            s: "solid"
         },
 
         pseudoClasses: {
@@ -267,79 +281,19 @@
             Bdcstart: ["border-color-__START__:$0", "colors"],
             Bdsp: ["border-spacing:$0 $1", { i: "inherit" }],
             Bds: [
-                "border-style:$0",
-                {
-                    d: "dotted",
-                    da: "dashed",
-                    do: "double",
-                    g: "groove",
-                    h: "hidden",
-                    i: "inset",
-                    n: "none",
-                    o: "outset",
-                    r: "ridge",
-                    s: "solid"
-                }
+                "border-style:$0", 'borderStyle'
             ],
             Bdts: [
-                "border-top-style:$0",
-                {
-                    d: "dotted",
-                    da: "dashed",
-                    do: "double",
-                    g: "groove",
-                    h: "hidden",
-                    i: "inset",
-                    n: "none",
-                    o: "outset",
-                    r: "ridge",
-                    s: "solid"
-                }
+                "border-top-style:$0", 'borderStyle'
             ],
             Bdends: [
-                "border-__END__-style:$0",
-                {
-                    d: "dotted",
-                    da: "dashed",
-                    do: "double",
-                    g: "groove",
-                    h: "hidden",
-                    i: "inset",
-                    n: "none",
-                    o: "outset",
-                    r: "ridge",
-                    s: "solid"
-                }
+                "border-__END__-style:$0", 'borderStyle'
             ],
             Bdbs: [
-                "border-bottom-style:$0",
-                {
-                    d: "dotted",
-                    da: "dashed",
-                    do: "double",
-                    g: "groove",
-                    h: "hidden",
-                    i: "inset",
-                    n: "none",
-                    o: "outset",
-                    r: "ridge",
-                    s: "solid"
-                }
+                "border-bottom-style:$0", 'borderStyle'
             ],
             Bdstarts: [
-                "border-__START__-style:$0",
-                {
-                    d: "dotted",
-                    da: "dashed",
-                    do: "double",
-                    g: "groove",
-                    h: "hidden",
-                    i: "inset",
-                    n: "none",
-                    o: "outset",
-                    r: "ridge",
-                    s: "solid"
-                }
+                "border-__START__-style:$0", 'borderStyle'
             ],
             Bdw: ["border-width:$0", { m: "medium", t: "thin", th: "thick" }],
             Bdtw: [
@@ -1201,14 +1155,212 @@
         }
     };
 
-    // Merge default config with any from user
-    const more = window.acssLiveConfig || {};
+    var loop = (thing, cb) => {
+            for (var [key, value] of Object.entries(thing || {})) {
+                cb(value, key);
+            }
+        },
+        addRule = (atRule, ruleSelector, rules, args, values, important) => {
+            var rule =
+                config.settings.namespace +
+                ruleSelector +
+                "{" +
+                rules
+                    .map((r) => {
+                        if (important && r.substr(-10) !== "!important") {
+                            r += "!important";
+                        }
 
-    for (const [configKey, configValue] of Object.entries(config)) {
-        for (const [k, v] of Object.entries(more[configKey] || {})) {
+                        return r;
+                    })
+                    .join(";") +
+                "}";
+
+            if (atRule) {
+                rule = `${config.atRules[atRule] || atRule}{${rule}}`;
+            }
+
+            rule = rule
+                .replace(/__START__/g, config.settings.rightToLeft ? "right" : "left")
+                .replace(/__END__/g, config.settings.rightToLeft ? "left" : "right")
+                .replace(/\$([0-9]+)/g, (paramNumber) => {
+                    var v = (values.split(",") || [])[+paramNumber[1]];
+
+                    if (v[0] === "-" && v[1] === "-") {
+                        return `val(${v})`;
+                    }
+
+                    return args[v] || config.values[v] || v;
+                });
+
+            // DEBUG_START
+            if (config.settings.debug) {
+                console.log("ACSS-RULE", `Add rule: ${rule}`);
+            }
+            // DEBUG_END
+
+            ((styleSheet) => styleSheet.insertRule(rule, styleSheet.cssRules.length))(styleElement.sheet);
+        },
+        makeSelector = (sel, pseudoClass, pseudoElement) => {
+            sel = sel.replace(/[^-_a-zA-Z0-9]/g, (match) => `\\${match}`);
+            pseudoClass = config.pseudoClasses[pseudoClass] || pseudoClass || "";
+            pseudoElement =
+                config.pseudoElements[pseudoElement] || pseudoElement || "";
+
+            return sel + pseudoClass + pseudoElement;
+        },
+        processRule = (selector) => {
+            // DEBUG_START
+            if (config.settings.debug) {
+                console.log("ACSS-RULE", `Parsing selector: ${selector}`);
+                console.time("ACSS-RULE");
+            }
+            // DEBUG_END
+
+            var match = selector.match(rulePattern);
+
+            if (!match) {
+                // DEBUG_START
+                if (config.settings.debug) {
+                    console.log("ACSS-RULE", `Did not match pattern`);
+                    console.timeEnd("ACSS-RULE");
+                }
+                // DEBUG_END
+
+                return;
+            }
+
+            var def = config.classes[match[4]];
+
+            if (!def) {
+                // DEBUG_START
+                if (config.settings.debug) {
+                    console.log("ACSS-RULE", `No class matches: ${match[4]}`);
+                    console.timeEnd("ACSS-RULE");
+                }
+                // DEBUG_END
+
+                return;
+            }
+
+            var parentSelector = match[1]
+                ? makeSelector(match[1], match[2]) + match[3]
+                : "";
+            var ruleSelector =
+                parentSelector + "." + makeSelector(selector, match[7], match[8]);
+
+            if (def.styles) {
+                addRule(
+                    match[9],
+                    ruleSelector,
+                    def.styles,
+                    config[`${def.args}`] || def.args || {},
+                    match[5],
+                    match[6]
+                );
+            }
+
+            loop(def.addRules, (ruleSet, atRule) => {
+                loop(ruleSet, (addStyles, addSel) => {
+                    addRule(atRule, addSel, addStyles, {});
+                });
+            });
+
+            // DEBUG_START
+            if (config.settings.debug) {
+                console.timeEnd("ACSS-RULE");
+            }
+            // DEBUG_END
+        },
+        // DEBUG_START
+        getElementIdentifier = (e) => {
+            var s = e.tagName;
+
+            if (e.id) {
+                s += `#${e.id}`;
+            }
+
+            loop(e.classList, (c) => {
+                if (c) {
+                    s += `.${c}`;
+                }
+            });
+
+            return s;
+        },
+        // DEBUG_END
+        processElement = (e, elementMap) => {
+            if (elementMap.includes(e)) {
+                // DEBUG_START
+                if (config.settings.debug) {
+                    console.log(
+                        "ACSS-ELEMENT",
+                        `Already scanned: ${getElementIdentifier(e)}`
+                    );
+                }
+                // DEBUG_END
+            } else {
+                // DEBUG_START
+                if (config.settings.debug) {
+                    console.log(
+                        "ACSS-ELEMENT",
+                        `Process element: ${getElementIdentifier(e)}`
+                    );
+                }
+                // DEBUG_END
+
+                elementMap.push(e);
+
+                loop(e.classList, (c) => {
+                    if (!definedClasses[c]) {
+                        definedClasses[c] = 1;
+                        processRule(c);
+                    }
+                });
+            }
+        },
+        processElementAndChildren = (node, elementMap) => {
+            // Non-recursive
+            var list = [node];
+
+            while (list.length) {
+                processElement(list[0], elementMap);
+                iterateNodeList(list.shift().children, (child) => {
+                    list.push(child);
+                });
+            }
+        },
+        iterateNodeList = (nodes, callback) => {
+            loop(nodes, (node) => {
+                if (node.nodeType === 1) {
+                    callback(node);
+                }
+            });
+        },
+        rulePattern =
+            /^(?:([a-zA-Z][-_a-zA-Z0-9]+?)(?::([a-z]+))?([>_+~]))?([-a-zA-Z0-9]+)(?:\(([-_,.#$/%0-9a-zA-Z]+)\))?(!)?(?::([a-z]+))?(?:::([a-z]+))?(?:--([a-zA-Z0-9]+))?$/,
+        //       1-----------------------1    2------2  3------3  4-------------4     5--------------------5    6-6     7-------7      8------8       9------------9
+        // 1: parent selector
+        // 2: parent pseudoclass
+        // 3: parent separator
+        // 4: atomic selector
+        // 5: atomic values
+        // 6: important
+        // 7: pseudoclass
+        // 8: pseudoelement
+        // 9: at-rule / media query / breakpoint
+        body = document.body,
+        definedClasses = {},
+        styleElement = document.createElement("style");
+
+    document.head.appendChild(styleElement);
+
+    // Merge default config with any from user
+    loop(config, (configValue, configKey) => {
+        loop((window.acssLiveConfig || {})[configKey], (v, k) => {
             configValue[k] = v;
-        }
-    }
+        });
+    });
 
     // DEBUG_START
     if (config.settings.debug) {
@@ -1218,228 +1370,18 @@
     // DEBUG_END
 
     // Expand rules
-    for (const [k, v] of Object.entries(config.classes)) {
-        let def = v;
-
-        if (Array.isArray(def)) {
-            def = {
-                args: def[1],
-                styles: def[0].split(";")
+    loop(config.classes, (v, k) => {
+        if (Array.isArray(v)) {
+            v = {
+                args: v[1],
+                styles: v[0].split(";")
             };
         }
 
-        def.args = def.args || {};
-        config.classes[k] = def;
-    }
+        config.classes[k] = v;
+    });
 
-    function addRule(atRule, ruleSelector, rules, args, values, important) {
-        let rule =
-            config.settings.namespace +
-            ruleSelector +
-            "{" +
-            rules
-                .map((r) => {
-                    if (important && r.substr(-10) !== "!important") {
-                        r += "!important";
-                    }
-
-                    return r;
-                })
-                .join(";") +
-            "}";
-
-        if (atRule) {
-            rule = `${config.atRules[atRule] || atRule}{${rule}}`;
-        }
-
-        rule = rule
-            .replace(/__START__/g, config.settings.rightToLeft ? "right" : "left")
-            .replace(/__END__/g, config.settings.rightToLeft ? "left" : "right")
-            .replace(/\$([0-9]+)/g, (paramNumber) => {
-                const v = (values.split(",") || [])[+paramNumber[1]];
-
-                if (v[0] === "-" && v[1] === "-") {
-                    return `val(${v})`;
-                }
-
-                return args[v] || config.values[v] || v;
-            });
-
-        // DEBUG_START
-        if (config.settings.debug) {
-            console.log("ACSS-RULE", `Add rule: ${rule}`);
-        }
-        // DEBUG_END
-
-        styleSheet.insertRule(rule, styleSheet.cssRules.length);
-    }
-
-    function makeSelector(sel, pseudoClass, pseudoElement) {
-        sel = sel.replace(/[^-_a-zA-Z0-9]/g, (match) => `\\${match}`);
-        pseudoClass = config.pseudoClasses[pseudoClass] || pseudoClass || "";
-        pseudoElement =
-            config.pseudoElements[pseudoElement] || pseudoElement || "";
-
-        return sel + pseudoClass + pseudoElement;
-    }
-
-    const rulePattern =
-        /^(?:([a-zA-Z][-_a-zA-Z0-9]+?)(?::([a-z]+))?([>_+~]))?([-a-zA-Z0-9]+)(?:\(([-_,.#$/%0-9a-zA-Z]+)\))?(!)?(?::([a-z]+))?(?:::([a-z]+))?(?:--([a-zA-Z0-9]+))?$/;
-    //       1-----------------------1    2------2  3------3  4-------------4     5--------------------5    6-6     7-------7      8------8       9------------9
-    // 1: parent selector
-    // 2: parent pseudoclass
-    // 3: parent separator
-    // 4: atomic selector
-    // 5: atomic values
-    // 6: important
-    // 7: pseudoclass
-    // 8: pseudoelement
-    // 9: at-rule / media query / breakpoint
-
-    function processRule(selector) {
-        // DEBUG_START
-        if (config.settings.debug) {
-            console.log("ACSS-RULE", `Parsing selector: ${selector}`);
-            console.time("ACSS-RULE");
-        }
-        // DEBUG_END
-
-        const match = selector.match(rulePattern);
-
-        if (!match) {
-            // DEBUG_START
-            if (config.settings.debug) {
-                console.log("ACSS-RULE", `Did not match pattern`);
-                console.timeEnd("ACSS-RULE");
-            }
-            // DEBUG_END
-
-            return;
-        }
-
-        const def = config.classes[match[4]];
-
-        if (!def) {
-            // DEBUG_START
-            if (config.settings.debug) {
-                console.log("ACSS-RULE", `No class matches: ${match[4]}`);
-                console.timeEnd("ACSS-RULE");
-            }
-            // DEBUG_END
-
-            return;
-        }
-
-        const parentSelector = match[1]
-            ? makeSelector(match[1], match[2]) + match[3]
-            : "";
-        const ruleSelector =
-            parentSelector + "." + makeSelector(selector, match[7], match[8]);
-
-        if (def.styles) {
-            addRule(
-                match[9],
-                ruleSelector,
-                def.styles,
-                config[`${def.args}`] || def.args,
-                match[5],
-                match[6]
-            );
-        }
-
-        if (def.addRules) {
-            for (const [atRule, ruleSet] of Object.entries(def.addRules)) {
-                for (const [addSel, addStyles] of Object.entries(ruleSet)) {
-                    addRule(atRule, addSel, addStyles, {});
-                }
-            }
-        }
-
-        // DEBUG_START
-        if (config.settings.debug) {
-            console.timeEnd("ACSS-RULE");
-        }
-        // DEBUG_END
-    }
-
-    // DEBUG_START
-    function getElementIdentifier(e) {
-        let s = e.tagName;
-
-        if (e.id) {
-            s += `#${e.id}`;
-        }
-
-        for (const c of e.classList || []) {
-            if (c) {
-                s += `.${c}`;
-            }
-        }
-
-        return s;
-    }
-    // DEBUG_END
-
-    function processElement(e, elementMap) {
-        if (elementMap.has(e)) {
-            // DEBUG_START
-            console.log(
-                "ACSS-ELEMENT",
-                `Already scanned: ${getElementIdentifier(e)}`
-            );
-            // DEBUG_END
-        } else {
-            // DEBUG_START
-            if (config.settings.debug) {
-                console.log(
-                    "ACSS-ELEMENT",
-                    `Process element: ${getElementIdentifier(e)}`
-                );
-            }
-            // DEBUG_END
-
-            elementMap.set(e, 0);
-
-            for (const c of e.classList || []) {
-                if (!definedClasses[c]) {
-                    definedClasses[c] = 1;
-                    processRule(c);
-                }
-            }
-        }
-    }
-
-    function processElementAndChildren(node, elementMap) {
-        const list = [node];
-
-        while (list.length) {
-            const n = list.shift();
-            processElement(n, elementMap);
-            iterateNodeList(n.children, (child) => {
-                list.push(child);
-            });
-        }
-    }
-
-    function iterateNodeList(nodes, callback) {
-        if (!nodes) {
-            return;
-        }
-
-        for (let i = 0; i < nodes.length; i += 1) {
-            if (nodes[i].nodeType === 1) {
-                callback(nodes[i]);
-            }
-        }
-    }
-
-    const document = window.document;
-    const definedClasses = {};
-    const styleElement = document.createElement("style");
-    document.head.appendChild(styleElement);
-    const styleSheet = styleElement.sheet;
-
-    if (document.body) {
+    if (body) {
         // DEBUG_START
         if (config.settings.debug) {
             console.log("ACSS-SETUP", "Process current elements");
@@ -1447,7 +1389,7 @@
         }
         // DEBUG_END
 
-        processElementAndChildren(document.body, new Map());
+        processElementAndChildren(body, []);
 
         // DEBUG_START
         if (config.settings.debug) {
@@ -1456,16 +1398,18 @@
         // DEBUG_END
     }
 
-    const mutationInstance = new MutationObserver((mutations) => {
+    new MutationObserver((mutations) => {
+        var elementMap = [];
+
+        // DEBUG_START
         if (config.settings.debug) {
             console.log("ACSS-MUTATION", "Detected mutations", mutations);
             console.time("ACSS-MUTATION");
         }
+        // DEBUG_END
 
-        const elementMap = new Map();
-
-        for (const mutation of mutations) {
-            // characterData
+        loop(mutations, (mutation) => {
+            // ch[a]racterData
             if (mutation.type[2] === "a") {
                 processElement(mutation.target, elementMap);
             }
@@ -1473,16 +1417,14 @@
             iterateNodeList(mutation.addedNodes, (n) =>
                 processElementAndChildren(n, elementMap)
             );
-        }
+        });
 
         // DEBUG_START
         if (config.settings.debug) {
             console.timeEnd("ACSS-MUTATION");
         }
         // DEBUG_END
-    });
-
-    mutationInstance.observe(document, {
+    }).observe(document, {
         attributeFilter: ["class"],
         childList: true,
         subtree: true
@@ -1493,4 +1435,4 @@
         console.timeEnd("ACSS-SETUP");
     }
     // DEBUG_END
-})(window);
+})(window, document);
