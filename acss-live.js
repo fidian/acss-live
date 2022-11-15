@@ -16,7 +16,7 @@
             namespace: ""
         },
 
-        // Colors for rules that use them
+        // Colors
         colors: {
             cc: "currentColor",
             n: "none",
@@ -36,6 +36,11 @@
             r: "ridge",
             s: "solid"
         },
+
+        // Shorthand for really simple lookups
+        a: { a: "auto" },
+        an: { a: "auto", n: "none" },
+        n: { n: "none" },
 
         pseudoClasses: {
             a: "active",
@@ -111,7 +116,7 @@
             l: "@media(min-width:1025)and(max-width:1024px)"
         },
 
-        // __START__ and __END__ are replaced with left and right
+        // _S_ and _E_ are replaced with left and right
         // (depending on the rightToLeft setting).
         // $0 through $9 are replaced with arguments
         //
@@ -120,10 +125,10 @@
         // 10% better, which is not what I had expected.
         classes: {
             // Animation
-            Anim: ["animation:$0"],
-            Animdel: ["animation-delay:$0"],
+            Anim: ["animation"],
+            Animdel: ["animation-delay"],
             AnimDir: [
-                "animation-direction:$0",
+                "animation-direction",
                 {
                     a: "alternate",
                     ar: "alternate-reverse",
@@ -131,9 +136,9 @@
                     r: "reverse"
                 }
             ],
-            Animdur: ["animation-duration:$0"],
+            Animdur: ["animation-duration"],
             Animfm: [
-                "animation-fill-mode:$0",
+                "animation-fill-mode",
                 {
                     b: "backwards",
                     bo: "both",
@@ -142,15 +147,15 @@
                 }
             ],
             Animic: [
-                "animation-iteration-count:$0",
+                "animation-iteration-count",
                 {
                     i: "infinite"
                 }
             ],
-            Animn: ["animation-name:$0", { n: "none" }],
-            Animps: ["animation-play-state:$0", { p: "paused", r: "running" }],
+            Animn: ["animation-name", "n"],
+            Animps: ["animation-play-state", { p: "paused", r: "running" }],
             Animtf: [
-                "animation-timing-function:$0",
+                "animation-timing-function",
                 {
                     e: "ease",
                     ei: "ease-in",
@@ -163,7 +168,7 @@
             ],
 
             // Appearance
-            Ap: ["appearance:$0", { a: "auto", n: "none" }],
+            Ap: ["appearance", "an"],
 
             // Border shortcuts: 1 pixel solid border
             BdAll: ["border-width:1px;border-style:solid"],
@@ -177,58 +182,58 @@
                 "border-top-width:1px;border-right-width:0;border-bottom-width:0;border-left-width:0;border-style:solid"
             ],
             BdEnd: [
-                "border-top-width:0px;border-__END__-width:1px;border-bottom-width:0;border-__START__-width:0;border-style:solid"
+                "border-top-width:0px;border-_E_-width:1px;border-bottom-width:0;border-_S_-width:0;border-style:solid"
             ],
             BdB: [
                 "border-top-width:0;border-right-width:0;border-bottom-width:1px;border-left-width:0;border-style:solid"
             ],
             BdStart: [
-                "border-top-width:0px;border-__END__-width:0;border-bottom-width:0;border-__START__-width:1px;border-style:solid"
+                "border-top-width:0px;border-_E_-width:0;border-bottom-width:0;border-_S_-width:1px;border-style:solid"
             ],
 
             // Backface
-            Bfv: ["backface-visibility:$0", { h: "hidden", v: "visible" }],
+            Bfv: ["backface-visibility", { h: "hidden", v: "visible" }],
 
             // Background
-            Bg: ["background:$0", { n: "none", t: "transparent" }],
+            Bg: ["background", { n: "none", t: "transparent" }],
             Bga: [
-                "background-attachment:$0",
+                "background-attachment",
                 {
                     f: "fixed",
                     l: "local",
                     s: "scroll"
                 }
             ],
-            Bgc: ["background-color:$0", "colors"],
+            Bgc: ["background-color", "colors"],
             Bgcp: [
-                "background-clip:$0",
+                "background-clip",
                 { bb: "border-box", cb: "content-box", pb: "padding-box" }
             ],
-            Bgi: ["background-image:$0", { n: "none" }],
+            Bgi: ["background-image", "n"],
             Bgo: [
-                "background-origin:$0",
+                "background-origin",
                 { bb: "border-box", cb: "content-box", pb: "padding-box" }
             ],
             Bgp: [
-                "background-position:$0",
+                "background-position",
                 {
-                    start_t: "__START__ 0",
-                    end_t: "__END__ 0",
-                    start_b: "__START__ 100%",
-                    end_b: "__END__ 100%",
-                    start_c: "__START__ center",
-                    end_c: "__END__ center",
+                    start_t: "_S_ 0",
+                    end_t: "_E_ 0",
+                    start_b: "_S_ 100%",
+                    end_b: "_E_ 100%",
+                    start_c: "_S_ center",
+                    end_c: "_E_ center",
                     c_b: "center 100%",
                     c_t: "center 0",
                     c: "center"
                 }
             ],
             Bgpx: [
-                "background-position-x:$0",
-                { start: "__START__", end: "__END__", c: "center" }
+                "background-position-x",
+                { start: "_S_", end: "_E_", c: "center" }
             ],
             Bgpy: [
-                "background-position-y:$0",
+                "background-position-y",
                 {
                     t: "0",
                     c: "50%",
@@ -236,7 +241,7 @@
                 }
             ],
             Bgr: [
-                "background-repeat:$0",
+                "background-repeat",
                 {
                     nr: "no-repeat",
                     rx: "repeat-x",
@@ -247,7 +252,7 @@
                 }
             ],
             Bgz: [
-                "background-size:$0",
+                "background-size",
                 {
                     a: "auto",
                     ct: "contain",
@@ -260,81 +265,68 @@
             BfcHack: ["display:table-cell;width:1600px;*width:auto;zoom:1"],
 
             // Border
-            Bd: ["border:$0", { n: "none" }],
-            Bdx: ["border-__START__:$0;border-__END__:$0"],
-            Bdy: ["border-top:$0;border-bottom:$0"],
-            Bdt: ["border-top:$0"],
-            Bdend: ["border-__END__:$0"],
-            Bdb: ["border-bottom:$0"],
-            Bdstart: ["border-__START__:$0"],
+            Bd: ["border", "n"],
+            Bdx: ["border-_S_;border-_E_"],
+            Bdy: ["border-top;border-bottom"],
+            Bdt: ["border-top"],
+            Bdend: ["border-_E_"],
+            Bdb: ["border-bottom"],
+            Bdstart: ["border-_S_"],
             Bdcl: [
-                "border-collapse:$0",
+                "border-collapse",
                 {
                     c: "collapse",
                     s: "separate"
                 }
             ],
-            Bdc: ["border-color:$0", "colors"],
-            Bdct: ["border-color-top:$0", "colors"],
-            Bdcend: ["border-color-__END__:$0", "colors"],
-            Bdcb: ["border-color-bottom:$0", "colors"],
-            Bdcstart: ["border-color-__START__:$0", "colors"],
-            Bdsp: ["border-spacing:$0 $1", { i: "inherit" }],
-            Bds: [
-                "border-style:$0", 'borderStyle'
-            ],
-            Bdts: [
-                "border-top-style:$0", 'borderStyle'
-            ],
-            Bdends: [
-                "border-__END__-style:$0", 'borderStyle'
-            ],
-            Bdbs: [
-                "border-bottom-style:$0", 'borderStyle'
-            ],
-            Bdstarts: [
-                "border-__START__-style:$0", 'borderStyle'
-            ],
-            Bdw: ["border-width:$0", { m: "medium", t: "thin", th: "thick" }],
-            Bdtw: [
-                "border-top-width:$0",
-                { m: "medium", t: "thin", th: "thick" }
-            ],
+            Bdc: ["border-color", "colors"],
+            Bdct: ["border-color-top", "colors"],
+            Bdcend: ["border-color-_E_", "colors"],
+            Bdcb: ["border-color-bottom", "colors"],
+            Bdcstart: ["border-color-_S_", "colors"],
+            Bdsp: ["border-spacing $1", { i: "inherit" }],
+            Bds: ["border-style", "borderStyle"],
+            Bdts: ["border-top-style", "borderStyle"],
+            Bdends: ["border-_E_-style", "borderStyle"],
+            Bdbs: ["border-bottom-style", "borderStyle"],
+            Bdstarts: ["border-_S_-style", "borderStyle"],
+            Bdw: ["border-width", { m: "medium", t: "thin", th: "thick" }],
+            Bdtw: ["border-top-width", { m: "medium", t: "thin", th: "thick" }],
             Bdendw: [
-                "border-__END__-width:$0",
+                "border-_E_-width",
                 { m: "medium", t: "thin", th: "thick" }
             ],
             Bdbw: [
-                "border-bottom-width:$0",
+                "border-bottom-width",
                 { m: "medium", t: "thin", th: "thick" }
             ],
             Bdstartw: [
-                "border-__START__-width:$0",
+                "border-_S_-width",
                 { m: "medium", t: "thin", th: "thick" }
             ],
-            Bdrs: ["border-radius:$0"],
-            Bdrstend: ["border-radius-top-__END__:$0"],
-            Bdrsbend: ["border-radius-bottom-__END__:$0"],
-            Bdrsbstart: ["border-radius-bottom-__START__:$0"],
-            Bdrststart: ["border-radius-top-__START__:$0"],
+            Bdrs: ["border-radius"],
+            Bdrstend: ["border-radius-top-_E_"],
+            Bdrsbend: ["border-radius-bottom-_E_"],
+            Bdrsbstart: ["border-radius-bottom-_S_"],
+            Bdrststart: ["border-radius-top-_S_"],
 
             // Box shadow
-            Bxsh: ["box-shadow:$0", { n: "none" }],
+            Bxsh: ["box-shadow", "n"],
 
             // Box sizing
             Bxz: [
-                "box-sizing:$0",
+                "box-sizing",
                 { bb: "border-box", cb: "content-box", pb: "padding-box" }
             ],
 
             // Clear
             Cl: [
-                "clear:$0",
+                "clear",
                 {
                     n: "none",
                     b: "both",
-                    start: "__START__",
-                    end: "__END__"
+                    start: "_S_",
+                    end: "_E_"
                 }
             ],
 
@@ -354,23 +346,23 @@
             },
 
             // Color
-            C: ["color:$0", "colors"],
+            C: ["color", "colors"],
 
             // Columns
-            Colm: ["columns:$0"],
-            Colmc: ["column-count:$0"],
+            Colm: ["columns"],
+            Colmc: ["column-count"],
             Colmf: [
-                "column-fill:$0",
+                "column-fill",
                 {
                     a: "auto",
                     b: "balance"
                 }
             ],
-            Colmg: ["column-gap:$0"],
-            Colmr: ["column-rule:$0"],
-            Colmrc: ["column-rule-color:$0"],
+            Colmg: ["column-gap"],
+            Colmr: ["column-rule"],
+            Colmrc: ["column-rule-color"],
             Colmrs: [
-                "column-rule-style:$0",
+                "column-rule-style",
                 {
                     d: "dotted",
                     da: "dashed",
@@ -384,19 +376,19 @@
                     s: "solid"
                 }
             ],
-            Colmrw: ["column-rule-width:$0"],
+            Colmrw: ["column-rule-width"],
             Colms: [
-                "column-span:$0",
+                "column-span",
                 {
                     a: "all",
                     n: "none"
                 }
             ],
-            Colmw: ["column-width:$0"],
+            Colmw: ["column-width"],
 
             // Contain
             Ctn: [
-                "contain:$0",
+                "contain",
                 {
                     n: "none",
                     st: "strict",
@@ -410,7 +402,7 @@
 
             // Content
             Cnt: [
-                "content:$0",
+                "content",
                 {
                     n: "none",
                     nor: "normal",
@@ -423,7 +415,7 @@
 
             // Cursor
             Cur: [
-                "cursor:$0",
+                "cursor",
                 {
                     a: "auto",
                     as: "all-scroll",
@@ -464,7 +456,7 @@
 
             // Display
             D: [
-                "display:$0",
+                "display",
                 {
                     n: "none",
                     b: "block",
@@ -512,7 +504,7 @@
             },
 
             // Filter
-            Fil: ["filter:$0"],
+            Fil: ["filter"],
             Blur: ["filter:blur($0)"],
             Brightness: ["filter:brightness($0)"],
             Contrast: ["filter:contrast($0)"],
@@ -525,12 +517,12 @@
             Sepia: ["filter:sepia($0)"],
 
             // Flex
-            Fx: ["flex:$0", { a: "auto", n: "none" }],
-            Fxg: ["flex-grow:$0"],
-            Fxs: ["flex-shrink:$0"],
-            Fxb: ["flex-basis:$0", { a: "auto", n: "none" }],
+            Fx: ["flex", "an"],
+            Fxg: ["flex-grow"],
+            Fxs: ["flex-shrink"],
+            Fxb: ["flex-basis", "an"],
             As: [
-                "align-self:$0",
+                "align-self",
                 {
                     a: "auto",
                     b: "baseline",
@@ -541,7 +533,7 @@
                 }
             ],
             Fxd: [
-                "flex-direction:$0",
+                "flex-direction",
                 {
                     r: "row",
                     rr: "row-reverse",
@@ -550,7 +542,7 @@
                 }
             ],
             Fxf: [
-                "flex-flow:$0",
+                "flex-flow",
                 {
                     nw: "nowrap",
                     w: "wrap",
@@ -562,7 +554,7 @@
                 }
             ],
             Ai: [
-                "align-items:$0",
+                "align-items",
                 {
                     b: "baseline",
                     fs: "flex-start",
@@ -572,7 +564,7 @@
                 }
             ],
             Ac: [
-                "align-content:$0",
+                "align-content",
                 {
                     sb: "space-between",
                     sa: "space-around",
@@ -582,9 +574,9 @@
                     s: "stretch"
                 }
             ],
-            Order: ["order:$0"],
+            Order: ["order"],
             Jc: [
-                "justify-content:$0",
+                "justify-content",
                 {
                     sb: "space-between",
                     sa: "space-around",
@@ -595,14 +587,11 @@
                     s: "stretch"
                 }
             ],
-            Fxw: [
-                "flex-wrap:$0",
-                { nw: "nowrap", w: "wrap", wr: "wrap-reverse" }
-            ],
+            Fxw: ["flex-wrap", { nw: "nowrap", w: "wrap", wr: "wrap-reverse" }],
 
             // Font
             Ff: [
-                "font-family:$0",
+                "font-family",
                 {
                     c: '"Monotype Corsiva", "Comic Sans MS", cursive',
                     f: "Capitals, Impact, fantasy",
@@ -612,7 +601,7 @@
                 }
             ],
             Fw: [
-                "font-weight:$0",
+                "font-weight",
                 {
                     b: "bold",
                     br: "bolder",
@@ -620,9 +609,9 @@
                     n: "normal"
                 }
             ],
-            Fz: ["font-size:$0"],
+            Fz: ["font-size"],
             Fs: [
-                "font-style:$0",
+                "font-style",
                 {
                     n: "normal",
                     i: "italic",
@@ -630,7 +619,7 @@
                 }
             ],
             Fv: [
-                "font-variant:$0",
+                "font-variant",
                 {
                     n: "normal",
                     sc: "small-caps"
@@ -639,7 +628,7 @@
 
             // Height
             H: [
-                "height:$0",
+                "height",
                 {
                     a: "auto",
                     av: "available",
@@ -658,7 +647,7 @@
 
             // Hyphens
             Hy: [
-                "hyphens:$0",
+                "hyphens",
                 {
                     a: "auto",
                     m: "manual",
@@ -672,7 +661,7 @@
             ],
 
             // Letter spacing
-            Lts: ["letter-spacing:$0", { n: "normal" }],
+            Lts: ["letter-spacing", { n: "normal" }],
 
             // LineClamp
             LineClamp: {
@@ -703,15 +692,15 @@
                         "[class*=LineClamp]": ["display:block"]
                     }
                 },
-                styles: ["-webkit-line-clamp:$0", "max-height:$1"]
+                styles: ["-webkit-line-clamp", "max-height:$1"]
             },
 
             // Line height
-            Lh: ["line-height:$0", { n: "normal" }],
+            Lh: ["line-height", { n: "normal" }],
 
             // Lists
             List: [
-                "list-style-type:$0",
+                "list-style-type",
                 {
                     n: "none",
                     d: "disc",
@@ -731,26 +720,26 @@
                 }
             ],
             Lisp: [
-                "list-style-position:$0",
+                "list-style-position",
                 {
                     i: "inside",
                     o: "outside"
                 }
             ],
-            Lisi: ["list-style-image:$0", { n: "none" }],
+            Lisi: ["list-style-image", "n"],
 
             // Margins
-            M: ["margin:$0", { a: "auto" }],
-            Mx: ["margin-__START__:$0;margin-__END__:$0", { a: "auto" }],
-            My: ["margin-top:$0;margin-bottom:$0", { a: "auto" }],
-            Mt: ["margin-top:$0", { a: "auto" }],
-            Mend: ["margin-__END__:$0", { a: "auto" }],
-            Mb: ["margin-bottom:$0", { a: "auto" }],
-            Mstart: ["margin-__START__:$0", { a: "auto" }],
+            M: ["margin", "a"],
+            Mx: ["margin-_S_;margin-_E_", "a"],
+            My: ["margin-top;margin-bottom", "a"],
+            Mt: ["margin-top", "a"],
+            Mend: ["margin-_E_", "a"],
+            Mb: ["margin-bottom", "a"],
+            Mstart: ["margin-_S_", "a"],
 
             // Max/min
             Mah: [
-                "max-height:$0",
+                "max-height",
                 {
                     a: "auto",
                     maxc: "max-content",
@@ -760,7 +749,7 @@
                 }
             ],
             Mih: [
-                "min-height:$0",
+                "min-height",
                 {
                     a: "auto",
                     maxc: "max-content",
@@ -770,7 +759,7 @@
                 }
             ],
             Maw: [
-                "max-width:$0",
+                "max-width",
                 {
                     i: "initial",
                     a: "auto",
@@ -781,7 +770,7 @@
                 }
             ],
             Miw: [
-                "min-width:$0",
+                "min-width",
                 {
                     a: "auto",
                     maxc: "max-content",
@@ -793,7 +782,7 @@
 
             // Object
             Objf: [
-                "object-fit:$0",
+                "object-fit",
                 {
                     ct: "contain",
                     cv: "cover",
@@ -804,32 +793,32 @@
             ],
 
             // Offsets
-            T: ["top:$0", { a: "auto" }],
-            End: ["__END__:$0", { a: "auto" }],
-            B: ["bottom:$0", { a: "auto" }],
-            Start: ["__START__:$0", { a: "auto" }],
+            T: ["top", "a"],
+            End: ["_E_", "a"],
+            B: ["bottom", "a"],
+            Start: ["_S_", "a"],
 
             // Opacity
-            Op: ["opacity:$0"],
+            Op: ["opacity"],
 
             // Outline
-            O: ["outline:$0", { n: "none" }],
+            O: ["outline", "n"],
 
             // Overflow
             Ov: [
-                "overflow:$0",
+                "overflow",
                 { h: "hidden", v: "visible", a: "auto", s: "scroll" }
             ],
             Ovx: [
-                "overflow-x:$0",
+                "overflow-x",
                 { h: "hidden", v: "visible", a: "auto", s: "scroll" }
             ],
             Ovy: [
-                "overflow-y:$0",
+                "overflow-y",
                 { h: "hidden", v: "visible", a: "auto", s: "scroll" }
             ],
             Ovs: [
-                "-webkit-overflow-scrolling:$0",
+                "-webkit-overflow-scrolling",
                 {
                     a: "auto",
                     touch: "touch"
@@ -837,21 +826,21 @@
             ],
 
             // Paddings
-            P: ["padding:$0"],
-            Px: ["padding-__START__:$0;padding-__END__:$0"],
-            Py: ["padding-top:$0;padding-bottom:$0"],
-            Pt: ["padding-top:$0"],
-            Pend: ["padding-__END__:$0"],
-            Pb: ["padding-bottom:$0"],
-            Pstart: ["padding-__START__:$0"],
+            P: ["padding"],
+            Px: ["padding-_S_;padding-_E_"],
+            Py: ["padding-top;padding-bottom"],
+            Pt: ["padding-top"],
+            Pend: ["padding-_E_"],
+            Pb: ["padding-bottom"],
+            Pstart: ["padding-_S_"],
 
             // Perspective
-            Prs: ["perspective:$0", { n: "none" }],
+            Prs: ["perspective", "n"],
             Prso: [
-                "perspective-origin:$0 $1",
+                "perspective-origin $1",
                 {
-                    start: "__START__",
-                    end: "__END__",
+                    start: "_S_",
+                    end: "_E_",
                     c: "center",
                     t: "top",
                     b: "bottom"
@@ -860,7 +849,7 @@
 
             // Pointer events
             Pe: [
-                "pointer-events:$0",
+                "pointer-events",
                 {
                     a: "auto",
                     all: "all",
@@ -877,7 +866,7 @@
 
             // Position
             Pos: [
-                "position:$0",
+                "position",
                 {
                     a: "absolute",
                     f: "fixed",
@@ -889,7 +878,7 @@
 
             // Resize
             Rsz: [
-                "resize:$0",
+                "resize",
                 {
                     n: "none",
                     b: "both",
@@ -907,11 +896,11 @@
             StretchedBox: ["position:absolute;top:0;right:0;bottom:0;left:0"],
 
             // SVG
-            Fill: ["fill:$0", "colors"],
-            Stk: ["stroke:$0", "colors"],
-            Stkw: ["stroke-width:$0", { i: "inherit" }],
+            Fill: ["fill", "colors"],
+            Stk: ["stroke", "colors"],
+            Stkw: ["stroke-width", { i: "inherit" }],
             Stklc: [
-                "stroke-linecap:$0",
+                "stroke-linecap",
                 {
                     i: "inherit",
                     b: "butt",
@@ -920,7 +909,7 @@
                 }
             ],
             Stklj: [
-                "stroke-linejoin:$0",
+                "stroke-linejoin",
                 {
                     i: "inherit",
                     b: "bevel",
@@ -931,7 +920,7 @@
 
             // Table layout
             Tbl: [
-                "table-layout:$0",
+                "table-layout",
                 {
                     a: "auto",
                     f: "fixed"
@@ -940,32 +929,32 @@
 
             // Text
             Ta: [
-                "text-align:$0",
+                "text-align",
                 {
                     e: "end",
                     j: "justify",
                     mp: "match-parent",
                     s: "start",
-                    start: "__START__",
-                    end: "__END__",
+                    start: "_S_",
+                    end: "_E_",
                     c: "center"
                 }
             ],
             Tal: [
-                "text-align-last:$0",
+                "text-align-last",
                 {
                     a: "auto",
                     e: "end",
                     j: "justify",
                     s: "start",
 
-                    start: "__START__",
-                    end: "__END__",
+                    start: "_S_",
+                    end: "_E_",
                     c: "center"
                 }
             ],
             Td: [
-                "text-decoration:$0",
+                "text-decoration",
                 {
                     lt: "line-through",
                     n: "none",
@@ -973,16 +962,16 @@
                     u: "underline"
                 }
             ],
-            Ti: ["text-indent:$0"],
+            Ti: ["text-indent"],
             Tov: [
-                "text-overflow:$0",
+                "text-overflow",
                 {
                     c: "clip",
                     e: "ellipsis"
                 }
             ],
             Tren: [
-                "text-rendering:$0",
+                "text-rendering",
                 {
                     a: "auto",
                     os: "optimizeSpeed",
@@ -990,9 +979,9 @@
                     gp: "geometricPrecision"
                 }
             ],
-            Tr: ["text-replace:$0", { n: "none" }],
+            Tr: ["text-replace", "n"],
             Tt: [
-                "text-transform:$0",
+                "text-transform",
                 {
                     n: "none",
                     c: "capitalize",
@@ -1000,22 +989,22 @@
                     l: "lowercase"
                 }
             ],
-            Tsh: ["text-shadow:$0", { n: "none" }],
+            Tsh: ["text-shadow", "n"],
 
             // Transform
-            Trf: ["transform:$0"],
+            Trf: ["transform"],
             Trfo: [
-                "transform-origin:$0 $1",
+                "transform-origin $1",
                 {
-                    start: "__START__",
-                    end: "__END__",
+                    start: "_S_",
+                    end: "_E_",
                     c: "center",
                     t: "top",
                     b: "bottom"
                 }
             ],
             Trfs: [
-                "transform-style:$0",
+                "transform-style",
                 {
                     f: "flat",
                     p: "preserve-3d"
@@ -1042,17 +1031,17 @@
             TranslateZ: ["transform:translateZ($0)"],
 
             // Transition
-            Trs: ["transition:$0"],
+            Trs: ["transition"],
             Trsde: [
-                "transition-delay:$0",
+                "transition-delay",
                 {
                     i: "initial"
                 }
             ],
-            Trsdu: ["transition-duration:$0"],
-            Trsp: ["transition-property:$0", { a: "all" }],
+            Trsdu: ["transition-duration"],
+            Trsp: ["transition-property", { a: "all" }],
             Trstf: [
-                "transition-timing-function:$0",
+                "transition-timing-function",
                 {
                     e: "ease",
                     ei: "ease-in",
@@ -1066,7 +1055,7 @@
 
             // User select
             Us: [
-                "user-select:$0",
+                "user-select",
                 {
                     a: "all",
                     el: "element",
@@ -1079,7 +1068,7 @@
 
             // Vertical align
             Va: [
-                "vertical-align:$0",
+                "vertical-align",
                 {
                     b: "bottom",
                     bl: "baseline",
@@ -1093,11 +1082,11 @@
             ],
 
             // Visibility
-            V: ["visibility:$0", { h: "hidden", v: "visible", c: "collapse" }],
+            V: ["visibility", { h: "hidden", v: "visible", c: "collapse" }],
 
             // White space
             Whs: [
-                "white-space:$0",
+                "white-space",
                 {
                     n: "normal",
                     p: "pre",
@@ -1107,7 +1096,7 @@
                 }
             ],
             Whsc: [
-                "white-space-collapse:$0",
+                "white-space-collapse",
                 {
                     l: "loose",
                     bs: "break-strict",
@@ -1119,7 +1108,7 @@
 
             // Width
             W: [
-                "width:$0",
+                "width",
                 {
                     a: "auto",
                     bb: "border-box",
@@ -1133,7 +1122,7 @@
 
             // Word break
             Wob: [
-                "word-break:$0",
+                "word-break",
                 {
                     ba: "break-all",
                     ka: "keep-all",
@@ -1143,7 +1132,7 @@
 
             // Word wrap
             Wow: [
-                "word-wrap:$0",
+                "word-wrap",
                 {
                     bw: "break-word",
                     n: "normal"
@@ -1151,7 +1140,7 @@
             ],
 
             // Z-index
-            Z: ["z-index:$0", { a: "auto" }]
+            Z: ["z-index", "a"]
         }
     };
 
@@ -1181,8 +1170,8 @@
             }
 
             rule = rule
-                .replace(/__START__/g, config.settings.rightToLeft ? "right" : "left")
-                .replace(/__END__/g, config.settings.rightToLeft ? "left" : "right")
+                .replace(/_S_/g, config.settings.rightToLeft ? "right" : "left")
+                .replace(/_E_/g, config.settings.rightToLeft ? "left" : "right")
                 .replace(/\$([0-9]+)/g, (paramNumber) => {
                     var v = (values.split(",") || [])[+paramNumber[1]];
 
@@ -1199,11 +1188,15 @@
             }
             // DEBUG_END
 
-            ((styleSheet) => styleSheet.insertRule(rule, styleSheet.cssRules.length))(styleElement.sheet);
+            ((styleSheet) =>
+                styleSheet.insertRule(rule, styleSheet.cssRules.length))(
+                styleElement.sheet
+            );
         },
         makeSelector = (sel, pseudoClass, pseudoElement) => {
             sel = sel.replace(/[^-_a-zA-Z0-9]/g, (match) => `\\${match}`);
-            pseudoClass = config.pseudoClasses[pseudoClass] || pseudoClass || "";
+            pseudoClass =
+                config.pseudoClasses[pseudoClass] || pseudoClass || "";
             pseudoElement =
                 config.pseudoElements[pseudoElement] || pseudoElement || "";
 
@@ -1247,7 +1240,9 @@
                 ? makeSelector(match[1], match[2]) + match[3]
                 : "";
             var ruleSelector =
-                parentSelector + "." + makeSelector(selector, match[7], match[8]);
+                parentSelector +
+                "." +
+                makeSelector(selector, match[7], match[8]);
 
             if (def.styles) {
                 addRule(
@@ -1374,7 +1369,9 @@
         if (Array.isArray(v)) {
             v = {
                 args: v[1],
-                styles: v[0].split(";")
+                styles: v[0]
+                    .split(";")
+                    .map((r) => (r.match(/:/) ? r : r + ":$0"))
             };
         }
 
