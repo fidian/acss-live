@@ -175,7 +175,7 @@ Follows the same shorthand as [Atomizer](https://acss.io/reference.html) and [ac
 * Fixed `Matrix3d` and `Rotate3d` to use the 3D transforms instead of 2D.
 * Colors and other properties are not restricted to a list.
 * `Mw(ini)` changed to `Mw(i)`, similar to `Trsdu(i)` for consistency.
-* Old IE hacks (star hacks and `Zoom`) are removed.
+* Old IE hacks (star hacks, `Zoom`, and `zoom: 1` rules) are removed.
 
 This project's code is under 50k of source, under 20k minified, under 6k gzipped. Compare this to acss-browser's nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount.
 
@@ -184,3 +184,5 @@ There are a couple things that I believe are better.
 * Breakpoints are renamed as atRules because they are media queries or other at-rules according to the CSS spec. More than just breakpoints can be used, such as `--p` at the end of a rule to enable it only for print.
 * The list of colors is split out to a separate list. Adding colors as colors instead of custom values is now possible.
 * Defining new classes has less boilerplate.
+* Color codes with opacity, such as `#00112233` (in "#rrggbbaa" format) are allowed.
+* Added support for `D(g)`, producing `display: grid`.

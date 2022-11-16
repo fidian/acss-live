@@ -262,7 +262,7 @@
 
             // This is a hack. It does not make the box grow to 1600px, just
             // enough to fill the container.
-            BfcHack: ["display:table-cell;width:1600px;*width:auto;zoom:1"],
+            BfcHack: ["display:table-cell;width:1600px"],
 
             // Border
             Bd: ["border", "n"],
@@ -341,8 +341,7 @@
                             "clear:both"
                         ]
                     }
-                },
-                styles: ["zoom:1"]
+                }
             },
 
             // Color
@@ -458,24 +457,25 @@
             D: [
                 "display",
                 {
-                    n: "none",
                     b: "block",
+                    cp: "compact",
                     f: "flex",
+                    g: "grid",
+                    ib: "inline-block",
                     if: "inline-flex",
                     i: "inline",
-                    ib: "inline-block",
-                    tb: "table",
-                    tbr: "table-row",
-                    tbc: "table-cell",
-                    li: "list-item",
-                    ri: "run-in",
-                    cp: "compact",
                     itb: "inline-table",
-                    tbcl: "table-column",
+                    li: "list-item",
+                    n: "none",
+                    ri: "run-in",
                     tbclg: "table-column-group",
-                    tbhg: "table-header-group",
+                    tbcl: "table-column",
+                    tbc: "table-cell",
                     tbfg: "table-footer-group",
-                    tbrg: "table-row-group"
+                    tbhg: "table-header-group",
+                    tbrg: "table-row-group",
+                    tbr: "table-row",
+                    tb: "table",
                 }
             ],
 
@@ -642,7 +642,7 @@
 
             // Hidden - signted can't see, screen readers can
             Hidden: [
-                "position:absolute!important;*clip:rect(1px 1px 1px 1px);clip:rect(1px,2px,1px,1px);padding:0!important;border:0!important;height:1px!important;width:1px!important;overflow:hidden"
+                "position:absolute!important;clip:rect(1px,2px,1px,1px);padding:0!important;border:0!important;height:1px!important;width:1px!important;overflow:hidden"
             ],
 
             // Hyphens
@@ -657,7 +657,7 @@
 
             // Inline block box
             IbBox: [
-                "display:inline-block;*display:inline;zoom:1;vertical-align:top"
+                "display:inline-block;vertical-align:top"
             ],
 
             // Letter spacing
@@ -674,9 +674,7 @@
                         ],
                         "a[class*=LineClamp]": [
                             "display:inline-block",
-                            "display:-webkit-box",
-                            "*display:inline",
-                            "zoom:1"
+                            "display:-webkit-box"
                         ],
                         "a[class*=LineClamp]:after": [
                             'content:"."',
