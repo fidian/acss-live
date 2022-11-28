@@ -5,7 +5,8 @@
         settings: {
             // DEBUG_START
             // Set to true to show debug. Use your console for filtering.
-            // Only honored with NON-MINIFIED builds.
+            // Only honored with NON-MINIFIED builds. Debug code is removed
+            // in minified builds.
             debug: false,
             // DEBUG_END
 
