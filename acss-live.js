@@ -42,15 +42,20 @@
         },
 
         minMax: {
-            i: "initial",
             a: "auto",
-            maxc: "max-content",
-            minc: "min-content",
             fa: "fill-available",
-            fc: "fit-content"
+            fc: "fit-content",
+            i: "initial",
+            maxc: "max-content",
+            minc: "min-content"
         },
 
-        overflow: { h: "hidden", v: "visible", a: "auto", s: "scroll" },
+        overflow: {
+            a: "auto",
+            h: "hidden",
+            s: "scroll",
+            v: "visible"
+        },
 
         thickness: {
             m: "medium",
@@ -71,31 +76,31 @@
             di: "disabled",
             e: "empty",
             en: "enabled",
-            fi: "first",
             fc: "first-child",
+            f: "focus",
+            fi: "first",
             fot: "first-of-type",
             fs: "fullscreen",
-            f: "focus",
-            fw: "focus-within",
             fv: "focus-visible",
+            fw: "focus-within",
             h: "hover",
             ind: "indeterminate",
-            ir: "in-range",
             inv: "invalid",
+            ir: "in-range",
             lc: "last-child",
-            lot: "last-of-type",
-            l: "left",
             li: "link",
+            l: "left",
+            lot: "last-of-type",
             oc: "only-child",
-            oot: "only-of-type",
             o: "optional",
             oor: "out-of-range",
+            oot: "only-of-type",
             ps: "placeholder-shown",
-            ro: "read-only",
-            rw: "read-write",
             req: "required",
+            ro: "read-only",
             r: "right",
             rt: "root",
+            rw: "read-write",
             s: "scope",
             t: "target",
             va: "valid",
@@ -103,8 +108,8 @@
         },
 
         pseudoElements: {
-            b: "before",
             a: "after",
+            b: "before",
             fl: "first-letter",
             fli: "first-line",
             ph: "placeholder"
@@ -113,10 +118,10 @@
         // Values can be passed as parameters. They also can have spaces,
         // which helps for box-shadow.
         values: {
-            in: "initial",
             inh: "inherit",
-            re: "revert",
+            in: "initial",
             rel: "revert-layer",
+            re: "revert",
             un: "unset"
         },
 
@@ -213,8 +218,8 @@
             Bgbk: [
                 "background-break",
                 {
-                    c: "continuous",
                     bb: "bounding-box",
+                    c: "continuous",
                     eb: "each-box"
                 }
             ],
@@ -236,38 +241,42 @@
             Bgp: [
                 "background-position",
                 {
-                    start_t: "_S_ 0",
+                    c_b: "center 100%",
+                    c: "center",
+                    c_t: "center 0",
+                    end_b: "_E_ 100%",
+                    end_c: "_E_ center",
                     end_t: "_E_ 0",
                     start_b: "_S_ 100%",
-                    end_b: "_E_ 100%",
                     start_c: "_S_ center",
-                    end_c: "_E_ center",
-                    c_b: "center 100%",
-                    c_t: "center 0",
-                    c: "center"
+                    start_t: "_S_ 0"
                 }
             ],
             Bgpx: [
                 "background-position-x",
-                { start: "_S_", end: "_E_", c: "center" }
+                {
+                    c: "center",
+                    end: "_E_",
+                    start: "_S_"
+                }
             ],
             Bgpy: [
                 "background-position-y",
                 {
-                    t: "0",
+                    b: "100%",
                     c: "50%",
-                    b: "100%"
+                    t: "0"
                 }
             ],
             Bgr: [
                 "background-repeat",
                 {
                     nr: "no-repeat",
+                    ro: "round",
+                    r: "repeat",
                     rx: "repeat-x",
                     ry: "repeat-y",
-                    r: "repeat",
-                    s: "space",
-                    ro: "round"
+                    s: "space"
                 }
             ],
             Bgz: [
@@ -285,55 +294,35 @@
 
             // Border shortcuts: 1 pixel solid border
             BdAll: ["border-width:1px;border-style:solid"],
+            BdB: ["border-width:0 0 1px;border-style:solid"],
+            BdEnd: ["border-width:0;border-_E_-width:1px;border-style:solid"],
+            BdStart: ["border-width:0;border-_S_-width:1px;border-style:solid"],
+            BdT: ["border-width:1px 0 0 0;border-style:solid"],
             BdX: ["border-width:0 1px;border-style:solid"],
             BdY: ["border-width:1px 0;border-style:solid"],
-            BdT: ["border-width:1px 0 0 0;border-style:solid"],
-            BdEnd: ["border-width:0;border-_E_-width:1px;border-style:solid"],
-            BdB: ["border-width:0 0 1px;border-style:solid"],
-            BdStart: ["border-width:0;border-_S_-width:1px;border-style:solid"],
 
             // Border
-            Bd: ["border", "n"],
             Bdb: ["border-bottom"],
-            Bdend: ["border-_E_"],
-            Bdstart: ["border-_S_"],
-            Bdt: ["border-top"],
-            Bdx: ["border-_S_;border-_E_"],
-            Bdy: ["border-top;border-bottom"],
-            Bdbk: [
-                "border-break",
-                {
-                    c: "close"
-                }
-            ],
-            Bdcl: [
-                "border-collapse",
-                {
-                    c: "collapse",
-                    s: "separate"
-                }
-            ],
-            Bdc: ["border-color", "colors"],
-            Bdtc: ["border-top-color", "colors"],
-            Bdendc: ["border-_E_-color", "colors"],
             Bdbc: ["border-bottom-color", "colors"],
-            Bdstartc: ["border-_S_-color", "colors"],
-            Bdi: ["border-image", "n"],
-            Bdti: ["border-top-image", "n"],
-            Bdendi: ["border-_E_-image", "n"],
-            Bdbi: ["border-bottom-image", "n"],
-            Bdstarti: ["border-_S_-image", "n"],
-            Bdci: ["border-corner-image", "cn"],
-            Bdtstarti: ["border-top-_S_-image", "cn"],
-            Bdtendi: ["border-top-_E_-image", "cn"],
-            Bdbstarti: ["border-bottom-_S_-image", "cn"],
             Bdbendi: ["border-bottom-_E_-image", "cn"],
-            Bdsp: ["border-spacing", { i: "inherit" }],
-            Bds: ["border-style", "borderStyle"],
-            Bdts: ["border-top-style", "borderStyle"],
-            Bdends: ["border-_E_-style", "borderStyle"],
+            Bdbendrs: ["border-radius-bottom-_E_"],
+            Bdbi: ["border-bottom-image", "n"],
+            Bdbk: ["border-break", { c: "close" }],
+            Bd: ["border", "n"],
+            Bdbrs: ["border-radius-bottom-_E_;border-radius-bottom-_S_"],
             Bdbs: ["border-bottom-style", "borderStyle"],
-            Bdstarts: ["border-_S_-style", "borderStyle"],
+            Bdbstarti: ["border-bottom-_S_-image", "cn"],
+            Bdbstartrs: ["border-radius-bottom-_S_"],
+            Bdbw: ["border-bottom-width", "thickness"],
+            Bdc: ["border-color", "colors"],
+            Bdci: ["border-corner-image", "cn"],
+            Bdcl: ["border-collapse", { c: "collapse", s: "separate" }],
+            Bdend: ["border-_E_"],
+            Bdendc: ["border-_E_-color", "colors"],
+            Bdendi: ["border-_E_-image", "n"],
+            Bdendrs: ["border-radius-top-_E_;border-radius-bottom-_E_"],
+            Bdends: ["border-_E_-style", "borderStyle"],
+            Bdendw: ["border-_E_-width", "thickness"],
             Bdf: [
                 "border-fit",
                 {
@@ -346,21 +335,30 @@
                     st: "stretch"
                 }
             ],
+            Bdi: ["border-image", "n"],
             Bdlen: ["border-length", "a"],
-            Bdw: ["border-width", "thickness"],
-            Bdtw: ["border-top-width", "thickness"],
-            Bdendw: ["border-_E_-width", "thickness"],
-            Bdbw: ["border-bottom-width", "thickness"],
-            Bdstartw: ["border-_S_-width", "thickness"],
             Bdrs: ["border-radius"],
-            Bdrsstart: ["border-radius-top-_S_;border-radius-bottom-_S_"],
-            Bdrsend: ["border-radius-top-_E_;border-radius-bottom-_E_"],
-            Bdrst: ["border-radius-top-_E_;border-radius-top-_S_"],
-            Bdrsb: ["border-radius-bottom-_E_;border-radius-bottom-_S_"],
-            Bdrstend: ["border-radius-top-_E_"],
-            Bdrsbend: ["border-radius-bottom-_E_"],
-            Bdrsbstart: ["border-radius-bottom-_S_"],
-            Bdrststart: ["border-radius-top-_S_"],
+            Bds: ["border-style", "borderStyle"],
+            Bdsp: ["border-spacing", { i: "inherit" }],
+            Bdstart: ["border-_S_"],
+            Bdstartc: ["border-_S_-color", "colors"],
+            Bdstarti: ["border-_S_-image", "n"],
+            Bdstartrs: ["border-radius-top-_S_;border-radius-bottom-_S_"],
+            Bdstarts: ["border-_S_-style", "borderStyle"],
+            Bdstartw: ["border-_S_-width", "thickness"],
+            Bdt: ["border-top"],
+            Bdtc: ["border-top-color", "colors"],
+            Bdtendi: ["border-top-_E_-image", "cn"],
+            Bdtendrs: ["border-radius-top-_E_"],
+            Bdti: ["border-top-image", "n"],
+            Bdtrs: ["border-radius-top-_E_;border-radius-top-_S_"],
+            Bdts: ["border-top-style", "borderStyle"],
+            Bdtstarti: ["border-top-_S_-image", "cn"],
+            Bdtstartrs: ["border-radius-top-_S_"],
+            Bdtw: ["border-top-width", "thickness"],
+            Bdw: ["border-width", "thickness"],
+            Bdx: ["border-_S_;border-_E_"],
+            Bdy: ["border-top;border-bottom"],
 
             // Box shadow
             Bxsh: ["box-shadow", "n"],
@@ -392,23 +390,17 @@
             Cp: ["clip", "a"],
 
             // Columns
-            Colm: ["columns"],
             Colmc: ["column-count"],
-            Colmf: [
-                "column-fill",
-                {
-                    a: "auto",
-                    b: "balance"
-                }
-            ],
+            Colm: ["columns"],
+            Colmf: ["column-fill", { a: "auto", b: "balance" }],
             Colmg: ["column-gap"],
-            Colmr: ["column-rule"],
             Colmrc: ["column-rule-color"],
+            Colmr: ["column-rule"],
             Colmrs: [
                 "column-rule-style",
                 {
-                    d: "dotted",
                     da: "dashed",
+                    d: "dotted",
                     do: "double",
                     g: "groove",
                     h: "hidden",
@@ -420,26 +412,20 @@
                 }
             ],
             Colmrw: ["column-rule-width"],
-            Colms: [
-                "column-span",
-                {
-                    a: "all",
-                    n: "none"
-                }
-            ],
+            Colms: ["column-span", { a: "all", n: "none" }],
             Colmw: ["column-width"],
 
             // Contain
             Ctn: [
                 "contain",
                 {
-                    n: "none",
-                    st: "strict",
                     c: "content",
-                    z: "size",
                     l: "layout",
+                    n: "none",
+                    p: "paint",
                     s: "style",
-                    p: "paint"
+                    st: "strict",
+                    z: "size"
                 }
             ],
 
@@ -467,8 +453,8 @@
                     a: "auto",
                     as: "all-scroll",
                     c: "cell",
-                    cr: "col-resize",
                     co: "copy",
+                    cr: "col-resize",
                     cro: "crosshair",
                     d: "default",
                     er: "e-resize",
@@ -478,25 +464,25 @@
                     ha: "hand",
                     he: "help",
                     m: "move",
-                    n: "none",
-                    nd: "no-drop",
                     na: "not-allowed",
-                    nr: "n-resize",
+                    nd: "no-drop",
                     ner: "ne-resize",
                     neswr: "nesw-resize",
-                    nwser: "nwse-resize",
+                    n: "none",
+                    nr: "n-resize",
                     nsr: "ns-resize",
                     nwr: "nw-resize",
+                    nwser: "nwse-resize",
                     p: "pointer",
                     pr: "progress",
                     rr: "row-resize",
-                    sr: "s-resize",
                     ser: "se-resize",
+                    sr: "s-resize",
                     swr: "sw-resize",
                     t: "text",
                     vt: "vertical-text",
-                    w: "wait",
                     wr: "w-resize",
+                    w: "wait",
                     zi: "zoom-in",
                     zo: "zoom-out"
                 }
@@ -519,11 +505,11 @@
                     itb: "inline-table",
                     li: "list-item",
                     n: "none",
-                    rbb: "ruby-base",
                     rbbg: "ruby-base-group",
-                    rbt: "ruby-text",
-                    rbtg: "ruby-text-group",
+                    rbb: "ruby-base",
                     rb: "ruby",
+                    rbtg: "ruby-text-group",
+                    rbt: "ruby-text",
                     ri: "run-in",
                     tbclg: "table-column-group",
                     tbcl: "table-column",
@@ -651,18 +637,18 @@
             Fl: [
                 "float",
                 {
-                    start: "_S_",
                     end: "_E_",
-                    n: "none"
+                    n: "none",
+                    start: "_S_"
                 }
             ],
             Cl: [
                 "clear",
                 {
-                    n: "none",
                     b: "both",
-                    start: "_S_",
-                    end: "_E_"
+                    end: "_E_",
+                    n: "none",
+                    start: "_S_"
                 }
             ],
 
@@ -670,9 +656,9 @@
             Fef: [
                 "font-effect",
                 {
-                    n: "none",
-                    eg: "engrave",
                     eb: "emboss",
+                    eg: "engrave",
+                    n: "none",
                     o: "outline"
                 }
             ],
@@ -680,8 +666,8 @@
             Femp: [
                 "font-emphasize-position",
                 {
-                    b: "before",
-                    a: "after"
+                    a: "after",
+                    b: "before"
                 }
             ],
             Fems: [
@@ -706,9 +692,9 @@
                 "font-stretch",
                 {
                     c: "condensed",
-                    e: "expanded",
                     ec: "extra-condensed",
                     ee: "extra-expanded",
+                    e: "expanded",
                     n: "normal",
                     sc: "semi-condensed",
                     se: "semi-expanded",
@@ -746,8 +732,8 @@
             Fs: [
                 "font-style",
                 {
-                    n: "normal",
                     i: "italic",
+                    n: "normal",
                     o: "oblique"
                 }
             ],
@@ -935,11 +921,11 @@
             Prso: [
                 "perspective-origin $1",
                 {
-                    start: "_S_",
-                    end: "_E_",
+                    b: "bottom",
                     c: "center",
-                    t: "top",
-                    b: "bottom"
+                    end: "_E_",
+                    start: "_S_",
+                    t: "top"
                 }
             ],
 
@@ -953,10 +939,10 @@
                     n: "none",
                     p: "painted",
                     s: "stroke",
-                    v: "visible",
                     vf: "visibleFill",
                     vp: "visiblePainted",
-                    vs: "visibleStroke"
+                    vs: "visibleStroke",
+                    v: "visible"
                 }
             ],
 
@@ -1016,9 +1002,9 @@
             Rsz: [
                 "resize",
                 {
-                    n: "none",
                     b: "both",
                     h: "horizontal",
+                    n: "none",
                     v: "vertical"
                 }
             ],
@@ -1042,8 +1028,8 @@
             Stklc: [
                 "stroke-linecap",
                 {
-                    i: "inherit",
                     b: "butt",
+                    i: "inherit",
                     r: "round",
                     s: "square"
                 }
@@ -1051,10 +1037,10 @@
             Stklj: [
                 "stroke-linejoin",
                 {
-                    i: "inherit",
                     b: "bevel",
-                    r: "round",
-                    m: "miter"
+                    i: "inherit",
+                    m: "miter",
+                    r: "round"
                 }
             ],
 
@@ -1142,10 +1128,10 @@
                 {
                     a: "auto",
                     d: "distribute",
-                    k: "kashida",
                     ic: "inter-cluster",
                     ii: "inter-ideograph",
                     iw: "inter-word",
+                    k: "kashida",
                     t: "tibetan"
                 }
             ],
@@ -1162,18 +1148,18 @@
                 "text-rendering",
                 {
                     a: "auto",
-                    os: "optimizeSpeed",
+                    gp: "geometricPrecision",
                     ol: "optimizeLegibility",
-                    gp: "geometricPrecision"
+                    os: "optimizeSpeed"
                 }
             ],
             Tt: [
                 "text-transform",
                 {
-                    n: "none",
                     c: "capitalize",
-                    u: "uppercase",
-                    l: "lowercase"
+                    l: "lowercase",
+                    n: "none",
+                    u: "uppercase"
                 }
             ],
             Tsh: ["text-shadow", "n"],
@@ -1183,11 +1169,11 @@
             Trfo: [
                 "transform-origin $1",
                 {
-                    start: "_S_",
-                    end: "_E_",
+                    b: "bottom",
                     c: "center",
-                    t: "top",
-                    b: "bottom"
+                    end: "_E_",
+                    start: "_S_",
+                    t: "top"
                 }
             ],
             Trfs: [
@@ -1233,8 +1219,8 @@
                 {
                     e: "ease",
                     ei: "ease-in",
-                    eo: "ease-out",
                     eio: "ease-in-out",
+                    eo: "ease-out",
                     l: "linear",
                     se: "step-end",
                     ss: "step-start"
@@ -1249,8 +1235,8 @@
                     el: "element",
                     els: "elements",
                     n: "none",
-                    t: "text",
-                    to: "toggle"
+                    to: "toggle",
+                    t: "text"
                 }
             ],
 
@@ -1263,33 +1249,40 @@
                     m: "middle",
                     sub: "sub",
                     sup: "super",
-                    t: "top",
                     tb: "text-bottom",
+                    t: "top",
                     tt: "text-top"
                 }
             ],
 
             // Visibility
-            V: ["visibility", { h: "hidden", v: "visible", c: "collapse" }],
+            V: [
+                "visibility",
+                {
+                    c: "collapse",
+                    h: "hidden",
+                    v: "visible"
+                }
+            ],
 
             // White space
             Whs: [
                 "white-space",
                 {
                     n: "normal",
-                    p: "pre",
                     nw: "nowrap",
-                    pw: "pre-wrap",
-                    pl: "pre-line"
+                    pl: "pre-line",
+                    p: "pre",
+                    pw: "pre-wrap"
                 }
             ],
             Whsc: [
                 "white-space-collapse",
                 {
-                    l: "loose",
-                    bs: "break-strict",
                     ba: "break-all",
+                    bs: "break-strict",
                     ka: "keep-all",
+                    l: "loose",
                     n: "normal"
                 }
             ],
@@ -1299,12 +1292,12 @@
                 "width",
                 {
                     a: "auto",
+                    av: "available",
                     bb: "border-box",
                     cb: "content-box",
-                    av: "available",
-                    minc: "min-content",
+                    fc: "fit-content",
                     maxc: "max-content",
-                    fc: "fit-content"
+                    minc: "min-content"
                 }
             ],
             Maw: ["max-width", "minMax"],
@@ -1328,8 +1321,8 @@
                 "word-wrap",
                 {
                     bw: "break-word",
-                    n: "none",
                     nm: "normal",
+                    n: "none",
                     s: "suppress",
                     u: "unrestricted"
                 }
