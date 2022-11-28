@@ -9,19 +9,45 @@ The project was inspired by [atomizer-browser](https://github.com/acss-io/acss-b
 Usage
 -----
 
-Add this in your `<head>` of your document, then you're done.
+Add this in your `<head>` of your document, then you're done. I recommend using the minified version because it provides a minor speed boost due to the lack of debugging code.
 
     <script src="https://cdn.jsdelivr.net/npm/@fidian/acss-live/acss-live.min.js"></script>
 
-Now you can use Atomic CSS within your element's class lists. Configuration is optional.
+Now you can use Atomic CSS within your element's class lists. Configuration is optional. Let's get started.
 
-I recommend using the minified version because it provides a minor speed boost due to the lack of debugging code.
+    <html>
+        <head>
+            <title>This is an example</title>
+            <script src="https://cdn.jsdelivr.net/npm/@fidian/acss-live/acss-live.min.js"></script>
+        </head>
+        <body>
+            <h1 class="C(red)">Heading in red</h1>
+
+            <div class="D(f) Jc(c)">
+                <div class="Bgc(lightblue) Bdw(1px) Bds(s) Bdrs(1em) P(1em) M(1em)">
+                    This light blue box is centered using flex.<br />
+                    It has a 1em margin around the outside.<br />
+                    There's a thin, solid border around it with rounded corners.<br />
+                    This content is surrounded with a 1em padding.
+                </div>
+            </div>
+        </body>
+    </html>
+
+
+Why Do This?
+------------
+
+1. Atomic CSS is great because you reduce the total amount of CSS and it is significantly easier to maintain. No CSS is left unused.
+2. A CSS preprocessor to get this functionality is more work than simply including the script. It's also difficult when Atomic CSS is generated using JavaScript with Angular, Mithril, React, or other framework.
+3. There's no penalty or measurable performance impact from having the browser add the classes at render time.
+4. The total amount of code is small, easy to extend, and ends up being roughly the same size as the CSS you're replacing.
 
 
 What is Supported
 -----------------
 
-Everything from [Atomic CSS Reference](https://acss.io/reference.html), including a parent selector, parent pseudoclass, descendant selector, atomic class, parameters, pseudoclass, pseudoelement, and at-rule. Any exceptions are called out farther below.
+Everything from [Atomic CSS Reference](https://acss.io/reference.html), including a parent selector, parent pseudoclass, descendant selector, atomic class, parameters, pseudoclass, pseudoelement, and at-rule. Any exceptions are called out farther below. Also, almost everything related to CSS from [Emmet](https://docs.emmet.io/cheat-sheet/) is included.
 
 
 Troubleshooting
@@ -177,12 +203,13 @@ Follows the same shorthand as [Atomizer](https://acss.io/reference.html) and [ac
 * `Mw(ini)` changed to `Mw(i)`, similar to `Trsdu(i)` for consistency.
 * Old IE hacks (star hacks, `Zoom`, and `zoom: 1` rules) are removed.
 
-This project's code is under 50k of source, under 20k minified, under 6k gzipped. Compare this to acss-browser's nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount.
+This project's code is under 50k of source, under 20k minified, under 7k gzipped. Compare this to acss-browser's nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount.
 
 There are a couple things that I believe are better.
 
-* Breakpoints are renamed as atRules because they are media queries or other at-rules according to the CSS spec. More than just breakpoints can be used, such as `--p` at the end of a rule to enable it only for print.
+* Breakpoints are renamed as `atRules` because they are media queries or other at-rules according to the CSS spec. More than just breakpoints can be used, such as `--p` at the end of a rule to enable it only for print.
 * The list of colors is split out to a separate list. Adding colors as colors instead of custom values is now possible.
 * Defining new classes has less boilerplate.
 * Color codes with opacity, such as `#00112233` (in "#rrggbbaa" format) are allowed.
 * Added support for `D(g)`, producing `display: grid`.
+* Updated the list of properties to more closely match [Emmet](https://docs.emmet.io/cheat-sheet/).

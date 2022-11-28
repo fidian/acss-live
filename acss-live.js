@@ -19,27 +19,49 @@
         // Colors
         colors: {
             cc: "currentColor",
+            i: "invert", // for outline-color
             n: "none",
             t: "transparent"
         },
 
         // Border styles
         borderStyle: {
-            d: "dotted",
-            da: "dashed",
-            do: "double",
+            db: "double",
+            ds: "dashed",
+            dt: "dotted",
+            dtds: "dot-dash",
+            dtdtds: "dot-dot-dash",
             g: "groove",
             h: "hidden",
             i: "inset",
             n: "none",
             o: "outset",
             r: "ridge",
-            s: "solid"
+            s: "solid",
+            w: "wave"
+        },
+
+        minMax: {
+            i: "initial",
+            a: "auto",
+            maxc: "max-content",
+            minc: "min-content",
+            fa: "fill-available",
+            fc: "fit-content"
+        },
+
+        overflow: { h: "hidden", v: "visible", a: "auto", s: "scroll" },
+
+        thickness: {
+            m: "medium",
+            tc: "thick",
+            tn: "thin"
         },
 
         // Shorthand for really simple lookups
         a: { a: "auto" },
         an: { a: "auto", n: "none" },
+        cn: { c: "continue", n: "none"},
         n: { n: "none" },
 
         pseudoClasses: {
@@ -91,7 +113,11 @@
         // Values can be passed as parameters. They also can have spaces,
         // which helps for box-shadow.
         values: {
-            inh: "inherit"
+            in: "initial",
+            inh: "inherit",
+            re: "revert",
+            rel: "revert-layer",
+            un: "unset"
         },
 
         // Media queries and other at-rules
@@ -141,7 +167,7 @@
                 "animation-fill-mode",
                 {
                     b: "backwards",
-                    bo: "both",
+                    bt: "both",
                     f: "forwards",
                     n: "none"
                 }
@@ -157,10 +183,11 @@
             Animtf: [
                 "animation-timing-function",
                 {
+                    cb: "cubic-bezier(0.1, 0.7, 1.0, 0.1)",
                     e: "ease",
                     ei: "ease-in",
-                    eo: "ease-out",
                     eio: "ease-in-out",
+                    eo: "ease-out",
                     l: "linear",
                     se: "step-end",
                     ss: "step-start"
@@ -204,10 +231,15 @@
                     s: "scroll"
                 }
             ],
+            Bgbk: ["background-break", {
+                c: "continuous",
+                bb: "bounding-box",
+                eb: "each-box"
+            }],
             Bgc: ["background-color", "colors"],
             Bgcp: [
                 "background-clip",
-                { bb: "border-box", cb: "content-box", pb: "padding-box" }
+                { bb: "border-box", cb: "content-box", nc: "no-clip", pb: "padding-box" }
             ],
             Bgi: ["background-image", "n"],
             Bgo: [
@@ -272,6 +304,9 @@
             Bdend: ["border-_E_"],
             Bdb: ["border-bottom"],
             Bdstart: ["border-_S_"],
+            Bdbk: ["border-break", {
+                c: "close"
+            }],
             Bdcl: [
                 "border-collapse",
                 {
@@ -280,31 +315,52 @@
                 }
             ],
             Bdc: ["border-color", "colors"],
-            Bdct: ["border-color-top", "colors"],
-            Bdcend: ["border-color-_E_", "colors"],
-            Bdcb: ["border-color-bottom", "colors"],
-            Bdcstart: ["border-color-_S_", "colors"],
-            Bdsp: ["border-spacing $1", { i: "inherit" }],
+            Bdtc: ["border-top-color", "colors"],
+            Bdendc: ["border-_E_-color", "colors"],
+            Bdbc: ["border-bottom-color", "colors"],
+            Bdstartc: ["border-_S_-color", "colors"],
+            Bdi: ["border-image", "n"],
+            Bdti: ["border-top-image", "n"],
+            Bdendi: ["border-_E_-image", "n"],
+            Bdbi: ["border-bottom-image", "n"],
+            Bdstarti: ["border-_S_-image", "n"],
+            Bdci: ["border-corner-image", "cn"],
+            Bdtstarti: ["border-top-_S_-image", "cn"],
+            Bdtendi: ["border-top-_E_-image", "cn"],
+            Bdbstarti: ["border-bottom-_S_-image", "cn"],
+            Bdbendi: ["border-bottom-_E_-image", "cn"],
+            Bdsp: ["border-spacing", { i: "inherit" }],
             Bds: ["border-style", "borderStyle"],
             Bdts: ["border-top-style", "borderStyle"],
             Bdends: ["border-_E_-style", "borderStyle"],
             Bdbs: ["border-bottom-style", "borderStyle"],
             Bdstarts: ["border-_S_-style", "borderStyle"],
-            Bdw: ["border-width", { m: "medium", t: "thin", th: "thick" }],
-            Bdtw: ["border-top-width", { m: "medium", t: "thin", th: "thick" }],
+            Bdf: ["border-fit", {
+                c: "clip",
+                of: "overflow",
+                ow: "overwrite",
+                r: "repeat",
+                sc: "scale",
+                sp: "space",
+                st: "stretch"
+            }],
+            Bdlen: ["border-length", "a"],
+            Bdw: ["border-width", "thickness"],
+            Bdtw: ["border-top-width", "thickness"],
             Bdendw: [
-                "border-_E_-width",
-                { m: "medium", t: "thin", th: "thick" }
+                "border-_E_-width", "thickness"
             ],
             Bdbw: [
-                "border-bottom-width",
-                { m: "medium", t: "thin", th: "thick" }
+                "border-bottom-width", "thickness"
             ],
             Bdstartw: [
-                "border-_S_-width",
-                { m: "medium", t: "thin", th: "thick" }
+                "border-_S_-width", "thickness"
             ],
             Bdrs: ["border-radius"],
+            Bdrsstart: ["border-radius-top-_S_;border-radius-bottom-_S_"],
+            Bdrsend: ["border-radius-top-_E_;border-radius-bottom-_E_"],
+            Bdrst: ["border-radius-top-_E_;border-radius-top-_S_"],
+            Bdrsb: ["border-radius-bottom-_E_;border-radius-bottom-_S_"],
             Bdrstend: ["border-radius-top-_E_"],
             Bdrsbend: ["border-radius-bottom-_E_"],
             Bdrsbstart: ["border-radius-bottom-_S_"],
@@ -317,17 +373,6 @@
             Bxz: [
                 "box-sizing",
                 { bb: "border-box", cb: "content-box", pb: "padding-box" }
-            ],
-
-            // Clear
-            Cl: [
-                "clear",
-                {
-                    n: "none",
-                    b: "both",
-                    start: "_S_",
-                    end: "_E_"
-                }
             ],
 
             // Clearfix
@@ -346,6 +391,9 @@
 
             // Color
             C: ["color", "colors"],
+
+            // Clip
+            Cp: ["clip", "a"],
 
             // Columns
             Colm: ["columns"],
@@ -403,14 +451,18 @@
             Cnt: [
                 "content",
                 {
-                    n: "none",
-                    nor: "normal",
-                    oq: "open-quote",
                     cq: "close-quote",
+                    ncq: "no-close-quote",
+                    n: "none",
+                    no: "normal",
                     noq: "no-open-quote",
-                    ncq: "no-close-quote"
+                    oq: "open-quote"
                 }
             ],
+
+            // Counter
+            Coi: ["counter-increment"],
+            Cor: ["counter-reset"],
 
             // Cursor
             Cur: [
@@ -427,7 +479,8 @@
                     ewr: "ew-resize",
                     g: "grab",
                     gr: "grabbing",
-                    h: "help",
+                    ha: "hand",
+                    he: "help",
                     m: "move",
                     n: "none",
                     nd: "no-drop",
@@ -458,24 +511,33 @@
                 "display",
                 {
                     b: "block",
+                    c: "contents",
                     cp: "compact",
                     f: "flex",
+                    fr: "flow-root",
                     g: "grid",
                     ib: "inline-block",
                     if: "inline-flex",
+                    ig: "inline-grid",
                     i: "inline",
                     itb: "inline-table",
                     li: "list-item",
                     n: "none",
+                    rbb: "ruby-base",
+                    rbbg: "ruby-base-group",
+                    rbt: "ruby-text",
+                    rbtg: "ruby-text-group",
+                    rb: "ruby",
                     ri: "run-in",
                     tbclg: "table-column-group",
                     tbcl: "table-column",
+                    tbcp: "table-caption",
                     tbc: "table-cell",
                     tbfg: "table-footer-group",
                     tbhg: "table-header-group",
                     tbrg: "table-row-group",
                     tbr: "table-row",
-                    tb: "table",
+                    tb: "table"
                 }
             ],
 
@@ -526,78 +588,152 @@
                 {
                     a: "auto",
                     b: "baseline",
-                    fs: "flex-start",
-                    fe: "flex-end",
                     c: "center",
+                    fe: "flex-end",
+                    fs: "flex-start",
                     s: "stretch"
                 }
             ],
             Fxd: [
                 "flex-direction",
                 {
-                    r: "row",
-                    rr: "row-reverse",
                     c: "column",
-                    cr: "column-reverse"
+                    cr: "column-reverse",
+                    r: "row",
+                    rr: "row-reverse"
                 }
             ],
             Fxf: [
                 "flex-flow",
                 {
+                    c: "column",
+                    cr: "column-reverse",
                     nw: "nowrap",
-                    w: "wrap",
-                    wr: "wrap-reverse",
                     r: "row",
                     rr: "row-reverse",
-                    c: "column",
-                    cr: "column-reverse"
+                    wr: "wrap-reverse",
+                    w: "wrap"
                 }
             ],
             Ai: [
                 "align-items",
                 {
                     b: "baseline",
-                    fs: "flex-start",
-                    fe: "flex-end",
                     c: "center",
+                    fe: "flex-end",
+                    fs: "flex-start",
                     s: "stretch"
                 }
             ],
             Ac: [
                 "align-content",
                 {
-                    sb: "space-between",
-                    sa: "space-around",
-                    fs: "flex-start",
-                    fe: "flex-end",
                     c: "center",
+                    fe: "flex-end",
+                    fs: "flex-start",
+                    sa: "space-around",
+                    sb: "space-between",
                     s: "stretch"
                 }
             ],
-            Order: ["order"],
+            Ord: ["order"],
             Jc: [
                 "justify-content",
                 {
-                    sb: "space-between",
-                    sa: "space-around",
-                    se: "space-evenly",
-                    fs: "flex-start",
-                    fe: "flex-end",
                     c: "center",
-                    s: "stretch"
+                    fe: "flex-end",
+                    fs: "flex-start",
+                    sa: "space-around",
+                    sb: "space-between",
+                    se: "space-evenly",
+                    s: "stretch",
                 }
             ],
             Fxw: ["flex-wrap", { nw: "nowrap", w: "wrap", wr: "wrap-reverse" }],
 
+            // Floating elements
+            Fl: [
+                "float",
+                {
+                    start: "_S_",
+                    end: "_E_",
+                    n: "none"
+                }
+            ],
+            Cl: [
+                "clear",
+                {
+                    n: "none",
+                    b: "both",
+                    start: "_S_",
+                    end: "_E_"
+                }
+            ],
+
             // Font
+            Fef: [
+                "font-effect",
+                {
+                    n: "none",
+                    eg: "engrave",
+                    eb: "emboss",
+                    o: "outline"
+                }
+            ],
+            Fem: ["font-emphasize"],
+            Femp: [
+                "font-emphasize-position",
+                {
+                    b: "before",
+                    a: "after"
+                }
+            ],
+            Fems: [
+                "font-emphasize-style",
+                {
+                    ac: "accent",
+                    c: "circle",
+                    ds: "disc",
+                    dt: "dot",
+                    n: "none"
+                }
+            ],
+            Fsm: [
+                "font-smooth",
+                {
+                    a: "auto",
+                    aw: "always",
+                    n: "never"
+                }
+            ],
+            Fst: [
+                "font-stretch",
+                {
+                    c: "condensed",
+                    e: "expanded",
+                    ec: "extra-condensed",
+                    ee: "extra-expanded",
+                    n: "normal",
+                    sc: "semi-condensed",
+                    se: "semi-expanded",
+                    uc: "ultra-condensed",
+                    ue: "ultra-expanded"
+                }
+            ],
             Ff: [
                 "font-family",
                 {
-                    c: '"Monotype Corsiva", "Comic Sans MS", cursive',
-                    f: "Capitals, Impact, fantasy",
-                    m: 'Monaco, "Courier New", monospace',
-                    s: 'Georgia, "Times New Roman", serif',
-                    ss: "Helvetica, Arial, sans-serif"
+                    a: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+                    c: "cursive",
+                    cs: '"Comic Sans MS", "Monotype Corsiva", cursive',
+                    f: "fantasy",
+                    i: "Impact, Capitals, fantasy",
+                    m: "monospace",
+                    mo: 'Monaco, "Courier New", monospace',
+                    s: "serif",
+                    ss: "sans-serif",
+                    t: '"Times New Roman", Times, Baskerville, Georgia, serif',
+                    v: "Verdana, Geneva, sans-serif"
                 }
             ],
             Fw: [
@@ -610,6 +746,7 @@
                 }
             ],
             Fz: ["font-size"],
+            Fza: ["font-size-adjust", "n"],
             Fs: [
                 "font-style",
                 {
@@ -639,6 +776,8 @@
                     minc: "min-content"
                 }
             ],
+            Mah: ["max-height", "minMax"],
+            Mih: ["min-height", "minMax"],
 
             // Hidden - signted can't see, screen readers can
             Hidden: [
@@ -656,9 +795,7 @@
             ],
 
             // Inline block box
-            IbBox: [
-                "display:inline-block;vertical-align:top"
-            ],
+            IbBox: ["display:inline-block;vertical-align:top"],
 
             // Letter spacing
             Lts: ["letter-spacing", { n: "normal" }],
@@ -697,24 +834,25 @@
             Lh: ["line-height", { n: "normal" }],
 
             // Lists
+            Lis: ["list-style", "n"],
             List: [
                 "list-style-type",
                 {
-                    n: "none",
-                    d: "disc",
+                    a: "armenian",
                     c: "circle",
-                    s: "square",
                     dc: "decimal",
                     dclz: "decimal-leading-zero",
-                    lr: "lower-roman",
-                    lg: "lower-greek",
-                    ll: "lower-latin",
-                    ur: "upper-roman",
-                    ul: "upper-latin",
-                    a: "armenian",
+                    d: "disc",
                     g: "georgian",
                     la: "lower-alpha",
-                    ua: "upper-alpha"
+                    lg: "lower-greek",
+                    ll: "lower-latin",
+                    lr: "lower-roman",
+                    n: "none",
+                    s: "square",
+                    ua: "upper-alpha",
+                    ul: "upper-latin",
+                    ur: "upper-roman"
                 }
             ],
             Lisp: [
@@ -734,49 +872,6 @@
             Mend: ["margin-_E_", "a"],
             Mb: ["margin-bottom", "a"],
             Mstart: ["margin-_S_", "a"],
-
-            // Max/min
-            Mah: [
-                "max-height",
-                {
-                    a: "auto",
-                    maxc: "max-content",
-                    minc: "min-content",
-                    fa: "fill-available",
-                    fc: "fit-content"
-                }
-            ],
-            Mih: [
-                "min-height",
-                {
-                    a: "auto",
-                    maxc: "max-content",
-                    minc: "min-content",
-                    fa: "fill-available",
-                    fc: "fit-content"
-                }
-            ],
-            Maw: [
-                "max-width",
-                {
-                    i: "initial",
-                    a: "auto",
-                    maxc: "max-content",
-                    minc: "min-content",
-                    fa: "fill-available",
-                    fc: "fit-content"
-                }
-            ],
-            Miw: [
-                "min-width",
-                {
-                    a: "auto",
-                    maxc: "max-content",
-                    minc: "min-content",
-                    fa: "fill-available",
-                    fc: "fit-content"
-                }
-            ],
 
             // Object
             Objf: [
@@ -799,27 +894,31 @@
             // Opacity
             Op: ["opacity"],
 
+            // Orientation
+            Ori: ["orientation", {
+                l: "landscape",
+                p: "portrait"
+            }],
+
             // Outline
-            O: ["outline", "n"],
+            Ol: ["outline", "n"],
+            Olc: ["outline-color", "colors"],
+            Olo: ["outline-offset"],
+            Ols: ["outline-style", "borderStyle"],
+            Olw: ["outline-width", "thickness"],
 
             // Overflow
-            Ov: [
-                "overflow",
-                { h: "hidden", v: "visible", a: "auto", s: "scroll" }
-            ],
-            Ovx: [
-                "overflow-x",
-                { h: "hidden", v: "visible", a: "auto", s: "scroll" }
-            ],
-            Ovy: [
-                "overflow-y",
-                { h: "hidden", v: "visible", a: "auto", s: "scroll" }
-            ],
+            Ov: ["overflow", "overflow"],
+            Ovx: ["overflow-x", "overflow"],
+            Ovy: ["overflow-y", "overflow"],
             Ovs: [
-                "-webkit-overflow-scrolling",
+                "overflow-style",
                 {
                     a: "auto",
-                    touch: "touch"
+                    m: "move",
+                    mq: "marquee",
+                    p: "panner",
+                    s: "scrollbar"
                 }
             ],
 
@@ -874,6 +973,34 @@
                 }
             ],
 
+            // Print
+            Pgbb: ["page-break-before", {
+                al: "always",
+                au: "auto",
+                end: "_E_",
+                start: "_S_"
+            }],
+            Pgbi: ["page-break-inside", {
+                au: "auto",
+                av: "avoid"
+            }],
+            Pgba: ["page-break-after", {
+                al: "always",
+                au: "auto",
+                end: "_E_",
+                start: "_S_"
+            }],
+            Orp: ["orphans"],
+            Wid: ["widows"],
+
+            // Quotes
+            Q: ["quotes", {
+                en: '"“" "„" "‘" "’"',
+                fr: '"«" "»" "‹" "›"',
+                n: "none",
+                ru: '"«" "»" "„" "“"'
+            }],
+
             // Resize
             Rsz: [
                 "resize",
@@ -884,6 +1011,10 @@
                     v: "vertical"
                 }
             ],
+
+            // Resolution
+            Mar: ["max-resolution"],
+            Mir: ["min-resolution"],
 
             // Contain boxes on a row
             Row: [
@@ -924,43 +1055,84 @@
                     f: "fixed"
                 }
             ],
+            Cps: ["caption-side", {
+                b: "bottom",
+                t: "top"
+            }],
+            Ec: ["empty-cells", {
+                h: "hide",
+                s: "show"
+            }],
 
             // Text
             Ta: [
                 "text-align",
                 {
+                    c: "center",
                     e: "end",
+                    end: "_E_",
                     j: "justify",
                     mp: "match-parent",
                     s: "start",
-                    start: "_S_",
-                    end: "_E_",
-                    c: "center"
+                    start: "_S_"
                 }
             ],
             Tal: [
                 "text-align-last",
                 {
                     a: "auto",
+                    c: "center",
                     e: "end",
+                    end: "_E_",
                     j: "justify",
                     s: "start",
-
-                    start: "_S_",
-                    end: "_E_",
-                    c: "center"
+                    start: "_S_"
                 }
             ],
             Td: [
                 "text-decoration",
                 {
-                    lt: "line-through",
+                    l: "line-through",
                     n: "none",
                     o: "overline",
                     u: "underline"
                 }
             ],
+            Te: [
+                "text-emphasis",
+                {
+                    a: "after",
+                    ac: "accent",
+                    b: "before",
+                    c: "circle",
+                    ds: "disc",
+                    dt: "dot",
+                    n: "none"
+                }
+            ],
+            Th: [
+                "text-height",
+                {
+                    a: "auto",
+                    f: "font-size",
+                    m: "max-size",
+                    t: "text-size"
+                }
+            ],
             Ti: ["text-indent"],
+            Tj: [
+                "text-justify",
+                {
+                    a: "auto",
+                    d: "distribute",
+                    k: "kashida",
+                    ic: "inter-cluster",
+                    ii: "inter-ideograph",
+                    iw: "inter-word",
+                    t: "tibetan"
+                }
+            ],
+            To: ["text-outline", "n"],
             Tov: [
                 "text-overflow",
                 {
@@ -968,6 +1140,7 @@
                     e: "ellipsis"
                 }
             ],
+            Tr: ["text-replace", "n"],
             Tren: [
                 "text-rendering",
                 {
@@ -977,7 +1150,6 @@
                     gp: "geometricPrecision"
                 }
             ],
-            Tr: ["text-replace", "n"],
             Tt: [
                 "text-transform",
                 {
@@ -1019,6 +1191,7 @@
             Scale3d: ["transform:scale3d($0)"],
             ScaleX: ["transform:scaleX($0)"],
             ScaleY: ["transform:scaleY($0)"],
+            ScaleZ: ["transform:scaleZ($0)"],
             Skew: ["transform:skew($0)"],
             SkewX: ["transform:skewX($0)"],
             SkewY: ["transform:skewY($0)"],
@@ -1117,6 +1290,8 @@
                     fc: "fit-content"
                 }
             ],
+            Maw: ["max-width", "minMax"],
+            Miw: ["min-width", "minMax"],
 
             // Word break
             Wob: [
@@ -1128,17 +1303,38 @@
                 }
             ],
 
+            // Word spacing
+            Wos: ["word-spacing"],
+
             // Word wrap
             Wow: [
                 "word-wrap",
                 {
                     bw: "break-word",
-                    n: "normal"
+                    n: "none",
+                    nm: "normal",
+                    s: "suppress",
+                    u: "unrestricted"
                 }
             ],
 
+            // Writing mode
+            Wm: ["writing-mode", {
+                btl: "bt-lr",
+                btr: "bt-rl",
+                lrb: "lr-bt",
+                lrt: "lr-tb",
+                rlb: "rl-bt",
+                rlt: "rl-tb",
+                tbl: "tb-lr",
+                tbr: "tb-rl"
+            }],
+
             // Z-index
-            Z: ["z-index", "a"]
+            Z: ["z-index", "a"],
+
+            // Zoom
+            Zoo: ["zoom:1"]
         }
     };
 
