@@ -113,7 +113,7 @@
             m: "@media(min-width:480.9999px) and (max-width:768px)",
             sml: "@media(max-width:1024px)",
             ml: "@media(min-width:480.9999px) and (max-width:1024px)",
-            l: "@media(min-width:1024.9999) and (max-width:1024px)"
+            l: "@media(min-width:1024.9999px) and (max-width:1024px)"
         },
 
         // _S_ and _E_ are replaced with left and right
