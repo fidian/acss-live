@@ -61,7 +61,7 @@
         // Shorthand for really simple lookups
         a: { a: "auto" },
         an: { a: "auto", n: "none" },
-        cn: { c: "continue", n: "none"},
+        cn: { c: "continue", n: "none" },
         n: { n: "none" },
 
         pseudoClasses: {
@@ -153,7 +153,7 @@
             // Animation
             Anim: ["animation"],
             Animdel: ["animation-delay"],
-            AnimDir: [
+            Animdir: [
                 "animation-direction",
                 {
                     a: "alternate",
@@ -197,27 +197,6 @@
             // Appearance
             Ap: ["appearance", "an"],
 
-            // Border shortcuts: 1 pixel solid border
-            BdAll: ["border-width:1px;border-style:solid"],
-            BdX: [
-                "border-top-width:0;border-right-width:1px;border-bottom-width:0;border-left-width:1px;border-style:solid"
-            ],
-            BdY: [
-                "border-top-width:1px;border-right-width:0;border-bottom-width:1px;border-left-width:0;border-style:solid"
-            ],
-            BdT: [
-                "border-top-width:1px;border-right-width:0;border-bottom-width:0;border-left-width:0;border-style:solid"
-            ],
-            BdEnd: [
-                "border-top-width:0px;border-_E_-width:1px;border-bottom-width:0;border-_S_-width:0;border-style:solid"
-            ],
-            BdB: [
-                "border-top-width:0;border-right-width:0;border-bottom-width:1px;border-left-width:0;border-style:solid"
-            ],
-            BdStart: [
-                "border-top-width:0px;border-_E_-width:0;border-bottom-width:0;border-_S_-width:1px;border-style:solid"
-            ],
-
             // Backface
             Bfv: ["backface-visibility", { h: "hidden", v: "visible" }],
 
@@ -231,15 +210,23 @@
                     s: "scroll"
                 }
             ],
-            Bgbk: ["background-break", {
-                c: "continuous",
-                bb: "bounding-box",
-                eb: "each-box"
-            }],
+            Bgbk: [
+                "background-break",
+                {
+                    c: "continuous",
+                    bb: "bounding-box",
+                    eb: "each-box"
+                }
+            ],
             Bgc: ["background-color", "colors"],
             Bgcp: [
                 "background-clip",
-                { bb: "border-box", cb: "content-box", nc: "no-clip", pb: "padding-box" }
+                {
+                    bb: "border-box",
+                    cb: "content-box",
+                    nc: "no-clip",
+                    pb: "padding-box"
+                }
             ],
             Bgi: ["background-image", "n"],
             Bgo: [
@@ -296,17 +283,29 @@
             // enough to fill the container.
             BfcHack: ["display:table-cell;width:1600px"],
 
+            // Border shortcuts: 1 pixel solid border
+            BdAll: ["border-width:1px;border-style:solid"],
+            BdX: ["border-width:0 1px;border-style:solid"],
+            BdY: ["border-width:1px 0;border-style:solid"],
+            BdT: ["border-width:1px 0 0 0;border-style:solid"],
+            BdEnd: ["border-width:0;border-_E_-width:1px;border-style:solid"],
+            BdB: ["border-width:0 0 1px;border-style:solid"],
+            BdStart: ["border-width:0;border-_S_-width:1px;border-style:solid"],
+
             // Border
             Bd: ["border", "n"],
+            Bdb: ["border-bottom"],
+            Bdend: ["border-_E_"],
+            Bdstart: ["border-_S_"],
+            Bdt: ["border-top"],
             Bdx: ["border-_S_;border-_E_"],
             Bdy: ["border-top;border-bottom"],
-            Bdt: ["border-top"],
-            Bdend: ["border-_E_"],
-            Bdb: ["border-bottom"],
-            Bdstart: ["border-_S_"],
-            Bdbk: ["border-break", {
-                c: "close"
-            }],
+            Bdbk: [
+                "border-break",
+                {
+                    c: "close"
+                }
+            ],
             Bdcl: [
                 "border-collapse",
                 {
@@ -335,27 +334,24 @@
             Bdends: ["border-_E_-style", "borderStyle"],
             Bdbs: ["border-bottom-style", "borderStyle"],
             Bdstarts: ["border-_S_-style", "borderStyle"],
-            Bdf: ["border-fit", {
-                c: "clip",
-                of: "overflow",
-                ow: "overwrite",
-                r: "repeat",
-                sc: "scale",
-                sp: "space",
-                st: "stretch"
-            }],
+            Bdf: [
+                "border-fit",
+                {
+                    c: "clip",
+                    of: "overflow",
+                    ow: "overwrite",
+                    r: "repeat",
+                    sc: "scale",
+                    sp: "space",
+                    st: "stretch"
+                }
+            ],
             Bdlen: ["border-length", "a"],
             Bdw: ["border-width", "thickness"],
             Bdtw: ["border-top-width", "thickness"],
-            Bdendw: [
-                "border-_E_-width", "thickness"
-            ],
-            Bdbw: [
-                "border-bottom-width", "thickness"
-            ],
-            Bdstartw: [
-                "border-_S_-width", "thickness"
-            ],
+            Bdendw: ["border-_E_-width", "thickness"],
+            Bdbw: ["border-bottom-width", "thickness"],
+            Bdstartw: ["border-_S_-width", "thickness"],
             Bdrs: ["border-radius"],
             Bdrsstart: ["border-radius-top-_S_;border-radius-bottom-_S_"],
             Bdrsend: ["border-radius-top-_E_;border-radius-bottom-_E_"],
@@ -646,7 +642,7 @@
                     sa: "space-around",
                     sb: "space-between",
                     se: "space-evenly",
-                    s: "stretch",
+                    s: "stretch"
                 }
             ],
             Fxw: ["flex-wrap", { nw: "nowrap", w: "wrap", wr: "wrap-reverse" }],
@@ -895,10 +891,13 @@
             Op: ["opacity"],
 
             // Orientation
-            Ori: ["orientation", {
-                l: "landscape",
-                p: "portrait"
-            }],
+            Ori: [
+                "orientation",
+                {
+                    l: "landscape",
+                    p: "portrait"
+                }
+            ],
 
             // Outline
             Ol: ["outline", "n"],
@@ -974,32 +973,44 @@
             ],
 
             // Print
-            Pgbb: ["page-break-before", {
-                al: "always",
-                au: "auto",
-                end: "_E_",
-                start: "_S_"
-            }],
-            Pgbi: ["page-break-inside", {
-                au: "auto",
-                av: "avoid"
-            }],
-            Pgba: ["page-break-after", {
-                al: "always",
-                au: "auto",
-                end: "_E_",
-                start: "_S_"
-            }],
+            Pgbb: [
+                "page-break-before",
+                {
+                    al: "always",
+                    au: "auto",
+                    end: "_E_",
+                    start: "_S_"
+                }
+            ],
+            Pgbi: [
+                "page-break-inside",
+                {
+                    au: "auto",
+                    av: "avoid"
+                }
+            ],
+            Pgba: [
+                "page-break-after",
+                {
+                    al: "always",
+                    au: "auto",
+                    end: "_E_",
+                    start: "_S_"
+                }
+            ],
             Orp: ["orphans"],
             Wid: ["widows"],
 
             // Quotes
-            Q: ["quotes", {
-                en: '"“" "”" "‘" "’"',
-                fr: '"«" "»" "‹" "›"',
-                n: "none",
-                ru: '"«" "»" "„" "“"'
-            }],
+            Q: [
+                "quotes",
+                {
+                    en: '"“" "”" "‘" "’"',
+                    fr: '"«" "»" "‹" "›"',
+                    n: "none",
+                    ru: '"«" "»" "„" "“"'
+                }
+            ],
 
             // Resize
             Rsz: [
@@ -1055,14 +1066,20 @@
                     f: "fixed"
                 }
             ],
-            Cps: ["caption-side", {
-                b: "bottom",
-                t: "top"
-            }],
-            Ec: ["empty-cells", {
-                h: "hide",
-                s: "show"
-            }],
+            Cps: [
+                "caption-side",
+                {
+                    b: "bottom",
+                    t: "top"
+                }
+            ],
+            Ec: [
+                "empty-cells",
+                {
+                    h: "hide",
+                    s: "show"
+                }
+            ],
 
             // Text
             Ta: [
@@ -1319,16 +1336,19 @@
             ],
 
             // Writing mode
-            Wm: ["writing-mode", {
-                btl: "bt-lr",
-                btr: "bt-rl",
-                lrb: "lr-bt",
-                lrt: "lr-tb",
-                rlb: "rl-bt",
-                rlt: "rl-tb",
-                tbl: "tb-lr",
-                tbr: "tb-rl"
-            }],
+            Wm: [
+                "writing-mode",
+                {
+                    btl: "bt-lr",
+                    btr: "bt-rl",
+                    lrb: "lr-bt",
+                    lrt: "lr-tb",
+                    rlb: "rl-bt",
+                    rlt: "rl-tb",
+                    tbl: "tb-lr",
+                    tbr: "tb-rl"
+                }
+            ],
 
             // Z-index
             Z: ["z-index", "a"],
