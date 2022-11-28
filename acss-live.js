@@ -705,17 +705,17 @@
             Ff: [
                 "font-family",
                 {
-                    a: 'Arial, "Helvetica Neue", Helvetica, sans-serif',
+                    a: 'Arial,"Helvetica Neue",Helvetica,sans-serif',
                     c: "cursive",
-                    cs: '"Comic Sans MS", "Monotype Corsiva", cursive',
+                    cs: '"Comic Sans MS","Monotype Corsiva",cursive',
                     f: "fantasy",
-                    i: "Impact, Capitals, fantasy",
+                    i: "Impact,Capitals,fantasy",
                     m: "monospace",
-                    mo: 'Monaco, "Courier New", monospace',
+                    mo: 'Monaco,"Courier New",monospace',
                     s: "serif",
                     ss: "sans-serif",
-                    t: '"Times New Roman", Times, Baskerville, Georgia, serif',
-                    v: "Verdana, Geneva, sans-serif"
+                    t: '"Times New Roman",Times,Baskerville,Georgia,serif',
+                    v: "Verdana,Geneva,sans-serif"
                 }
             ],
             Fw: [
