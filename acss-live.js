@@ -189,7 +189,7 @@
             Animtf: [
                 "animation-timing-function",
                 {
-                    cb: "cubic-bezier(0.1, 0.7, 1.0, 0.1)",
+                    cb: "cubic-bezier(.1,.7,1,.1)",
                     e: "ease",
                     ei: "ease-in",
                     eio: "ease-in-out",
