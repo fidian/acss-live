@@ -1614,8 +1614,10 @@
         // DEBUG_END
 
         loop(mutations, (mutation) => {
-            // ch[a]racterData
-            if (mutation.type[2] === "a") {
+            // attributes = yes
+            // characterData = no
+            // childList = no
+            if (mutation.type[0] === "a") {
                 processElement(mutation.target, elementMap);
             }
 
