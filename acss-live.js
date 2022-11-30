@@ -783,7 +783,7 @@
             // Letter spacing
             Lts: ["letter-spacing", { n: "normal" }],
 
-            // LineClamp
+            // LineClamp(numberOfLines)
             LineClamp: {
                 addRules: {
                     "": {
@@ -810,7 +810,7 @@
                         "[class*=LineClamp]": ["display:block"]
                     }
                 },
-                styles: ["-webkit-line-clamp", "max-height:$1"]
+                styles: ["-webkit-line-clamp", "max-height:$0em"]
             },
 
             // Line height
@@ -920,7 +920,7 @@
             // Perspective
             Prs: ["perspective", "n"],
             Prso: [
-                "perspective-origin $1",
+                "perspective-origin:$0 $1",
                 {
                     b: "bottom",
                     c: "center",
@@ -1168,7 +1168,7 @@
             // Transform
             Trf: ["transform"],
             Trfo: [
-                "transform-origin $1",
+                "transform-origin:$0 $1",
                 {
                     b: "bottom",
                     c: "center",
@@ -1374,16 +1374,16 @@
                 "}";
 
             if (atRule) {
-                rule = `${config.atRules[atRule] || atRule}{${rule}}`;
+                rule = (config.atRules[atRule] || atRule) + rule;
             }
 
             rule = rule
                 .replace(/_S_/g, config.settings.rightToLeft ? "right" : "left")
                 .replace(/_E_/g, config.settings.rightToLeft ? "left" : "right")
-                .replace(/\$([0-9]+)/g, (paramNumber) => {
-                    var v = (values.split(",") || [])[+paramNumber[1]];
+                .replace(/\$\d/g, (paramNumber) => {
+                    var v = (values.split(",") || [])[+paramNumber[1]] || '';
 
-                    if (v[0] === "-" && v[1] === "-") {
+                    if (v.match(/^--/)) {
                         return `val(${v})`;
                     }
 
@@ -1392,7 +1392,7 @@
 
             // DEBUG_START
             if (config.settings.debug) {
-                console.log("ACSS-RULE", `Add rule: ${rule}`);
+                console.log("ACSS-RULE", 'Add rule: ' + rule);
             }
             // DEBUG_END
 
@@ -1402,7 +1402,7 @@
             );
         },
         makeSelector = (sel, pseudoClass, pseudoElement) => {
-            sel = sel.replace(/[^-_a-zA-Z0-9]/g, (match) => `\\${match}`);
+            sel = sel.replace(/[^-_a-zA-Z0-9]/g, (match) => '\\' + match);
             pseudoClass =
                 config.pseudoClasses[pseudoClass] || pseudoClass || "";
             pseudoElement =
@@ -1413,7 +1413,7 @@
         processRule = (selector) => {
             // DEBUG_START
             if (config.settings.debug) {
-                console.log("ACSS-RULE", `Parsing selector: ${selector}`);
+                console.log("ACSS-RULE", 'Parsing selector: ' + selector);
                 console.time("ACSS-RULE");
             }
             // DEBUG_END
@@ -1436,7 +1436,7 @@
             if (!def) {
                 // DEBUG_START
                 if (config.settings.debug) {
-                    console.log("ACSS-RULE", `No class matches: ${match[4]}`);
+                    console.log("ACSS-RULE", 'No class matches: ' + match[4]);
                     console.timeEnd("ACSS-RULE");
                 }
                 // DEBUG_END
@@ -1480,12 +1480,12 @@
             var s = e.tagName;
 
             if (e.id) {
-                s += `#${e.id}`;
+                s += '#' + e.id;
             }
 
             loop(e.classList, (c) => {
                 if (c) {
-                    s += `.${c}`;
+                    s += '.' + c;
                 }
             });
 
@@ -1498,7 +1498,7 @@
                 if (config.settings.debug) {
                     console.log(
                         "ACSS-ELEMENT",
-                        `Already scanned: ${getElementIdentifier(e)}`
+                        'Already scanned: ' + getElementIdentifier(e)
                     );
                 }
                 // DEBUG_END
@@ -1507,7 +1507,7 @@
                 if (config.settings.debug) {
                     console.log(
                         "ACSS-ELEMENT",
-                        `Process element: ${getElementIdentifier(e)}`
+                        'Process element: ' + getElementIdentifier(e)
                     );
                 }
                 // DEBUG_END
@@ -1541,17 +1541,22 @@
             });
         },
         rulePattern =
-            /^(?:([a-zA-Z][-_a-zA-Z0-9]+?)(?::([a-z]+))?([>_+~]))?([-a-zA-Z0-9]+)(?:\(([-_,.#$/%0-9a-zA-Z]+)\))?(!)?(?::([a-z]+))?(?:::([a-z]+))?(?:--([a-zA-Z0-9]+))?$/,
-        //       1-----------------------1    2------2  3------3  4-------------4     5--------------------5    6-6     7-------7      8------8       9------------9
-        // 1: parent selector
-        // 2: parent pseudoclass
-        // 3: parent separator
-        // 4: atomic selector
-        // 5: atomic values
+            /^((?:\w|-)*?)(?::(\w+))?([>_+~])?(\w+)(?:\(((?:\w|[,-/#$%])+)\))?(!)?(?::(\w+))?(?:::(\w+))?(?:--(\w+))?$/i,
+        //    1----------1    2---2  3------3 4---4     5----------------5    6-6     7---7       8---8       9---9
+        // 1: parent selector to match an element name, matches \w plus hyphens
+        // 2: parent pseudoclass, preferably shorthand from config.pseudoClasses, matches \w+
+        // 3: parent separator, one of > _ + ~
+        // 4: atomic selector, matches \w+
+        // 5: atomic values, matches characters from \w plus others that can appear as values.
         // 6: important
-        // 7: pseudoclass
-        // 8: pseudoelement
-        // 9: at-rule / media query / breakpoint
+        // 7: pseudoclass, matches \w+
+        // 8: pseudoelement, matches \w+
+        // 9: at-rule / media query / breakpoint, matches \w+
+        //
+        // "\w+" matches one or more characters from the set of a-z, A-Z, 0-9,
+        // and underscore. This is intentionally looser than the spec for a few
+        // good reasons. It minifies smaller. \w is compiled and optimized more
+        // where as [-a-zA-Z0-9] is not. There's no real reason to forbid it.
         body = document.body,
         definedClasses = {},
         styleElement = document.createElement("style");
@@ -1615,7 +1620,7 @@
 
         loop(mutations, (mutation) => {
             // attributes = yes
-            // characterData = no
+            // characterData = no, but not monitored
             // childList = no
             if (mutation.type[0] === "a") {
                 processElement(mutation.target, elementMap);
@@ -1632,7 +1637,7 @@
         }
         // DEBUG_END
     }).observe(document, {
-        attributeFilter: ["class"],
+        attributeFilter: ["class"], // Enables monitoring of attributes
         childList: true,
         subtree: true
     });
