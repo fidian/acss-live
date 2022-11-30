@@ -3,7 +3,7 @@ ACSS-LIVE
 
 This is an in-browser implementation of Atomic CSS. When gzipped, it is about the same size as most gzipped CSS resources (under 6k), so it's fairly small even though it can handle all of the CSS you can imagine. The library relies on evergreen browsers and uses `MutationObserver` to detect element changes where new CSS classes may be needed. Each class is generated only once.
 
-The project was inspired by [atomizer-browser](https://github.com/acss-io/acss-browser) - a discussion of the differences is farther below.
+The project was inspired by [atomizer-browser](https://github.com/acss-io/acss-browser) - a discussion of differences is included.
 
 
 Usage
@@ -40,7 +40,7 @@ Why Do This?
 
 1. Atomic CSS is great because you reduce the total amount of CSS and it is significantly easier to maintain. No CSS is left unused.
 2. A CSS preprocessor to get this functionality is more work than simply including the script. It's also difficult when Atomic CSS is generated using JavaScript with Angular, Mithril, React, or other framework.
-3. There's no penalty or measurable performance impact from having the browser add the classes at render time.
+3. There's no penalty or measurable performance impact from having the browser add the classes at render time. Want to prove this yourself? Take a look at `acss-live.timings.js` and build your own page with as much content as you like. Model it after the `timings.html` example and you can see how little impact there really is when building CSS classes on the fly.
 4. The total amount of code is small, easy to extend, and ends up being roughly the same size as the CSS you're replacing.
 
 

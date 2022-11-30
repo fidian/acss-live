@@ -1,6 +1,23 @@
 /* global document, MutationObserver, window */
 "use strict";
 (function (window, document) {
+    // TIMING_START
+    var timerTotals = {};
+
+    function timerStart(name) {
+        const start = performance.now();
+
+        return () => {
+            const elapsed = performance.now() - start;
+            const totals = timerTotals[name] || [];
+            totals.push(elapsed);
+            timerTotals[name] = totals;
+            console.log(`${name}: ${elapsed}ms`);
+        };
+    }
+
+    const setupTimerEnd = timerStart("ACSS-SETUP");
+    // TIMING_END
 
     var config = {
         settings: {
@@ -11,6 +28,13 @@
             debug: false,
             // DEBUG_END
 
+            // TIMING_START
+            // Set to a number to measure elapsed times over a series of
+            // reloads. The page will automatically reload after its onload
+            // event. SessionStorage is used to track the times and the count.
+            // When done, the results are printed in the console.
+            reloadCount: 0,
+            // TIMING_END
 
             // Set to true if you want to support right to left instead.
             rightToLeft: false,
@@ -1413,6 +1437,9 @@
             return sel + pseudoClass + pseudoElement;
         },
         processRule = (selector) => {
+            // TIMING_START
+            const timerEnd = timerStart("ACSS-RULE");
+            // TIMING_END
 
             // DEBUG_START
             if (config.settings.debug) {
@@ -1428,6 +1455,9 @@
                 }
                 // DEBUG_END
 
+                // TIMING_START
+                timerEnd();
+                // TIMING_END
 
                 return;
             }
@@ -1441,6 +1471,9 @@
                 }
                 // DEBUG_END
 
+                // TIMING_START
+                timerEnd();
+                // TIMING_END
 
                 return;
             }
@@ -1470,6 +1503,9 @@
                 });
             });
 
+            // TIMING_START
+            timerEnd();
+            // TIMING_END
         },
         // DEBUG_START
         getElementIdentifier = (e) => {
@@ -1587,6 +1623,9 @@
     });
 
     if (body) {
+        // TIMING_START
+        const timerEnd = timerStart("ACSS-SCAN-BODY");
+        // TIMING_END
 
         // DEBUG_START
         if (config.settings.debug) {
@@ -1596,9 +1635,15 @@
 
         processElementAndChildren(body, []);
 
+        // TIMING_START
+        timerEnd();
+        // TIMING_END
     }
 
     new MutationObserver((mutations) => {
+        // TIMING_START
+        const timerEnd = timerStart("ACSS-MUTATION");
+        // TIMING_END
 
         var elementMap = [];
 
@@ -1621,10 +1666,87 @@
             );
         });
 
+        // TIMING_START
+        timerEnd();
+        // TIMING_END
     }).observe(document, {
         attributeFilter: ["class"], // Enables monitoring of attributes
         childList: true,
         subtree: true
     });
 
+    // TIMING_START
+    setupTimerEnd();
+
+    function logStats(k, times) {
+        const sum = times.reduce((acc, next) => acc + next, 0);
+        const mean = sum / times.length;
+        const deviancesSquared = times.map((x) => Math.pow(x - mean, 2));
+        const deviancesSquaredSum = deviancesSquared.reduce(
+            (acc, next) => acc + next,
+            0
+        );
+        const stdDev = deviancesSquaredSum / times.length;
+        const min = Math.min(...times);
+        const max = Math.max(...times);
+
+        console.groupCollapsed(
+            `${k}: ${times.length} @ ${Math.round(mean * 1000) / 1000}ms ± ${
+                Math.round(stdDev * 1000) / 1000
+            }ms`
+        );
+        console.log(` Count: ${times.length}`);
+        console.log(` Total: ${sum}ms`);
+        console.log(`  Mean: ${mean}ms`);
+        console.log(`StdDev: ${stdDev}ms`);
+        console.log(`   Min: ${min}ms`);
+        console.log(`   Max: ${max}ms`);
+        console.groupEnd();
+    }
+
+    if (config.settings.reloadCount) {
+        window.addEventListener("load", () => {
+            const storage = window.sessionStorage;
+            const currentLoadCount = +(storage.getItem("loadCount") || 1);
+            const timings = JSON.parse(storage.getItem("timings") || "{}");
+
+            for (const [k, v] of Object.entries(timerTotals)) {
+                const a = timings[k] || [];
+                a.push(v);
+                timings[k] = a;
+            }
+
+            if (currentLoadCount < config.settings.reloadCount) {
+                storage.setItem("timings", JSON.stringify(timings));
+                storage.setItem("loadCount", currentLoadCount + 1);
+                window.document.location.reload();
+            } else {
+                console.group("-----=[ TOTALS PER CALL ]=-----");
+
+                for (const [k, v] of Object.entries(timings)) {
+                    const t = [];
+
+                    for (const vv of v) {
+                        t.push(...vv);
+                    }
+
+                    logStats(k, t);
+                }
+
+                console.groupEnd();
+                console.group("-----=[ TOTALS PER LOAD ]=-----");
+
+                for (const [k, v] of Object.entries(timings)) {
+                    logStats(
+                        k,
+                        v.map((vv) => vv.reduce((a, n) => a + n, 0))
+                    );
+                }
+
+                console.groupEnd();
+                storage.clear();
+            }
+        });
+    }
+    // TIMING_END
 })(window, document);

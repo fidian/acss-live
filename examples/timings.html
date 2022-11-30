@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Timings and Performance</title>
+
+        <script>
+            /* Optional configuration for acss-live. Here, the debug statements
+             * are enabled. Debugging is only possible with the non-minified build
+             * because the debug code is removed during minification.
+             *
+             * This must be done before acss-live is loaded. */
+            acssLiveConfig = {
+                settings: {
+                    // Load and reload the page this many times. When done
+                    // reloading, display the average times and total counts
+                    // of each of the timers, along with some stats.
+                    reloadCount: 50
+                }
+            };
+        </script>
+
+        <script src="../acss-live.timings.js"></script>
+    </head>
+
+    <body>
+        <h1 class="D(f) Jc(c) Ai(c)">Timings and Performance</h1>
+
+        <p>
+            This version of Acss-Live has timings and performance measurement
+            <span class="Fw(b) Tt(u)">enabled</span> and the page will reload
+            automatically many times while measuring how long key portions of
+            code take. The results will be displayed in the console, so make
+            sure that is open in the end.
+        </p>
+    </body>
+</html>
