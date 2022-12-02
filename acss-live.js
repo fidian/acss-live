@@ -160,16 +160,17 @@
             p: "@media print",
 
             // Generally accepted screen sizes
-            // S = mobile
-            // M = tablets
-            // L = small screens, eg. laptops
-            // Default is desktop / tv / large format
+            // S = mobile                         0      -  480px
+            // M = landscape mobile, tablets    480.0001 -  768px
+            // L = landscape tablets            768.0001 - 1024px
+            // D = default / large format      1024.0001 -    ∞
             s: "@media(max-width:480px)",
             sm: "@media(max-width:768px)",
-            m: "@media(min-width:480.9999px) and (max-width:768px)",
+            m: "@media(min-width:480.0001px) and (max-width:768px)",
             sml: "@media(max-width:1024px)",
-            ml: "@media(min-width:480.9999px) and (max-width:1024px)",
-            l: "@media(min-width:768.9999px) and (max-width:1024px)"
+            ml: "@media(min-width:480.0001px) and (max-width:1024px)",
+            l: "@media(min-width:768.0001px) and (max-width:1024px)",
+            d: "@media(min-width:1024.0001px)",
         },
 
         // _S_ and _E_ are replaced with left and right

@@ -217,3 +217,4 @@ There are a couple things that I believe are better.
 * Color codes with opacity, such as `#00112233` (in "#rrggbbaa" format) are allowed.
 * Added support for `D(g)`, producing `display: grid`.
 * Updated the list of properties to more closely match [Emmet](https://docs.emmet.io/cheat-sheet/).
+* Added some default media breakpoints (`--s`, `--m`, `--l`, `--d`) for responsive design as well as color scheme detection (`--dk`, `--lt`) and print layout (`--p`).
