@@ -1517,36 +1517,32 @@
             return s;
         },
         // DEBUG_END
-        processElement = (e, elementMap) => {
-            // DEBUG_START
-            if (config.settings.debug) {
-                console.log(
-                    "ACSS-ELEMENT",
-                    "Process element: " + getElementIdentifier(e)
-                );
-            }
-            // DEBUG_END
-
-            elementMap.push(e);
-
-            loop(e.classList, (c) => {
-                if (!definedClasses[c]) {
-                    definedClasses[c] = 1;
-                    processRule(c);
-                }
-            });
-        },
-        processElementsAndChildren = (list, processedList) => {
+        processElements = (list, includeChildren) => {
             // Non-recursive
             while (list.length) {
-                var node = list.shift(),
-                    nodeType = node.nodeType;
+                var node = list.shift();
 
-                if ((nodeType === 1 || nodeType === 9) && !processedList.includes(node)) {
-                    processElement(node, processedList);
+                // DEBUG_START
+                if (config.settings.debug) {
+                    console.log(
+                        "ACSS-ELEMENT",
+                        "Process element: " + getElementIdentifier(node)
+                    );
+                }
+                // DEBUG_END
 
+                for (var c of node.classList) {
+                    if (!definedClasses[c]) {
+                        definedClasses[c] = 1;
+                        processRule(c);
+                    }
+                }
+
+                if (includeChildren) {
                     for (var child of node.children) {
-                        list.push(child);
+                        if (child.nodeType === 1) {
+                            list.push(child);
+                        }
                     }
                 }
             }
@@ -1608,15 +1604,13 @@
     }
     // DEBUG_END
 
-    processElementsAndChildren([document.documentElement], []);
+    processElements([document.documentElement], true);
 
     // DEBUG_START
     documentTimerEnd();
     // DEBUG_END
 
     new MutationObserver((mutations) => {
-        var processedElements = [];
-
         // DEBUG_START
         const timerEnd = timerStart("ACSS-MUTATION");
 
@@ -1630,11 +1624,11 @@
             // characterData = no, but not monitored
             // childList = no
             if (mutation.type[0] === "a") {
-                processElement(mutation.target, processedElements);
+                processElements([mutation.target]);
+            } else {
+                // Using mutation.target.querySelectorAll('*') is much slower
+                processElements([...mutation.addedNodes].filter((node) => node.nodeType === 1));
             }
-
-            // Using mutation.target.querySelectorAll('*') is much slower
-            processElementsAndChildren([...mutation.addedNodes], processedElements);
         }
 
         // DEBUG_START
