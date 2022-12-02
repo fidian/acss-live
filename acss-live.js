@@ -170,7 +170,7 @@
             sml: "@media(max-width:1024px)",
             ml: "@media(min-width:480.0001px) and (max-width:1024px)",
             l: "@media(min-width:768.0001px) and (max-width:1024px)",
-            d: "@media(min-width:1024.0001px)",
+            d: "@media(min-width:1024.0001px)"
         },
 
         // _S_ and _E_ are replaced with left and right
@@ -1424,6 +1424,7 @@
             styleElement.sheet.insertRule(rule);
         },
         makeSelector = (sel, pseudoClass, pseudoElement) =>
+            "." +
             sel.replace(/[^-_a-zA-Z0-9]/g, (match) => "\\" + match) +
             (pseudoClass
                 ? ":" + (config.pseudoClasses[pseudoClass] || pseudoClass)
@@ -1431,6 +1432,23 @@
             (pseudoElement
                 ? "::" + (config.pseudoElements[pseudoElement] || pseudoElement)
                 : ""),
+        rulePattern =
+            /^((?:\w|-)*?)(?::(\w+))?([>_+~])?(\w+)(?:\(((?:\w|[,-/#$%])+)\))?(!)?(?::(\w+))?(?:::(\w+))?(?:--(\w+))?$/i,
+        //    1----------1    2---2  3------3 4---4     5----------------5    6-6     7---7       8---8       9---9
+        // 1: parent selector to match an element name, matches \w plus hyphens
+        // 2: parent pseudoclass, preferably shorthand from config.pseudoClasses, matches \w+
+        // 3: parent separator, one of > _ + ~
+        // 4: atomic selector, matches \w+
+        // 5: atomic values, matches characters from \w plus others that can appear as values.
+        // 6: important
+        // 7: pseudoclass, matches \w+
+        // 8: pseudoelement, matches \w+
+        // 9: at-rule / media query / breakpoint, matches \w+
+        //
+        // "\w+" matches one or more characters from the set of a-z, A-Z, 0-9,
+        // and underscore. This is intentionally looser than the spec for a few
+        // good reasons. It minifies smaller. \w is compiled and optimized more
+        // where as [-a-zA-Z0-9] is not. There's no real reason to forbid it.
         processRule = (selector) => {
             // DEBUG_START
             if (config.settings.debug) {
@@ -1463,17 +1481,14 @@
                 return;
             }
 
-            var parentSelector =
-                match[1] && makeSelector(match[1], match[2]) + match[3];
-            var ruleSelector =
-                parentSelector +
-                "." +
-                makeSelector(selector, match[7], match[8]);
-
             if (def.styles) {
                 addRule(
                     match[9],
-                    ruleSelector,
+                    `${
+                        match[1]
+                            ? makeSelector(match[1], match[2]) + match[3]
+                            : ""
+                    }${makeSelector(selector, match[7], match[8])}`,
                     def.styles,
                     config[`${def.args}`] || def.args || {},
                     match[5],
@@ -1540,23 +1555,6 @@
                 }
             }
         },
-        rulePattern =
-            /^((?:\w|-)*?)(?::(\w+))?([>_+~])?(\w+)(?:\(((?:\w|[,-/#$%])+)\))?(!)?(?::(\w+))?(?:::(\w+))?(?:--(\w+))?$/i,
-        //    1----------1    2---2  3------3 4---4     5----------------5    6-6     7---7       8---8       9---9
-        // 1: parent selector to match an element name, matches \w plus hyphens
-        // 2: parent pseudoclass, preferably shorthand from config.pseudoClasses, matches \w+
-        // 3: parent separator, one of > _ + ~
-        // 4: atomic selector, matches \w+
-        // 5: atomic values, matches characters from \w plus others that can appear as values.
-        // 6: important
-        // 7: pseudoclass, matches \w+
-        // 8: pseudoelement, matches \w+
-        // 9: at-rule / media query / breakpoint, matches \w+
-        //
-        // "\w+" matches one or more characters from the set of a-z, A-Z, 0-9,
-        // and underscore. This is intentionally looser than the spec for a few
-        // good reasons. It minifies smaller. \w is compiled and optimized more
-        // where as [-a-zA-Z0-9] is not. There's no real reason to forbid it.
         definedClasses = {},
         styleElement = document.createElement("style");
 
