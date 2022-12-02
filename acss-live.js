@@ -1420,26 +1420,18 @@
             }
             // DEBUG_END
 
-            ((styleSheet) =>
-                styleSheet.insertRule(rule, styleSheet.cssRules.length))(
-                styleElement.sheet
-            );
+            styleElement.sheet.insertRule(rule);
         },
-        makeSelector = (sel, pseudoClass, pseudoElement) => {
-            sel = sel.replace(/[^-_a-zA-Z0-9]/g, (match) => "\\" + match);
-            pseudoClass = pseudoClass
+        makeSelector = (sel, pseudoClass, pseudoElement) =>
+            sel.replace(/[^-_a-zA-Z0-9]/g, (match) => "\\" + match) +
+            (pseudoClass
                 ? ":" + (config.pseudoClasses[pseudoClass] || pseudoClass)
-                : "";
-            pseudoElement = pseudoElement
+                : "") +
+            (pseudoElement
                 ? "::" + (config.pseudoElements[pseudoElement] || pseudoElement)
-                : "";
-
-            return sel + pseudoClass + pseudoElement;
-        },
+                : ""),
         processRule = (selector) => {
             // DEBUG_START
-            const timerEnd = timerStart("ACSS-RULE");
-
             if (config.settings.debug) {
                 console.log("ACSS-RULE", "Parsing selector: " + selector);
             }
@@ -1452,7 +1444,6 @@
                     console.log("ACSS-RULE", `Did not match pattern`);
                 }
 
-                timerEnd();
                 // DEBUG_END
 
                 return;
@@ -1466,7 +1457,6 @@
                     console.log("ACSS-RULE", "No class matches: " + match[4]);
                 }
 
-                timerEnd();
                 // DEBUG_END
 
                 return;
@@ -1490,15 +1480,13 @@
                 );
             }
 
-            loop(def.addRules, (ruleSet, atRule) => {
-                loop(ruleSet, (addStyles, addSel) => {
-                    addRule(atRule, addSel, addStyles, {});
+            if (def.addRules) {
+                loop(def.addRules, (ruleSet, atRule) => {
+                    loop(ruleSet, (addStyles, addSel) => {
+                        addRule(atRule, addSel, addStyles, {});
+                    });
                 });
-            });
-
-            // DEBUG_START
-            timerEnd();
-            // DEBUG_END
+            }
         },
         // DEBUG_START
         getElementIdentifier = (e) => {
@@ -1517,31 +1505,35 @@
             return s;
         },
         // DEBUG_END
-        processElements = (list, includeChildren) => {
+        processElements = (list, processedElements, includeChildren) => {
             // Non-recursive
             while (list.length) {
                 var node = list.shift();
 
-                // DEBUG_START
-                if (config.settings.debug) {
-                    console.log(
-                        "ACSS-ELEMENT",
-                        "Process element: " + getElementIdentifier(node)
-                    );
-                }
-                // DEBUG_END
+                if (!processedElements.includes(node)) {
+                    processedElements.push(node);
 
-                for (var c of node.classList) {
-                    if (!definedClasses[c]) {
-                        definedClasses[c] = 1;
-                        processRule(c);
+                    // DEBUG_START
+                    if (config.settings.debug) {
+                        console.log(
+                            "ACSS-ELEMENT",
+                            "Process element: " + getElementIdentifier(node)
+                        );
                     }
-                }
+                    // DEBUG_END
 
-                if (includeChildren) {
-                    for (var child of node.children) {
-                        if (child.nodeType === 1) {
-                            list.push(child);
+                    for (var c of node.classList) {
+                        if (!definedClasses[c]) {
+                            definedClasses[c] = 1;
+                            processRule(c);
+                        }
+                    }
+
+                    if (includeChildren) {
+                        for (var child of node.children) {
+                            if (child.nodeType === 1) {
+                                list.push(child);
+                            }
                         }
                     }
                 }
@@ -1597,18 +1589,12 @@
     });
 
     // DEBUG_START
-    const documentTimerEnd = timerStart("ACSS-SCAN-DOCUMENT");
-
     if (config.settings.debug) {
         console.log("ACSS-SCAN-DOCUMENT", "Process current elements");
     }
     // DEBUG_END
 
-    processElements([document.documentElement], true);
-
-    // DEBUG_START
-    documentTimerEnd();
-    // DEBUG_END
+    processElements([document.documentElement], [], true);
 
     new MutationObserver((mutations) => {
         // DEBUG_START
@@ -1619,15 +1605,23 @@
         }
         // DEBUG_END
 
+        var processedElements = [];
+
         for (var mutation of mutations) {
             // attributes = yes
             // characterData = no, but not monitored
             // childList = no
             if (mutation.type[0] === "a") {
-                processElements([mutation.target]);
+                processElements([mutation.target], processedElements);
             } else {
                 // Using mutation.target.querySelectorAll('*') is much slower
-                processElements([...mutation.addedNodes].filter((node) => node.nodeType === 1));
+                processElements(
+                    [...mutation.addedNodes].filter(
+                        (node) => node.nodeType === 1
+                    ),
+                    processedElements,
+                    true
+                );
             }
         }
 

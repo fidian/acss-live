@@ -117,7 +117,7 @@ class Controls {
                     {
                         class: "C(white) Bgc(black)"
                     },
-                    [m("th", "Name"), m("th", "Per Load"), m("th", "Per Call")]
+                    [m("th", "Name"), m("th", "Total Per Load"), m("th", "By Call")]
                 ),
                 ...keys.map((key) => this.viewTimerTotal(key))
             ])
