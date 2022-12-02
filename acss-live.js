@@ -1,6 +1,25 @@
 /* global document, MutationObserver, window */
 "use strict";
 (function (window, document) {
+    // DEBUG_START
+    var timerTotals = {};
+
+    function timerStart(name) {
+        const start = performance.now();
+
+        return () => {
+            if (config.settings.timing) {
+                const elapsed = performance.now() - start;
+                const totals = timerTotals[name] || [];
+                totals.push(elapsed);
+                timerTotals[name] = totals;
+                console.log(`${name}: ${elapsed}ms`);
+            }
+        };
+    }
+
+    const setupTimerEnd = timerStart("ACSS-SETUP");
+    // DEBUG_END
 
     var config = {
         settings: {
@@ -9,8 +28,11 @@
             // Only honored with NON-MINIFIED builds. Debug code is removed
             // in minified builds.
             debug: false,
-            // DEBUG_END
 
+            // Set to true to enable timings and performance metrics being
+            // logged and sent to the console.
+            timings: false,
+            // DEBUG_END
 
             // Set to true if you want to support right to left instead.
             rightToLeft: false,
@@ -1376,7 +1398,7 @@
                 "}";
 
             if (atRule) {
-                rule = (config.atRules[atRule] || atRule) + rule;
+                rule = `${config.atRules[atRule] || atRule}{${rule}}`;
             }
 
             rule = rule
@@ -1405,16 +1427,19 @@
         },
         makeSelector = (sel, pseudoClass, pseudoElement) => {
             sel = sel.replace(/[^-_a-zA-Z0-9]/g, (match) => "\\" + match);
-            pseudoClass =
-                config.pseudoClasses[pseudoClass] || pseudoClass || "";
-            pseudoElement =
-                config.pseudoElements[pseudoElement] || pseudoElement || "";
+            pseudoClass = pseudoClass
+                ? ":" + (config.pseudoClasses[pseudoClass] || pseudoClass)
+                : "";
+            pseudoElement = pseudoElement
+                ? "::" + (config.pseudoElements[pseudoElement] || pseudoElement)
+                : "";
 
             return sel + pseudoClass + pseudoElement;
         },
         processRule = (selector) => {
-
             // DEBUG_START
+            const timerEnd = timerStart("ACSS-RULE");
+
             if (config.settings.debug) {
                 console.log("ACSS-RULE", "Parsing selector: " + selector);
             }
@@ -1426,8 +1451,9 @@
                 if (config.settings.debug) {
                     console.log("ACSS-RULE", `Did not match pattern`);
                 }
-                // DEBUG_END
 
+                timerEnd();
+                // DEBUG_END
 
                 return;
             }
@@ -1439,15 +1465,15 @@
                 if (config.settings.debug) {
                     console.log("ACSS-RULE", "No class matches: " + match[4]);
                 }
-                // DEBUG_END
 
+                timerEnd();
+                // DEBUG_END
 
                 return;
             }
 
-            var parentSelector = match[1]
-                ? makeSelector(match[1], match[2]) + match[3]
-                : "";
+            var parentSelector =
+                match[1] && makeSelector(match[1], match[2]) + match[3];
             var ruleSelector =
                 parentSelector +
                 "." +
@@ -1470,6 +1496,9 @@
                 });
             });
 
+            // DEBUG_START
+            timerEnd();
+            // DEBUG_END
         },
         // DEBUG_START
         getElementIdentifier = (e) => {
@@ -1489,52 +1518,38 @@
         },
         // DEBUG_END
         processElement = (e, elementMap) => {
-            if (elementMap.includes(e)) {
-                // DEBUG_START
-                if (config.settings.debug) {
-                    console.log(
-                        "ACSS-ELEMENT",
-                        "Already scanned: " + getElementIdentifier(e)
-                    );
-                }
-                // DEBUG_END
-            } else {
-                // DEBUG_START
-                if (config.settings.debug) {
-                    console.log(
-                        "ACSS-ELEMENT",
-                        "Process element: " + getElementIdentifier(e)
-                    );
-                }
-                // DEBUG_END
-
-                elementMap.push(e);
-
-                loop(e.classList, (c) => {
-                    if (!definedClasses[c]) {
-                        definedClasses[c] = 1;
-                        processRule(c);
-                    }
-                });
+            // DEBUG_START
+            if (config.settings.debug) {
+                console.log(
+                    "ACSS-ELEMENT",
+                    "Process element: " + getElementIdentifier(e)
+                );
             }
-        },
-        processElementAndChildren = (node, elementMap) => {
-            // Non-recursive
-            var list = [node];
+            // DEBUG_END
 
-            while (list.length) {
-                processElement(list[0], elementMap);
-                iterateNodeList(list.shift().children, (child) => {
-                    list.push(child);
-                });
-            }
-        },
-        iterateNodeList = (nodes, callback) => {
-            loop(nodes, (node) => {
-                if (node.nodeType === 1) {
-                    callback(node);
+            elementMap.push(e);
+
+            loop(e.classList, (c) => {
+                if (!definedClasses[c]) {
+                    definedClasses[c] = 1;
+                    processRule(c);
                 }
             });
+        },
+        processElementsAndChildren = (list, processedList) => {
+            // Non-recursive
+            while (list.length) {
+                var node = list.shift(),
+                    nodeType = node.nodeType;
+
+                if ((nodeType === 1 || nodeType === 9) && !processedList.includes(node)) {
+                    processElement(node, processedList);
+
+                    for (var child of node.children) {
+                        list.push(child);
+                    }
+                }
+            }
         },
         rulePattern =
             /^((?:\w|-)*?)(?::(\w+))?([>_+~])?(\w+)(?:\(((?:\w|[,-/#$%])+)\))?(!)?(?::(\w+))?(?:::(\w+))?(?:--(\w+))?$/i,
@@ -1553,7 +1568,6 @@
         // and underscore. This is intentionally looser than the spec for a few
         // good reasons. It minifies smaller. \w is compiled and optimized more
         // where as [-a-zA-Z0-9] is not. There's no real reason to forbid it.
-        body = document.body,
         definedClasses = {},
         styleElement = document.createElement("style");
 
@@ -1586,45 +1600,65 @@
         config.classes[k] = v;
     });
 
-    if (body) {
+    // DEBUG_START
+    const documentTimerEnd = timerStart("ACSS-SCAN-DOCUMENT");
 
-        // DEBUG_START
-        if (config.settings.debug) {
-            console.log("ACSS-SETUP", "Process current elements");
-        }
-        // DEBUG_END
-
-        processElementAndChildren(body, []);
-
+    if (config.settings.debug) {
+        console.log("ACSS-SCAN-DOCUMENT", "Process current elements");
     }
+    // DEBUG_END
+
+    processElementsAndChildren([document.documentElement], []);
+
+    // DEBUG_START
+    documentTimerEnd();
+    // DEBUG_END
 
     new MutationObserver((mutations) => {
-
-        var elementMap = [];
+        var processedElements = [];
 
         // DEBUG_START
+        const timerEnd = timerStart("ACSS-MUTATION");
+
         if (config.settings.debug) {
             console.log("ACSS-MUTATION", "Detected mutations", mutations);
         }
         // DEBUG_END
 
-        loop(mutations, (mutation) => {
+        for (var mutation of mutations) {
             // attributes = yes
             // characterData = no, but not monitored
             // childList = no
             if (mutation.type[0] === "a") {
-                processElement(mutation.target, elementMap);
+                processElement(mutation.target, processedElements);
             }
 
-            iterateNodeList(mutation.addedNodes, (n) =>
-                processElementAndChildren(n, elementMap)
-            );
-        });
+            // Using mutation.target.querySelectorAll('*') is much slower
+            processElementsAndChildren([...mutation.addedNodes], processedElements);
+        }
 
+        // DEBUG_START
+        timerEnd();
+        // DEBUG_END
     }).observe(document, {
         attributeFilter: ["class"], // Enables monitoring of attributes
         childList: true,
         subtree: true
     });
 
+    // DEBUG_START
+    setupTimerEnd();
+
+    if (config.settings.timing) {
+        window.addEventListener("load", () => {
+            // I tried adding a setTimeout here to make sure there were no
+            // events after page load. There were none, so there's no reason to
+            // delay.
+            //
+            // Normally, using "*" is a security concern. I don't care who gets the
+            // timing information.
+            window.parent.postMessage({ timerTotals }, "*");
+        });
+    }
+    // DEBUG_END
 })(window, document);

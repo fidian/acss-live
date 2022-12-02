@@ -113,6 +113,7 @@ if (!window.acssLiveConfig.values) {
     window.acssLiveConfig.values = {};
 }
 
+// Necessary because the example pages don't define this value.
 window.acssLiveConfig.values.outlineShadow = "-1px 1px 2px #000, 1px 1px 2px #000, 1px -1px 0 #000, -1px -1px 0 #000";
 
 window.addEventListener("load", () => {

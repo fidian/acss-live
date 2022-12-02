@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Demo</title>
+
+        <script>
+            /**
+             * Optional configuration for ACSS-Live. This exists to show how
+             * to perform many different operations. Comments are spread
+             * liberally to assist with understanding.
+             *
+             * This configuration object must be created before ACSS-Live is
+             * loaded.
+             *
+             * If you want to enable debugging or timings, you must not use
+             * the minified version. This uses the non-minified build in order
+             * to report the timings back to the timings example page.
+             */
+            acssLiveConfig = {
+                settings: {
+                    // Changing this to true will enable debug so you can see
+                    // rule processing logs in the console. This will only
+                    // work with the non-minified version.
+                    debug: false,
+
+                    // Enable timings in order to report them back to the
+                    // window's parent. This only works with the non-minified
+                    // version.
+                    timing: true
+                }
+            };
+        </script>
+
+        <!--
+            Use the full version to enable timings and to send the timings
+            back to the parent. This is used by the example page, which wraps
+            the demo page in an iframe.
+        -->
+        <script src="../acss-live.js"></script>
+    </head>
+
+    <body>
+        <h1 class="D(f) Jc(c) Ai(c)">Demo</h1>
+
+        <p>
+            Below you will find many examples of how to accomplish various
+            layout and CSS-related tasks using ACSS. Take a look to see how
+            flexible and useful this library is.
+        </p>
+
+        <p>
+            We are using ACSS-Live with timings
+            <span class="Fw(b) Tt(u)">enabled</span> in order to see how long
+            various operations take. These metrics are also sent back to a
+            parent window (if one exists, like with the timings example) in
+            order to better report on statistics.
+        </p>
+
+        <p
+            class="C(black) C(red):h Bgc(white) Bgc(blue):h Fw(n) Fw(b):h Trsp(a) Ols(dt) Cur(p) Trsdu(1s) Trstf(eio)"
+        >
+            Hover and change colors
+        </p>
+
+        <div class="Colmc(5) Colmc(4)--l Colmc(3)--m Colmc(2)--s">
+            <div class="Bgc(black) C(white)">A responsive columnar layout</div>
+            <div class="Bgc(#faa)">Item 1</div>
+            <div class="Bgc(#ffa)">Item 2</div>
+            <div class="Bgc(#afa)">Item 3</div>
+            <div class="Bgc(#aff)">Item 4</div>
+            <div class="Bgc(#aaf)">Item 5</div>
+            <div class="Bgc(#faf)">Item 6</div>
+            <div class="Bgc(#faa)">Item 7</div>
+            <div class="Bgc(#ffa)">Item 8</div>
+            <div class="Bgc(#afa)">Item 9</div>
+            <div class="Bgc(#aff)">Item 10</div>
+            <div class="Bgc(#aaf)">Item 11</div>
+            <div class="Bgc(#faf)">Item 12</div>
+        </div>
+
+        <p class="Px(0.3em) Py(1em) Bgc(#114) Fw(b)"><span class="C(#bf00bf)">A</span> <span class="C(#cb00b2)">w</span><span class="C(#d001ab)">h</span><span class="C(#d603a4)">o</span><span class="C(#db059d)">l</span><span class="C(#e00796)">e</span> <span class="C(#e90c88)">l</span><span class="C(#ed1081)">o</span><span class="C(#f0137a)">t</span> <span class="C(#f61c6b)">o</span><span class="C(#f82064)">f</span> <span class="C(#fc2b56)">t</span><span class="C(#fd304f)">e</span><span class="C(#fe3649)">x</span><span class="C(#fe3c42)">t</span> <span class="C(#fe4936)">t</span><span class="C(#fd4f30)">h</span><span class="C(#fc562b)">a</span><span class="C(#fa5d25)">t</span> <span class="C(#f66b1c)">i</span><span class="C(#f37217)">s</span> <span class="C(#ed8110)">d</span><span class="C(#e9880c)">i</span><span class="C(#e48f09)">s</span><span class="C(#e09607)">p</span><span class="C(#db9d05)">l</span><span class="C(#d6a403)">a</span><span class="C(#d0ab01)">y</span><span class="C(#cbb200)">e</span><span class="C(#c5b800)">d</span> <span class="C(#b8c500)">a</span><span class="C(#b2cb00)">s</span> <span class="C(#a4d603)">a</span> <span class="C(#96e007)">r</span><span class="C(#8fe409)">a</span><span class="C(#88e90c)">i</span><span class="C(#81ed10)">n</span><span class="C(#7af013)">b</span><span class="C(#72f317)">o</span><span class="C(#6bf61c)">w</span><span class="C(#64f820)">,</span> <span class="C(#56fc2b)">j</span><span class="C(#4ffd30)">u</span><span class="C(#49fe36)">s</span><span class="C(#42fe3c)">t</span> <span class="C(#36fe49)">t</span><span class="C(#30fd4f)">o</span> <span class="C(#25fa5d)">c</span><span class="C(#20f864)">r</span><span class="C(#1cf66b)">e</span><span class="C(#17f372)">a</span><span class="C(#13f07a)">t</span><span class="C(#10ed81)">e</span> <span class="C(#09e48f)">a</span> <span class="C(#05db9d)">m</span><span class="C(#03d6a4)">a</span><span class="C(#01d0ab)">s</span><span class="C(#00cbb2)">s</span><span class="C(#00c5b8)">i</span><span class="C(#00bfbf)">v</span><span class="C(#00b8c5)">e</span> <span class="C(#01abd0)">a</span><span class="C(#03a4d6)">m</span><span class="C(#059ddb)">o</span><span class="C(#0796e0)">u</span><span class="C(#098fe4)">n</span><span class="C(#0c88e9)">t</span> <span class="C(#137af0)">o</span><span class="C(#1772f3)">f</span> <span class="C(#2064f8)">e</span><span class="C(#255dfa)">l</span><span class="C(#2b56fc)">e</span><span class="C(#304ffd)">m</span><span class="C(#3649fe)">e</span><span class="C(#3c42fe)">n</span><span class="C(#423cfe)">t</span><span class="C(#4936fe)">s</span> <span class="C(#562bfc)">a</span><span class="C(#5d25fa)">n</span><span class="C(#6420f8)">d</span> <span class="C(#7217f3)">C</span><span class="C(#7a13f0)">S</span><span class="C(#8110ed)">S</span> <span class="C(#8f09e4)">s</span><span class="C(#9607e0)">t</span><span class="C(#9d05db)">y</span><span class="C(#a403d6)">l</span><span class="C(#ab01d0)">e</span><span class="C(#b200cb)">s</span><span class="C(#b800c5)">.</span></p>
+    </body>
+</html>

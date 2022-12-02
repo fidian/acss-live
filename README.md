@@ -1,4 +1,4 @@
-ACSS-LIVE
+ACSS-Live
 =========
 
 This is an in-browser implementation of Atomic CSS. When gzipped, it is about the same size as most gzipped CSS resources (under 6k), so it's fairly small even though it can handle all of the CSS you can imagine. The library relies on evergreen browsers and uses `MutationObserver` to detect element changes where new CSS classes may be needed. Each class is generated only once.
@@ -9,7 +9,7 @@ The project was inspired by [atomizer-browser](https://github.com/acss-io/acss-b
 Usage
 -----
 
-Add this in your `<head>` of your document, then you're done. I recommend using the minified version because it provides a minor speed boost due to the lack of debugging code.
+Add this in your `<head>` of your document, then you're done. I recommend using the minified version because it provides a minor speed boost due to the lack of debugging and timing code.
 
     <script src="https://cdn.jsdelivr.net/npm/@fidian/acss-live/acss-live.min.js"></script>
 
@@ -55,7 +55,7 @@ Troubleshooting
 
 If you are not getting the classes you expect, try these steps:
 
-1. Use the non-minified build to allow debugging to work.
+1. Use the non-minified build to allow debugging and timing to work.
 2. Enable `debug: true` in your `acssLiveConfig` - see below or look at the debugging example.
 3. Search the console messages for the CSS rules you expected to have added.
 
@@ -74,6 +74,10 @@ Add some JavaScript to set a global object with the sections you want to configu
             // Enable debugging in the console. Only works if you use
             // acss-live.js instead of acss-live.min.js.
             debug: false,
+
+            // Enable logging of timing metrics. Only works if you use
+            // acss-live.js instead of acss-live.min.js.
+            timing: false,
 
             // Set to true when your language starts on the right and goes
             // left.
