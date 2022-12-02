@@ -1,6 +1,6 @@
 {
     "name": "@fidian/acss-live",
-    "version": "0.0.19",
+    "version": "0.0.20",
     "description": "ACSS rules generated live in your browser using a small library.",
     "scripts": {
         "build": "npm run minify && npm run compress && npm run sizes",
