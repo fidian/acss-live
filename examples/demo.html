@@ -24,7 +24,7 @@
                     // Changing this to true will enable debug so you can see
                     // rule processing logs in the console. This will only
                     // work with the non-minified version.
-                    debug: false,
+                    debug: true,
 
                     // Enable timings in order to report them back to the
                     // window's parent. This only works with the non-minified
@@ -33,6 +33,22 @@
                 }
             };
         </script>
+        <style>
+            @keyframes spinner {
+                0% {
+                    transform: rotate(0deg);
+                    stroke-dashoffset: 25; /* 0.66; */
+                }
+                50% {
+                    transform: rotate(720deg);
+                    stroke-dashoffset: 240; /* 3.14; */
+                }
+                100% {
+                    transform: rotate(1080deg);
+                    stroke-dashoffset: 25; /* 0.66; */
+                }
+            }
+        </style>
 
         <!--
             Use the full version to enable timings and to send the timings
@@ -81,6 +97,106 @@
             <div class="Bgc(#faf)">Item 12</div>
         </div>
 
-        <p class="Px(0.3em) Py(1em) Bgc(#114) Fw(b)"><span class="C(#bf00bf)">A</span> <span class="C(#cb00b2)">w</span><span class="C(#d001ab)">h</span><span class="C(#d603a4)">o</span><span class="C(#db059d)">l</span><span class="C(#e00796)">e</span> <span class="C(#e90c88)">l</span><span class="C(#ed1081)">o</span><span class="C(#f0137a)">t</span> <span class="C(#f61c6b)">o</span><span class="C(#f82064)">f</span> <span class="C(#fc2b56)">t</span><span class="C(#fd304f)">e</span><span class="C(#fe3649)">x</span><span class="C(#fe3c42)">t</span> <span class="C(#fe4936)">t</span><span class="C(#fd4f30)">h</span><span class="C(#fc562b)">a</span><span class="C(#fa5d25)">t</span> <span class="C(#f66b1c)">i</span><span class="C(#f37217)">s</span> <span class="C(#ed8110)">d</span><span class="C(#e9880c)">i</span><span class="C(#e48f09)">s</span><span class="C(#e09607)">p</span><span class="C(#db9d05)">l</span><span class="C(#d6a403)">a</span><span class="C(#d0ab01)">y</span><span class="C(#cbb200)">e</span><span class="C(#c5b800)">d</span> <span class="C(#b8c500)">a</span><span class="C(#b2cb00)">s</span> <span class="C(#a4d603)">a</span> <span class="C(#96e007)">r</span><span class="C(#8fe409)">a</span><span class="C(#88e90c)">i</span><span class="C(#81ed10)">n</span><span class="C(#7af013)">b</span><span class="C(#72f317)">o</span><span class="C(#6bf61c)">w</span><span class="C(#64f820)">,</span> <span class="C(#56fc2b)">j</span><span class="C(#4ffd30)">u</span><span class="C(#49fe36)">s</span><span class="C(#42fe3c)">t</span> <span class="C(#36fe49)">t</span><span class="C(#30fd4f)">o</span> <span class="C(#25fa5d)">c</span><span class="C(#20f864)">r</span><span class="C(#1cf66b)">e</span><span class="C(#17f372)">a</span><span class="C(#13f07a)">t</span><span class="C(#10ed81)">e</span> <span class="C(#09e48f)">a</span> <span class="C(#05db9d)">m</span><span class="C(#03d6a4)">a</span><span class="C(#01d0ab)">s</span><span class="C(#00cbb2)">s</span><span class="C(#00c5b8)">i</span><span class="C(#00bfbf)">v</span><span class="C(#00b8c5)">e</span> <span class="C(#01abd0)">a</span><span class="C(#03a4d6)">m</span><span class="C(#059ddb)">o</span><span class="C(#0796e0)">u</span><span class="C(#098fe4)">n</span><span class="C(#0c88e9)">t</span> <span class="C(#137af0)">o</span><span class="C(#1772f3)">f</span> <span class="C(#2064f8)">e</span><span class="C(#255dfa)">l</span><span class="C(#2b56fc)">e</span><span class="C(#304ffd)">m</span><span class="C(#3649fe)">e</span><span class="C(#3c42fe)">n</span><span class="C(#423cfe)">t</span><span class="C(#4936fe)">s</span> <span class="C(#562bfc)">a</span><span class="C(#5d25fa)">n</span><span class="C(#6420f8)">d</span> <span class="C(#7217f3)">C</span><span class="C(#7a13f0)">S</span><span class="C(#8110ed)">S</span> <span class="C(#8f09e4)">s</span><span class="C(#9607e0)">t</span><span class="C(#9d05db)">y</span><span class="C(#a403d6)">l</span><span class="C(#ab01d0)">e</span><span class="C(#b200cb)">s</span><span class="C(#b800c5)">.</span></p>
+        <p class="Px(0.3em) Py(1em) Bgc(#114) Fw(b)">
+            <span class="C(#bf00bf)">A</span> <span class="C(#cb00b2)">w</span
+            ><span class="C(#d001ab)">h</span><span class="C(#d603a4)">o</span
+            ><span class="C(#db059d)">l</span><span class="C(#e00796)">e</span>
+            <span class="C(#e90c88)">l</span><span class="C(#ed1081)">o</span
+            ><span class="C(#f0137a)">t</span> <span class="C(#f61c6b)">o</span
+            ><span class="C(#f82064)">f</span> <span class="C(#fc2b56)">t</span
+            ><span class="C(#fd304f)">e</span><span class="C(#fe3649)">x</span
+            ><span class="C(#fe3c42)">t</span> <span class="C(#fe4936)">t</span
+            ><span class="C(#fd4f30)">h</span><span class="C(#fc562b)">a</span
+            ><span class="C(#fa5d25)">t</span> <span class="C(#f66b1c)">i</span
+            ><span class="C(#f37217)">s</span> <span class="C(#ed8110)">d</span
+            ><span class="C(#e9880c)">i</span><span class="C(#e48f09)">s</span
+            ><span class="C(#e09607)">p</span><span class="C(#db9d05)">l</span
+            ><span class="C(#d6a403)">a</span><span class="C(#d0ab01)">y</span
+            ><span class="C(#cbb200)">e</span><span class="C(#c5b800)">d</span>
+            <span class="C(#b8c500)">a</span><span class="C(#b2cb00)">s</span>
+            <span class="C(#a4d603)">a</span> <span class="C(#96e007)">r</span
+            ><span class="C(#8fe409)">a</span><span class="C(#88e90c)">i</span
+            ><span class="C(#81ed10)">n</span><span class="C(#7af013)">b</span
+            ><span class="C(#72f317)">o</span><span class="C(#6bf61c)">w</span
+            ><span class="C(#64f820)">,</span> <span class="C(#56fc2b)">j</span
+            ><span class="C(#4ffd30)">u</span><span class="C(#49fe36)">s</span
+            ><span class="C(#42fe3c)">t</span> <span class="C(#36fe49)">t</span
+            ><span class="C(#30fd4f)">o</span> <span class="C(#25fa5d)">c</span
+            ><span class="C(#20f864)">r</span><span class="C(#1cf66b)">e</span
+            ><span class="C(#17f372)">a</span><span class="C(#13f07a)">t</span
+            ><span class="C(#10ed81)">e</span>
+            <span class="C(#09e48f)">a</span> <span class="C(#05db9d)">m</span
+            ><span class="C(#03d6a4)">a</span><span class="C(#01d0ab)">s</span
+            ><span class="C(#00cbb2)">s</span><span class="C(#00c5b8)">i</span
+            ><span class="C(#00bfbf)">v</span><span class="C(#00b8c5)">e</span>
+            <span class="C(#01abd0)">a</span><span class="C(#03a4d6)">m</span
+            ><span class="C(#059ddb)">o</span><span class="C(#0796e0)">u</span
+            ><span class="C(#098fe4)">n</span><span class="C(#0c88e9)">t</span>
+            <span class="C(#137af0)">o</span><span class="C(#1772f3)">f</span>
+            <span class="C(#2064f8)">e</span><span class="C(#255dfa)">l</span
+            ><span class="C(#2b56fc)">e</span><span class="C(#304ffd)">m</span
+            ><span class="C(#3649fe)">e</span><span class="C(#3c42fe)">n</span
+            ><span class="C(#423cfe)">t</span><span class="C(#4936fe)">s</span>
+            <span class="C(#562bfc)">a</span><span class="C(#5d25fa)">n</span
+            ><span class="C(#6420f8)">d</span> <span class="C(#7217f3)">C</span
+            ><span class="C(#7a13f0)">S</span><span class="C(#8110ed)">S</span>
+            <span class="C(#8f09e4)">s</span><span class="C(#9607e0)">t</span
+            ><span class="C(#9d05db)">y</span><span class="C(#a403d6)">l</span
+            ><span class="C(#ab01d0)">e</span><span class="C(#b200cb)">s</span
+            ><span class="C(#b800c5)">.</span>
+        </p>
+
+        <div class="My(1em) Bgc(darkgray) D(f) Jc(sb)">
+            <div class="Bgc(white) Bgc(red):h P(1em) M(1em)">
+                <span class="C(red) C(white):h"
+                    >Bad Hover - Hover without parent selector will only change
+                    text color when hovering over the text. Try hovering just
+                    above or below this text.</span
+                >
+            </div>
+            <div class="Bgc(white) Bgc(red):h P(1em) M(1em) hoverParent">
+                <span class="C(red) hoverParent:h>C(white)"
+                    >Good Hover - Hover using a parent selector will change the
+                    text color when hovering over the parent. Try hovering
+                    anywhere over the white, including over the text.</span
+                >
+            </div>
+        </div>
+
+        <div class="D(f) Fxd(c) Ai(end) Pos(a) B(0) End(0)">
+            <div
+                class="Mend(0.3em) Bdrs(2em) P(1em) Bdw(2px) Bds(s) Bgc(white)"
+            >
+                <!-- https://medium.com/@clg/animated-svg-spinner-8dff32d310fc -->
+                <svg class="W(40px) H(40px)" viewBox="0 0 100 100">
+                    <circle
+                        cx="50"
+                        cy="50"
+                        r="45"
+                        class="Fill(t) Stk(#212121) Stkw(10) Stklc(r) Trfo(50%,50%) Animn(spinner) Animdur(2s) Animtf(l) Animic(i)"
+                        style="stroke-dasharray: 280"
+                    ></circle>
+                </svg>
+                It looks like you want to use ACSS-live ...
+            </div>
+            <div class="Mend(3em) Pos(r) T(-2px)">
+                <div
+                    class="W(0) H(0) Bds(s) Bdbc(t) Bdendc(black) Bdbw(30px) Bdendw(20px) Bdstartw(0) Bdtw(0)"
+                ></div>
+                <div
+                    class="Pos(a) T(-6px) End(2px) W(0) H(0) Bds(s) Bdbc(t) Bdendc(white) Bdbw(30px) Bdendw(20px) Bdstartw(0) Bdtw(0)"
+                ></div>
+            </div>
+            <svg
+                viewBox="0 0 1024 1024"
+                version="1.1"
+                xmlns="http://www.w3.org/2000/svg"
+                class="Fill(black) W(5em)"
+            >
+                <path
+                    d="M640 661.333333a106.666667 106.666667 0 0 1-106.666667 106.666667 106.666667 106.666667 0 0 1-106.666666-106.666667v-74.666666a32 32 0 0 1 32-32 32 32 0 0 1 32 32v74.666666a42.666667 42.666667 0 0 0 42.666666 42.666667 42.666667 42.666667 0 0 0 42.666667-42.666667v-154.026666c-37.12-11.946667-64-43.52-64-80.64 0-46.933333 42.666667-85.333333 96-85.333334s96 38.4 96 85.333334c0 37.12-26.88 68.693333-64 80.64v154.026666M352 341.333333c53.333333 0 96 38.4 96 85.333334 0 37.12-26.88 68.693333-64 80.64v228.693333a138.666667 138.666667 0 0 0 138.666667 138.666667 138.666667 138.666667 0 0 0 138.666666-138.666667v-149.333333a32 32 0 0 1 32-32 32 32 0 0 1 32 32v149.333333A202.666667 202.666667 0 0 1 522.666667 938.666667a202.666667 202.666667 0 0 1-202.666667-202.666667v-228.693333C282.88 495.36 256 463.786667 256 426.666667c0-46.933333 42.666667-85.333333 96-85.333334m77.226667-79.786666l-18.346667 62.293333c-17.493333-9.386667-37.546667-14.506667-58.88-14.506667-38.826667 0-73.386667 17.066667-94.72 43.52l-51.2-38.4C232.96 280.32 273.493333 256 320 247.893333v-2.56A160 160 0 0 1 480 85.333333 160 160 0 0 1 640 245.333333v2.56c46.506667 8.106667 87.04 32.426667 113.92 66.56l-51.2 38.4c-21.333333-26.453333-55.893333-43.52-94.72-43.52-21.333333 0-41.386667 5.12-58.88 14.506667l-18.346667-62.293333c14.08-5.546667 29.44-11.093333 45.226667-13.653334v-2.56c0-53.333333-42.666667-96-96-96S384 192 384 245.333333v2.56c15.786667 2.56 31.146667 8.106667 45.226667 13.653334m178.773333 133.12c-23.466667 0-42.666667 14.506667-42.666667 32s19.2 32 42.666667 32 42.666667-14.506667 42.666667-32-19.2-32-42.666667-32m-256 0c-23.466667 0-42.666667 14.506667-42.666667 32s19.2 32 42.666667 32 42.666667-14.506667 42.666667-32-19.2-32-42.666667-32z"
+                />
+            </svg>
+        </div>
     </body>
 </html>
