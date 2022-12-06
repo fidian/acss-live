@@ -920,6 +920,11 @@
 
             // Overflow
             Ov: ["overflow", "overflow"],
+            Ovw: ["overflow-wrap", {
+                n: "normal",
+                a: "anywhere",
+                bw: "break-word",
+            }],
             Ovx: ["overflow-x", "overflow"],
             Ovy: ["overflow-y", "overflow"],
             Ovs: [
