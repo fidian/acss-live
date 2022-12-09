@@ -331,7 +331,7 @@
             Bdb: ["border-bottom"],
             Bdbc: ["border-bottom-color", "colors"],
             Bdbendi: ["border-bottom-_E_-image", "cn"],
-            Bdbendrs: ["border-bottom-_E_-bottom"],
+            Bdbendrs: ["border-bottom-_E_-radius"],
             Bdbi: ["border-bottom-image", "n"],
             Bdbk: ["border-break", { c: "close" }],
             Bd: ["border", "n"],
@@ -362,6 +362,19 @@
                 }
             ],
             Bdi: ["border-image", "n"],
+            Bdio: ["border-image-outset"],
+            Bdir: [
+                "border-image-repeat",
+                {
+                    ro: "round",
+                    r: "repeat",
+                    st: "stretch",
+                    s: "space"
+                }
+            ],
+            Bdisl: ["border-image-slice"],
+            Bdiso: ["border-image-source", "n"],
+            Bdiw: ["border-image-width", "a"],
             Bdlen: ["border-length", "a"],
             Bdrs: ["border-radius"],
             Bds: ["border-style", "borderStyle"],
@@ -511,6 +524,15 @@
                     w: "wait",
                     zi: "zoom-in",
                     zo: "zoom-out"
+                }
+            ],
+
+            // Direction
+            Dir: [
+                "direction",
+                {
+                    l: "ltr",
+                    r: "rtl"
                 }
             ],
 
@@ -679,6 +701,7 @@
             ],
 
             // Font
+            F: ["font"], // Supported, but conflicts with ACSS philosophy
             Fef: [
                 "font-effect",
                 {
@@ -920,11 +943,14 @@
 
             // Overflow
             Ov: ["overflow", "overflow"],
-            Ovw: ["overflow-wrap", {
-                n: "normal",
-                a: "anywhere",
-                bw: "break-word",
-            }],
+            Ovw: [
+                "overflow-wrap",
+                {
+                    n: "normal",
+                    a: "anywhere",
+                    bw: "break-word"
+                }
+            ],
             Ovx: ["overflow-x", "overflow"],
             Ovy: ["overflow-y", "overflow"],
             Ovs: [
@@ -1075,6 +1101,9 @@
                 }
             ],
 
+            // Tab size
+            Tbz: ["tab-size"],
+
             // Table layout
             Tbl: [
                 "table-layout",
@@ -1126,12 +1155,25 @@
             Td: [
                 "text-decoration",
                 {
+                    b: "blink",
                     l: "line-through",
                     n: "none",
                     o: "overline",
                     u: "underline"
                 }
             ],
+            Tdc: ["text-decoration-color", "colors"],
+            Tdl: [
+                "text-decoration-line",
+                {
+                    b: "blink",
+                    l: "line-through",
+                    n: "none",
+                    o: "overline",
+                    u: "underline"
+                }
+            ],
+            Tds: ["text-decoration-style", "borderStyle"],
             Te: [
                 "text-emphasis",
                 {
