@@ -314,10 +314,6 @@
                 }
             ],
 
-            // This is a hack. It does not make the box grow to 1600px, just
-            // enough to fill the container.
-            BfcHack: ["display:table-cell;width:1600px"],
-
             // Border shortcuts: 1 pixel solid border
             BdAll: ["border-width:1px;border-style:solid"],
             BdB: ["border-width:0 0 1px;border-style:solid"],
@@ -407,20 +403,6 @@
                 "box-sizing",
                 { bb: "border-box", cb: "content-box", pb: "padding-box" }
             ],
-
-            // Clearfix
-            Cf: {
-                addRules: {
-                    "": {
-                        ".Cf:before": ['content:" "', "display:table"],
-                        ".Cf:after": [
-                            'content:" "',
-                            "display:table",
-                            "clear:both"
-                        ]
-                    }
-                }
-            },
 
             // Color
             C: ["color", "colors"],
@@ -570,30 +552,6 @@
                     tb: "table"
                 }
             ],
-
-            // Ellipsis - single line with ellipsis (see also LineClamp)
-            Ell: {
-                addRules: {
-                    "": {
-                        ".Ell:after": [
-                            'content:""',
-                            "font-size:0",
-                            "visibility:hidden",
-                            "display:inline-block",
-                            "overflow:hidden",
-                            "height:0",
-                            "width:0"
-                        ]
-                    }
-                },
-                styles: [
-                    "max-width:100%",
-                    "white-space:nowrap",
-                    "overflow:hidden",
-                    "text-overflow:ellipsis",
-                    "hyphens:none"
-                ]
-            },
 
             // Filter
             Fil: ["filter"],
@@ -810,11 +768,6 @@
             Mah: ["max-height", "minMax"],
             Mih: ["min-height", "minMax"],
 
-            // Hidden - signted can't see, screen readers can
-            Hidden: [
-                "position:absolute!important;clip:rect(1px,2px,1px,1px);padding:0!important;border:0!important;height:1px!important;width:1px!important;overflow:hidden"
-            ],
-
             // Hyphens
             Hy: [
                 "hyphens",
@@ -825,41 +778,11 @@
                 }
             ],
 
-            // Inline block box
-            IbBox: ["display:inline-block;vertical-align:top"],
-
             // Letter spacing
             Lts: ["letter-spacing", { n: "normal" }],
 
-            // LineClamp(numberOfLines)
-            LineClamp: {
-                addRules: {
-                    "": {
-                        "[class*=LineClamp]": [
-                            "display:-webkit-box",
-                            "-webkit-box-orient:vertical",
-                            "overflow:hidden"
-                        ],
-                        "a[class*=LineClamp]": [
-                            "display:inline-block",
-                            "display:-webkit-box"
-                        ],
-                        "a[class*=LineClamp]:after": [
-                            'content:"."',
-                            "font-size:0",
-                            "visibility:hidden",
-                            "display:inline-block",
-                            "overflow:hidden",
-                            "height:0",
-                            "width:0"
-                        ]
-                    },
-                    "@supports (display:-moz-box)": {
-                        "[class*=LineClamp]": ["display:block"]
-                    }
-                },
-                styles: ["-webkit-line-clamp", "max-height:$0em"]
-            },
+            // Line clamp
+            Lc: ["-webkit-line-clamp;line-clamp"],
 
             // Line height
             Lh: ["line-height", { n: "normal" }],
@@ -1069,14 +992,6 @@
             // Resolution
             Mar: ["max-resolution"],
             Mir: ["min-resolution"],
-
-            // Contain boxes on a row
-            Row: [
-                "clear:both;display:inline-block;vertical-align:top;width:100%;box-sizing:border-box"
-            ],
-
-            // Stretches a box inside its containing block
-            StretchedBox: ["position:absolute;top:0;right:0;bottom:0;left:0"],
 
             // SVG
             Fill: ["fill", "colors"],
@@ -1429,47 +1344,6 @@
                 cb(value, key);
             }
         },
-        addRule = (atRule, ruleSelector, rules, args, values, important) => {
-            var rule =
-                config.settings.namespace +
-                ruleSelector +
-                "{" +
-                rules
-                    .map((r) => {
-                        if (important && r.substr(-10) !== "!important") {
-                            r += "!important";
-                        }
-
-                        return r;
-                    })
-                    .join(";") +
-                "}";
-
-            if (atRule) {
-                rule = `${config.atRules[atRule] || atRule}{${rule}}`;
-            }
-
-            rule = rule
-                .replace(/_S_/g, config.settings.rightToLeft ? "right" : "left")
-                .replace(/_E_/g, config.settings.rightToLeft ? "left" : "right")
-                .replace(/\$\d/g, (paramNumber) => {
-                    var v = (values.split(",") || [])[+paramNumber[1]] || "";
-
-                    if (v.match(/^--/)) {
-                        return `var(${v})`;
-                    }
-
-                    return args[v] || config.values[v] || v;
-                });
-
-            // DEBUG_START
-            if (config.settings.debug) {
-                console.log("ACSS-RULE", "Add rule: " + rule);
-            }
-            // DEBUG_END
-
-            styleElement.sheet.insertRule(rule);
-        },
         makeSelector = (sel, pseudoClass, pseudoElement) =>
             "." +
             sel.replace(/[^-_a-zA-Z0-9]/g, (match) => "\\" + match) +
@@ -1496,13 +1370,13 @@
         // and underscore. This is intentionally looser than the spec for a few
         // good reasons. It minifies smaller. \w is compiled and optimized more
         // where as [-a-zA-Z0-9] is not. There's no real reason to forbid it.
-        processRule = (selector) => {
+        processRule = (className) => {
             // DEBUG_START
             if (config.settings.debug) {
-                console.log("ACSS-RULE", "Parsing selector: " + selector);
+                console.log("ACSS-RULE", "Parsing class name: " + className);
             }
             // DEBUG_END
-            var match = selector.match(rulePattern);
+            var match = className.match(rulePattern);
 
             if (!match) {
                 // DEBUG_START
@@ -1528,28 +1402,50 @@
                 return;
             }
 
-            if (def.styles) {
-                addRule(
-                    match[9],
-                    `${
-                        match[1]
-                            ? makeSelector(match[1], match[2]) + match[3]
-                            : ""
-                    }${makeSelector(selector, match[7], match[8])}`,
-                    def.styles,
-                    config[`${def.args}`] || def.args || {},
-                    match[5],
-                    match[6]
-                );
+            var ruleSelector = `${
+                    match[1] ? makeSelector(match[1], match[2]) + match[3] : ""
+                }${makeSelector(className, match[7], match[8])}`,
+                values = config[def[1]] || def[1] || {},
+                rules = def[0].split(";").map((r) => {
+                    if (r.indexOf(":") < 0) {
+                        r += ":$0";
+                    }
+
+                    if (match[6]) {
+                        r += "!important";
+                    }
+
+                    return r;
+                }),
+                rule =
+                    config.settings.namespace +
+                    ruleSelector +
+                    `{${rules.join(";")}}`;
+
+            if (match[9]) {
+                rule = `${config.atRules[match[9]] || match[9]}{${rule}}`;
             }
 
-            if (def.addRules) {
-                loop(def.addRules, (ruleSet, atRule) => {
-                    loop(ruleSet, (addStyles, addSel) => {
-                        addRule(atRule, addSel, addStyles, {});
-                    });
+            rule = rule
+                .replace(/_S_/g, config.settings.rightToLeft ? "right" : "left")
+                .replace(/_E_/g, config.settings.rightToLeft ? "left" : "right")
+                .replace(/\$\d/g, (paramNumber) => {
+                    var v = (match[5].split(",") || [])[+paramNumber[1]] || "";
+
+                    if (!v.indexOf("--")) {
+                        return `var(${v})`;
+                    }
+
+                    return values[v] || config.values[v] || v;
                 });
+
+            // DEBUG_START
+            if (config.settings.debug) {
+                console.log("ACSS-RULE", "Add rule: " + rule);
             }
+            // DEBUG_END
+
+            styleElement.sheet.insertRule(rule);
         },
         // DEBUG_START
         getElementIdentifier = (e) => {
@@ -1619,20 +1515,6 @@
     // DEBUG_END
 
     document.head.appendChild(styleElement);
-
-    // Expand rules
-    loop(config.classes, (v, k) => {
-        if (Array.isArray(v)) {
-            v = {
-                args: v[1],
-                styles: v[0]
-                    .split(";")
-                    .map((r) => (r.match(/:/) ? r : r + ":$0"))
-            };
-        }
-
-        config.classes[k] = v;
-    });
 
     // DEBUG_START
     if (config.settings.debug) {

@@ -1,9 +1,9 @@
 ACSS-Live
 =========
 
-This is an in-browser implementation of Atomic CSS. When gzipped, it is about the same size as most gzipped CSS resources (under 6k), so it's fairly small even though it can handle all of the CSS you can imagine. The library relies on evergreen browsers and uses `MutationObserver` to detect element changes where new CSS classes may be needed. Each class is generated only once.
+This is an in-browser implementation of Atomic CSS. When gzipped, it is about the same size as most gzipped CSS resources (about 6k), so it's fairly small even though it can handle all of the CSS you can imagine. The library relies on evergreen browsers and uses `MutationObserver` to detect element changes where new CSS classes may be needed. Each class is generated only once.
 
-The project was inspired by [atomizer-browser](https://github.com/acss-io/acss-browser) - a discussion of differences is included.
+The project was inspired by [acss-browser] - a discussion of differences is included.
 
 
 Usage
@@ -130,34 +130,14 @@ Add some JavaScript to set a global object with the sections you want to configu
             // This technique will look up the "colors" property in the config
             // and use that for shorthand values. You can specify any property.
             // C() is a much shorter method of doing the same thing.
-            Color: ["color:$0", 'colors'],
-
-            // Show an icon after a link, but only on the screen
-            linkIcon: {
-                // A mapping that changes shorthand values into longer forms.
-                // Arguments are found with $0, $1, ... in the rules.
-                args: {
-                    s: "⧉" // double squares
-                },
-
-                // The styles to apply as an array
-                styles: [
-                    "text-decoration: underline",
-                    "text-decoration-style: dashed"
-                ],
-
-                // Additional rules that need to be created
-                '@media only screen': {
-                    '[class*=linkIcon]:after': [
-                        'content: "$0"'
-                    ]
-                }
-            }
+            Color: ["color:$0", 'colors']
         },
 
-        // Media queries, breakpoints, and other useful at-rules
+        // Media queries, breakpoints, and other useful at-rules. These are
+        // specified using two hyphens after the Atomic class, so D(n)--s
+        // will hide an element if being displayed on a small screen.
         atRules: {
-            s: '@media only screen',
+            s: '@media only screen', // Adding this one
 
             // Generally accepted screen sizes
             // S = mobile
@@ -194,7 +174,7 @@ Add some JavaScript to set a global object with the sections you want to configu
 Similarities and Differences
 ----------------------------
 
-Follows the same shorthand as [Atomizer](https://acss.io/reference.html) and [acss-browser](https://github.com/acss-io/acss-browser) with a few trade-offs:
+Follows the same shorthand as [Atomizer](https://acss.io/reference.html) and [acss-browser] with a few trade-offs:
 
 * This does not change color codes from short to long.
 * Atomizer's `Bd` helper (not `Bd(...)` rule) is renamed to `BdAll` to not conflict with `Bd`.
@@ -206,10 +186,73 @@ Follows the same shorthand as [Atomizer](https://acss.io/reference.html) and [ac
 * Colors and other properties are not restricted to a list.
 * `Mw(ini)` changed to `Mw(i)`, similar to `Trsdu(i)` for consistency.
 * Old IE hacks (star hacks, `Zoom`, and `zoom: 1` rules) are removed.
+* Removed various complex rules, combined styles, and hacks. If you want to add them to your `acssLiveConfig` object (when possible) or your site's CSS, I have included examples of both for each removed item.
+    * `BfcHack` - The styles supplied don't adequately solve the needs.
+            // CSS
+            .BfcHack { display: table-cell; width: 1600px; }
 
-This project's code is under 50k of source, under 20k minified, under 7k gzipped. Compare this to acss-browser's nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount.
+            // acssLiveConfig's classes object
+            BfcHack: ["display:table-cell;width:1600px"]
+    * `Clearfix` - If your layout uses floating elements, either leverage `C(b)` on the next element or add the style back in.
+            // CSS
+            .Cf:before { content: " "; display: "table"; }
+            .Cf:after { content: " "; display: "table"; clear: both; }
+    * `Ell` - Use `Tov(e)` for ellipsis instead.
+            // CSS
+            .Ell { max-width: 100%; white-space: nowrap; overflow: hidden;
+                text-overflow: ellipsis; hyphens: none }
+            .Ell:after { content: ""; font-size: 0; visibility: hidden;
+                display: inline-block; overflow: hidden; height: 0; width: 0 }
 
-There are a couple things that I believe are better.
+            // acssLiveConfig classes object can only do the first part
+            Ell: ["max-width:100%;white-space:nowrap;overflow:hidden;" +
+                "text-overflow:ellipsis;hyphens:none"]
+    * `Hidden` - Hides content but keeps it available for screen readers. Use the [`hidden` HTML attribute](https://caniuse.com/hidden).
+            // CSS
+            .Hidden { position: absolute!important; clip: rect(1px,2px,1px,1px);
+                padding: 0!important; border: 0!important; height: 1px!important;
+                width: 1px!important; overflow: hidden }
+
+            // acssLiveConfig's classes object
+            Hidden: ["position:absolute!important;clip:rect(1px,2px,1px,1px);" +
+                "padding:0!important;border:0!important;height:1px!important;" +
+                "width:1px!important;overflow:hidden"]
+    * `IbBox` - Use `D(ib) Va(t)`.
+            // CSS
+            IbBox: { display: inline-block; vertical-align: top }
+
+            // acssLiveConfig's classes object
+            IbBox: ["display:inline-block;vertical-align:top"]
+    * `LineClamp` - Use `Lc()`, which is [supported in modern browsers](https://caniuse.com/css-line-clamp) even though it's only proposed to be added to the CSS spec.
+            // CSS - note that the .LineClamp class needs both N and H changed.
+            [class*=LineClamp] { display: -webkit-box; -webkit-box-orient:vertical;
+                overflow:hidden }
+            a[class*=LineClamp] { display: inline-block; display: -webkit-box; }
+            a[class*=LineClamp]:after { content: "."; font-size: 0;
+                visibility: hidden; display: inline-block; overflow: hidden;
+                height: 0; width: 0; }
+            @supports (display:-moz-box) {
+                [class*=LineClamp] { display: block }
+            }
+            .LineClamp(N,H) { -webkit-line-clamp: N; max-height: H }
+    * `Row` - Use `C(b) D(ib) Va(t) W(100%) Bxz(bb)`.
+            // CSS
+            .Row { clear: both; display: inline-block; vertical-align: top;
+                width: 100%; box-sizing: border-box }
+
+            // acssLiveConfig's classes object
+            Row: ["clear:both;display:inline-block;vertical-align:top;width:100%;box-sizing:border-box"]
+    * `StretchedBox` - Use `Pos(a) T(0) B(0) Start(0) End(0)` to keep with ACSS philosophy of single, reusable classes.
+            // CSS
+            .StretchedBox: { position: absolute; top: 0; right: 0; bottom: 0;
+                left: 0 }
+
+            // acssLiveConfig's classes object
+            StretchedBox: ["position:absolute;top:0;right:0;bottom:0;left:0"]
+
+This project's code is under 50k of source, about 17k minified, and about 6k gzipped. Compare this to [acss-browser]'s nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount. Additionally, there are a couple helper classes that have been removed (as detailed above) and the CSS that's generated isn't combined to be as small as possible when added into the browser.
+
+Even with the above considerations, there are a couple things that I believe are better.
 
 * Breakpoints are renamed as `atRules` because they are media queries or other at-rules according to the CSS spec. More than just breakpoints can be used, such as `--p` at the end of a rule to enable it only for print.
 * The list of colors is split out to a separate list. Adding colors as colors instead of custom values is now possible.
@@ -218,3 +261,5 @@ There are a couple things that I believe are better.
 * Added support for `D(g)`, producing `display: grid`.
 * Updated the list of properties to more closely match [Emmet](https://docs.emmet.io/cheat-sheet/).
 * Added some default media breakpoints (`--s`, `--m`, `--l`, `--d`) for responsive design as well as color scheme detection (`--dk`, `--lt`) and print layout (`--p`).
+
+[acss-browser]: https://github.com/acss-io/acss-browser
