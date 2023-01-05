@@ -782,7 +782,8 @@
             Lts: ["letter-spacing", { n: "normal" }],
 
             // Line clamp
-            Lc: ["-webkit-line-clamp;line-clamp"],
+            // Includes "display" to make it work. Useless without.
+            Lc: ["display:-webkit-box;-webkit-line-clamp;line-clamp"],
 
             // Line height
             Lh: ["line-height", { n: "normal" }],
