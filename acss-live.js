@@ -980,6 +980,9 @@
                 }
             ],
 
+            // Rows
+            Rowg: ["row-gap"],
+
             // Resize
             Rsz: [
                 "resize",
