@@ -1,7 +1,7 @@
 ACSS-Live
 =========
 
-This is an in-browser implementation of Atomic CSS. When gzipped, it is about the same size as most gzipped CSS resources (about 6k), so it's fairly small even though it can handle all of the CSS you can imagine. The library relies on evergreen browsers and uses `MutationObserver` to detect element changes where new CSS classes may be needed. Each class is generated only once.
+This is an in-browser implementation of Atomic CSS. When gzipped, it is a bit larger than some gzipped CSS (still only about 11k). Even with this small size, it can handle nearly every CSS property and value. The library relies on evergreen browsers and uses `MutationObserver` to detect element changes where new CSS classes may be needed. Each class is generated only once.
 
 The project was inspired by [acss-browser] - a discussion of differences is included.
 
@@ -48,6 +48,8 @@ What is Supported
 -----------------
 
 Everything from [Atomic CSS Reference](https://acss.io/reference.html), including a parent selector, parent pseudoclass, descendant selector, atomic class, parameters, pseudoclass, pseudoelement, and at-rule. Any exceptions are called out farther below. Also, almost everything related to CSS from [Emmet](https://docs.emmet.io/cheat-sheet/) is included.
+
+There are potentially changes to some of the selectors and values. This was done intentionally for consistency throughout.
 
 
 Troubleshooting
@@ -119,8 +121,10 @@ Add some JavaScript to set a global object with the sections you want to configu
             // Shows how to use a parameter. This parameter is mapped against
             // the object, which provides a shorthand way to use standard
             // values.
+            // "border-width" has no value and the arguments to the box()
+            // class will be automatically appended.
             // box(m) is the same as Bds(s) Bdc(black) Bdw(3px)
-            box: ["border-style: solid; border-color: black; border-width: $0", {
+            box: ["border-style: solid; border-color: black; border-width", {
                 s: '1px',
                 m: '3px',
                 l: '5px'
@@ -130,7 +134,14 @@ Add some JavaScript to set a global object with the sections you want to configu
             // This technique will look up the "colors" property in the config
             // and use that for shorthand values. You can specify any property.
             // C() is a much shorter method of doing the same thing.
-            Color: ["color:$0", 'colors']
+            Color: ["color", 'colors']
+
+            // Some CSS properties allow multiple values. $_ is replaced with
+            // all values separated by spaces and $, is replaced with all
+            // values separated by commas. When you don't specify a value
+            // for a property, $_ is automatically appended.
+            BackgroundImage: ["background-image:$,"],
+            SansSerif: ["font: \"Arial\" $_, "Helvetica Neue" $_"],
         },
 
         // Media queries, breakpoints, and other useful at-rules. These are
@@ -180,12 +191,14 @@ Follows the same shorthand as [Atomizer](https://acss.io/reference.html) and [ac
 * Atomizer's `Bd` helper (not `Bd(...)` rule) is renamed to `BdAll` to not conflict with `Bd`.
 * Helpers can get arguments, but they get ignored. Extra arguments can be passed to rules and they are likewise ignored.
 * Does not consolidate styles in the same way as Atomizer. This will generate one rule per class.
-* Renamed `Dropshadow` to `DropShadow` to be consistent with other named filters.
+* Changed all classes to have a single capital letter first followed by all lowercase. CSS in the browser is case-insensitive and the capital letter just helps make sure that you meant to use Atomic CSS.
 * Removed deprecated flex rules (ones starting with `Fl`) and kept only the ones starting `Fx`.
+* Dropped many CSS properties because they aren't supported by browsers.
 * Fixed `Matrix3d` and `Rotate3d` to use the 3D transforms instead of 2D.
-* Colors and other properties are not restricted to a list.
-* `Mw(ini)` changed to `Mw(i)`, similar to `Trsdu(i)` for consistency.
-* Old IE hacks (star hacks, `Zoom`, and `zoom: 1` rules) are removed.
+* Colors and other properties are not restricted to a list. This may be good or bad, depending on how you see it.
+* Old IE hacks (star hacks and `zoom: 1` rules) are removed.
+* Removed combined values for `Bgp`. Use commas instead of underlines.
+* Renamed border classes to use `1` at the end, like `Bdstart1` for consistency and to not conflict because CSS is case-insensitive.
 * Removed various complex rules, combined styles, and hacks. If you want to add them to your `acssLiveConfig` object (when possible) or your site's CSS, I have included examples of both for each removed item.
     * `BfcHack` - The styles supplied don't adequately solve the needs.
             // CSS
@@ -250,16 +263,24 @@ Follows the same shorthand as [Atomizer](https://acss.io/reference.html) and [ac
             // acssLiveConfig's classes object
             StretchedBox: ["position:absolute;top:0;right:0;bottom:0;left:0"]
 
-This project's code is under 50k of source, about 17k minified, and about 6k gzipped. Compare this to [acss-browser]'s nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount. Additionally, there are a couple helper classes that have been removed (as detailed above) and the CSS that's generated isn't combined to be as small as possible when added into the browser.
+This project's code is pretty large for a simple library - about 80k of source. Thankfully it shrinks well using about 32k minified and about 10k compressed. Compare this to [acss-browser]'s nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount. Additionally, there are a couple helper classes that have been removed (as detailed above) and the CSS that's generated isn't combined to be as small as possible when added into the browser.
 
 Even with the above considerations, there are a couple things that I believe are better.
 
 * Breakpoints are renamed as `atRules` because they are media queries or other at-rules according to the CSS spec. More than just breakpoints can be used, such as `--p` at the end of a rule to enable it only for print.
-* The list of colors is split out to a separate list. Adding colors as colors instead of custom values is now possible.
-* Defining new classes has less boilerplate.
+* The list of colors is split out to a separate list. Adding colors as colors instead of custom values is now possible, though you may wish to use CSS variables (eg. `C(--errorRed)`) for an easier way to set a palette.
+* Defining new classes has less boilerplate and can use multiple lookup tables..
 * Color codes with opacity, such as `#00112233` (in "#rrggbbaa" format) are allowed.
-* Added support for `D(g)`, producing `display: grid`.
+* Added support for `D(g)`, producing `display: grid`, plus added CSS support for the rest of the grid properties.
 * Updated the list of properties to more closely match [Emmet](https://docs.emmet.io/cheat-sheet/).
 * Added some default media breakpoints (`--s`, `--m`, `--l`, `--d`) for responsive design as well as color scheme detection (`--dk`, `--lt`) and print layout (`--p`).
+
+
+Upgrading
+---------
+
+Version 2 was a major change with nearly doubling the amount of CSS this can handle. Atomic classes were changed, values were changed, `$0` through `$9` was removed, `$_` and `$,` were added, and a fairly thorough scrubbing of all CSS classes was performed. More lookup tables were made, many of which are intentionally mirroring the CSS spec's naming, and now lookup tables can be cascaded.
+
+When upgrading to this version, go through your CSS carefully.
 
 [acss-browser]: https://github.com/acss-io/acss-browser

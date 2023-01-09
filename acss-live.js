@@ -41,16 +41,361 @@
             namespace: ""
         },
 
-        // Colors
-        colors: {
-            cc: "currentColor",
-            i: "invert", // for outline-color
+        // Shorthand for really simple lookups
+        a: { a: "auto" },
+        an: { a: "auto", n: "none" },
+        as: { a: "auto", s: "span" },
+        cp: { c: "compact" },
+        ct: { ct: "contain" },
+        f: { f: "fill" },
+        hv: { h: "hidden", v: "visible" },
+        inv: { i: "invert" },
+        inf: { i: "infinite" },
+        lr: { end: "$e", l: "left", r: "right", start: "$s" },
+        n: { n: "none" },
+        nc: { nc: "no-clip" },
+        nr: { nr: "normal" },
+        r: { r: "reverse" },
+        rrss: { ro: "round", re: "repeat", st: "stretch", sp: "space" },
+        st: { st: "stretch" },
+
+        // CSS Types
+        //
+        // There are conflicts for a lot of names. These are preferred and
+        // will get one-letter codes when possible.
+        //     a: auto, c: center, e: end, l: left, n: none, r: right,
+        //     s: start
+        // Common conflicts, so use two letter codes consistently
+        //     nr: normal, re: repeat, sp: space
+        // Skip these
+        //     all: all
+        // Also, when two or more properties are related and one needs to
+        // be bumped to two lettters, the other is bumped to two as well.
+
+        // Not an official name
+        align: {
+            c: "center",
+            e: "end",
+            end: "$e",
+            j: "justify",
+            l: "left",
+            mp: "match-parent",
+            r: "right",
+            s: "start",
+            start: "$s"
+        },
+
+        // Suite: animation
+        animationDirection: {
+            a: "alternate",
+            ar: "alternate-reverse",
+            nr: "normal",
+            r: "reverse"
+        },
+
+        // Suite: animation
+        animationFillMode: {
+            b: "backwards",
+            bt: "both",
+            f: "forwards",
+            n: "none"
+        },
+
+        // Suite: animation
+        animationPlayState: {
+            pa: "paused",
+            ru: "running"
+        },
+
+        // Suite: background
+        attachment: {
+            f: "fixed",
+            l: "local",
+            s: "scroll"
+        },
+
+        // Not an official name
+        axis: {
+            bl: "block",
+            h: "horizontal",
+            il: "inline",
+            v: "vertical"
+        },
+
+        // Suite: alignment
+        baselinePosition: {
+            bl: "baseline",
+            fi: "first",
+            la: "last"
+        },
+
+        // Suite: background, not an official name
+        bgPosX: {
+            c: "center",
+            end: "$e",
+            l: "left",
+            r: "right",
+            start: "$s",
+            xs: "x-start",
+            xe: "x-end"
+        },
+
+        // Suite: background, not an official name
+        bgPosY: {
+            b: "bottom",
+            c: "center",
+            t: "top",
+            ys: "y-start",
+            ye: "y-end"
+        },
+
+        // Suite: background mask
+        bgSize: {
+            ct: "contain",
+            cv: "cover"
+        },
+
+        // Suite: background
+        box: {
+            bb: "border-box",
+            cb: "content-box",
+            pb: "padding-box"
+        },
+
+        // Not an official name
+        breaks: {
+            al: "always",
+            a: "auto",
+            av: "avoid",
+            avc: "avoid-column",
+            avp: "avoid-page",
+            avre: "avoid-region",
+            c: "column",
+            end: "$e",
+            l: "left",
+            p: "page",
+            r: "right",
+            re: "region",
+            rec: "recto",
+            start: "$s",
+            ver: "verso"
+        },
+
+        // Suite: background border
+        color: {
+            cc: "currentcolor",
             n: "none",
             t: "transparent"
         },
 
-        // Border styles
-        borderStyle: {
+        // Suite: mask
+        compositingOperator: {
+            a: "add",
+            e: "exclude",
+            i: "intersect",
+            s: "subtract"
+        },
+
+        // Not an official name
+        containerType: {
+            iz: "inline-size",
+            nr: "normal",
+            z: "size"
+        },
+
+        // Suite: alignment
+        contentDistribution: {
+            spa: "space-around",
+            spb: "space-between",
+            spe: "space-evenly",
+            st: "stretch"
+        },
+
+        // Suite: alignment
+        contentPosition: {
+            c: "center",
+            e: "end",
+            fe: "flex-end",
+            fs: "flex-start",
+            s: "start"
+        },
+
+        // Suite: animation
+        easingFunction: {
+            cb: "cubic-bezier(.1,.7,1,.1)",
+            ea: "ease",
+            ei: "ease-in",
+            eio: "ease-in-out",
+            eo: "ease-out",
+            e: "end",
+            jb: "jump-both",
+            je: "jump-end",
+            jn: "jump-none",
+            js: "jump-start",
+            li: "linear",
+            s: "start",
+            se: "step-end",
+            ss: "step-start"
+        },
+
+        // Suite: flex, not an official name
+        flexBasis: {
+            cn: "content"
+        },
+
+        // Suite: flex, not an official name
+        flexDirection: {
+            c: "column",
+            cr: "column-reverse",
+            r: "row",
+            rr: "row-reverse"
+        },
+
+        // Suite: flex, not an official name
+        flexWrap: {
+            nw: "nowrap",
+            w: "wrap",
+            wr: "wrap-reverse"
+        },
+
+        // Suite: font fontVariant, not an official name
+        fontCaps: {
+            apc: "all-petite-caps",
+            asc: "all-small-caps",
+            pc: "petite-caps",
+            sc: "small-caps",
+            tc: "titling-caps",
+            uc: "unicase"
+        },
+
+        // Suite: font, not an official name
+        fontFamily: {
+            a: 'Arial,"Helvetica Neue",Helvetica,sans-serif',
+            cu: "cursive",
+            cs: '"Comic Sans MS","Monotype Corsiva",cursive',
+            f: "fantasy",
+            im: "Impact,Capitals,fantasy",
+            mo: "monospace",
+            mon: 'Monaco,"Courier New",monospace',
+            sf: "serif",
+            ssf: "sans-serif",
+            tnr: '"Times New Roman",Times,Baskerville,Georgia,serif',
+            v: "Verdana,Geneva,sans-serif"
+        },
+
+        // Suite: font fontVariant, not an official name
+        fontSize: {
+            l: "large",
+            lr: "larger",
+            m: "medium",
+            s: "small",
+            sr: "smaller",
+            xl: "x-large",
+            xs: "x-small",
+            xxl: "xx-large",
+            xxs: "xx-small"
+        },
+
+        // Suite: font fontVariant, not an official name
+        fontStretch: {
+            c: "condensed",
+            ec: "extra-condensed",
+            ee: "extra-expanded",
+            ex: "expanded",
+            smc: "semi-condensed",
+            sme: "semi-expanded",
+            uc: "ultra-condensed",
+            ue: "ultra-expanded"
+        },
+
+        // Suite: font, not an official name
+        fontStyle: {
+            i: "italic",
+            o: "oblique"
+        },
+
+        // Suite: fontVariant, not an official name
+        fontVariantAlt: {
+            hf: "historical-forms"
+        },
+
+        // Suite: font fontVariant, not an official name
+        fontVariantEastAsian: {
+            fw: "full-width",
+            j04: "jis04",
+            j78: "jis78",
+            j83: "jis83",
+            j90: "jis90",
+            pw: "proportional-width",
+            r: "ruby",
+            sim: "simplified",
+            tra: "traditional"
+        },
+
+        // Suite: fontVariant, not an official name
+        fontVariantEmoji: {
+            e: "emoji",
+            t: "text",
+            u: "unicode"
+        },
+
+        // Suite: fontVariant, not an official name
+        fontVariantLig: {
+            cnt: "contextual",
+            cl: "common-ligatures",
+            dl: "discretionary-ligatures",
+            hl: "historical-ligatures",
+            ncnt: "no-contextual",
+            ncl: "no-common-ligatures",
+            ndl: "no-discretionary-ligatures",
+            nhl: "no-historical-ligatures"
+        },
+
+        // Suite: fontVariant, not an official name
+        fontVariantNum: {
+            df: "diagonal-fractions",
+            ln: "lining-nums",
+            on: "oldstyle-nums",
+            or: "ordinal",
+            pn: "proportional-nums",
+            stf: "stacked-fractions",
+            sz: "slashed-zero",
+            tn: "tabular-nums"
+        },
+
+        // Suite: fontVariant, not an official name
+        fontVariantPos: {
+            sub: "sub",
+            sup: "super"
+        },
+
+        // Suite: font, not an official name
+        fontWeight: {
+            b: "bold",
+            br: "bolder",
+            lir: "lighter"
+        },
+
+        // Suite: mask offset
+        geometryBox: {
+            bb: "border-box",
+            cb: "content-box",
+            fb: "fill-box",
+            mb: "margin-box",
+            pb: "padding-box",
+            sb: "stroke-box",
+            vb: "view-box"
+        },
+
+        // Suite: grid, not an official name
+        gridBreadth: {
+            mac: "max-content",
+            mic: "min-content",
+            s: "subgrid"
+        },
+
+        // Suite: border
+        lineStyle: {
             db: "double",
             ds: "dashed",
             dt: "dotted",
@@ -59,89 +404,323 @@
             g: "groove",
             h: "hidden",
             i: "inset",
-            n: "none",
+            n: "none", // Keep this one here - it's used often
             o: "outset",
             r: "ridge",
-            s: "solid",
-            w: "wave"
+            s: "solid"
         },
 
-        minMax: {
-            a: "auto",
-            fa: "fill-available",
-            fc: "fit-content",
-            i: "initial",
-            maxc: "max-content",
-            minc: "min-content"
-        },
-
-        overflow: {
-            a: "auto",
-            h: "hidden",
-            s: "scroll",
-            v: "visible"
-        },
-
-        thickness: {
+        // Suite: border
+        lineWidth: {
             m: "medium",
             tc: "thick",
             tn: "thin"
         },
 
-        // Shorthand for really simple lookups
-        a: { a: "auto" },
-        an: { a: "auto", n: "none" },
-        cn: { c: "continue", n: "none" },
-        n: { n: "none" },
+        // Suite: listStyle
+        listStylePosition: {
+            i: "inside",
+            o: "outside"
+        },
+
+        // Suite: listStyle
+        listStyleType: {
+            ar: "armenian",
+            ai: "arabic-indic",
+            b: "bengali",
+            c: "circle",
+            ca: "cambodian",
+            cdc: "cjk-decimal",
+            ceb: "cjk-earthly-branch",
+            chs: "cjk-heavenly-stem",
+            ci: "cjk-ideographic",
+            d: "disc",
+            dc: "decimal",
+            dclz: "decimal-leading-zero",
+            de: "devanagari",
+            dic: "disclosure-closed",
+            dio: "disclosure-open",
+            ei: "ethiopic-numeric",
+            g: "georgian",
+            guj: "gujarati",
+            gur: "gutmukhi",
+            h: "hebrew",
+            hi: "hiragana",
+            hii: "hiragana-iroha",
+            kan: "kannada",
+            kat: "katakana",
+            kati: "katakana-iroha",
+            k: "khmer",
+            khgf: "korean-hangul-formal",
+            khjf: "korean-hanja-formal",
+            khi: "korean-hanja-informal",
+            jf: "japanese-formal",
+            ji: "japanese-informal",
+            l: "lao",
+            la: "lower-alpha",
+            lar: "lower-armenian",
+            lg: "lower-greek",
+            ll: "lower-latin",
+            lr: "lower-roman",
+            ma: "malayam",
+            mo: "mongolian",
+            my: "myanmar",
+            o: "oriya",
+            p: "persian",
+            s: "square",
+            scf: "simp-chinese-formal",
+            sci: "simp-chinese-informal",
+            ta: "tamil",
+            te: "telugu",
+            th: "thai",
+            ti: "tigetan",
+            tcf: "trad-chinese-formal",
+            tci: "trad-chinese-informal",
+            ua: "upper-alpha",
+            uar: "upper-armenian",
+            ul: "upper-latin",
+            ur: "upper-roman"
+        },
+
+        // Suite: mask
+        maskingMode: {
+            al: "alpha",
+            lu: "luminance",
+            ms: "match-source"
+        },
+
+        // Suite: mask, not an official name
+        maskSlice: {
+            f: "fill"
+        },
+
+        // Suite: mask, not an official name
+        maskType: {
+            al: "alpha",
+            lu: "luminance"
+        },
+
+        // Not an official name
+        minMax: {
+            a: "auto",
+            mac: "max-content",
+            mic: "min-content"
+        },
+
+        // Suite: background
+        mixBlendMode: {
+            c: "color",
+            cob: "color-burn",
+            cod: "color-dodge",
+            d: "difference",
+            dk: "darken",
+            e: "exclusion",
+            hl: "hard-light",
+            h: "hue",
+            li: "lighten",
+            l: "luminosity",
+            m: "multiply",
+            o: "overlay",
+            pd: "plus-darker",
+            pl: "plus-lighter",
+            s: "saturation",
+            sc: "screen",
+            sl: "soft-light"
+        },
+
+        // Suite: mask, not an official name
+        origin: {
+            b: "bottom",
+            c: "center",
+            end: "$e",
+            l: "left",
+            r: "right",
+            start: "$s",
+            t: "top"
+        },
+
+        // Suite: overflow
+        overflow: {
+            a: "auto",
+            c: "clip",
+            h: "hidden",
+            s: "scroll",
+            v: "visible"
+        },
+
+        // Suite: alignment
+        overflowPosition: {
+            sa: "safe",
+            us: "unsafe"
+        },
+
+        // Suite: overflow
+        overflowWrap: {
+            a: "anywhere",
+            bw: "break-word"
+        },
+
+        // Not an official name
+        pageBreaks: {
+            al: "always",
+            av: "avoid",
+            end: "$e",
+            l: "left",
+            r: "right",
+            start: "$s"
+        },
+
+        // Suite: background mask
+        repeatStyle: {
+            nre: "no-repeat",
+            ro: "round",
+            re: "repeat", // Conflicts with r: right in suite
+            rx: "repeat-x",
+            ry: "repeat-y",
+            sp: "space"
+        },
+
+        // Suite: alignment
+        selfPosition: {
+            c: "center",
+            e: "end",
+            fe: "flex-end",
+            fs: "flex-start",
+            s: "start",
+            se: "self-end",
+            ss: "self-start"
+        },
+
+        // Suite: textDecoration
+        textDecLine: {
+            b: "blink",
+            l: "line-through",
+            n: "none",
+            o: "overline",
+            u: "underline"
+        },
+
+        // Suite: textDecoration
+        textDecStyle: {
+            db: "double",
+            ds: "dashed",
+            dt: "dotted",
+            s: "solid",
+            w: "wavy"
+        },
+
+        textEmphasisStyle: {
+            c: "circle",
+            d: "dot",
+            dc: "double-circle",
+            f: "filled",
+            o: "open",
+            s: "sesame",
+            t: "triangle"
+        },
+
+        transformStyle: {
+            f: "flat",
+            p: "preserve-3d"
+        },
+
+        // Other lookup values
 
         pseudoClasses: {
             a: "active",
+            al: "any-link",
+            af: "autofill",
+            b: "blank", // Experimental
             c: "checked",
+            cu: "current",
             d: "default",
+            de: "defined",
+            ltr: "dir(ltr)",
+            rtl: "dir(rtl)",
             di: "disabled",
             e: "empty",
             en: "enabled",
-            fc: "first-child",
-            f: "focus",
             fi: "first",
+            fc: "first-child",
             fot: "first-of-type",
-            fs: "fullscreen",
+            f: "focus",
             fv: "focus-visible",
             fw: "focus-within",
+            fs: "fullscreen",
+            fu: "future",
+            // Can not support :has()
+            ho: "host",
+            // Can not support :host-context()
+            // Can not support :host()
             h: "hover",
+            ir: "in-range",
             ind: "indeterminate",
             inv: "invalid",
-            ir: "in-range",
+            // Can not support :is()
+            // Can not support :lang()
             lc: "last-child",
-            li: "link",
-            l: "left",
             lot: "last-of-type",
+            l: "left",
+            start: "$s", // Typically $s = left
+            li: "link",
+            lli: "local-link",
+            m: "modal",
+            // Can not support :not()
+            // Can not support :nth-child()
+            // Can not support :nth-col()
+            // Can not support :nth-last-child()
+            // Can not support :nth-last-col()
+            // Can not support :nth-last-of-type()
+            // Can not support :nth-of-type()
             oc: "only-child",
+            oot: "only-of-type",
             o: "optional",
             oor: "out-of-range",
-            oot: "only-of-type",
+            p: "past",
+            pa: "paused",
+            pip: "picture-in-picture",
             ps: "placeholder-shown",
-            req: "required",
+            pl: "playing",
             ro: "read-only",
-            r: "right",
-            rt: "root",
             rw: "read-write",
+            req: "required",
+            r: "right",
+            end: "$e", // Typically $e = right
+            rt: "root",
             s: "scope",
             t: "target",
+            tw: "target-within",
+            ui: "user-invalid", // Experimental
+            uv: "user-valid", // Experimental
             va: "valid",
             vi: "visited"
+            // Can not support :where()
         },
 
         pseudoElements: {
             a: "after",
+            ba: "backdrop",
             b: "before",
+            c: "cue",
+            cr: "cue-region",
+            fsb: "file-selector-button",
             fl: "first-letter",
             fli: "first-line",
-            ph: "placeholder"
+            ge: "grammar-error", // Experimental
+            m: "marker",
+            // Can not support ::part()
+            ph: "placeholder",
+            s: "selection",
+            // Can not support ::slotted()
+            se: "spelling-error", // Experimental
+            tt: "target-text" // Experimental
         },
 
         // Values can be passed as parameters. They also can have spaces,
-        // which helps for box-shadow.
+        // which helps for box-shadow. These values are always searched, so
+        // withe C rule, it will first search "color", then fall back to
+        // "values", and finally use a value verbatim. Consider these to be
+        // global defaults.
         values: {
             inh: "inherit",
             in: "initial",
@@ -173,74 +752,116 @@
             d: "@media(min-width:1024.0001px)"
         },
 
-        // _S_ and _E_ are replaced with left and right
+        // $s and $e are replaced with left and right
         // (depending on the rightToLeft setting).
-        // $0 through $9 are replaced with arguments
+        // $_ is replaced with all arguments separated by spaces.
+        // $, is replaced witl all arguments separated by commas.
         //
-        // Keep the arguments expanded as their own lists. It adds about 2k to
-        // the minified version, but gzip compression is able to compress about
-        // 10% better, which is not what I had expected.
+        // Ordered first by individual classes by the CSS full name, not the
+        // abbreviation. In cases where it's vendor prefixed, sort by the base
+        // name (ignore the vendor prefix). Groups of classes and helpers are
+        // added at the end.
+        //
+        // Proposed: Proposed for inclusion into the CSS spec. Not official,
+        // but good browser support.
+        //
+        // Experimental: This tag means the CSS property is not official.
+        //
+        // Mixed commas and spaces: This property allows multiple values using
+        // both spaces and commas. One was picked, but that may change in the
+        // future. It's suggested you use individual properties instead of
+        // combined ones.
         classes: {
-            // Animation
-            Anim: ["animation"],
-            Animdel: ["animation-delay"],
-            Animdir: [
-                "animation-direction",
+            Acc: ["accent-color", "a", "color"],
+            Ac: [
+                "align-content",
+                "nr",
+                "baselinePosition",
+                "contentDistribution",
+                "overflowPosition",
+                "contentPosition"
+            ],
+            Ai: [
+                "align-items",
+                "nr",
+                "st",
+                "baselinePosition",
+                "overflowPosition",
+                "selfPosition"
+            ],
+            As: [
+                "align-self",
+                "a",
+                "nr",
+                "st",
+                "baselinePosition",
+                "overflowPosition",
+                "selfPosition"
+            ],
+            At: ["align-tracks:$,", "alignment"], // Experimental
+            A: ["all"],
+            Anim: [
+                "animation",
+                "easingFunction",
+                "inf",
+                "animationDirection",
+                "animationFillMode",
+                "animationPlayState"
+            ], // Mixed commas and spaces
+            Animc: [
+                "animation-composition:$,",
                 {
-                    a: "alternate",
-                    ar: "alternate-reverse",
-                    n: "normal",
-                    r: "reverse"
+                    ac: "accumulate",
+                    a: "add",
+                    r: "replace"
+                }
+            ], // Experimental
+            Animdel: ["animation-delay:$,"], // Mixed commas and spaces
+            Animdir: ["animation-direction:$,", "animationDirection"],
+            Animdur: ["animation-duration:$,"],
+            Animfm: ["animation-fill-mode:$,", "animationFillMode"],
+            Animic: ["animation-iteration-count:$,", "inf"],
+            Animn: ["animation-name:$,", "n"],
+            Animps: ["animation-play-state:$,", "animationPlayState"],
+            Animt: ["animation-timeline:$,", "an"], // Experimental
+            Animtf: ["animation-timing-function:$,", "easingFunction"],
+            Ap: [
+                "appearance",
+                "an",
+                {
+                    b: "button",
+                    c: "checkbox",
+                    l: "listbox",
+                    ml: "menulist",
+                    mlb: "menulist-button",
+                    m: "meter",
+                    prb: "progress-bar",
+                    pb: "push-button",
+                    r: "radio",
+                    s: "searchfield",
+                    sh: "slider-horizontal",
+                    sb: "square-button",
+                    ta: "textarea",
+                    tf: "textfield"
                 }
             ],
-            Animdur: ["animation-duration"],
-            Animfm: [
-                "animation-fill-mode",
-                {
-                    b: "backwards",
-                    bt: "both",
-                    f: "forwards",
-                    n: "none"
-                }
-            ],
-            Animic: [
-                "animation-iteration-count",
-                {
-                    i: "infinite"
-                }
-            ],
-            Animn: ["animation-name", "n"],
-            Animps: ["animation-play-state", { p: "paused", r: "running" }],
-            Animtf: [
-                "animation-timing-function",
-                {
-                    cb: "cubic-bezier(.1,.7,1,.1)",
-                    e: "ease",
-                    ei: "ease-in",
-                    eio: "ease-in-out",
-                    eo: "ease-out",
-                    l: "linear",
-                    se: "step-end",
-                    ss: "step-start"
-                }
-            ],
-
-            // Appearance
-            Ap: ["appearance", "an"],
-
-            // Backface
-            Bfv: ["backface-visibility", { h: "hidden", v: "visible" }],
-
-            // Background
-            Bg: ["background", { n: "none", t: "transparent" }],
-            Bga: [
-                "background-attachment",
-                {
-                    f: "fixed",
-                    l: "local",
-                    s: "scroll"
-                }
-            ],
+            Aspr: ["aspect-ratio", "a"],
+            Bckdf: ["backdrop-filter", "n"],
+            Bfv: ["backface-visibility", "hv"],
+            Bg: [
+                "background",
+                "n",
+                "color",
+                "bgPosX",
+                "bgPosY",
+                "a",
+                "bgSize",
+                "repeatStyle",
+                "attachment",
+                "box"
+            ], // Mixed commas and spaces
+            Bga: ["background-attachment:$,", "attachment"],
+            Bgbm: ["background-blend-mode:$,", "nr", "mixBlendMode"],
             Bgbk: [
                 "background-break",
                 {
@@ -249,198 +870,175 @@
                     eb: "each-box"
                 }
             ],
-            Bgc: ["background-color", "colors"],
             Bgcp: [
-                "background-clip",
+                "-webkit-background-clip:$,;background-clip:$,",
+                "box",
                 {
-                    bb: "border-box",
-                    cb: "content-box",
                     nc: "no-clip",
-                    pb: "padding-box"
+                    t: "text"
                 }
-            ],
-            Bgi: ["background-image", "n"],
-            Bgo: [
-                "background-origin",
-                { bb: "border-box", cb: "content-box", pb: "padding-box" }
-            ],
-            Bgp: [
-                "background-position",
-                {
-                    c_b: "center 100%",
-                    c: "center",
-                    c_t: "center 0",
-                    end_b: "_E_ 100%",
-                    end_c: "_E_ center",
-                    end_t: "_E_ 0",
-                    start_b: "_S_ 100%",
-                    start_c: "_S_ center",
-                    start_t: "_S_ 0"
-                }
-            ],
-            Bgpx: [
-                "background-position-x",
-                {
-                    c: "center",
-                    end: "_E_",
-                    start: "_S_"
-                }
-            ],
-            Bgpy: [
-                "background-position-y",
-                {
-                    b: "100%",
-                    c: "50%",
-                    t: "0"
-                }
-            ],
-            Bgr: [
-                "background-repeat",
-                {
-                    nr: "no-repeat",
-                    ro: "round",
-                    r: "repeat",
-                    rx: "repeat-x",
-                    ry: "repeat-y",
-                    s: "space"
-                }
-            ],
-            Bgz: [
-                "background-size",
-                {
-                    a: "auto",
-                    ct: "contain",
-                    cv: "cover"
-                }
-            ],
-
-            // Border shortcuts: 1 pixel solid border
-            BdAll: ["border-width:1px;border-style:solid"],
-            BdB: ["border-width:0 0 1px;border-style:solid"],
-            BdEnd: ["border-width:0;border-_E_-width:1px;border-style:solid"],
-            BdStart: ["border-width:0;border-_S_-width:1px;border-style:solid"],
-            BdT: ["border-width:1px 0 0 0;border-style:solid"],
-            BdX: ["border-width:0 1px;border-style:solid"],
-            BdY: ["border-width:1px 0;border-style:solid"],
-
-            // Border
-            Bdb: ["border-bottom"],
-            Bdbc: ["border-bottom-color", "colors"],
-            Bdbendi: ["border-bottom-_E_-image", "cn"],
-            Bdbendrs: ["border-bottom-_E_-radius"],
-            Bdbi: ["border-bottom-image", "n"],
-            Bdbk: ["border-break", { c: "close" }],
-            Bd: ["border", "n"],
-            Bdbrs: ["border-bottom-_E_-radius;border-bottom-_S_-radius"],
-            Bdbs: ["border-bottom-style", "borderStyle"],
-            Bdbstarti: ["border-bottom-_S_-image", "cn"],
-            Bdbstartrs: ["border-bottom-_S_-radius"],
-            Bdbw: ["border-bottom-width", "thickness"],
-            Bdc: ["border-color", "colors"],
-            Bdci: ["border-corner-image", "cn"],
+            ], // Include webkit-background-clip for allowing "text" value
+            Bgc: ["background-color", "color"],
+            Bgi: ["background-image:$,", "n"],
+            Bgo: ["background-origin:$,", "box"],
+            Bgp: ["background-position", "bgPosX", "bgPosY"], // Mixed commas and spaces
+            Bgpx: ["background-position-x", "bgPosX"], // Mixed commas and spaces
+            Bgpy: ["background-position-y", "bgPosY"], // Mixed commas and spaces
+            Bgr: ["background-repeat", "repeatStyle"], // Mixed commas and spaces
+            Bgz: ["background-size", "a", "bgSize"], // Mixed commas and spaces
+            Blkz: ["block-size"],
+            Bd: ["border", "lineWidth", "lineStyle", "color"],
+            Bdblk: ["border-block", "lineWidth", "lineStyle", "color"],
+            Bdblkc: ["border-block-color", "color"],
+            Bdblke: ["border-block-end", "lineWidth", "lineStyle", "color"],
+            Bdblkec: ["border-block-end-color", "color"],
+            Bdblkes: ["border-block-end-style", "lineStyle"],
+            Bdblkew: ["border-block-end-width", "lineWidth"],
+            Bdblks: ["border-block-start", "lineWidth", "lineStyle", "color"],
+            Bdblksc: ["border-block-start-color", "color"],
+            Bdblkss: ["border-block-start-style", "lineStyle"],
+            Bdblksw: ["border-block-start-width", "lineWidth"],
+            Bdblkst: ["border-block-style", "lineStyle"],
+            Bdblkw: ["border-block-width", "lineWidth"],
+            Bdb: ["border-bottom", "lineWidth", "lineStyle", "color"],
+            Bdbc: ["border-bottom-color", "color"],
+            Bdblrs: ["border-bottom-left-radius"],
+            Bdbstartrs: ["border-bottom-$s-radius"], // Typically $s = left
+            Bdbrrs: ["border-bottom-right-radius"],
+            Bdbendrs: ["border-bottom-$e-radius"], // Typically $e = right
+            Bdbs: ["border-bottom-style", "lineStyle"],
+            Bdbw: ["border-bottom-width", "lineWidth"],
             Bdcl: ["border-collapse", { c: "collapse", s: "separate" }],
-            Bdend: ["border-_E_"],
-            Bdendc: ["border-_E_-color", "colors"],
-            Bdendi: ["border-_E_-image", "n"],
-            Bdendrs: ["border-top-_E_-radius;border-bottom-_E_-radius"],
-            Bdends: ["border-_E_-style", "borderStyle"],
-            Bdendw: ["border-_E_-width", "thickness"],
-            Bdf: [
-                "border-fit",
-                {
-                    c: "clip",
-                    of: "overflow",
-                    ow: "overwrite",
-                    r: "repeat",
-                    sc: "scale",
-                    sp: "space",
-                    st: "stretch"
-                }
-            ],
-            Bdi: ["border-image", "n"],
+            Bdc: ["border-color", "color"],
+            Bdeers: ["border-end-end-radius"],
+            Bdesrs: ["border-end-start-radius"],
+            Bdi: ["border-image", "an", "f", "rrss"],
             Bdio: ["border-image-outset"],
-            Bdir: [
-                "border-image-repeat",
-                {
-                    ro: "round",
-                    r: "repeat",
-                    st: "stretch",
-                    s: "space"
-                }
-            ],
-            Bdisl: ["border-image-slice"],
+            Bdir: ["border-image-repeat", "rrss"],
+            Bdisl: ["border-image-slice", { f: "fill" }],
             Bdiso: ["border-image-source", "n"],
             Bdiw: ["border-image-width", "a"],
-            Bdlen: ["border-length", "a"],
-            Bdrs: ["border-radius"],
-            Bds: ["border-style", "borderStyle"],
-            Bdsp: ["border-spacing", { i: "inherit" }],
-            Bdstart: ["border-_S_"],
-            Bdstartc: ["border-_S_-color", "colors"],
-            Bdstarti: ["border-_S_-image", "n"],
-            Bdstartrs: ["border-top-_S_-radius;border-bottom-_S_-radius"],
-            Bdstarts: ["border-_S_-style", "borderStyle"],
-            Bdstartw: ["border-_S_-width", "thickness"],
-            Bdt: ["border-top"],
-            Bdtc: ["border-top-color", "colors"],
-            Bdtendi: ["border-top-_E_-image", "cn"],
-            Bdtendrs: ["border-top-_E_-radius"],
-            Bdti: ["border-top-image", "n"],
-            Bdtrs: ["border-top-_E_-radius;border-top-_S_-radius"],
-            Bdts: ["border-top-style", "borderStyle"],
-            Bdtstarti: ["border-top-_S_-image", "cn"],
-            Bdtstartrs: ["border-top-_S_-radius"],
-            Bdtw: ["border-top-width", "thickness"],
-            Bdw: ["border-width", "thickness"],
-            Bdx: ["border-_S_;border-_E_"],
-            Bdy: ["border-top;border-bottom"],
-
-            // Box shadow
-            Bxsh: ["box-shadow", "n"],
-
-            // Box sizing
-            Bxz: [
-                "box-sizing",
-                { bb: "border-box", cb: "content-box", pb: "padding-box" }
+            Bdinl: ["border-inline", "lineWidth", "lineStyle", "color"],
+            Bdinlc: ["border-inline-color", "color"],
+            Bdinlend: [
+                "border-inline-end",
+                "lineWidth",
+                "lineStyle",
+                "lineColor"
             ],
-
-            // Color
-            C: ["color", "colors"],
-
-            // Clip
-            Cp: ["clip", "a"],
-
-            // Columns
-            Colmc: ["column-count"],
-            Colm: ["columns"],
-            Colmf: ["column-fill", { a: "auto", b: "balance" }],
-            Colmg: ["column-gap"],
-            Colmrc: ["column-rule-color"],
-            Colmr: ["column-rule"],
-            Colmrs: [
-                "column-rule-style",
+            Bdinlendc: ["border-inline-end-color", "color"],
+            Bdinlends: ["border-inline-end-style", "lineStyle"],
+            Bdinlendw: ["border-inline-end-width", "lineWidth"],
+            Bdinlstart: [
+                "border-inline-start",
+                "lineWidth",
+                "lineStyle",
+                "color"
+            ],
+            Bdinlstartc: ["border-inline-start-color", "color"],
+            Bdinlstarts: ["border-inline-start-style", "lineStyle"],
+            Bdinlstartw: ["border-inline-start-width", "lineWidth"],
+            Bdinls: ["border-inline-style"],
+            Bdinlw: ["border-inline-width", "lineWidth"],
+            Bdl: ["border-left", "lineWidth", "lineStyle", "color"],
+            Bdstart: ["border-$s", "lineWidth", "lineStyle", "color"], // Typically $s = left
+            Bdlc: ["border-left-color", "color"],
+            Bdstartc: ["border-$s-color", "color"], // Typically $s = left
+            Bdls: ["border-left-style", "lineStyle"],
+            Bdstarts: ["border-$s-style", "lineStyle"], // Typically $s = left
+            Bdlw: ["border-left-width", "lineWidth"],
+            Bdstartw: ["border-$s-width", "lineWidth"], // Typically $s = left
+            Bdrs: ["border-radius"],
+            Bdr: ["border-right", "lineWidth", "lineStyle", "color"],
+            Bdend: ["border-$e", "lineWidth", "lineStyle", "color"], // Typically $e = right
+            Bdrc: ["border-right-color", "color"],
+            Bdendc: ["border-$e-color", "color"], // Typically $e = right
+            Bdrst: ["border-right-style", "lineStyle"],
+            Bdends: ["border-$e-style", "lineStyle"], // Typically $e = right
+            Bdrw: ["border-right-width", "lineWidth"],
+            Bdendw: ["border-$e-width", "lineWidth"], // Typically $e = right
+            Bdsp: ["border-spacing", { i: "inherit" }],
+            Bdsers: ["border-start-end-radius"],
+            Bdssrs: ["border-start-start-radius"],
+            Bds: ["border-style", "lineStyle"],
+            Bdt: ["border-top", "lineWidth", "lineStyle", "color"],
+            Bdtc: ["border-top-color", "color"],
+            Bdtlrs: ["border-top-left-radius"],
+            Bdtstartrs: ["border-top-$s-radius"], // Typically $s = left
+            Bdtrrs: ["border-top-right-radius"],
+            Bdtendrs: ["border-top-$e-radius"], // Typically $e = right
+            Bdts: ["border-top-style", "lineStyle"],
+            Bdtw: ["border-top-width", "lineWidth"],
+            Bdw: ["border-width", "lineWidth"],
+            B: ["bottom", "a"],
+            Bxdb: ["box-decoration-break", { s: "slice", c: "clone" }],
+            Bxsh: ["box-shadow:$,", "n", "color", { i: "inset" }],
+            Bxz: ["box-sizing", { bb: "border-box", cb: "content-box" }],
+            Bka: ["break-after", "breaks"],
+            Bkb: ["break-before", "breaks"],
+            Bki: [
+                "break-inside",
                 {
-                    da: "dashed",
-                    d: "dotted",
-                    do: "double",
-                    g: "groove",
-                    h: "hidden",
-                    i: "inset",
-                    n: "none",
-                    o: "outset",
-                    r: "ridge",
-                    s: "solid"
+                    a: "auto",
+                    av: "avoid",
+                    avc: "avoid-column",
+                    avp: "avoid-page",
+                    avr: "avoid-region"
                 }
             ],
+            Cps: ["caption-side", { b: "bottom", t: "top" }],
+            Carc: ["caret-color", "a", "color"],
+            Cl: [
+                "clear",
+                {
+                    b: "both",
+                    be: "block-end",
+                    bo: "bottom",
+                    bs: "block-start",
+                    end: "$e",
+                    ie: "inline-end",
+                    is: "inline-start",
+                    l: "left",
+                    n: "none",
+                    r: "right",
+                    start: "$s",
+                    t: "top"
+                }
+            ],
+            Cp: ["clip", "a"], // Deprecated, use clip-path
+            Cpp: ["clip-path", "n", "geometryBox"],
+            C: ["color", "color"],
+            Cs: [
+                "color-scheme",
+                {
+                    d: "dark",
+                    l: "light",
+                    nr: "normal",
+                    o: "only"
+                }
+            ],
+            Colmc: ["column-count", "a"],
+            Colmf: [
+                "column-fill",
+                { a: "auto", b: "balance", ba: "balance-all" }
+            ],
+            Colmg: ["column-gap", "nr"],
+            Colmr: ["column-rule", "lineStyle", "color"],
+            Colmrc: ["column-rule-color", "color"],
+            Colmrs: ["column-rule-style", "lineStyle"],
             Colmrw: ["column-rule-width"],
-            Colms: ["column-span", { a: "all", n: "none" }],
-            Colmw: ["column-width"],
-
-            // Contain
-            Ctn: [
+            Colms: ["column-span", "n"],
+            Colmw: [
+                "column-width",
+                "a",
+                { mic: "min-content", mac: "max-content" }
+            ], // No real way to specify a shorthand for fit-content() since it's a function.
+            Colm: ["columns"],
+            Ct: [
                 "contain",
                 {
                     c: "content",
+                    iz: "inline-size",
                     l: "layout",
                     n: "none",
                     p: "paint",
@@ -449,25 +1047,29 @@
                     z: "size"
                 }
             ],
-
-            // Content
+            Ctiblkz: ["contain-intrinsic-block-size", "an"],
+            Ctih: ["contain-intrinsic-height", "an"],
+            Ctiiz: ["contain-intrinsic-inline-size", "an"],
+            Ctiz: ["contain-intrinsic-size", "an"],
+            Ctiw: ["contain-intrinsic-width", "an"],
+            Ctr: ["container", "containerType"],
+            Ctrn: ["container-name"],
+            Ctrt: ["container-type", "containerType"],
             Cnt: [
                 "content",
                 {
                     cq: "close-quote",
                     ncq: "no-close-quote",
                     n: "none",
-                    no: "normal",
+                    nr: "normal",
                     noq: "no-open-quote",
                     oq: "open-quote"
                 }
             ],
-
-            // Counter
-            Coi: ["counter-increment"],
-            Cor: ["counter-reset"],
-
-            // Cursor
+            Cntv: ["content-visibility", "a", "hv"],
+            Coi: ["counter-increment", "n"],
+            Cor: ["counter-reset", "n"],
+            Cos: ["counter-set", "n"],
             Cur: [
                 "cursor",
                 {
@@ -508,8 +1110,6 @@
                     zo: "zoom-out"
                 }
             ],
-
-            // Direction
             Dir: [
                 "direction",
                 {
@@ -517,8 +1117,6 @@
                     r: "rtl"
                 }
             ],
-
-            // Display
             D: [
                 "display",
                 {
@@ -552,207 +1150,155 @@
                     tb: "table"
                 }
             ],
-
-            // Filter
-            Fil: ["filter"],
-            Blur: ["filter:blur($0)"],
-            Brightness: ["filter:brightness($0)"],
-            Contrast: ["filter:contrast($0)"],
-            DropShadow: ["filter:drop-shadow($0)"],
-            Grayscale: ["filter:grayscale($0)"],
-            HueRotate: ["filter:hue-rotate($0)"],
-            Invert: ["filter:invert($0)"],
-            Opacity: ["filter:opacity($0)"],
-            Saturate: ["filter:saturate($0)"],
-            Sepia: ["filter:sepia($0)"],
-
-            // Flex
-            Fx: ["flex", "an"],
+            Ec: [
+                "empty-cells",
+                {
+                    h: "hide",
+                    s: "show"
+                }
+            ],
+            Fil: ["filter", "n"],
+            Fx: ["flex", "n", "flexBasis"],
+            Fxb: ["flex-basis", "flexBasis"],
+            Fxd: ["flex-direction", "flexDirection"],
+            Fxf: ["flex-flow", "flexDirection", "flexWrap"],
             Fxg: ["flex-grow"],
             Fxs: ["flex-shrink"],
-            Fxb: ["flex-basis", "an"],
-            As: [
-                "align-self",
-                {
-                    a: "auto",
-                    b: "baseline",
-                    c: "center",
-                    fe: "flex-end",
-                    fs: "flex-start",
-                    s: "stretch"
-                }
-            ],
-            Fxd: [
-                "flex-direction",
-                {
-                    c: "column",
-                    cr: "column-reverse",
-                    r: "row",
-                    rr: "row-reverse"
-                }
-            ],
-            Fxf: [
-                "flex-flow",
-                {
-                    c: "column",
-                    cr: "column-reverse",
-                    nw: "nowrap",
-                    r: "row",
-                    rr: "row-reverse",
-                    wr: "wrap-reverse",
-                    w: "wrap"
-                }
-            ],
-            Ai: [
-                "align-items",
-                {
-                    b: "baseline",
-                    c: "center",
-                    fe: "flex-end",
-                    fs: "flex-start",
-                    s: "stretch"
-                }
-            ],
-            Ac: [
-                "align-content",
-                {
-                    c: "center",
-                    fe: "flex-end",
-                    fs: "flex-start",
-                    sa: "space-around",
-                    sb: "space-between",
-                    s: "stretch"
-                }
-            ],
-            Ord: ["order"],
-            Jc: [
-                "justify-content",
-                {
-                    c: "center",
-                    fe: "flex-end",
-                    fs: "flex-start",
-                    sa: "space-around",
-                    sb: "space-between",
-                    se: "space-evenly",
-                    s: "stretch"
-                }
-            ],
-            Fxw: ["flex-wrap", { nw: "nowrap", w: "wrap", wr: "wrap-reverse" }],
-
-            // Floating elements
+            Fxw: ["flex-wrap", "flexWrap"],
             Fl: [
                 "float",
                 {
-                    end: "_E_",
+                    b: "bottom",
+                    be: "block-end",
+                    bs: "block-start",
+                    end: "$e",
+                    f: "footnote",
+                    ie: "inline-end",
+                    is: "inline-start",
+                    l: "left",
                     n: "none",
-                    start: "_S_"
+                    r: "right",
+                    sb: "snap-block",
+                    si: "snap-inline",
+                    start: "$s",
+                    t: "top"
                 }
             ],
-            Cl: [
-                "clear",
+            F: [
+                "font",
+                "nr",
+                "fontStyle",
+                "fontVariantCaps",
+                "fontWeight",
+                "fontStretch",
+                "fontSize",
+                "fontFamily"
+            ], // Mixed commas and spaces
+            Ff: ["font-family:$,", "fontFamily"],
+            Ffs: ["font-feature-settings", "nr"], // Mixed commas and spaces
+            Fk: ["font-kearning", "an", "nr"],
+            Flo: ["font-language-override", "nr"],
+            Foz: ["font-optical-sizing", "an"],
+            Fp: [
+                "font-palette",
+                "nr",
                 {
-                    b: "both",
-                    end: "_E_",
-                    n: "none",
-                    start: "_S_"
+                    d: "dark",
+                    l: "light"
                 }
             ],
-
-            // Font
-            F: ["font"], // Supported, but conflicts with ACSS philosophy
-            Fef: [
-                "font-effect",
+            Fz: ["font-size", "fontSize"],
+            Fza: [
+                "font-size-adjust",
                 {
-                    eb: "emboss",
-                    eg: "engrave",
-                    n: "none",
-                    o: "outline"
-                }
-            ],
-            Fem: ["font-emphasize"],
-            Femp: [
-                "font-emphasize-position",
-                {
-                    a: "after",
-                    b: "before"
-                }
-            ],
-            Fems: [
-                "font-emphasize-style",
-                {
-                    ac: "accent",
-                    c: "circle",
-                    ds: "disc",
-                    dt: "dot",
+                    ch: "cap-height",
+                    cw: "ch-width",
+                    eh: "ex-height",
+                    ih: "ic-height",
+                    iw: "ic-width",
                     n: "none"
                 }
             ],
-            Fsm: [
-                "font-smooth",
+            Fst: ["font-stretch", "nr", "fontStretch"],
+            Fs: ["font-style", "nr", "fontStyle"],
+            Fsy: [
+                "font-synthesis",
                 {
-                    a: "auto",
-                    aw: "always",
-                    n: "never"
-                }
-            ],
-            Fst: [
-                "font-stretch",
-                {
-                    c: "condensed",
-                    ec: "extra-condensed",
-                    ee: "extra-expanded",
-                    e: "expanded",
-                    n: "normal",
-                    sc: "semi-condensed",
-                    se: "semi-expanded",
-                    uc: "ultra-condensed",
-                    ue: "ultra-expanded"
-                }
-            ],
-            Ff: [
-                "font-family",
-                {
-                    a: 'Arial,"Helvetica Neue",Helvetica,sans-serif',
-                    c: "cursive",
-                    cs: '"Comic Sans MS","Monotype Corsiva",cursive',
-                    f: "fantasy",
-                    i: "Impact,Capitals,fantasy",
-                    m: "monospace",
-                    mo: 'Monaco,"Courier New",monospace',
-                    s: "serif",
-                    ss: "sans-serif",
-                    t: '"Times New Roman",Times,Baskerville,Georgia,serif',
-                    v: "Verdana,Geneva,sans-serif"
-                }
-            ],
-            Fw: [
-                "font-weight",
-                {
-                    b: "bold",
-                    br: "bolder",
-                    lr: "lighter",
-                    n: "normal"
-                }
-            ],
-            Fz: ["font-size"],
-            Fza: ["font-size-adjust", "n"],
-            Fs: [
-                "font-style",
-                {
-                    i: "italic",
-                    n: "normal",
-                    o: "oblique"
+                    n: "none",
+                    s: "style",
+                    sc: "small-caps",
+                    w: "weight"
                 }
             ],
             Fv: [
                 "font-variant",
+                "n",
+                "nr",
+                "fontVariantAlt",
+                "fontVariantCaps",
+                "fontVariantEastAsian",
+                "fontVariantEmoji",
+                "fontVariantLig",
+                "fontVariantNum",
+                "fontVariantPos"
+            ],
+            Fva: ["font-variant-alternates", "nr", "fontVariantAlt"],
+            Fvc: ["font-variant-caps", "nr", "fontCaps"],
+            Fvea: ["font-variant-east-asian", "nr", "fontVariantEastAsian"],
+            Fve: ["font-variant-emoji", "nr", "fontVariantEmoji"],
+            Fvl: ["font-variant-ligagures", "n", "nr", "fontVariantLig"],
+            Fvn: ["font-variant-numeric", "nr", "fontVariantNum"],
+            Fvp: ["font-variant-position", "nr", "fontVariantPos"],
+            Fvs: ["font-variation-settings:$,", "nr"], // Mixed spaces and commas
+            Fw: ["font-weight", "nr", "fontWeight"],
+            Fca: [
+                "forced-color-adjust",
+                "an",
                 {
-                    n: "normal",
-                    sc: "small-caps"
+                    ppc: "preserve-parent-color"
                 }
             ],
-
-            // Height
+            G: ["gap"],
+            Gr: [
+                "grid",
+                "an",
+                "gridBreadth",
+                {
+                    af: "auto-flow",
+                    d: "dense"
+                }
+            ],
+            Gra: ["grid-area", "as"],
+            Grac: ["grid-auto-columns", "a", "gridBreadth"],
+            Graf: [
+                "grid-auto-flow",
+                {
+                    c: "column",
+                    d: "dense",
+                    r: "row"
+                }
+            ],
+            Grar: ["grid-auto-rows", "a", "gridBreadth"],
+            Grc: ["grid-column", "as"],
+            Grce: ["grid-column-end", "as"],
+            Grcs: ["grid-column-start", "as"],
+            Grr: ["grid-row", "as"],
+            Grre: ["grid-row-end", "as"],
+            Grrs: ["grid-row-start", "as"],
+            Grt: ["grid-template", "an", "gridBreadth"],
+            Grta: ["grid-template-areas", "n"],
+            Grtc: ["grid-template-columns", "an", "gridBreadth"],
+            Grtr: ["grid-template-rows", "an", "gridBreadth"],
+            Hp: [
+                "hanging-punctuation",
+                {
+                    ae: "allow-end",
+                    f: "first",
+                    fe: "force-end",
+                    l: "last",
+                    n: "none"
+                }
+            ],
             H: [
                 "height",
                 {
@@ -761,174 +1307,341 @@
                     bb: "border-box",
                     cb: "content-box",
                     fc: "fit-content",
-                    maxc: "max-content",
-                    minc: "min-content"
+                    mac: "max-content",
+                    mic: "min-content"
                 }
             ],
-            Mah: ["max-height", "minMax"],
-            Mih: ["min-height", "minMax"],
-
-            // Hyphens
+            Hyc: ["hyphenate-character", "a"],
+            Hylc: ["hyphenate-limit-chars", "a"],
             Hy: [
                 "hyphens",
+                "an",
+                {
+                    m: "manual"
+                }
+            ],
+            Io: [
+                "image-orientation",
+                "n",
+                {
+                    f: "flip",
+                    fi: "from-image"
+                }
+            ],
+            Irn: [
+                "image-rendering",
+                "a",
+                {
+                    ce: "crisp-edges",
+                    hq: "high-quality",
+                    p: "pixelated",
+                    s: "smooth"
+                }
+            ],
+            Irs: [
+                "image-resolution",
+                {
+                    fi: "from-image",
+                    s: "snap"
+                }
+            ], // Experimental
+            Inl: [
+                "initial-letter",
+                {
+                    d: "drop",
+                    nr: "normal",
+                    r: "raise"
+                }
+            ], // Experimental
+            Inla: [
+                "initial-letter-align",
+                {
+                    a: "alphabetic",
+                    bb: "border-box",
+                    h: "hanging",
+                    i: "ideographic",
+                    l: "leading"
+                }
+            ], // Experimental
+            Iz: ["inline-size"],
+            In: ["inset", "a"],
+            Inblk: ["inset-block", "a"],
+            Inblke: ["inset-block-end", "a"],
+            Inblks: ["inset-block-start", "a"],
+            Ini: ["inset-inline", "a"],
+            Inie: ["inset-inline-end", "a"],
+            Inis: ["inset-inline-start", "a"],
+            Is: [
+                "isolation",
                 {
                     a: "auto",
-                    m: "manual",
-                    n: "normal"
+                    i: "isolate"
                 }
             ],
-
-            // Letter spacing
-            Lts: ["letter-spacing", { n: "normal" }],
-
-            // Line clamp
-            // Includes "display" and "box-orient" to make it work. Generally
-            // useless without both.
-            Lc: ["display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp;line-clamp"],
-
-            // Line height
-            Lh: ["line-height", { n: "normal" }],
-
-            // Lists
-            Lis: ["list-style", "n"],
-            List: [
-                "list-style-type",
+            Jc: [
+                "justify-content",
+                "nr",
+                "contentDistribution",
+                "overflowPosition",
+                "contentPosition",
+                "lr"
+            ],
+            Ji: [
+                "justify-items",
+                "nr",
+                "st",
+                "baselinePosition",
+                "overflowPosition",
+                "selfPosition",
+                "lr",
                 {
-                    a: "armenian",
-                    c: "circle",
-                    dc: "decimal",
-                    dclz: "decimal-leading-zero",
-                    d: "disc",
-                    g: "georgian",
-                    la: "lower-alpha",
-                    lg: "lower-greek",
-                    ll: "lower-latin",
-                    lr: "lower-roman",
-                    n: "none",
-                    s: "square",
-                    ua: "upper-alpha",
-                    ul: "upper-latin",
-                    ur: "upper-roman"
+                    le: "legacy"
                 }
             ],
-            Lisp: [
-                "list-style-position",
+            Js: [
+                "justify-self",
+                "a",
+                "nr",
+                "st",
+                "baselinePosition",
+                "overflowPosition",
+                "selfPosition",
+                "lr"
+            ],
+            Jt: [
+                "justify-tracks:$,",
+                "nr",
+                "contentDistribution",
+                "overflowPosition",
+                "contentPosition",
+                "lr"
+            ], // Experimental
+            L: ["left", "a"],
+            Start: ["$s", "a"], // Typically $s = start
+            Lts: ["letter-spacing", "nr"],
+            Lb: [
+                "line-break",
+                "a",
+                "nr",
                 {
-                    i: "inside",
-                    o: "outside"
+                    an: "anywhere",
+                    l: "loose",
+                    s: "strict"
                 }
             ],
+            Lc: [
+                "display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp;line-clamp"
+            ], // Proposed + Line-clamp requires display:-webkit-box and box-orient to work.
+            Lh: ["line-height", "nr"],
+            Lhs: ["line-height-step"], // Experimental
+            Lis: ["list-style", "n", "listStyleType", "listStylePosition"],
             Lisi: ["list-style-image", "n"],
-
-            // Margins
+            Lisp: ["list-style-position", "listStylePosition"],
+            List: ["list-style-type", "n", "listStyleType"],
             M: ["margin", "a"],
-            Mx: ["margin-_S_;margin-_E_", "a"],
-            My: ["margin-top;margin-bottom", "a"],
-            Mt: ["margin-top", "a"],
-            Mend: ["margin-_E_", "a"],
+            Mblk: ["margin-block", "a"],
+            Mblke: ["margin-block-end", "a"],
+            Mblks: ["margin-block-start", "a"],
             Mb: ["margin-bottom", "a"],
-            Mstart: ["margin-_S_", "a"],
-
-            // Object
+            Mi: ["margin-inline", "a"],
+            Mie: ["margin-inline-end", "a"],
+            Mis: ["margin-inline-start", "a"],
+            Ml: ["margin-left", "a"],
+            Mstart: ["margin-$s", "a"], // Typically $s = left
+            Mr: ["margin-right", "a"],
+            Mend: ["margin-$e", "a"], // Typically $e = right
+            Mt: ["margin-top", "a"],
+            Mtr: [
+                "margin-trim",
+                "n",
+                {
+                    b: "block",
+                    be: "block-end",
+                    bs: "block-start",
+                    i: "inline",
+                    ie: "inline-end",
+                    is: "inline-start"
+                }
+            ], // Experimental
+            Msk: [
+                "mask",
+                "n",
+                "origin",
+                "bgSize",
+                "repeatStyle",
+                "geometryBox",
+                "nc",
+                "compositingOperator",
+                "maskingMode"
+            ], // Mixed commas and spaces
+            Mskb: ["mask-border", "an", "maskSlice", "rrss", "maskType"],
+            Mskbm: ["mask-border-mode", "maskType"],
+            Mskbo: ["mask-border-outset"],
+            Mskbr: ["mask-border-repeat", "rrss"],
+            Mskbsl: ["mask-border-slice", "maskSlice"],
+            Mskbso: ["mask-border-source", "n"],
+            Mskbw: ["mask-border-width", "a"],
+            Mskc: ["mask-clip:$,", "geometryBox", "nc"],
+            Mskco: ["mask-composite:$,", "compositingOperator"],
+            Mski: ["mask-image:$,", "n"],
+            Mskm: ["mask-mode:$,", "maskingMode"],
+            Msko: ["mask-origin:$,", "geometryBox"],
+            Mskp: ["mask-position", "origin"], // Mixed commas and spaces
+            Mskr: ["mask-repeat:$,", "repeatStyle"], // Mixed commas and spaces
+            Mskz: ["mask-size", "a", "bgSize"], // Mixed commas and spaces
+            Mskt: ["mask-type", "maskType"],
+            Maf: [
+                "masonry-auto-flow",
+                {
+                    df: "definite-first",
+                    n: "next",
+                    o: "ordered",
+                    p: "pack"
+                }
+            ], // Experimental
+            Md: [
+                "math-depth",
+                {
+                    aa: "auto-add"
+                }
+            ], // Experimental
+            Ms: ["math-shift", "nr", "cp"], // Experimental
+            Mst: ["math-style", "nr", "cp"], // Experimental
+            Mablkz: ["max-block-size", "minMax"],
+            Mah: ["max-height", "minMax"],
+            Maz: ["max-inline-size", "minMax"],
+            Maw: ["max-width", "minMax"],
+            Miblkz: ["min-block-size", "minMax"],
+            Mih: ["min-height", "minMax"],
+            Miz: ["min-inline-size", "minMax"],
+            Miw: ["min-width", "minMax"],
+            Mbm: ["mix-blend-mode", "nr", "mixBlendMode"],
             Objf: [
                 "object-fit",
+                "n",
                 {
                     ct: "contain",
                     cv: "cover",
                     f: "fill",
-                    n: "none",
                     sd: "scale-down"
                 }
             ],
-
-            // Offsets
-            T: ["top", "a"],
-            End: ["_E_", "a"],
-            B: ["bottom", "a"],
-            Start: ["_S_", "a"],
-
-            // Opacity
+            Objp: ["object-position", "origin"],
+            Of: ["offset", "an", "origin", "r"],
+            Ofa: ["offset-anchor", "a", "origin"],
+            Ofd: ["offset-distance"],
+            Ofpa: [
+                "offset-path",
+                "n",
+                "geometryBox",
+                {
+                    cc: "closest-corner",
+                    ct: "contain",
+                    cs: "closest-side",
+                    fc: "farthest-corner",
+                    fs: "farthest-side"
+                }
+            ],
+            Ofp: ["offset-position", "a", "origin"], // Experimental
+            Ofr: ["offset-rotate", "a", "r"],
             Op: ["opacity"],
-
-            // Orientation
-            Ori: [
-                "orientation",
-                {
-                    l: "landscape",
-                    p: "portrait"
-                }
-            ],
-
-            // Outline
-            Ol: ["outline", "n"],
-            Olc: ["outline-color", "colors"],
+            Ord: ["order"],
+            Orp: ["orphans"],
+            Ol: ["outline", "n", "color", "lineStyle", "lineWidth"],
+            Olc: ["outline-color", "color", "inv"],
             Olo: ["outline-offset"],
-            Ols: ["outline-style", "borderStyle"],
-            Olw: ["outline-width", "thickness"],
-
-            // Overflow
+            Ols: ["outline-style", "lineStyle"],
+            Olw: ["outline-width", "lineWidth"],
             Ov: ["overflow", "overflow"],
-            Ovw: [
-                "overflow-wrap",
-                {
-                    n: "normal",
-                    a: "anywhere",
-                    bw: "break-word"
-                }
-            ],
+            Ova: ["overflow-anchor", "an"],
+            Ovb: ["overflow-block", "overflow"],
+            Ovcm: ["overflow-clip-margin", "box"],
+            Ovi: ["overflow-inline", "overflow"],
+            Ovw: ["overflow-wrap", "nr", "overflowWrap"],
             Ovx: ["overflow-x", "overflow"],
             Ovy: ["overflow-y", "overflow"],
-            Ovs: [
-                "overflow-style",
-                {
-                    a: "auto",
-                    m: "move",
-                    mq: "marquee",
-                    p: "panner",
-                    s: "scrollbar"
-                }
-            ],
-
-            // Paddings
+            Ovsb: ["overscroll-behavior", "an", "ct"],
+            Ovsbb: ["overscroll-behavior-block", "an", "ct"],
+            Ovsbi: ["overscroll-behavior-inline", "an", "ct"],
+            Ovsbx: ["overscroll-behavior-x", "an", "ct"],
+            Ovsby: ["overscroll-behavior-y", "an", "ct"],
             P: ["padding"],
-            Px: ["padding-_S_;padding-_E_"],
-            Py: ["padding-top;padding-bottom"],
-            Pt: ["padding-top"],
-            Pend: ["padding-_E_"],
+            Pblk: ["padding-block"],
+            Pblke: ["padding-block-end"],
+            Pblks: ["padding-block-start"],
             Pb: ["padding-bottom"],
-            Pstart: ["padding-_S_"],
-
-            // Perspective
-            Prs: ["perspective", "n"],
-            Prso: [
-                "perspective-origin:$0 $1",
+            Pi: ["padding-inline"],
+            Pie: ["padding-inline-end"],
+            Pis: ["padding-inline-start"],
+            Pl: ["padding-left"],
+            Pstart: ["padding-$s"],
+            Pr: ["padding-right"],
+            Pend: ["padding-$e"],
+            Pt: ["padding-top"],
+            Pgba: ["page-break-after", "a", "pageBreaks"],
+            Pgbb: ["page-break-before", "a", "pageBreaks"],
+            Pgbi: [
+                "page-break-inside",
+                "a",
                 {
-                    b: "bottom",
-                    c: "center",
-                    end: "_E_",
-                    start: "_S_",
-                    t: "top"
+                    av: "avoid"
                 }
             ],
-
-            // Pointer events
+            Po: [
+                "paint-order",
+                "nr",
+                {
+                    f: "fill",
+                    m: "markers",
+                    s: "stroke"
+                }
+            ],
+            Prs: ["perspective", "n"],
+            Prso: ["perspective-origin", "origin"],
+            Plc: [
+                "place-content",
+                "nr",
+                "st",
+                "baselinePosition",
+                "overflowPosition",
+                "selfPosition",
+                "contentDistribution",
+                "contentPosition",
+                "lr"
+            ],
+            Pli: [
+                "place-items",
+                "nr",
+                "st",
+                "baselinePosition",
+                "overflowPosition",
+                "selfPosition",
+                "lr"
+            ],
+            Pls: [
+                "place-self",
+                "a",
+                "nr",
+                "st",
+                "baselinePosition",
+                "overflowPosition",
+                "selfPosition",
+                "lr"
+            ],
             Pe: [
                 "pointer-events",
+                "an",
                 {
-                    a: "auto",
-                    all: "all",
+                    bb: "bouding-box",
                     f: "fill",
-                    n: "none",
                     p: "painted",
                     s: "stroke",
-                    vf: "visibleFill",
-                    vp: "visiblePainted",
-                    vs: "visibleStroke",
+                    vf: "visiblefill",
+                    vp: "visiblepainted",
+                    vs: "visiblestroke",
                     v: "visible"
                 }
             ],
-
-            // Position
             Pos: [
                 "position",
                 {
@@ -939,37 +1652,13 @@
                     st: "sticky"
                 }
             ],
-
-            // Print
-            Pgbb: [
-                "page-break-before",
+            Pca: [
+                "print-color-adjust",
                 {
-                    al: "always",
-                    au: "auto",
-                    end: "_E_",
-                    start: "_S_"
+                    ec: "economy",
+                    ex: "exact"
                 }
             ],
-            Pgbi: [
-                "page-break-inside",
-                {
-                    au: "auto",
-                    av: "avoid"
-                }
-            ],
-            Pgba: [
-                "page-break-after",
-                {
-                    al: "always",
-                    au: "auto",
-                    end: "_E_",
-                    start: "_S_"
-                }
-            ],
-            Orp: ["orphans"],
-            Wid: ["widows"],
-
-            // Quotes
             Q: [
                 "quotes",
                 {
@@ -979,25 +1668,424 @@
                     ru: '"«" "»" "„" "“"'
                 }
             ],
-
-            // Resize
             Rsz: [
                 "resize",
+                "n",
+                "axis",
                 {
-                    b: "both",
-                    h: "horizontal",
-                    n: "none",
-                    v: "vertical"
+                    b: "both"
                 }
             ],
+            R: ["right", "a"],
+            End: ["$e", "a"], // Typically $e = end
+            Ro: ["rotate", "n"],
+            Rowg: ["row-gap", "nr"],
+            Ra: [
+                "ruby-align",
+                {
+                    c: "center",
+                    sa: "space-around",
+                    sb: "space-between",
+                    s: "start"
+                }
+            ], // Experimental
+            Rp: [
+                "ruby-position",
+                {
+                    a: "alternate",
+                    ic: "inter-character",
+                    o: "over",
+                    u: "under"
+                }
+            ],
+            S: ["scale", "n"],
+            Scrb: [
+                "scroll-behavior",
+                "a",
+                {
+                    s: "smooth"
+                }
+            ],
+            Scrm: ["scroll-margin"],
+            Scrmblk: ["scroll-margin-block"],
+            Scrmblke: ["scroll-margin-block-end"],
+            Scrmblks: ["scroll-margin-block-start"],
+            Scrmb: ["scroll-margin-bottom"],
+            Scrmi: ["scroll-margin-inline"],
+            Scrmie: ["scroll-margin-inline-end"],
+            Scrmis: ["scroll-margin-inline-start"],
+            Scrml: ["scroll-margin-left"],
+            Scrmstart: ["scroll-margin-$s"], // Typically $s = left
+            Scrmr: ["scroll-margin-right"],
+            Scrmend: ["scroll-margin-$e"], // Typically $e = right
+            Scrmt: ["scroll-margin-top"],
+            Scrp: ["scroll-padding", "a"],
+            Scrpblk: ["scroll-padding-block", "a"],
+            Scrpblke: ["scroll-padding-block-end", "a"],
+            Scrpblks: ["scroll-padding-block-start", "a"],
+            Scrpb: ["scroll-padding-bottom", "a"],
+            Scrpi: ["scroll-padding-inline", "a"],
+            Scrpie: ["scroll-padding-inline-end", "a"],
+            Scrpis: ["scroll-padding-inline-start", "a"],
+            Scrpl: ["scroll-padding-left", "a"],
+            Scrpstart: ["scroll-padding-$s", "a"], // Typically $s = left
+            Scrpr: ["scroll-padding-right", "a"],
+            Scrpend: ["scroll-padding-$e", "a"], // Typically $e = end
+            Scrpt: ["scroll-padding-top", "a"],
+            Scrsa: [
+                "scroll-snap-align",
+                "n",
+                {
+                    c: "center",
+                    e: "end",
+                    s: "start"
+                }
+            ],
+            Scrss: [
+                "scroll-snap-stop",
+                "nr",
+                {
+                    al: "always"
+                }
+            ],
+            Scrst: [
+                "scroll-snap-type",
+                "n",
+                {
+                    b: "both",
+                    bl: "block",
+                    il: "inline",
+                    m: "mandatory",
+                    p: "proximity"
+                }
+            ],
+            Scrt: ["scroll-timeline", "n", "axis"], // Experimental
+            Scrta: ["scroll-timeline-axis", "axis"], // Experimental
+            Scrtn: ["scroll-timeline-name", "n"], // Experimental
+            Sbc: ["scrollbar-color", "a", "color"],
+            Sbg: [
+                "scrollbar-gutter",
+                "a",
+                {
+                    be: "both-edges",
+                    s: "stable"
+                }
+            ],
+            Sbw: [
+                "scrollbar-width",
+                "an",
+                {
+                    t: "thin"
+                }
+            ],
+            Shpit: ["shape-image-threshold"],
+            Shpm: ["shape-margin"],
+            Shpo: [
+                "shape-outside",
+                "n",
+                "box",
+                {
+                    mb: "margin-box"
+                }
+            ],
+            Tbz: ["tab-size"],
+            Tbl: [
+                "table-layout",
+                "a",
+                {
+                    f: "fixed"
+                }
+            ],
+            Ta: ["text-align", "align"],
+            Tal: ["text-align-last", "align"],
+            Tci: [
+                "text-combine-upright",
+                "an",
+                {
+                    d: "digits"
+                }
+            ],
+            Td: [
+                "text-decoration",
+                "n",
+                "textDecLine",
+                "textDecStyle",
+                "color"
+            ],
+            Tdc: ["text-decoration-color", "color"],
+            Tdl: ["text-decoration-line", "n", "textDecLine"],
+            Tdsk: [
+                "text-decoration-skip",
+                "an",
+                {
+                    bd: "box-decoration",
+                    e: "edges",
+                    lsp: "leading-spaces",
+                    o: "objects",
+                    sp: "spaces",
+                    tsp: "trailing-spaces"
+                }
+            ],
+            Tdski: ["text-decoration-skip-ink", "an"],
+            Tds: ["text-decoration-style", "textDecStyle"],
+            Tdt: [
+                "text-decoration-thickness",
+                "a",
+                {
+                    ff: "from-font"
+                }
+            ],
+            Te: ["text-emphasis", "n", "textEmphasisStyle", "color"],
+            Tec: ["text-emphasis-color", "color"],
+            Tep: [
+                "text-emphasis-position",
+                "lr",
+                {
+                    o: "over",
+                    u: "under"
+                }
+            ],
+            Tes: ["text-emphasis-style", "n", "textEmphasisStyle"],
+            Tfc: ["-webkot-text-fill-color;text-fill-color", "color"], // Proposed
+            Ti: [
+                "text-indent",
+                {
+                    el: "each-line",
+                    h: "hanging"
+                }
+            ],
+            Tj: [
+                "text-justify",
+                "an",
+                {
+                    ic: "inter-character",
+                    iw: "inter-word"
+                }
+            ],
+            To: [
+                "text-orientation",
+                {
+                    m: "mixed",
+                    s: "sideways",
+                    u: "upright"
+                }
+            ],
+            Tov: [
+                "text-overflow",
+                {
+                    c: "clip",
+                    e: "ellipsis"
+                }
+            ],
+            Tren: [
+                "text-rendering",
+                {
+                    a: "auto",
+                    gp: "geometricprecision",
+                    ol: "optimizelegibility",
+                    os: "optimizespeed"
+                }
+            ],
+            Tsh: ["text-shadow", "n", "color"],
+            Tza: ["text-size-adjust", "an"], // Experimental
+            Tstk: ["-webkit-text-stroke;text-stroke", "lineWidth", "color"], // Proposed
+            Tstkc: ["-webkit-text-stroke-color;text-stroke-color", "color"], // Proposed
+            Tstkw: ["-webkit-text-stroke-width;text-stroke-width"], // Proposed
+            Tt: [
+                "text-transform",
+                {
+                    c: "capitalize",
+                    fzk: "full-size-kana",
+                    fw: "full-width",
+                    l: "lowercase",
+                    ma: "math-auto",
+                    mb: "math-bold",
+                    mbf: "math-bold-franktur",
+                    mbi: "math-bold-italic",
+                    mbs: "math-bold-script",
+                    mbss: "math-bold-sans-serif",
+                    mds: "math-double-struck",
+                    mf: "math-fraktur",
+                    mi: "math-italic",
+                    min: "math-initial",
+                    ml: "math-looped",
+                    mm: "math-monospace",
+                    ms: "math-script",
+                    mss: "math-sans-serif",
+                    mssbi: "math-sans-serif-bold-italic",
+                    mssi: "math-sans-serif-italic",
+                    mst: "math-stretched",
+                    mt: "math-tailed",
+                    n: "none",
+                    u: "uppercase"
+                }
+            ],
+            Tuo: ["text-underline-offset", "a"],
+            Tup: [
+                "text-underline-position",
+                "a",
+                "lr",
+                {
+                    u: "under"
+                }
+            ],
+            T: ["top", "a"],
+            Toa: [
+                "touch-action",
+                "an",
+                {
+                    m: "manipulation",
+                    pd: "pan-down",
+                    pl: "pan-left",
+                    pstart: "pan-$s", // Typically $s = left
+                    pr: "pan-right",
+                    pend: "pan-$e", // Typically $e = right
+                    pu: "pan-up",
+                    px: "pan-x",
+                    py: "pan-y",
+                    pz: "pinch-zoom"
+                }
+            ],
+            Trf: ["transform", "n"],
+            Trfb: ["transform-box", "geometryBox"], // Includes padding-box and margin-box, but those aren't supported
+            Trfo: ["transform-origin", "origin"],
+            Trfs: ["transform-style", "transformStyle"],
+            Trs: ["transition", "n", "easingFunction"], // Mixed spaces and commas
+            Trsde: ["transition-delay:$,"],
+            Trsdu: ["transition-duration:$,"],
+            Trsp: ["transition-property:$,", "n"], // Don't shortcut "all"
+            Trstf: ["transition-timing-function:$,", "easingFunction"],
+            Tr: ["translate", "n"],
+            Ub: [
+                "unicode-bidi",
+                "nr",
+                {
+                    bo: "bidi-override",
+                    e: "embed",
+                    i: "isolate",
+                    io: "isolate-override",
+                    p: "plaintext"
+                }
+            ],
+            Us: [
+                "user-select",
+                "an",
+                {
+                    ct: "contain",
+                    t: "text"
+                }
+            ], // Don't shortcut all
+            Va: [
+                "vertical-align",
+                {
+                    b: "bottom",
+                    bl: "baseline",
+                    m: "middle",
+                    sup: "super",
+                    tb: "text-bottom",
+                    tt: "text-top"
+                }
+            ], // Don't shortcut sub
+            V: [
+                "visibility",
+                "hv",
+                {
+                    c: "collapse"
+                }
+            ],
+            Whs: [
+                "white-space",
+                {
+                    bs: "break-spaces",
+                    nr: "normal",
+                    nw: "nowrap",
+                    pl: "pre-line",
+                    p: "pre",
+                    pw: "pre-wrap"
+                }
+            ],
+            Wid: ["widows"],
+            W: ["width", "minMax"],
+            Wc: [
+                "will-change",
+                "a",
+                {
+                    cn: "contents",
+                    sp: "scroll-position"
+                }
+            ],
+            Wob: [
+                "word-break",
+                "nr",
+                {
+                    ba: "break-all",
+                    bw: "break-word",
+                    ka: "keep-all"
+                }
+            ],
+            Wos: ["word-spacing", "nr"],
+            Wow: [
+                "word-wrap",
+                "n",
+                "nr",
+                {
+                    bw: "break-word",
+                    s: "suppress",
+                    u: "unrestricted"
+                }
+            ],
+            Wm: [
+                "writing-mode",
+                {
+                    htb: "horizontal-tb",
+                    srl: "sideways-rl",
+                    slr: "sideways-lr",
+                    vlr: "vertical-rl",
+                    vrl: "vertical-rl"
+                }
+            ],
+            Z: ["z-index", "a"],
+            Zoo: ["zoom:1"],
 
-            // Resolution
-            Mar: ["max-resolution"],
-            Mir: ["min-resolution"],
+            // Helpers, shortcuts, combined rules
+
+            Bd1: ["border-width:1px;border-style:solid"],
+            Bdb1: ["border-width:0 0 1px;border-style:solid"],
+            Bdbrs: ["border-bottom-left-radius;border-bottom-right-radius"],
+            Bdend1: ["border-width:0;border-$e-width:1px;border-style:solid"],
+            Bdendrs: ["border-top-$e-radius;border-bottom-$e-radius"],
+            Bdl1: ["border-width:0;border-left-width:1px;border-style:solid"],
+            Bdlrs: ["border-top-left-radius;border-bottom-left-radius"],
+            Bdr1: ["border-width:0;border-right-width:1px;border-style:solid"],
+            Bdrrs: ["border-top-right-radius;border-bottom-right-radius"],
+            Bdstart1: ["border-width:0;border-$s-width:1px;border-style:solid"],
+            Bdstartrs: ["border-top-$s-radius;border-bottom-$s-radius"],
+            Bdt1: ["border-width:1px 0 0 0;border-style:solid"],
+            Bdtrs: ["border-top-left-radius;border-top-right-radius"],
+            Bdx: ["border-left;border-right"],
+            Bdx1: ["border-width:0 1px;border-style:solid"],
+            Bdy: ["border-top;border-bottom"],
+            Bdy1: ["border-width:1px 0;border-style:solid"],
+            Mx: ["margin-left;margin-right", "a"],
+            My: ["margin-top;margin-bottom", "a"],
+            Px: ["padding-left;padding-right"],
+            Py: ["padding-top;padding-bottom"],
+
+            // Filter
+            Blur: ["filter:blur($,)"],
+            Brightness: ["filter:brightness($,)"],
+            Contrast: ["filter:contrast($,)"],
+            Dropshadow: ["filter:drop-shadow($,)"],
+            Grayscale: ["filter:grayscale($,)"],
+            Huerotate: ["filter:hue-rotate($,)"],
+            Invert: ["filter:invert($,)"],
+            Opacity: ["filter:opacity($,)"],
+            Saturate: ["filter:saturate($,)"],
+            Sepia: ["filter:sepia($,)"],
 
             // SVG
-            Fill: ["fill", "colors"],
-            Stk: ["stroke", "colors"],
+            Fill: ["fill", "color"],
+            Stk: ["stroke", "color"],
             Stkw: ["stroke-width", { i: "inherit" }],
             Stklc: [
                 "stroke-linecap",
@@ -1018,326 +2106,27 @@
                 }
             ],
 
-            // Tab size
-            Tbz: ["tab-size"],
-
-            // Table layout
-            Tbl: [
-                "table-layout",
-                {
-                    a: "auto",
-                    f: "fixed"
-                }
-            ],
-            Cps: [
-                "caption-side",
-                {
-                    b: "bottom",
-                    t: "top"
-                }
-            ],
-            Ec: [
-                "empty-cells",
-                {
-                    h: "hide",
-                    s: "show"
-                }
-            ],
-
-            // Text
-            Ta: [
-                "text-align",
-                {
-                    c: "center",
-                    e: "end",
-                    end: "_E_",
-                    j: "justify",
-                    mp: "match-parent",
-                    s: "start",
-                    start: "_S_"
-                }
-            ],
-            Tal: [
-                "text-align-last",
-                {
-                    a: "auto",
-                    c: "center",
-                    e: "end",
-                    end: "_E_",
-                    j: "justify",
-                    s: "start",
-                    start: "_S_"
-                }
-            ],
-            Td: [
-                "text-decoration",
-                {
-                    b: "blink",
-                    l: "line-through",
-                    n: "none",
-                    o: "overline",
-                    u: "underline"
-                }
-            ],
-            Tdc: ["text-decoration-color", "colors"],
-            Tdl: [
-                "text-decoration-line",
-                {
-                    b: "blink",
-                    l: "line-through",
-                    n: "none",
-                    o: "overline",
-                    u: "underline"
-                }
-            ],
-            Tds: ["text-decoration-style", "borderStyle"],
-            Te: [
-                "text-emphasis",
-                {
-                    a: "after",
-                    ac: "accent",
-                    b: "before",
-                    c: "circle",
-                    ds: "disc",
-                    dt: "dot",
-                    n: "none"
-                }
-            ],
-            Th: [
-                "text-height",
-                {
-                    a: "auto",
-                    f: "font-size",
-                    m: "max-size",
-                    t: "text-size"
-                }
-            ],
-            Ti: ["text-indent"],
-            Tj: [
-                "text-justify",
-                {
-                    a: "auto",
-                    d: "distribute",
-                    ic: "inter-cluster",
-                    ii: "inter-ideograph",
-                    iw: "inter-word",
-                    k: "kashida",
-                    t: "tibetan"
-                }
-            ],
-            To: ["text-outline", "n"],
-            Tov: [
-                "text-overflow",
-                {
-                    c: "clip",
-                    e: "ellipsis"
-                }
-            ],
-            Tr: ["text-replace", "n"],
-            Tren: [
-                "text-rendering",
-                {
-                    a: "auto",
-                    gp: "geometricPrecision",
-                    ol: "optimizeLegibility",
-                    os: "optimizeSpeed"
-                }
-            ],
-            Tt: [
-                "text-transform",
-                {
-                    c: "capitalize",
-                    l: "lowercase",
-                    n: "none",
-                    u: "uppercase"
-                }
-            ],
-            Tsh: ["text-shadow", "n"],
-
             // Transform
-            Trf: ["transform"],
-            Trfo: [
-                "transform-origin:$0 $1",
-                {
-                    b: "bottom",
-                    c: "center",
-                    end: "_E_",
-                    start: "_S_",
-                    t: "top"
-                }
-            ],
-            Trfs: [
-                "transform-style",
-                {
-                    f: "flat",
-                    p: "preserve-3d"
-                }
-            ],
-            Matrix: ["transform:matrix($0)"],
-            Matrix3d: ["transform:matrix3d($0)"],
-            Rotate: ["transform:rotate($0)"],
-            Rotate3d: ["transform:rotate3d($0)"],
-            RotateX: ["transform:rotateX($0)"],
-            RotateY: ["transform:rotateY($0)"],
-            RotateZ: ["transform:rotateZ($0)"],
-            Scale: ["transform:scale($0)"],
-            Scale3d: ["transform:scale3d($0)"],
-            ScaleX: ["transform:scaleX($0)"],
-            ScaleY: ["transform:scaleY($0)"],
-            ScaleZ: ["transform:scaleZ($0)"],
-            Skew: ["transform:skew($0)"],
-            SkewX: ["transform:skewX($0)"],
-            SkewY: ["transform:skewY($0)"],
-            Translate: ["transform:translate($0,$1)"],
-            Translate3d: ["transform:translate3d($0,$1,$2)"],
-            TranslateX: ["transform:translateX($0)"],
-            TranslateY: ["transform:translateY($0)"],
-            TranslateZ: ["transform:translateZ($0)"],
-
-            // Transition
-            Trs: ["transition"],
-            Trsde: [
-                "transition-delay",
-                {
-                    i: "initial"
-                }
-            ],
-            Trsdu: ["transition-duration"],
-            Trsp: ["transition-property", { a: "all" }],
-            Trstf: [
-                "transition-timing-function",
-                {
-                    e: "ease",
-                    ei: "ease-in",
-                    eio: "ease-in-out",
-                    eo: "ease-out",
-                    l: "linear",
-                    se: "step-end",
-                    ss: "step-start"
-                }
-            ],
-
-            // User select
-            Us: [
-                "user-select",
-                {
-                    a: "all",
-                    el: "element",
-                    els: "elements",
-                    n: "none",
-                    to: "toggle",
-                    t: "text"
-                }
-            ],
-
-            // Vertical align
-            Va: [
-                "vertical-align",
-                {
-                    b: "bottom",
-                    bl: "baseline",
-                    m: "middle",
-                    sub: "sub",
-                    sup: "super",
-                    tb: "text-bottom",
-                    t: "top",
-                    tt: "text-top"
-                }
-            ],
-
-            // Visibility
-            V: [
-                "visibility",
-                {
-                    c: "collapse",
-                    h: "hidden",
-                    v: "visible"
-                }
-            ],
-
-            // White space
-            Whs: [
-                "white-space",
-                {
-                    n: "normal",
-                    nw: "nowrap",
-                    pl: "pre-line",
-                    p: "pre",
-                    pw: "pre-wrap"
-                }
-            ],
-            Whsc: [
-                "white-space-collapse",
-                {
-                    ba: "break-all",
-                    bs: "break-strict",
-                    ka: "keep-all",
-                    l: "loose",
-                    n: "normal"
-                }
-            ],
-
-            // Width
-            W: [
-                "width",
-                {
-                    a: "auto",
-                    av: "available",
-                    bb: "border-box",
-                    cb: "content-box",
-                    fc: "fit-content",
-                    maxc: "max-content",
-                    minc: "min-content"
-                }
-            ],
-            Maw: ["max-width", "minMax"],
-            Miw: ["min-width", "minMax"],
-
-            // Word break
-            Wob: [
-                "word-break",
-                {
-                    ba: "break-all",
-                    ka: "keep-all",
-                    n: "normal"
-                }
-            ],
-
-            // Word spacing
-            Wos: ["word-spacing"],
-
-            // Word wrap
-            Wow: [
-                "word-wrap",
-                {
-                    bw: "break-word",
-                    nm: "normal",
-                    n: "none",
-                    s: "suppress",
-                    u: "unrestricted"
-                }
-            ],
-
-            // Writing mode
-            Wm: [
-                "writing-mode",
-                {
-                    btl: "bt-lr",
-                    btr: "bt-rl",
-                    lrb: "lr-bt",
-                    lrt: "lr-tb",
-                    rlb: "rl-bt",
-                    rlt: "rl-tb",
-                    tbl: "tb-lr",
-                    tbr: "tb-rl"
-                }
-            ],
-
-            // Z-index
-            Z: ["z-index", "a"],
-
-            // Zoom
-            Zoo: ["zoom:1"]
+            Matrix: ["transform:matrix($,)"],
+            Matrix3d: ["transform:matrix3d($,)"],
+            Rotate: ["transform:rotate($,)"],
+            Rotate3d: ["transform:rotate3d($,)"],
+            Rotatex: ["transform:rotateX($,)"],
+            Rotatey: ["transform:rotateY($,)"],
+            Rotatez: ["transform:rotateZ($,)"],
+            Scale: ["transform:scale($,)"],
+            Scale3d: ["transform:scale3d($,)"],
+            Scalex: ["transform:scaleX($,)"],
+            Scaley: ["transform:scaleY($,)"],
+            Scalez: ["transform:scaleZ($,)"],
+            Skew: ["transform:skew($,)"],
+            Skewx: ["transform:skewX($,)"],
+            Skewy: ["transform:skewY($,)"],
+            Translate: ["transform:translate($,)"],
+            Translate3d: ["transform:translate3d($,)"],
+            Translatex: ["transform:translateX($,)"],
+            Translatey: ["transform:translateY($,)"],
+            Translatez: ["transform:translateZ($,)"]
         }
     };
 
@@ -1356,11 +2145,12 @@
                 ? "::" + (config.pseudoElements[pseudoElement] || pseudoElement)
                 : ""),
         rulePattern =
-            /^((?:\w|-)*?)(?::(\w+))?([>_+~])?(\w+)(?:\(((?:\w|[,-/#$%])+)\))?(!)?(?::(\w+))?(?:::(\w+))?(?:--(\w+))?$/i,
-        //    1----------1    2---2  3------3 4---4     5----------------5    6-6     7---7       8---8       9---9
+            /^((?:\w|-)*?)(?::(\w+))?([>_+~]|\|\|)?(\w+)(?:\(((?:\w|[,-/#$%])+)\))?(!)?(?::(\w+))?(?:::(\w+))?(?:--(\w+))?$/i,
+        //    1----------1    2---2  3-----------3 4---4     5----------------5    6-6     7---7       8---8       9---9
         // 1: parent selector to match an element name, matches \w plus hyphens
         // 2: parent pseudoclass, preferably shorthand from config.pseudoClasses, matches \w+
-        // 3: parent separator, one of > _ + ~
+        // 3: combinator, one of > _ + ~ ||
+        //    || is experimental
         // 4: atomic selector, matches \w+
         // 5: atomic values, matches characters from \w plus others that can appear as values.
         // 6: important
@@ -1391,6 +2181,8 @@
                 return;
             }
 
+            // This is the atomic CSS rule definition.
+            // Example: ["background-color","color","n"]
             var def = config.classes[match[4]];
 
             if (!def) {
@@ -1404,13 +2196,25 @@
                 return;
             }
 
+            // Build a CSS rule selector out of the bits that match
             var ruleSelector = `${
-                    match[1] ? makeSelector(match[1], match[2]) + match[3] : ""
+                    match[1]
+                        ? makeSelector(match[1], match[2]) +
+                          match[3].replace(/_/, " ")
+                        : ""
                 }${makeSelector(className, match[7], match[8])}`,
-                values = config[def[1]] || def[1] || {},
+                // Convert the definition to a series of lookup objects
+                valueLookup = def
+                    .slice(1)
+                    .concat("values")
+                    .map((stringName) => config[stringName] || stringName)
+                    .reduceRight((acc, next) => Object.assign(acc, next), {}),
+                // Split multiple rules apart into individual rules.
+                // Append $_ if the rule has no value defined
+                // Handle !important
                 rules = def[0].split(";").map((r) => {
                     if (r.indexOf(":") < 0) {
-                        r += ":$0";
+                        r += ":$_";
                     }
 
                     if (match[6]) {
@@ -1419,27 +2223,36 @@
 
                     return r;
                 }),
+                // Apply namespace and build the CSS selector
                 rule =
                     config.settings.namespace +
                     ruleSelector +
                     `{${rules.join(";")}}`;
 
             if (match[9]) {
+                // Wrap in an atRule if one exists
                 rule = `${config.atRules[match[9]] || match[9]}{${rule}}`;
             }
 
+            // Replace $s and $e with left/right based on config
             rule = rule
-                .replace(/_S_/g, config.settings.rightToLeft ? "right" : "left")
-                .replace(/_E_/g, config.settings.rightToLeft ? "left" : "right")
-                .replace(/\$\d/g, (paramNumber) => {
-                    var v = (match[5].split(",") || [])[+paramNumber[1]] || "";
+                .replace(/\$s/g, config.settings.rightToLeft ? "right" : "left")
+                .replace(/\$e/g, config.settings.rightToLeft ? "left" : "right")
 
-                    if (!v.indexOf("--")) {
-                        return `var(${v})`;
-                    }
-
-                    return values[v] || config.values[v] || v;
-                });
+                // Replace $_ and $, with the list of values
+                // Look each one up in valueLookup. If it fails (falsy),
+                // use the value verbatim.
+                // match[5] are the arguments from the user.
+                .replace(/\$([,_])/g, (dollarMatch) =>
+                    match[5]
+                        .split(",")
+                        .map((userValue) =>
+                            userValue.indexOf("--")
+                                ? valueLookup[userValue] || userValue
+                                : `var(${userValue})`
+                        )
+                        .join(dollarMatch === "$," ? "," : " ")
+                );
 
             // DEBUG_START
             if (config.settings.debug) {
