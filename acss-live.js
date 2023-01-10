@@ -2313,7 +2313,7 @@
 
     // Merge default config with any from user
     for (var key of Object.keys(window.acssLiveConfig || {})) {
-        Object.assign(config[key], window.acssLiveConfig[key]);
+        config[key] = Object.assign(config[key] || {}, window.acssLiveConfig[key]);
     }
 
     // DEBUG_START
