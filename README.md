@@ -15,26 +15,26 @@ Add this in your `<head>` of your document, then you're done. I recommend using 
 
     <script src="https://cdn.jsdelivr.net/npm/@fidian/acss-live/acss-live.min.js"></script>
 
-Now you can use Atomic CSS within your element's class lists. Configuration is optional. Let's get started.
+Now you can use Atomic CSS within your element's class lists. Configuration is optional.
 
-    <html>
-        <head>
-            <title>This is an example</title>
-            <script src="https://cdn.jsdelivr.net/npm/@fidian/acss-live/acss-live.min.js"></script>
-        </head>
-        <body>
-            <h1 class="C(red)">Heading in red</h1>
+    <h1 class="C(red)">Heading in red</h1>
 
-            <div class="D(f) Jc(c)">
-                <div class="Bgc(lightblue) Bdw(1px) Bds(s) Bdrs(1em) P(1em) M(1em)">
-                    This light blue box is centered using flex.<br />
-                    It has a 1em margin around the outside.<br />
-                    There's a thin, solid border around it with rounded corners.<br />
-                    This content is surrounded with a 1em padding.
-                </div>
-            </div>
-        </body>
-    </html>
+That was easy. How about some borders?
+    
+    <div class="Bgc(lightblue) Bdw(1px) Bds(s) Bdrs(1em) P(1em) M(1em)"> ... </div>
+
+Fantastic!
+
+
+Examples
+--------
+
+Unless you are serving this README locally, most likely these links will show you the HTML source. Try cloning the repository and check them out to really see what's going on.
+
+    * [Demo](examples/demo.html) - Lots of colors, styling, a spinner, and even a mocked-up version of Clippy.
+    * [Late Loding Flicker](examples/late-loading-flicker.html) - Shows off a flicker that can happen when JavaScript is loaded late or asynchronously. It's only about a tenth of a second, but that can be unacceptable and moving the JavaScript to the `<head>` and loading it synchronously may also be unacceptable.
+    * [Late Loading Hide](examples/late-loading-hide.html) - Demonstration of a technique to hide the body content until ACSS-Live has loaded.
+    * [Timings](examples/timings.html) - Loads the demo page in an iframe, lets it render, then reloads it repeatedly. When done, reports on the amount of time different pieces of code took. This is used to see how fast the library is and to determine if there are alternate ways to make it load or run faster.
 
 
 Why Do This?
