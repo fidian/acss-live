@@ -5,7 +5,7 @@ This is an in-browser implementation of Atomic CSS. When gzipped, it is a bit la
 
 The project was inspired by [acss-browser] - a discussion of differences is included.
 
-To know more, read the [full listing of supported CSS].
+To know more, read the [full listing of supported CSS](CSS.md).
 
 
 Usage
