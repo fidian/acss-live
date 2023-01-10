@@ -5,6 +5,8 @@ This is an in-browser implementation of Atomic CSS. When gzipped, it is a bit la
 
 The project was inspired by [acss-browser] - a discussion of differences is included.
 
+To know more, read the [full listing of supported CSS].
+
 
 Usage
 -----
@@ -281,6 +283,6 @@ Upgrading
 
 Version 2 was a major change with nearly doubling the amount of CSS this can handle. Atomic classes were changed, values were changed, `$0` through `$9` was removed, `$_` and `$,` were added, and a fairly thorough scrubbing of all CSS classes was performed. More lookup tables were made, many of which are intentionally mirroring the CSS spec's naming, and now lookup tables can be cascaded.
 
-When upgrading to this version, go through your CSS carefully.
+When upgrading to this version, go through your CSS carefully. There's detailed notes about the changes in [UPGRADING-2.md](UPGRADING-2.md).
 
 [acss-browser]: https://github.com/acss-io/acss-browser

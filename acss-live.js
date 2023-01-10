@@ -55,7 +55,7 @@
         n: { n: "none" },
         nc: { nc: "no-clip" },
         nr: { nr: "normal" },
-        r: { r: "reverse" },
+        re: { re: "reverse" },
         rrss: { ro: "round", re: "repeat", st: "stretch", sp: "space" },
         st: { st: "stretch" },
 
@@ -88,9 +88,9 @@
         // Suite: animation
         animationDirection: {
             a: "alternate",
-            ar: "alternate-reverse",
+            are: "alternate-reverse",
             nr: "normal",
-            r: "reverse"
+            re: "reverse"
         },
 
         // Suite: animation
@@ -110,7 +110,7 @@
         // Suite: background
         attachment: {
             f: "fixed",
-            l: "local",
+            lo: "local",
             s: "scroll"
         },
 
@@ -185,7 +185,7 @@
         color: {
             cc: "currentcolor",
             n: "none",
-            t: "transparent"
+            tr: "transparent"
         },
 
         // Suite: mask
@@ -246,16 +246,16 @@
         // Suite: flex, not an official name
         flexDirection: {
             c: "column",
-            cr: "column-reverse",
+            cre: "column-reverse",
             r: "row",
-            rr: "row-reverse"
+            rre: "row-reverse"
         },
 
         // Suite: flex, not an official name
         flexWrap: {
             nw: "nowrap",
             w: "wrap",
-            wr: "wrap-reverse"
+            wre: "wrap-reverse"
         },
 
         // Suite: font fontVariant, not an official name
@@ -265,7 +265,7 @@
             pc: "petite-caps",
             sc: "small-caps",
             tc: "titling-caps",
-            uc: "unicase"
+            uni: "unicase"
         },
 
         // Suite: font, not an official name
@@ -465,7 +465,7 @@
             ma: "malayam",
             mo: "mongolian",
             my: "myanmar",
-            o: "oriya",
+            or: "oriya",
             p: "persian",
             s: "square",
             scf: "simp-chinese-formal",
@@ -594,7 +594,7 @@
         // Suite: textDecoration
         textDecLine: {
             b: "blink",
-            l: "line-through",
+            lt: "line-through",
             n: "none",
             o: "overline",
             u: "underline"
@@ -725,7 +725,7 @@
             inh: "inherit",
             in: "initial",
             rel: "revert-layer",
-            re: "revert",
+            rev: "revert",
             un: "unset"
         },
 
@@ -924,7 +924,7 @@
                 "border-inline-end",
                 "lineWidth",
                 "lineStyle",
-                "lineColor"
+                "color"
             ],
             Bdinlendc: ["border-inline-end-color", "color"],
             Bdinlends: ["border-inline-end-style", "lineStyle"],
@@ -1188,7 +1188,7 @@
                 "font",
                 "nr",
                 "fontStyle",
-                "fontVariantCaps",
+                "fontCaps",
                 "fontWeight",
                 "fontStretch",
                 "fontSize",
@@ -1235,7 +1235,7 @@
                 "n",
                 "nr",
                 "fontVariantAlt",
-                "fontVariantCaps",
+                "fontCaps",
                 "fontVariantEastAsian",
                 "fontVariantEmoji",
                 "fontVariantLig",
@@ -1509,11 +1509,11 @@
             Mst: ["math-style", "nr", "cp"], // Experimental
             Mablkz: ["max-block-size", "minMax"],
             Mah: ["max-height", "minMax"],
-            Maz: ["max-inline-size", "minMax"],
+            Maiz: ["max-inline-size", "minMax"],
             Maw: ["max-width", "minMax"],
             Miblkz: ["min-block-size", "minMax"],
             Mih: ["min-height", "minMax"],
-            Miz: ["min-inline-size", "minMax"],
+            Miiz: ["min-inline-size", "minMax"],
             Miw: ["min-width", "minMax"],
             Mbm: ["mix-blend-mode", "nr", "mixBlendMode"],
             Objf: [
@@ -1527,7 +1527,7 @@
                 }
             ],
             Objp: ["object-position", "origin"],
-            Of: ["offset", "an", "origin", "r"],
+            Of: ["offset", "an", "origin", "re"],
             Ofa: ["offset-anchor", "a", "origin"],
             Ofd: ["offset-distance"],
             Ofpa: [
@@ -1543,7 +1543,7 @@
                 }
             ],
             Ofp: ["offset-position", "a", "origin"], // Experimental
-            Ofr: ["offset-rotate", "a", "r"],
+            Ofr: ["offset-rotate", "a", "re"],
             Op: ["opacity"],
             Ord: ["order"],
             Orp: ["orphans"],
