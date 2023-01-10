@@ -2130,12 +2130,7 @@
         }
     };
 
-    var loop = (thing, cb) => {
-            for (var [key, value] of Object.entries(thing || {})) {
-                cb(value, key);
-            }
-        },
-        makeSelector = (sel, pseudoClass, pseudoElement) =>
+    var makeSelector = (sel, pseudoClass, pseudoElement) =>
             "." +
             sel.replace(/[^-_a-zA-Z0-9]/g, (match) => "\\" + match) +
             (pseudoClass
@@ -2270,11 +2265,11 @@
                 s += "#" + e.id;
             }
 
-            loop(e.classList, (c) => {
+            for (var c of e.classList) {
                 if (c) {
                     s += "." + c;
                 }
-            });
+            }
 
             return s;
         },
@@ -2317,11 +2312,9 @@
         styleElement = document.createElement("style");
 
     // Merge default config with any from user
-    loop(config, (configValue, configKey) => {
-        loop((window.acssLiveConfig || {})[configKey], (v, k) => {
-            configValue[k] = v;
-        });
-    });
+    for (var key of Object.keys(window.acssLiveConfig || {})) {
+        Object.assign(config[key], window.acssLiveConfig[key]);
+    }
 
     // DEBUG_START
     if (config.settings.debug) {
