@@ -1,25 +1,30 @@
+#!/usr/bin/env node
+
 /**
- * To generate a report, copy the config object from acss-live.js to another file. Next,
- * require this file and pass the config to this file's exported function.
- *
- * Sample file:
- *
- *     var config = {
- *         // A couple thousand lines go here
- *     };
- *     require("./generate-report.js")(config);
+ * Run this to parse acss-live.js, which will look for the config data.
+ * After loading the config, this generates the CSS report to standard
+ * out and also checks for errors.
  */
 
 "use strict";
 
-module.exports = function (config) {
-    function sortDeepValue(a, b) {
-        return a[1][0].localeCompare(b[1][0]);
-    }
+const fsPromises = require('fs').promises;
 
-    function sortShallowValue(a, b) {
-        return a[1].localeCompare(b[1]);
-    }
+function sortDeepValue(a, b) {
+    return a[1][0].localeCompare(b[1][0]);
+}
+
+function sortShallowValue(a, b) {
+    return a[1].localeCompare(b[1]);
+}
+
+fsPromises.readFile('./acss-live.js').then((data) => data.toString()).then((data) => {
+    data = data.split('var config = ')[1];
+    data = data.split(';\n')[0];
+
+    let config;
+    // eslint-disable-next-line no-eval
+    eval(`config = ${data}`);
 
     console.log("Supported CSS");
     console.log("=============");
@@ -44,7 +49,7 @@ module.exports = function (config) {
 
     for (const [shortcut, def] of Object.entries(config.classes).sort(sortDeepValue)) {
         const cssRules = def.shift().split(';').map((x) => x.indexOf(':') < 0 ? `${x}:$_` : x);
-        console.log("* `:" + shortcut + "` → `" + cssRules.join(";") + "`");
+        console.log("* `" + shortcut + "(…)` → `" + cssRules.join(";") + "`");
         const allowed = new Map();
 
         for (const lookup of def) {
@@ -105,4 +110,4 @@ module.exports = function (config) {
     for (const [k, v] of Object.entries(config.atRules).sort(sortShallowValue)) {
         console.log("* `--" + k + "` → `" + v + " { ... }`");
     }
-};
+});

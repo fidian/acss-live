@@ -18,38 +18,38 @@ These can be used for any CSS rule.
 CSS Classes
 -----------
 
-* `:Bgcp` → `-webkit-background-clip:$,;background-clip:$,`
+* `Bgcp(…)` → `-webkit-background-clip:$,;background-clip:$,`
     * `bb` → `border-box`
     * `cb` → `content-box`
     * `nc` → `no-clip`
     * `pb` → `padding-box`
     * `t` → `text`
-* `:Tstkc` → `-webkit-text-stroke-color:$_;text-stroke-color:$_`
+* `Tstkc(…)` → `-webkit-text-stroke-color:$_;text-stroke-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Tstkw` → `-webkit-text-stroke-width:$_;text-stroke-width:$_`
-* `:Tstk` → `-webkit-text-stroke:$_;text-stroke:$_`
+* `Tstkw(…)` → `-webkit-text-stroke-width:$_;text-stroke-width:$_`
+* `Tstk(…)` → `-webkit-text-stroke:$_;text-stroke:$_`
     * `cc` → `currentcolor`
     * `m` → `medium`
     * `n` → `none`
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Tfc` → `-webkot-text-fill-color:$_;text-fill-color:$_`
+* `Tfc(…)` → `-webkot-text-fill-color:$_;text-fill-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:End` → `$e:$_`
+* `End(…)` → `$e:$_`
     * `a` → `auto`
-* `:Start` → `$s:$_`
+* `Start(…)` → `$s:$_`
     * `a` → `auto`
-* `:Acc` → `accent-color:$_`
+* `Acc(…)` → `accent-color:$_`
     * `a` → `auto`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Ac` → `align-content:$_`
+* `Ac(…)` → `align-content:$_`
     * `bl` → `baseline`
     * `c` → `center`
     * `e` → `end`
@@ -65,7 +65,7 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:Ai` → `align-items:$_`
+* `Ai(…)` → `align-items:$_`
     * `bl` → `baseline`
     * `c` → `center`
     * `e` → `end`
@@ -80,7 +80,7 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:As` → `align-self:$_`
+* `As(…)` → `align-self:$_`
     * `a` → `auto`
     * `bl` → `baseline`
     * `c` → `center`
@@ -96,7 +96,7 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:At` → `align-tracks:$,`
+* `At(…)` → `align-tracks:$,`
     * `0` → `a`
     * `6` → `e`
     * `3` → `g`
@@ -106,8 +106,8 @@ CSS Classes
     * `4` → `n`
     * `7` → `n`
     * `8` → `t`
-* `:A` → `all:$_`
-* `:Anim` → `animation:$_`
+* `A(…)` → `all:$_`
+* `Anim(…)` → `animation:$_`
     * `a` → `alternate`
     * `are` → `alternate-reverse`
     * `b` → `backwards`
@@ -133,33 +133,33 @@ CSS Classes
     * `s` → `start`
     * `se` → `step-end`
     * `ss` → `step-start`
-* `:Animc` → `animation-composition:$,`
+* `Animc(…)` → `animation-composition:$,`
     * `ac` → `accumulate`
     * `a` → `add`
     * `r` → `replace`
-* `:Animdel` → `animation-delay:$,`
-* `:Animdir` → `animation-direction:$,`
+* `Animdel(…)` → `animation-delay:$,`
+* `Animdir(…)` → `animation-direction:$,`
     * `a` → `alternate`
     * `are` → `alternate-reverse`
     * `nr` → `normal`
     * `re` → `reverse`
-* `:Animdur` → `animation-duration:$,`
-* `:Animfm` → `animation-fill-mode:$,`
+* `Animdur(…)` → `animation-duration:$,`
+* `Animfm(…)` → `animation-fill-mode:$,`
     * `b` → `backwards`
     * `bt` → `both`
     * `f` → `forwards`
     * `n` → `none`
-* `:Animic` → `animation-iteration-count:$,`
+* `Animic(…)` → `animation-iteration-count:$,`
     * `i` → `infinite`
-* `:Animn` → `animation-name:$,`
+* `Animn(…)` → `animation-name:$,`
     * `n` → `none`
-* `:Animps` → `animation-play-state:$,`
+* `Animps(…)` → `animation-play-state:$,`
     * `pa` → `paused`
     * `ru` → `running`
-* `:Animt` → `animation-timeline:$,`
+* `Animt(…)` → `animation-timeline:$,`
     * `a` → `auto`
     * `n` → `none`
-* `:Animtf` → `animation-timing-function:$,`
+* `Animtf(…)` → `animation-timing-function:$,`
     * `cb` → `cubic-bezier(.1,.7,1,.1)`
     * `ea` → `ease`
     * `ei` → `ease-in`
@@ -174,7 +174,7 @@ CSS Classes
     * `s` → `start`
     * `se` → `step-end`
     * `ss` → `step-start`
-* `:Ap` → `appearance:$_`
+* `Ap(…)` → `appearance:$_`
     * `a` → `auto`
     * `b` → `button`
     * `c` → `checkbox`
@@ -191,14 +191,14 @@ CSS Classes
     * `sb` → `square-button`
     * `ta` → `textarea`
     * `tf` → `textfield`
-* `:Aspr` → `aspect-ratio:$_`
+* `Aspr(…)` → `aspect-ratio:$_`
     * `a` → `auto`
-* `:Bckdf` → `backdrop-filter:$_`
+* `Bckdf(…)` → `backdrop-filter:$_`
     * `n` → `none`
-* `:Bfv` → `backface-visibility:$_`
+* `Bfv(…)` → `backface-visibility:$_`
     * `h` → `hidden`
     * `v` → `visible`
-* `:Bg` → `background:$_`
+* `Bg(…)` → `background:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `a` → `auto`
@@ -228,11 +228,11 @@ CSS Classes
     * `xs` → `x-start`
     * `ye` → `y-end`
     * `ys` → `y-start`
-* `:Bga` → `background-attachment:$,`
+* `Bga(…)` → `background-attachment:$,`
     * `f` → `fixed`
     * `lo` → `local`
     * `s` → `scroll`
-* `:Bgbm` → `background-blend-mode:$,`
+* `Bgbm(…)` → `background-blend-mode:$,`
     * `c` → `color`
     * `cob` → `color-burn`
     * `cod` → `color-dodge`
@@ -251,21 +251,21 @@ CSS Classes
     * `s` → `saturation`
     * `sc` → `screen`
     * `sl` → `soft-light`
-* `:Bgbk` → `background-break:$_`
+* `Bgbk(…)` → `background-break:$_`
     * `bb` → `bounding-box`
     * `c` → `continuous`
     * `eb` → `each-box`
-* `:Bgc` → `background-color:$_`
+* `Bgc(…)` → `background-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bgi` → `background-image:$,`
+* `Bgi(…)` → `background-image:$,`
     * `n` → `none`
-* `:Bgo` → `background-origin:$,`
+* `Bgo(…)` → `background-origin:$,`
     * `bb` → `border-box`
     * `cb` → `content-box`
     * `pb` → `padding-box`
-* `:Bgp` → `background-position:$_`
+* `Bgp(…)` → `background-position:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `b` → `bottom`
@@ -277,7 +277,7 @@ CSS Classes
     * `xs` → `x-start`
     * `ye` → `y-end`
     * `ys` → `y-start`
-* `:Bgpx` → `background-position-x:$_`
+* `Bgpx(…)` → `background-position-x:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `c` → `center`
@@ -285,25 +285,25 @@ CSS Classes
     * `r` → `right`
     * `xe` → `x-end`
     * `xs` → `x-start`
-* `:Bgpy` → `background-position-y:$_`
+* `Bgpy(…)` → `background-position-y:$_`
     * `b` → `bottom`
     * `c` → `center`
     * `t` → `top`
     * `ye` → `y-end`
     * `ys` → `y-start`
-* `:Bgr` → `background-repeat:$_`
+* `Bgr(…)` → `background-repeat:$_`
     * `nre` → `no-repeat`
     * `re` → `repeat`
     * `rx` → `repeat-x`
     * `ry` → `repeat-y`
     * `ro` → `round`
     * `sp` → `space`
-* `:Bgz` → `background-size:$_`
+* `Bgz(…)` → `background-size:$_`
     * `a` → `auto`
     * `ct` → `contain`
     * `cv` → `cover`
-* `:Blkz` → `block-size:$_`
-* `:Bd` → `border:$_`
+* `Blkz(…)` → `block-size:$_`
+* `Bd(…)` → `border:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -321,7 +321,7 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdend` → `border-$e:$_`
+* `Bdend(…)` → `border-$e:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -339,11 +339,11 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdendc` → `border-$e-color:$_`
+* `Bdendc(…)` → `border-$e-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdends` → `border-$e-style:$_`
+* `Bdends(…)` → `border-$e-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -356,50 +356,11 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Bdendw` → `border-$e-width:$_`
+* `Bdendw(…)` → `border-$e-width:$_`
     * `m` → `medium`
     * `tc` → `thick`
     * `tn` → `thin`
-* `:Bdstart` → `border-$s:$_`
-    * `cc` → `currentcolor`
-    * `ds` → `dashed`
-    * `dtds` → `dot-dash`
-    * `dtdtds` → `dot-dot-dash`
-    * `dt` → `dotted`
-    * `db` → `double`
-    * `g` → `groove`
-    * `h` → `hidden`
-    * `i` → `inset`
-    * `m` → `medium`
-    * `n` → `none`
-    * `o` → `outset`
-    * `r` → `ridge`
-    * `s` → `solid`
-    * `tc` → `thick`
-    * `tn` → `thin`
-    * `tr` → `transparent`
-* `:Bdstartc` → `border-$s-color:$_`
-    * `cc` → `currentcolor`
-    * `n` → `none`
-    * `tr` → `transparent`
-* `:Bdstarts` → `border-$s-style:$_`
-    * `ds` → `dashed`
-    * `dtds` → `dot-dash`
-    * `dtdtds` → `dot-dot-dash`
-    * `dt` → `dotted`
-    * `db` → `double`
-    * `g` → `groove`
-    * `h` → `hidden`
-    * `i` → `inset`
-    * `n` → `none`
-    * `o` → `outset`
-    * `r` → `ridge`
-    * `s` → `solid`
-* `:Bdstartw` → `border-$s-width:$_`
-    * `m` → `medium`
-    * `tc` → `thick`
-    * `tn` → `thin`
-* `:Bdblk` → `border-block:$_`
+* `Bdstart(…)` → `border-$s:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -417,33 +378,11 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdblkc` → `border-block-color:$_`
+* `Bdstartc(…)` → `border-$s-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdblke` → `border-block-end:$_`
-    * `cc` → `currentcolor`
-    * `ds` → `dashed`
-    * `dtds` → `dot-dash`
-    * `dtdtds` → `dot-dot-dash`
-    * `dt` → `dotted`
-    * `db` → `double`
-    * `g` → `groove`
-    * `h` → `hidden`
-    * `i` → `inset`
-    * `m` → `medium`
-    * `n` → `none`
-    * `o` → `outset`
-    * `r` → `ridge`
-    * `s` → `solid`
-    * `tc` → `thick`
-    * `tn` → `thin`
-    * `tr` → `transparent`
-* `:Bdblkec` → `border-block-end-color:$_`
-    * `cc` → `currentcolor`
-    * `n` → `none`
-    * `tr` → `transparent`
-* `:Bdblkes` → `border-block-end-style:$_`
+* `Bdstarts(…)` → `border-$s-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -456,11 +395,11 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Bdblkew` → `border-block-end-width:$_`
+* `Bdstartw(…)` → `border-$s-width:$_`
     * `m` → `medium`
     * `tc` → `thick`
     * `tn` → `thin`
-* `:Bdblks` → `border-block-start:$_`
+* `Bdblk(…)` → `border-block:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -478,45 +417,11 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdblksc` → `border-block-start-color:$_`
+* `Bdblkc(…)` → `border-block-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdblkss` → `border-block-start-style:$_`
-    * `ds` → `dashed`
-    * `dtds` → `dot-dash`
-    * `dtdtds` → `dot-dot-dash`
-    * `dt` → `dotted`
-    * `db` → `double`
-    * `g` → `groove`
-    * `h` → `hidden`
-    * `i` → `inset`
-    * `n` → `none`
-    * `o` → `outset`
-    * `r` → `ridge`
-    * `s` → `solid`
-* `:Bdblksw` → `border-block-start-width:$_`
-    * `m` → `medium`
-    * `tc` → `thick`
-    * `tn` → `thin`
-* `:Bdblkst` → `border-block-style:$_`
-    * `ds` → `dashed`
-    * `dtds` → `dot-dash`
-    * `dtdtds` → `dot-dot-dash`
-    * `dt` → `dotted`
-    * `db` → `double`
-    * `g` → `groove`
-    * `h` → `hidden`
-    * `i` → `inset`
-    * `n` → `none`
-    * `o` → `outset`
-    * `r` → `ridge`
-    * `s` → `solid`
-* `:Bdblkw` → `border-block-width:$_`
-    * `m` → `medium`
-    * `tc` → `thick`
-    * `tn` → `thin`
-* `:Bdb` → `border-bottom:$_`
+* `Bdblke(…)` → `border-block-end:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -534,16 +439,11 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdbendrs` → `border-bottom-$e-radius:$_`
-* `:Bdbstartrs` → `border-bottom-$s-radius:$_`
-* `:Bdbc` → `border-bottom-color:$_`
+* `Bdblkec(…)` → `border-block-end-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdblrs` → `border-bottom-left-radius:$_`
-* `:Bdbrs` → `border-bottom-left-radius:$_;border-bottom-right-radius:$_`
-* `:Bdbrrs` → `border-bottom-right-radius:$_`
-* `:Bdbs` → `border-bottom-style:$_`
+* `Bdblkes(…)` → `border-block-end-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -556,20 +456,120 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Bdbw` → `border-bottom-width:$_`
+* `Bdblkew(…)` → `border-block-end-width:$_`
     * `m` → `medium`
     * `tc` → `thick`
     * `tn` → `thin`
-* `:Bdcl` → `border-collapse:$_`
+* `Bdblks(…)` → `border-block-start:$_`
+    * `cc` → `currentcolor`
+    * `ds` → `dashed`
+    * `dtds` → `dot-dash`
+    * `dtdtds` → `dot-dot-dash`
+    * `dt` → `dotted`
+    * `db` → `double`
+    * `g` → `groove`
+    * `h` → `hidden`
+    * `i` → `inset`
+    * `m` → `medium`
+    * `n` → `none`
+    * `o` → `outset`
+    * `r` → `ridge`
+    * `s` → `solid`
+    * `tc` → `thick`
+    * `tn` → `thin`
+    * `tr` → `transparent`
+* `Bdblksc(…)` → `border-block-start-color:$_`
+    * `cc` → `currentcolor`
+    * `n` → `none`
+    * `tr` → `transparent`
+* `Bdblkss(…)` → `border-block-start-style:$_`
+    * `ds` → `dashed`
+    * `dtds` → `dot-dash`
+    * `dtdtds` → `dot-dot-dash`
+    * `dt` → `dotted`
+    * `db` → `double`
+    * `g` → `groove`
+    * `h` → `hidden`
+    * `i` → `inset`
+    * `n` → `none`
+    * `o` → `outset`
+    * `r` → `ridge`
+    * `s` → `solid`
+* `Bdblksw(…)` → `border-block-start-width:$_`
+    * `m` → `medium`
+    * `tc` → `thick`
+    * `tn` → `thin`
+* `Bdblkst(…)` → `border-block-style:$_`
+    * `ds` → `dashed`
+    * `dtds` → `dot-dash`
+    * `dtdtds` → `dot-dot-dash`
+    * `dt` → `dotted`
+    * `db` → `double`
+    * `g` → `groove`
+    * `h` → `hidden`
+    * `i` → `inset`
+    * `n` → `none`
+    * `o` → `outset`
+    * `r` → `ridge`
+    * `s` → `solid`
+* `Bdblkw(…)` → `border-block-width:$_`
+    * `m` → `medium`
+    * `tc` → `thick`
+    * `tn` → `thin`
+* `Bdb(…)` → `border-bottom:$_`
+    * `cc` → `currentcolor`
+    * `ds` → `dashed`
+    * `dtds` → `dot-dash`
+    * `dtdtds` → `dot-dot-dash`
+    * `dt` → `dotted`
+    * `db` → `double`
+    * `g` → `groove`
+    * `h` → `hidden`
+    * `i` → `inset`
+    * `m` → `medium`
+    * `n` → `none`
+    * `o` → `outset`
+    * `r` → `ridge`
+    * `s` → `solid`
+    * `tc` → `thick`
+    * `tn` → `thin`
+    * `tr` → `transparent`
+* `Bdbendrs(…)` → `border-bottom-$e-radius:$_`
+* `Bdbstartrs(…)` → `border-bottom-$s-radius:$_`
+* `Bdbc(…)` → `border-bottom-color:$_`
+    * `cc` → `currentcolor`
+    * `n` → `none`
+    * `tr` → `transparent`
+* `Bdblrs(…)` → `border-bottom-left-radius:$_`
+* `Bdbrs(…)` → `border-bottom-left-radius:$_;border-bottom-right-radius:$_`
+* `Bdbrrs(…)` → `border-bottom-right-radius:$_`
+* `Bdbs(…)` → `border-bottom-style:$_`
+    * `ds` → `dashed`
+    * `dtds` → `dot-dash`
+    * `dtdtds` → `dot-dot-dash`
+    * `dt` → `dotted`
+    * `db` → `double`
+    * `g` → `groove`
+    * `h` → `hidden`
+    * `i` → `inset`
+    * `n` → `none`
+    * `o` → `outset`
+    * `r` → `ridge`
+    * `s` → `solid`
+* `Bdbw(…)` → `border-bottom-width:$_`
+    * `m` → `medium`
+    * `tc` → `thick`
+    * `tn` → `thin`
+* `Bdcl(…)` → `border-collapse:$_`
     * `c` → `collapse`
     * `s` → `separate`
-* `:Bdc` → `border-color:$_`
+* `Bdc(…)` → `border-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdeers` → `border-end-end-radius:$_`
-* `:Bdesrs` → `border-end-start-radius:$_`
-* `:Bdi` → `border-image:$_`
+* `Bdeers(…)` → `border-end-end-radius:$_`
+* `Bdesrs(…)` → `border-end-start-radius:$_`
+* `Bdi(…)` → `border-image:$_`
     * `a` → `auto`
     * `f` → `fill`
     * `n` → `none`
@@ -577,19 +577,19 @@ CSS Classes
     * `ro` → `round`
     * `sp` → `space`
     * `st` → `stretch`
-* `:Bdio` → `border-image-outset:$_`
-* `:Bdir` → `border-image-repeat:$_`
+* `Bdio(…)` → `border-image-outset:$_`
+* `Bdir(…)` → `border-image-repeat:$_`
     * `re` → `repeat`
     * `ro` → `round`
     * `sp` → `space`
     * `st` → `stretch`
-* `:Bdisl` → `border-image-slice:$_`
+* `Bdisl(…)` → `border-image-slice:$_`
     * `f` → `fill`
-* `:Bdiso` → `border-image-source:$_`
+* `Bdiso(…)` → `border-image-source:$_`
     * `n` → `none`
-* `:Bdiw` → `border-image-width:$_`
+* `Bdiw(…)` → `border-image-width:$_`
     * `a` → `auto`
-* `:Bdinl` → `border-inline:$_`
+* `Bdinl(…)` → `border-inline:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -607,50 +607,11 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdinlc` → `border-inline-color:$_`
+* `Bdinlc(…)` → `border-inline-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdinlend` → `border-inline-end:$_`
-    * `cc` → `currentcolor`
-    * `ds` → `dashed`
-    * `dtds` → `dot-dash`
-    * `dtdtds` → `dot-dot-dash`
-    * `dt` → `dotted`
-    * `db` → `double`
-    * `g` → `groove`
-    * `h` → `hidden`
-    * `i` → `inset`
-    * `m` → `medium`
-    * `n` → `none`
-    * `o` → `outset`
-    * `r` → `ridge`
-    * `s` → `solid`
-    * `tc` → `thick`
-    * `tn` → `thin`
-    * `tr` → `transparent`
-* `:Bdinlendc` → `border-inline-end-color:$_`
-    * `cc` → `currentcolor`
-    * `n` → `none`
-    * `tr` → `transparent`
-* `:Bdinlends` → `border-inline-end-style:$_`
-    * `ds` → `dashed`
-    * `dtds` → `dot-dash`
-    * `dtdtds` → `dot-dot-dash`
-    * `dt` → `dotted`
-    * `db` → `double`
-    * `g` → `groove`
-    * `h` → `hidden`
-    * `i` → `inset`
-    * `n` → `none`
-    * `o` → `outset`
-    * `r` → `ridge`
-    * `s` → `solid`
-* `:Bdinlendw` → `border-inline-end-width:$_`
-    * `m` → `medium`
-    * `tc` → `thick`
-    * `tn` → `thin`
-* `:Bdinlstart` → `border-inline-start:$_`
+* `Bdinlend(…)` → `border-inline-end:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -668,11 +629,11 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdinlstartc` → `border-inline-start-color:$_`
+* `Bdinlendc(…)` → `border-inline-end-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdinlstarts` → `border-inline-start-style:$_`
+* `Bdinlends(…)` → `border-inline-end-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -685,16 +646,11 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Bdinlstartw` → `border-inline-start-width:$_`
+* `Bdinlendw(…)` → `border-inline-end-width:$_`
     * `m` → `medium`
     * `tc` → `thick`
     * `tn` → `thin`
-* `:Bdinls` → `border-inline-style:$_`
-* `:Bdinlw` → `border-inline-width:$_`
-    * `m` → `medium`
-    * `tc` → `thick`
-    * `tn` → `thin`
-* `:Bdl` → `border-left:$_`
+* `Bdinlstart(…)` → `border-inline-start:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -712,11 +668,11 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdlc` → `border-left-color:$_`
+* `Bdinlstartc(…)` → `border-inline-start-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdls` → `border-left-style:$_`
+* `Bdinlstarts(…)` → `border-inline-start-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -729,13 +685,16 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Bdlw` → `border-left-width:$_`
+* `Bdinlstartw(…)` → `border-inline-start-width:$_`
     * `m` → `medium`
     * `tc` → `thick`
     * `tn` → `thin`
-* `:Bdx` → `border-left:$_;border-right:$_`
-* `:Bdrs` → `border-radius:$_`
-* `:Bdr` → `border-right:$_`
+* `Bdinls(…)` → `border-inline-style:$_`
+* `Bdinlw(…)` → `border-inline-width:$_`
+    * `m` → `medium`
+    * `tc` → `thick`
+    * `tn` → `thin`
+* `Bdl(…)` → `border-left:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -753,11 +712,11 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdrc` → `border-right-color:$_`
+* `Bdlc(…)` → `border-left-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdrst` → `border-right-style:$_`
+* `Bdls(…)` → `border-left-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -770,15 +729,56 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Bdrw` → `border-right-width:$_`
+* `Bdlw(…)` → `border-left-width:$_`
     * `m` → `medium`
     * `tc` → `thick`
     * `tn` → `thin`
-* `:Bdsp` → `border-spacing:$_`
+* `Bdx(…)` → `border-left:$_;border-right:$_`
+* `Bdrs(…)` → `border-radius:$_`
+* `Bdr(…)` → `border-right:$_`
+    * `cc` → `currentcolor`
+    * `ds` → `dashed`
+    * `dtds` → `dot-dash`
+    * `dtdtds` → `dot-dot-dash`
+    * `dt` → `dotted`
+    * `db` → `double`
+    * `g` → `groove`
+    * `h` → `hidden`
+    * `i` → `inset`
+    * `m` → `medium`
+    * `n` → `none`
+    * `o` → `outset`
+    * `r` → `ridge`
+    * `s` → `solid`
+    * `tc` → `thick`
+    * `tn` → `thin`
+    * `tr` → `transparent`
+* `Bdrc(…)` → `border-right-color:$_`
+    * `cc` → `currentcolor`
+    * `n` → `none`
+    * `tr` → `transparent`
+* `Bdrst(…)` → `border-right-style:$_`
+    * `ds` → `dashed`
+    * `dtds` → `dot-dash`
+    * `dtdtds` → `dot-dot-dash`
+    * `dt` → `dotted`
+    * `db` → `double`
+    * `g` → `groove`
+    * `h` → `hidden`
+    * `i` → `inset`
+    * `n` → `none`
+    * `o` → `outset`
+    * `r` → `ridge`
+    * `s` → `solid`
+* `Bdrw(…)` → `border-right-width:$_`
+    * `m` → `medium`
+    * `tc` → `thick`
+    * `tn` → `thin`
+* `Bdsp(…)` → `border-spacing:$_`
     * `i` → `inherit`
-* `:Bdsers` → `border-start-end-radius:$_`
-* `:Bdssrs` → `border-start-start-radius:$_`
-* `:Bds` → `border-style:$_`
+* `Bdsers(…)` → `border-start-end-radius:$_`
+* `Bdssrs(…)` → `border-start-start-radius:$_`
+* `Bds(…)` → `border-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -791,7 +791,7 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Bdt` → `border-top:$_`
+* `Bdt(…)` → `border-top:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -809,20 +809,20 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Bdtendrs` → `border-top-$e-radius:$_`
-* `:Bdendrs` → `border-top-$e-radius:$_;border-bottom-$e-radius:$_`
-* `:Bdtstartrs` → `border-top-$s-radius:$_`
-* `:Bdstartrs` → `border-top-$s-radius:$_;border-bottom-$s-radius:$_`
-* `:Bdtc` → `border-top-color:$_`
+* `Bdtendrs(…)` → `border-top-$e-radius:$_`
+* `Bdendrs(…)` → `border-top-$e-radius:$_;border-bottom-$e-radius:$_`
+* `Bdtstartrs(…)` → `border-top-$s-radius:$_`
+* `Bdstartrs(…)` → `border-top-$s-radius:$_;border-bottom-$s-radius:$_`
+* `Bdtc(…)` → `border-top-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bdtlrs` → `border-top-left-radius:$_`
-* `:Bdlrs` → `border-top-left-radius:$_;border-bottom-left-radius:$_`
-* `:Bdtrs` → `border-top-left-radius:$_;border-top-right-radius:$_`
-* `:Bdtrrs` → `border-top-right-radius:$_`
-* `:Bdrrs` → `border-top-right-radius:$_;border-bottom-right-radius:$_`
-* `:Bdts` → `border-top-style:$_`
+* `Bdtlrs(…)` → `border-top-left-radius:$_`
+* `Bdlrs(…)` → `border-top-left-radius:$_;border-bottom-left-radius:$_`
+* `Bdtrs(…)` → `border-top-left-radius:$_;border-top-right-radius:$_`
+* `Bdtrrs(…)` → `border-top-right-radius:$_`
+* `Bdrrs(…)` → `border-top-right-radius:$_;border-bottom-right-radius:$_`
+* `Bdts(…)` → `border-top-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -835,38 +835,38 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Bdtw` → `border-top-width:$_`
+* `Bdtw(…)` → `border-top-width:$_`
     * `m` → `medium`
     * `tc` → `thick`
     * `tn` → `thin`
-* `:Bdy` → `border-top:$_;border-bottom:$_`
-* `:Bdw` → `border-width:$_`
+* `Bdy(…)` → `border-top:$_;border-bottom:$_`
+* `Bdw(…)` → `border-width:$_`
     * `m` → `medium`
     * `tc` → `thick`
     * `tn` → `thin`
-* `:Bdb1` → `border-width:0 0 1px;border-style:solid`
-* `:Bdx1` → `border-width:0 1px;border-style:solid`
-* `:Bdend1` → `border-width:0;border-$e-width:1px;border-style:solid`
-* `:Bdstart1` → `border-width:0;border-$s-width:1px;border-style:solid`
-* `:Bdl1` → `border-width:0;border-left-width:1px;border-style:solid`
-* `:Bdr1` → `border-width:0;border-right-width:1px;border-style:solid`
-* `:Bdt1` → `border-width:1px 0 0 0;border-style:solid`
-* `:Bdy1` → `border-width:1px 0;border-style:solid`
-* `:Bd1` → `border-width:1px;border-style:solid`
-* `:B` → `bottom:$_`
+* `Bdb1(…)` → `border-width:0 0 1px;border-style:solid`
+* `Bdx1(…)` → `border-width:0 1px;border-style:solid`
+* `Bdend1(…)` → `border-width:0;border-$e-width:1px;border-style:solid`
+* `Bdstart1(…)` → `border-width:0;border-$s-width:1px;border-style:solid`
+* `Bdl1(…)` → `border-width:0;border-left-width:1px;border-style:solid`
+* `Bdr1(…)` → `border-width:0;border-right-width:1px;border-style:solid`
+* `Bdt1(…)` → `border-width:1px 0 0 0;border-style:solid`
+* `Bdy1(…)` → `border-width:1px 0;border-style:solid`
+* `Bd1(…)` → `border-width:1px;border-style:solid`
+* `B(…)` → `bottom:$_`
     * `a` → `auto`
-* `:Bxdb` → `box-decoration-break:$_`
+* `Bxdb(…)` → `box-decoration-break:$_`
     * `c` → `clone`
     * `s` → `slice`
-* `:Bxsh` → `box-shadow:$,`
+* `Bxsh(…)` → `box-shadow:$,`
     * `cc` → `currentcolor`
     * `i` → `inset`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Bxz` → `box-sizing:$_`
+* `Bxz(…)` → `box-sizing:$_`
     * `bb` → `border-box`
     * `cb` → `content-box`
-* `:Bka` → `break-after:$_`
+* `Bka(…)` → `break-after:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `al` → `always`
@@ -882,7 +882,7 @@ CSS Classes
     * `re` → `region`
     * `r` → `right`
     * `ver` → `verso`
-* `:Bkb` → `break-before:$_`
+* `Bkb(…)` → `break-before:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `al` → `always`
@@ -898,21 +898,21 @@ CSS Classes
     * `re` → `region`
     * `r` → `right`
     * `ver` → `verso`
-* `:Bki` → `break-inside:$_`
+* `Bki(…)` → `break-inside:$_`
     * `a` → `auto`
     * `av` → `avoid`
     * `avc` → `avoid-column`
     * `avp` → `avoid-page`
     * `avr` → `avoid-region`
-* `:Cps` → `caption-side:$_`
+* `Cps(…)` → `caption-side:$_`
     * `b` → `bottom`
     * `t` → `top`
-* `:Carc` → `caret-color:$_`
+* `Carc(…)` → `caret-color:$_`
     * `a` → `auto`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Cl` → `clear:$_`
+* `Cl(…)` → `clear:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `be` → `block-end`
@@ -925,9 +925,9 @@ CSS Classes
     * `n` → `none`
     * `r` → `right`
     * `t` → `top`
-* `:Cp` → `clip:$_`
+* `Cp(…)` → `clip:$_`
     * `a` → `auto`
-* `:Cpp` → `clip-path:$_`
+* `Cpp(…)` → `clip-path:$_`
     * `bb` → `border-box`
     * `cb` → `content-box`
     * `fb` → `fill-box`
@@ -936,24 +936,24 @@ CSS Classes
     * `pb` → `padding-box`
     * `sb` → `stroke-box`
     * `vb` → `view-box`
-* `:C` → `color:$_`
+* `C(…)` → `color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Cs` → `color-scheme:$_`
+* `Cs(…)` → `color-scheme:$_`
     * `d` → `dark`
     * `l` → `light`
     * `nr` → `normal`
     * `o` → `only`
-* `:Colmc` → `column-count:$_`
+* `Colmc(…)` → `column-count:$_`
     * `a` → `auto`
-* `:Colmf` → `column-fill:$_`
+* `Colmf(…)` → `column-fill:$_`
     * `a` → `auto`
     * `b` → `balance`
     * `ba` → `balance-all`
-* `:Colmg` → `column-gap:$_`
+* `Colmg(…)` → `column-gap:$_`
     * `nr` → `normal`
-* `:Colmr` → `column-rule:$_`
+* `Colmr(…)` → `column-rule:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -968,11 +968,11 @@ CSS Classes
     * `r` → `ridge`
     * `s` → `solid`
     * `tr` → `transparent`
-* `:Colmrc` → `column-rule-color:$_`
+* `Colmrc(…)` → `column-rule-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Colmrs` → `column-rule-style:$_`
+* `Colmrs(…)` → `column-rule-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -985,15 +985,15 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Colmrw` → `column-rule-width:$_`
-* `:Colms` → `column-span:$_`
+* `Colmrw(…)` → `column-rule-width:$_`
+* `Colms(…)` → `column-span:$_`
     * `n` → `none`
-* `:Colmw` → `column-width:$_`
+* `Colmw(…)` → `column-width:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Colm` → `columns:$_`
-* `:Ct` → `contain:$_`
+* `Colm(…)` → `columns:$_`
+* `Ct(…)` → `contain:$_`
     * `c` → `content`
     * `iz` → `inline-size`
     * `l` → `layout`
@@ -1002,48 +1002,48 @@ CSS Classes
     * `z` → `size`
     * `st` → `strict`
     * `s` → `style`
-* `:Ctiblkz` → `contain-intrinsic-block-size:$_`
+* `Ctiblkz(…)` → `contain-intrinsic-block-size:$_`
     * `a` → `auto`
     * `n` → `none`
-* `:Ctih` → `contain-intrinsic-height:$_`
+* `Ctih(…)` → `contain-intrinsic-height:$_`
     * `a` → `auto`
     * `n` → `none`
-* `:Ctiiz` → `contain-intrinsic-inline-size:$_`
+* `Ctiiz(…)` → `contain-intrinsic-inline-size:$_`
     * `a` → `auto`
     * `n` → `none`
-* `:Ctiz` → `contain-intrinsic-size:$_`
+* `Ctiz(…)` → `contain-intrinsic-size:$_`
     * `a` → `auto`
     * `n` → `none`
-* `:Ctiw` → `contain-intrinsic-width:$_`
+* `Ctiw(…)` → `contain-intrinsic-width:$_`
     * `a` → `auto`
     * `n` → `none`
-* `:Ctr` → `container:$_`
+* `Ctr(…)` → `container:$_`
     * `iz` → `inline-size`
     * `nr` → `normal`
     * `z` → `size`
-* `:Ctrn` → `container-name:$_`
-* `:Ctrt` → `container-type:$_`
+* `Ctrn(…)` → `container-name:$_`
+* `Ctrt(…)` → `container-type:$_`
     * `iz` → `inline-size`
     * `nr` → `normal`
     * `z` → `size`
-* `:Cnt` → `content:$_`
+* `Cnt(…)` → `content:$_`
     * `cq` → `close-quote`
     * `ncq` → `no-close-quote`
     * `noq` → `no-open-quote`
     * `n` → `none`
     * `nr` → `normal`
     * `oq` → `open-quote`
-* `:Cntv` → `content-visibility:$_`
+* `Cntv(…)` → `content-visibility:$_`
     * `a` → `auto`
     * `h` → `hidden`
     * `v` → `visible`
-* `:Coi` → `counter-increment:$_`
+* `Coi(…)` → `counter-increment:$_`
     * `n` → `none`
-* `:Cor` → `counter-reset:$_`
+* `Cor(…)` → `counter-reset:$_`
     * `n` → `none`
-* `:Cos` → `counter-set:$_`
+* `Cos(…)` → `counter-set:$_`
     * `n` → `none`
-* `:Cur` → `cursor:$_`
+* `Cur(…)` → `cursor:$_`
     * `as` → `all-scroll`
     * `a` → `auto`
     * `c` → `cell`
@@ -1079,10 +1079,10 @@ CSS Classes
     * `w` → `wait`
     * `zi` → `zoom-in`
     * `zo` → `zoom-out`
-* `:Dir` → `direction:$_`
+* `Dir(…)` → `direction:$_`
     * `l` → `ltr`
     * `r` → `rtl`
-* `:D` → `display:$_`
+* `D(…)` → `display:$_`
     * `b` → `block`
     * `cp` → `compact`
     * `c` → `contents`
@@ -1111,37 +1111,37 @@ CSS Classes
     * `tbhg` → `table-header-group`
     * `tbr` → `table-row`
     * `tbrg` → `table-row-group`
-* `:Lc` → `display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:$_;line-clamp:$_`
-* `:Ec` → `empty-cells:$_`
+* `Lc(…)` → `display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:$_;line-clamp:$_`
+* `Ec(…)` → `empty-cells:$_`
     * `h` → `hide`
     * `s` → `show`
-* `:Fill` → `fill:$_`
+* `Fill(…)` → `fill:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Fil` → `filter:$_`
+* `Fil(…)` → `filter:$_`
     * `n` → `none`
-* `:Blur` → `filter:blur($,)`
-* `:Brightness` → `filter:brightness($,)`
-* `:Contrast` → `filter:contrast($,)`
-* `:Dropshadow` → `filter:drop-shadow($,)`
-* `:Grayscale` → `filter:grayscale($,)`
-* `:Huerotate` → `filter:hue-rotate($,)`
-* `:Invert` → `filter:invert($,)`
-* `:Opacity` → `filter:opacity($,)`
-* `:Saturate` → `filter:saturate($,)`
-* `:Sepia` → `filter:sepia($,)`
-* `:Fx` → `flex:$_`
+* `Blur(…)` → `filter:blur($,)`
+* `Brightness(…)` → `filter:brightness($,)`
+* `Contrast(…)` → `filter:contrast($,)`
+* `Dropshadow(…)` → `filter:drop-shadow($,)`
+* `Grayscale(…)` → `filter:grayscale($,)`
+* `Huerotate(…)` → `filter:hue-rotate($,)`
+* `Invert(…)` → `filter:invert($,)`
+* `Opacity(…)` → `filter:opacity($,)`
+* `Saturate(…)` → `filter:saturate($,)`
+* `Sepia(…)` → `filter:sepia($,)`
+* `Fx(…)` → `flex:$_`
     * `cn` → `content`
     * `n` → `none`
-* `:Fxb` → `flex-basis:$_`
+* `Fxb(…)` → `flex-basis:$_`
     * `cn` → `content`
-* `:Fxd` → `flex-direction:$_`
+* `Fxd(…)` → `flex-direction:$_`
     * `c` → `column`
     * `cre` → `column-reverse`
     * `r` → `row`
     * `rre` → `row-reverse`
-* `:Fxf` → `flex-flow:$_`
+* `Fxf(…)` → `flex-flow:$_`
     * `c` → `column`
     * `cre` → `column-reverse`
     * `nw` → `nowrap`
@@ -1149,13 +1149,13 @@ CSS Classes
     * `rre` → `row-reverse`
     * `w` → `wrap`
     * `wre` → `wrap-reverse`
-* `:Fxg` → `flex-grow:$_`
-* `:Fxs` → `flex-shrink:$_`
-* `:Fxw` → `flex-wrap:$_`
+* `Fxg(…)` → `flex-grow:$_`
+* `Fxs(…)` → `flex-shrink:$_`
+* `Fxw(…)` → `flex-wrap:$_`
     * `nw` → `nowrap`
     * `w` → `wrap`
     * `wre` → `wrap-reverse`
-* `:Fl` → `float:$_`
+* `Fl(…)` → `float:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `be` → `block-end`
@@ -1170,7 +1170,7 @@ CSS Classes
     * `sb` → `snap-block`
     * `si` → `snap-inline`
     * `t` → `top`
-* `:F` → `font:$_`
+* `F(…)` → `font:$_`
     * `cs` → `"Comic Sans MS","Monotype Corsiva",cursive`
     * `tnr` → `"Times New Roman",Times,Baskerville,Georgia,serif`
     * `apc` → `all-petite-caps`
@@ -1211,7 +1211,7 @@ CSS Classes
     * `xs` → `x-small`
     * `xxl` → `xx-large`
     * `xxs` → `xx-small`
-* `:Ff` → `font-family:$,`
+* `Ff(…)` → `font-family:$,`
     * `cs` → `"Comic Sans MS","Monotype Corsiva",cursive`
     * `tnr` → `"Times New Roman",Times,Baskerville,Georgia,serif`
     * `a` → `Arial,"Helvetica Neue",Helvetica,sans-serif`
@@ -1223,22 +1223,22 @@ CSS Classes
     * `ssf` → `sans-serif`
     * `sf` → `serif`
     * `v` → `Verdana,Geneva,sans-serif`
-* `:Ffs` → `font-feature-settings:$_`
+* `Ffs(…)` → `font-feature-settings:$_`
     * `nr` → `normal`
-* `:Fk` → `font-kearning:$_`
+* `Fk(…)` → `font-kearning:$_`
     * `a` → `auto`
     * `n` → `none`
     * `nr` → `normal`
-* `:Flo` → `font-language-override:$_`
+* `Flo(…)` → `font-language-override:$_`
     * `nr` → `normal`
-* `:Foz` → `font-optical-sizing:$_`
+* `Foz(…)` → `font-optical-sizing:$_`
     * `a` → `auto`
     * `n` → `none`
-* `:Fp` → `font-palette:$_`
+* `Fp(…)` → `font-palette:$_`
     * `d` → `dark`
     * `l` → `light`
     * `nr` → `normal`
-* `:Fz` → `font-size:$_`
+* `Fz(…)` → `font-size:$_`
     * `l` → `large`
     * `lr` → `larger`
     * `m` → `medium`
@@ -1248,14 +1248,14 @@ CSS Classes
     * `xs` → `x-small`
     * `xxl` → `xx-large`
     * `xxs` → `xx-small`
-* `:Fza` → `font-size-adjust:$_`
+* `Fza(…)` → `font-size-adjust:$_`
     * `ch` → `cap-height`
     * `cw` → `ch-width`
     * `eh` → `ex-height`
     * `ih` → `ic-height`
     * `iw` → `ic-width`
     * `n` → `none`
-* `:Fst` → `font-stretch:$_`
+* `Fst(…)` → `font-stretch:$_`
     * `c` → `condensed`
     * `ex` → `expanded`
     * `ec` → `extra-condensed`
@@ -1265,16 +1265,16 @@ CSS Classes
     * `sme` → `semi-expanded`
     * `uc` → `ultra-condensed`
     * `ue` → `ultra-expanded`
-* `:Fs` → `font-style:$_`
+* `Fs(…)` → `font-style:$_`
     * `i` → `italic`
     * `nr` → `normal`
     * `o` → `oblique`
-* `:Fsy` → `font-synthesis:$_`
+* `Fsy(…)` → `font-synthesis:$_`
     * `n` → `none`
     * `sc` → `small-caps`
     * `s` → `style`
     * `w` → `weight`
-* `:Fv` → `font-variant:$_`
+* `Fv(…)` → `font-variant:$_`
     * `apc` → `all-petite-caps`
     * `asc` → `all-small-caps`
     * `cl` → `common-ligatures`
@@ -1314,10 +1314,10 @@ CSS Classes
     * `tra` → `traditional`
     * `uni` → `unicase`
     * `u` → `unicode`
-* `:Fva` → `font-variant-alternates:$_`
+* `Fva(…)` → `font-variant-alternates:$_`
     * `hf` → `historical-forms`
     * `nr` → `normal`
-* `:Fvc` → `font-variant-caps:$_`
+* `Fvc(…)` → `font-variant-caps:$_`
     * `apc` → `all-petite-caps`
     * `asc` → `all-small-caps`
     * `nr` → `normal`
@@ -1325,7 +1325,7 @@ CSS Classes
     * `sc` → `small-caps`
     * `tc` → `titling-caps`
     * `uni` → `unicase`
-* `:Fvea` → `font-variant-east-asian:$_`
+* `Fvea(…)` → `font-variant-east-asian:$_`
     * `fw` → `full-width`
     * `j04` → `jis04`
     * `j78` → `jis78`
@@ -1336,12 +1336,12 @@ CSS Classes
     * `r` → `ruby`
     * `sim` → `simplified`
     * `tra` → `traditional`
-* `:Fve` → `font-variant-emoji:$_`
+* `Fve(…)` → `font-variant-emoji:$_`
     * `e` → `emoji`
     * `nr` → `normal`
     * `t` → `text`
     * `u` → `unicode`
-* `:Fvl` → `font-variant-ligagures:$_`
+* `Fvl(…)` → `font-variant-ligagures:$_`
     * `cl` → `common-ligatures`
     * `cnt` → `contextual`
     * `dl` → `discretionary-ligatures`
@@ -1352,7 +1352,7 @@ CSS Classes
     * `nhl` → `no-historical-ligatures`
     * `n` → `none`
     * `nr` → `normal`
-* `:Fvn` → `font-variant-numeric:$_`
+* `Fvn(…)` → `font-variant-numeric:$_`
     * `df` → `diagonal-fractions`
     * `ln` → `lining-nums`
     * `nr` → `normal`
@@ -1362,23 +1362,23 @@ CSS Classes
     * `sz` → `slashed-zero`
     * `stf` → `stacked-fractions`
     * `tn` → `tabular-nums`
-* `:Fvp` → `font-variant-position:$_`
+* `Fvp(…)` → `font-variant-position:$_`
     * `nr` → `normal`
     * `sub` → `sub`
     * `sup` → `super`
-* `:Fvs` → `font-variation-settings:$,`
+* `Fvs(…)` → `font-variation-settings:$,`
     * `nr` → `normal`
-* `:Fw` → `font-weight:$_`
+* `Fw(…)` → `font-weight:$_`
     * `b` → `bold`
     * `br` → `bolder`
     * `lir` → `lighter`
     * `nr` → `normal`
-* `:Fca` → `forced-color-adjust:$_`
+* `Fca(…)` → `forced-color-adjust:$_`
     * `a` → `auto`
     * `n` → `none`
     * `ppc` → `preserve-parent-color`
-* `:G` → `gap:$_`
-* `:Gr` → `grid:$_`
+* `G(…)` → `gap:$_`
+* `Gr(…)` → `grid:$_`
     * `a` → `auto`
     * `af` → `auto-flow`
     * `d` → `dense`
@@ -1386,68 +1386,68 @@ CSS Classes
     * `mic` → `min-content`
     * `n` → `none`
     * `s` → `subgrid`
-* `:Gra` → `grid-area:$_`
+* `Gra(…)` → `grid-area:$_`
     * `a` → `auto`
     * `s` → `span`
-* `:Grac` → `grid-auto-columns:$_`
+* `Grac(…)` → `grid-auto-columns:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
     * `s` → `subgrid`
-* `:Graf` → `grid-auto-flow:$_`
+* `Graf(…)` → `grid-auto-flow:$_`
     * `c` → `column`
     * `d` → `dense`
     * `r` → `row`
-* `:Grar` → `grid-auto-rows:$_`
+* `Grar(…)` → `grid-auto-rows:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
     * `s` → `subgrid`
-* `:Grc` → `grid-column:$_`
+* `Grc(…)` → `grid-column:$_`
     * `a` → `auto`
     * `s` → `span`
-* `:Grce` → `grid-column-end:$_`
+* `Grce(…)` → `grid-column-end:$_`
     * `a` → `auto`
     * `s` → `span`
-* `:Grcs` → `grid-column-start:$_`
+* `Grcs(…)` → `grid-column-start:$_`
     * `a` → `auto`
     * `s` → `span`
-* `:Grr` → `grid-row:$_`
+* `Grr(…)` → `grid-row:$_`
     * `a` → `auto`
     * `s` → `span`
-* `:Grre` → `grid-row-end:$_`
+* `Grre(…)` → `grid-row-end:$_`
     * `a` → `auto`
     * `s` → `span`
-* `:Grrs` → `grid-row-start:$_`
+* `Grrs(…)` → `grid-row-start:$_`
     * `a` → `auto`
     * `s` → `span`
-* `:Grt` → `grid-template:$_`
-    * `a` → `auto`
-    * `mac` → `max-content`
-    * `mic` → `min-content`
-    * `n` → `none`
-    * `s` → `subgrid`
-* `:Grta` → `grid-template-areas:$_`
-    * `n` → `none`
-* `:Grtc` → `grid-template-columns:$_`
+* `Grt(…)` → `grid-template:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
     * `n` → `none`
     * `s` → `subgrid`
-* `:Grtr` → `grid-template-rows:$_`
+* `Grta(…)` → `grid-template-areas:$_`
+    * `n` → `none`
+* `Grtc(…)` → `grid-template-columns:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
     * `n` → `none`
     * `s` → `subgrid`
-* `:Hp` → `hanging-punctuation:$_`
+* `Grtr(…)` → `grid-template-rows:$_`
+    * `a` → `auto`
+    * `mac` → `max-content`
+    * `mic` → `min-content`
+    * `n` → `none`
+    * `s` → `subgrid`
+* `Hp(…)` → `hanging-punctuation:$_`
     * `ae` → `allow-end`
     * `f` → `first`
     * `fe` → `force-end`
     * `l` → `last`
     * `n` → `none`
-* `:H` → `height:$_`
+* `H(…)` → `height:$_`
     * `a` → `auto`
     * `av` → `available`
     * `bb` → `border-box`
@@ -1455,56 +1455,56 @@ CSS Classes
     * `fc` → `fit-content`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Hyc` → `hyphenate-character:$_`
+* `Hyc(…)` → `hyphenate-character:$_`
     * `a` → `auto`
-* `:Hylc` → `hyphenate-limit-chars:$_`
+* `Hylc(…)` → `hyphenate-limit-chars:$_`
     * `a` → `auto`
-* `:Hy` → `hyphens:$_`
+* `Hy(…)` → `hyphens:$_`
     * `a` → `auto`
     * `m` → `manual`
     * `n` → `none`
-* `:Io` → `image-orientation:$_`
+* `Io(…)` → `image-orientation:$_`
     * `f` → `flip`
     * `fi` → `from-image`
     * `n` → `none`
-* `:Irn` → `image-rendering:$_`
+* `Irn(…)` → `image-rendering:$_`
     * `a` → `auto`
     * `ce` → `crisp-edges`
     * `hq` → `high-quality`
     * `p` → `pixelated`
     * `s` → `smooth`
-* `:Irs` → `image-resolution:$_`
+* `Irs(…)` → `image-resolution:$_`
     * `fi` → `from-image`
     * `s` → `snap`
-* `:Inl` → `initial-letter:$_`
+* `Inl(…)` → `initial-letter:$_`
     * `d` → `drop`
     * `nr` → `normal`
     * `r` → `raise`
-* `:Inla` → `initial-letter-align:$_`
+* `Inla(…)` → `initial-letter-align:$_`
     * `a` → `alphabetic`
     * `bb` → `border-box`
     * `h` → `hanging`
     * `i` → `ideographic`
     * `l` → `leading`
-* `:Iz` → `inline-size:$_`
-* `:In` → `inset:$_`
+* `Iz(…)` → `inline-size:$_`
+* `In(…)` → `inset:$_`
     * `a` → `auto`
-* `:Inblk` → `inset-block:$_`
+* `Inblk(…)` → `inset-block:$_`
     * `a` → `auto`
-* `:Inblke` → `inset-block-end:$_`
+* `Inblke(…)` → `inset-block-end:$_`
     * `a` → `auto`
-* `:Inblks` → `inset-block-start:$_`
+* `Inblks(…)` → `inset-block-start:$_`
     * `a` → `auto`
-* `:Ini` → `inset-inline:$_`
+* `Ini(…)` → `inset-inline:$_`
     * `a` → `auto`
-* `:Inie` → `inset-inline-end:$_`
+* `Inie(…)` → `inset-inline-end:$_`
     * `a` → `auto`
-* `:Inis` → `inset-inline-start:$_`
+* `Inis(…)` → `inset-inline-start:$_`
     * `a` → `auto`
-* `:Is` → `isolation:$_`
+* `Is(…)` → `isolation:$_`
     * `a` → `auto`
     * `i` → `isolate`
-* `:Jc` → `justify-content:$_`
+* `Jc(…)` → `justify-content:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `c` → `center`
@@ -1521,7 +1521,7 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:Ji` → `justify-items:$_`
+* `Ji(…)` → `justify-items:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `bl` → `baseline`
@@ -1541,7 +1541,7 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:Js` → `justify-self:$_`
+* `Js(…)` → `justify-self:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `a` → `auto`
@@ -1561,7 +1561,7 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:Jt` → `justify-tracks:$,`
+* `Jt(…)` → `justify-tracks:$,`
     * `end` → `$e`
     * `start` → `$s`
     * `c` → `center`
@@ -1578,20 +1578,20 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:L` → `left:$_`
+* `L(…)` → `left:$_`
     * `a` → `auto`
-* `:Lts` → `letter-spacing:$_`
+* `Lts(…)` → `letter-spacing:$_`
     * `nr` → `normal`
-* `:Lb` → `line-break:$_`
+* `Lb(…)` → `line-break:$_`
     * `an` → `anywhere`
     * `a` → `auto`
     * `l` → `loose`
     * `nr` → `normal`
     * `s` → `strict`
-* `:Lh` → `line-height:$_`
+* `Lh(…)` → `line-height:$_`
     * `nr` → `normal`
-* `:Lhs` → `line-height-step:$_`
-* `:Lis` → `list-style:$_`
+* `Lhs(…)` → `line-height-step:$_`
+* `Lis(…)` → `list-style:$_`
     * `ai` → `arabic-indic`
     * `ar` → `armenian`
     * `b` → `bengali`
@@ -1650,12 +1650,12 @@ CSS Classes
     * `uar` → `upper-armenian`
     * `ul` → `upper-latin`
     * `ur` → `upper-roman`
-* `:Lisi` → `list-style-image:$_`
+* `Lisi(…)` → `list-style-image:$_`
     * `n` → `none`
-* `:Lisp` → `list-style-position:$_`
+* `Lisp(…)` → `list-style-position:$_`
     * `i` → `inside`
     * `o` → `outside`
-* `:List` → `list-style-type:$_`
+* `List(…)` → `list-style-type:$_`
     * `ai` → `arabic-indic`
     * `ar` → `armenian`
     * `b` → `bengali`
@@ -1712,37 +1712,37 @@ CSS Classes
     * `uar` → `upper-armenian`
     * `ul` → `upper-latin`
     * `ur` → `upper-roman`
-* `:M` → `margin:$_`
+* `M(…)` → `margin:$_`
     * `a` → `auto`
-* `:Mend` → `margin-$e:$_`
+* `Mend(…)` → `margin-$e:$_`
     * `a` → `auto`
-* `:Mstart` → `margin-$s:$_`
+* `Mstart(…)` → `margin-$s:$_`
     * `a` → `auto`
-* `:Mblk` → `margin-block:$_`
+* `Mblk(…)` → `margin-block:$_`
     * `a` → `auto`
-* `:Mblke` → `margin-block-end:$_`
+* `Mblke(…)` → `margin-block-end:$_`
     * `a` → `auto`
-* `:Mblks` → `margin-block-start:$_`
+* `Mblks(…)` → `margin-block-start:$_`
     * `a` → `auto`
-* `:Mb` → `margin-bottom:$_`
+* `Mb(…)` → `margin-bottom:$_`
     * `a` → `auto`
-* `:Mi` → `margin-inline:$_`
+* `Mi(…)` → `margin-inline:$_`
     * `a` → `auto`
-* `:Mie` → `margin-inline-end:$_`
+* `Mie(…)` → `margin-inline-end:$_`
     * `a` → `auto`
-* `:Mis` → `margin-inline-start:$_`
+* `Mis(…)` → `margin-inline-start:$_`
     * `a` → `auto`
-* `:Ml` → `margin-left:$_`
+* `Ml(…)` → `margin-left:$_`
     * `a` → `auto`
-* `:Mx` → `margin-left:$_;margin-right:$_`
+* `Mx(…)` → `margin-left:$_;margin-right:$_`
     * `a` → `auto`
-* `:Mr` → `margin-right:$_`
+* `Mr(…)` → `margin-right:$_`
     * `a` → `auto`
-* `:Mt` → `margin-top:$_`
+* `Mt(…)` → `margin-top:$_`
     * `a` → `auto`
-* `:My` → `margin-top:$_;margin-bottom:$_`
+* `My(…)` → `margin-top:$_;margin-bottom:$_`
     * `a` → `auto`
-* `:Mtr` → `margin-trim:$_`
+* `Mtr(…)` → `margin-trim:$_`
     * `b` → `block`
     * `be` → `block-end`
     * `bs` → `block-start`
@@ -1750,7 +1750,7 @@ CSS Classes
     * `ie` → `inline-end`
     * `is` → `inline-start`
     * `n` → `none`
-* `:Msk` → `mask:$_`
+* `Msk(…)` → `mask:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `a` → `add`
@@ -1782,7 +1782,7 @@ CSS Classes
     * `s` → `subtract`
     * `t` → `top`
     * `vb` → `view-box`
-* `:Mskb` → `mask-border:$_`
+* `Mskb(…)` → `mask-border:$_`
     * `al` → `alpha`
     * `a` → `auto`
     * `f` → `fill`
@@ -1792,22 +1792,22 @@ CSS Classes
     * `ro` → `round`
     * `sp` → `space`
     * `st` → `stretch`
-* `:Mskbm` → `mask-border-mode:$_`
+* `Mskbm(…)` → `mask-border-mode:$_`
     * `al` → `alpha`
     * `lu` → `luminance`
-* `:Mskbo` → `mask-border-outset:$_`
-* `:Mskbr` → `mask-border-repeat:$_`
+* `Mskbo(…)` → `mask-border-outset:$_`
+* `Mskbr(…)` → `mask-border-repeat:$_`
     * `re` → `repeat`
     * `ro` → `round`
     * `sp` → `space`
     * `st` → `stretch`
-* `:Mskbsl` → `mask-border-slice:$_`
+* `Mskbsl(…)` → `mask-border-slice:$_`
     * `f` → `fill`
-* `:Mskbso` → `mask-border-source:$_`
+* `Mskbso(…)` → `mask-border-source:$_`
     * `n` → `none`
-* `:Mskbw` → `mask-border-width:$_`
+* `Mskbw(…)` → `mask-border-width:$_`
     * `a` → `auto`
-* `:Mskc` → `mask-clip:$,`
+* `Mskc(…)` → `mask-clip:$,`
     * `bb` → `border-box`
     * `cb` → `content-box`
     * `fb` → `fill-box`
@@ -1816,18 +1816,18 @@ CSS Classes
     * `pb` → `padding-box`
     * `sb` → `stroke-box`
     * `vb` → `view-box`
-* `:Mskco` → `mask-composite:$,`
+* `Mskco(…)` → `mask-composite:$,`
     * `a` → `add`
     * `e` → `exclude`
     * `i` → `intersect`
     * `s` → `subtract`
-* `:Mski` → `mask-image:$,`
+* `Mski(…)` → `mask-image:$,`
     * `n` → `none`
-* `:Mskm` → `mask-mode:$,`
+* `Mskm(…)` → `mask-mode:$,`
     * `al` → `alpha`
     * `lu` → `luminance`
     * `ms` → `match-source`
-* `:Msko` → `mask-origin:$,`
+* `Msko(…)` → `mask-origin:$,`
     * `bb` → `border-box`
     * `cb` → `content-box`
     * `fb` → `fill-box`
@@ -1835,7 +1835,7 @@ CSS Classes
     * `pb` → `padding-box`
     * `sb` → `stroke-box`
     * `vb` → `view-box`
-* `:Mskp` → `mask-position:$_`
+* `Mskp(…)` → `mask-position:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `b` → `bottom`
@@ -1843,66 +1843,66 @@ CSS Classes
     * `l` → `left`
     * `r` → `right`
     * `t` → `top`
-* `:Mskr` → `mask-repeat:$,`
+* `Mskr(…)` → `mask-repeat:$,`
     * `nre` → `no-repeat`
     * `re` → `repeat`
     * `rx` → `repeat-x`
     * `ry` → `repeat-y`
     * `ro` → `round`
     * `sp` → `space`
-* `:Mskz` → `mask-size:$_`
+* `Mskz(…)` → `mask-size:$_`
     * `a` → `auto`
     * `ct` → `contain`
     * `cv` → `cover`
-* `:Mskt` → `mask-type:$_`
+* `Mskt(…)` → `mask-type:$_`
     * `al` → `alpha`
     * `lu` → `luminance`
-* `:Maf` → `masonry-auto-flow:$_`
+* `Maf(…)` → `masonry-auto-flow:$_`
     * `df` → `definite-first`
     * `n` → `next`
     * `o` → `ordered`
     * `p` → `pack`
-* `:Md` → `math-depth:$_`
+* `Md(…)` → `math-depth:$_`
     * `aa` → `auto-add`
-* `:Ms` → `math-shift:$_`
+* `Ms(…)` → `math-shift:$_`
     * `c` → `compact`
     * `nr` → `normal`
-* `:Mst` → `math-style:$_`
+* `Mst(…)` → `math-style:$_`
     * `c` → `compact`
     * `nr` → `normal`
-* `:Mablkz` → `max-block-size:$_`
+* `Mablkz(…)` → `max-block-size:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Mah` → `max-height:$_`
+* `Mah(…)` → `max-height:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Maiz` → `max-inline-size:$_`
+* `Maiz(…)` → `max-inline-size:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Maw` → `max-width:$_`
+* `Maw(…)` → `max-width:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Miblkz` → `min-block-size:$_`
+* `Miblkz(…)` → `min-block-size:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Mih` → `min-height:$_`
+* `Mih(…)` → `min-height:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Miiz` → `min-inline-size:$_`
+* `Miiz(…)` → `min-inline-size:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Miw` → `min-width:$_`
+* `Miw(…)` → `min-width:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Mbm` → `mix-blend-mode:$_`
+* `Mbm(…)` → `mix-blend-mode:$_`
     * `c` → `color`
     * `cob` → `color-burn`
     * `cod` → `color-dodge`
@@ -1921,13 +1921,13 @@ CSS Classes
     * `s` → `saturation`
     * `sc` → `screen`
     * `sl` → `soft-light`
-* `:Objf` → `object-fit:$_`
+* `Objf(…)` → `object-fit:$_`
     * `ct` → `contain`
     * `cv` → `cover`
     * `f` → `fill`
     * `n` → `none`
     * `sd` → `scale-down`
-* `:Objp` → `object-position:$_`
+* `Objp(…)` → `object-position:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `b` → `bottom`
@@ -1935,7 +1935,7 @@ CSS Classes
     * `l` → `left`
     * `r` → `right`
     * `t` → `top`
-* `:Of` → `offset:$_`
+* `Of(…)` → `offset:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `a` → `auto`
@@ -1946,7 +1946,7 @@ CSS Classes
     * `re` → `reverse`
     * `r` → `right`
     * `t` → `top`
-* `:Ofa` → `offset-anchor:$_`
+* `Ofa(…)` → `offset-anchor:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `a` → `auto`
@@ -1955,8 +1955,8 @@ CSS Classes
     * `l` → `left`
     * `r` → `right`
     * `t` → `top`
-* `:Ofd` → `offset-distance:$_`
-* `:Ofpa` → `offset-path:$_`
+* `Ofd(…)` → `offset-distance:$_`
+* `Ofpa(…)` → `offset-path:$_`
     * `bb` → `border-box`
     * `cc` → `closest-corner`
     * `cs` → `closest-side`
@@ -1970,7 +1970,7 @@ CSS Classes
     * `pb` → `padding-box`
     * `sb` → `stroke-box`
     * `vb` → `view-box`
-* `:Ofp` → `offset-position:$_`
+* `Ofp(…)` → `offset-position:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `a` → `auto`
@@ -1979,13 +1979,13 @@ CSS Classes
     * `l` → `left`
     * `r` → `right`
     * `t` → `top`
-* `:Ofr` → `offset-rotate:$_`
+* `Ofr(…)` → `offset-rotate:$_`
     * `a` → `auto`
     * `re` → `reverse`
-* `:Op` → `opacity:$_`
-* `:Ord` → `order:$_`
-* `:Orp` → `orphans:$_`
-* `:Ol` → `outline:$_`
+* `Op(…)` → `opacity:$_`
+* `Ord(…)` → `order:$_`
+* `Orp(…)` → `orphans:$_`
+* `Ol(…)` → `outline:$_`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
@@ -2003,13 +2003,13 @@ CSS Classes
     * `tc` → `thick`
     * `tn` → `thin`
     * `tr` → `transparent`
-* `:Olc` → `outline-color:$_`
+* `Olc(…)` → `outline-color:$_`
     * `cc` → `currentcolor`
     * `i` → `invert`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Olo` → `outline-offset:$_`
-* `:Ols` → `outline-style:$_`
+* `Olo(…)` → `outline-offset:$_`
+* `Ols(…)` → `outline-style:$_`
     * `ds` → `dashed`
     * `dtds` → `dot-dash`
     * `dtdtds` → `dot-dot-dash`
@@ -2022,87 +2022,87 @@ CSS Classes
     * `o` → `outset`
     * `r` → `ridge`
     * `s` → `solid`
-* `:Olw` → `outline-width:$_`
+* `Olw(…)` → `outline-width:$_`
     * `m` → `medium`
     * `tc` → `thick`
     * `tn` → `thin`
-* `:Ov` → `overflow:$_`
+* `Ov(…)` → `overflow:$_`
     * `a` → `auto`
     * `c` → `clip`
     * `h` → `hidden`
     * `s` → `scroll`
     * `v` → `visible`
-* `:Ova` → `overflow-anchor:$_`
+* `Ova(…)` → `overflow-anchor:$_`
     * `a` → `auto`
     * `n` → `none`
-* `:Ovb` → `overflow-block:$_`
+* `Ovb(…)` → `overflow-block:$_`
     * `a` → `auto`
     * `c` → `clip`
     * `h` → `hidden`
     * `s` → `scroll`
     * `v` → `visible`
-* `:Ovcm` → `overflow-clip-margin:$_`
+* `Ovcm(…)` → `overflow-clip-margin:$_`
     * `bb` → `border-box`
     * `cb` → `content-box`
     * `pb` → `padding-box`
-* `:Ovi` → `overflow-inline:$_`
+* `Ovi(…)` → `overflow-inline:$_`
     * `a` → `auto`
     * `c` → `clip`
     * `h` → `hidden`
     * `s` → `scroll`
     * `v` → `visible`
-* `:Ovw` → `overflow-wrap:$_`
+* `Ovw(…)` → `overflow-wrap:$_`
     * `an` → `anywhere`
     * `bw` → `break-word`
     * `nr` → `normal`
-* `:Ovx` → `overflow-x:$_`
+* `Ovx(…)` → `overflow-x:$_`
     * `a` → `auto`
     * `c` → `clip`
     * `h` → `hidden`
     * `s` → `scroll`
     * `v` → `visible`
-* `:Ovy` → `overflow-y:$_`
+* `Ovy(…)` → `overflow-y:$_`
     * `a` → `auto`
     * `c` → `clip`
     * `h` → `hidden`
     * `s` → `scroll`
     * `v` → `visible`
-* `:Ovsb` → `overscroll-behavior:$_`
+* `Ovsb(…)` → `overscroll-behavior:$_`
     * `a` → `auto`
     * `ct` → `contain`
     * `n` → `none`
-* `:Ovsbb` → `overscroll-behavior-block:$_`
+* `Ovsbb(…)` → `overscroll-behavior-block:$_`
     * `a` → `auto`
     * `ct` → `contain`
     * `n` → `none`
-* `:Ovsbi` → `overscroll-behavior-inline:$_`
+* `Ovsbi(…)` → `overscroll-behavior-inline:$_`
     * `a` → `auto`
     * `ct` → `contain`
     * `n` → `none`
-* `:Ovsbx` → `overscroll-behavior-x:$_`
+* `Ovsbx(…)` → `overscroll-behavior-x:$_`
     * `a` → `auto`
     * `ct` → `contain`
     * `n` → `none`
-* `:Ovsby` → `overscroll-behavior-y:$_`
+* `Ovsby(…)` → `overscroll-behavior-y:$_`
     * `a` → `auto`
     * `ct` → `contain`
     * `n` → `none`
-* `:P` → `padding:$_`
-* `:Pend` → `padding-$e:$_`
-* `:Pstart` → `padding-$s:$_`
-* `:Pblk` → `padding-block:$_`
-* `:Pblke` → `padding-block-end:$_`
-* `:Pblks` → `padding-block-start:$_`
-* `:Pb` → `padding-bottom:$_`
-* `:Pi` → `padding-inline:$_`
-* `:Pie` → `padding-inline-end:$_`
-* `:Pis` → `padding-inline-start:$_`
-* `:Pl` → `padding-left:$_`
-* `:Px` → `padding-left:$_;padding-right:$_`
-* `:Pr` → `padding-right:$_`
-* `:Pt` → `padding-top:$_`
-* `:Py` → `padding-top:$_;padding-bottom:$_`
-* `:Pgba` → `page-break-after:$_`
+* `P(…)` → `padding:$_`
+* `Pend(…)` → `padding-$e:$_`
+* `Pstart(…)` → `padding-$s:$_`
+* `Pblk(…)` → `padding-block:$_`
+* `Pblke(…)` → `padding-block-end:$_`
+* `Pblks(…)` → `padding-block-start:$_`
+* `Pb(…)` → `padding-bottom:$_`
+* `Pi(…)` → `padding-inline:$_`
+* `Pie(…)` → `padding-inline-end:$_`
+* `Pis(…)` → `padding-inline-start:$_`
+* `Pl(…)` → `padding-left:$_`
+* `Px(…)` → `padding-left:$_;padding-right:$_`
+* `Pr(…)` → `padding-right:$_`
+* `Pt(…)` → `padding-top:$_`
+* `Py(…)` → `padding-top:$_;padding-bottom:$_`
+* `Pgba(…)` → `page-break-after:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `al` → `always`
@@ -2110,7 +2110,7 @@ CSS Classes
     * `av` → `avoid`
     * `l` → `left`
     * `r` → `right`
-* `:Pgbb` → `page-break-before:$_`
+* `Pgbb(…)` → `page-break-before:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `al` → `always`
@@ -2118,17 +2118,17 @@ CSS Classes
     * `av` → `avoid`
     * `l` → `left`
     * `r` → `right`
-* `:Pgbi` → `page-break-inside:$_`
+* `Pgbi(…)` → `page-break-inside:$_`
     * `a` → `auto`
     * `av` → `avoid`
-* `:Po` → `paint-order:$_`
+* `Po(…)` → `paint-order:$_`
     * `f` → `fill`
     * `m` → `markers`
     * `nr` → `normal`
     * `s` → `stroke`
-* `:Prs` → `perspective:$_`
+* `Prs(…)` → `perspective:$_`
     * `n` → `none`
-* `:Prso` → `perspective-origin:$_`
+* `Prso(…)` → `perspective-origin:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `b` → `bottom`
@@ -2136,7 +2136,7 @@ CSS Classes
     * `l` → `left`
     * `r` → `right`
     * `t` → `top`
-* `:Plc` → `place-content:$_`
+* `Plc(…)` → `place-content:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `bl` → `baseline`
@@ -2158,7 +2158,7 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:Pli` → `place-items:$_`
+* `Pli(…)` → `place-items:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `bl` → `baseline`
@@ -2177,7 +2177,7 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:Pls` → `place-self:$_`
+* `Pls(…)` → `place-self:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `a` → `auto`
@@ -2197,7 +2197,7 @@ CSS Classes
     * `s` → `start`
     * `st` → `stretch`
     * `us` → `unsafe`
-* `:Pe` → `pointer-events:$_`
+* `Pe(…)` → `pointer-events:$_`
     * `a` → `auto`
     * `bb` → `bouding-box`
     * `f` → `fill`
@@ -2208,157 +2208,157 @@ CSS Classes
     * `vf` → `visiblefill`
     * `vp` → `visiblepainted`
     * `vs` → `visiblestroke`
-* `:Pos` → `position:$_`
+* `Pos(…)` → `position:$_`
     * `a` → `absolute`
     * `f` → `fixed`
     * `r` → `relative`
     * `s` → `static`
     * `st` → `sticky`
-* `:Pca` → `print-color-adjust:$_`
+* `Pca(…)` → `print-color-adjust:$_`
     * `ec` → `economy`
     * `ex` → `exact`
-* `:Q` → `quotes:$_`
+* `Q(…)` → `quotes:$_`
     * `en` → `"“" "”" "‘" "’"`
     * `fr` → `"«" "»" "‹" "›"`
     * `ru` → `"«" "»" "„" "“"`
     * `n` → `none`
-* `:Rsz` → `resize:$_`
+* `Rsz(…)` → `resize:$_`
     * `bl` → `block`
     * `b` → `both`
     * `h` → `horizontal`
     * `il` → `inline`
     * `n` → `none`
     * `v` → `vertical`
-* `:R` → `right:$_`
+* `R(…)` → `right:$_`
     * `a` → `auto`
-* `:Ro` → `rotate:$_`
+* `Ro(…)` → `rotate:$_`
     * `n` → `none`
-* `:Rowg` → `row-gap:$_`
+* `Rowg(…)` → `row-gap:$_`
     * `nr` → `normal`
-* `:Ra` → `ruby-align:$_`
+* `Ra(…)` → `ruby-align:$_`
     * `c` → `center`
     * `sa` → `space-around`
     * `sb` → `space-between`
     * `s` → `start`
-* `:Rp` → `ruby-position:$_`
+* `Rp(…)` → `ruby-position:$_`
     * `a` → `alternate`
     * `ic` → `inter-character`
     * `o` → `over`
     * `u` → `under`
-* `:S` → `scale:$_`
+* `S(…)` → `scale:$_`
     * `n` → `none`
-* `:Scrb` → `scroll-behavior:$_`
+* `Scrb(…)` → `scroll-behavior:$_`
     * `a` → `auto`
     * `s` → `smooth`
-* `:Scrm` → `scroll-margin:$_`
-* `:Scrmend` → `scroll-margin-$e:$_`
-* `:Scrmstart` → `scroll-margin-$s:$_`
-* `:Scrmblk` → `scroll-margin-block:$_`
-* `:Scrmblke` → `scroll-margin-block-end:$_`
-* `:Scrmblks` → `scroll-margin-block-start:$_`
-* `:Scrmb` → `scroll-margin-bottom:$_`
-* `:Scrmi` → `scroll-margin-inline:$_`
-* `:Scrmie` → `scroll-margin-inline-end:$_`
-* `:Scrmis` → `scroll-margin-inline-start:$_`
-* `:Scrml` → `scroll-margin-left:$_`
-* `:Scrmr` → `scroll-margin-right:$_`
-* `:Scrmt` → `scroll-margin-top:$_`
-* `:Scrp` → `scroll-padding:$_`
+* `Scrm(…)` → `scroll-margin:$_`
+* `Scrmend(…)` → `scroll-margin-$e:$_`
+* `Scrmstart(…)` → `scroll-margin-$s:$_`
+* `Scrmblk(…)` → `scroll-margin-block:$_`
+* `Scrmblke(…)` → `scroll-margin-block-end:$_`
+* `Scrmblks(…)` → `scroll-margin-block-start:$_`
+* `Scrmb(…)` → `scroll-margin-bottom:$_`
+* `Scrmi(…)` → `scroll-margin-inline:$_`
+* `Scrmie(…)` → `scroll-margin-inline-end:$_`
+* `Scrmis(…)` → `scroll-margin-inline-start:$_`
+* `Scrml(…)` → `scroll-margin-left:$_`
+* `Scrmr(…)` → `scroll-margin-right:$_`
+* `Scrmt(…)` → `scroll-margin-top:$_`
+* `Scrp(…)` → `scroll-padding:$_`
     * `a` → `auto`
-* `:Scrpend` → `scroll-padding-$e:$_`
+* `Scrpend(…)` → `scroll-padding-$e:$_`
     * `a` → `auto`
-* `:Scrpstart` → `scroll-padding-$s:$_`
+* `Scrpstart(…)` → `scroll-padding-$s:$_`
     * `a` → `auto`
-* `:Scrpblk` → `scroll-padding-block:$_`
+* `Scrpblk(…)` → `scroll-padding-block:$_`
     * `a` → `auto`
-* `:Scrpblke` → `scroll-padding-block-end:$_`
+* `Scrpblke(…)` → `scroll-padding-block-end:$_`
     * `a` → `auto`
-* `:Scrpblks` → `scroll-padding-block-start:$_`
+* `Scrpblks(…)` → `scroll-padding-block-start:$_`
     * `a` → `auto`
-* `:Scrpb` → `scroll-padding-bottom:$_`
+* `Scrpb(…)` → `scroll-padding-bottom:$_`
     * `a` → `auto`
-* `:Scrpi` → `scroll-padding-inline:$_`
+* `Scrpi(…)` → `scroll-padding-inline:$_`
     * `a` → `auto`
-* `:Scrpie` → `scroll-padding-inline-end:$_`
+* `Scrpie(…)` → `scroll-padding-inline-end:$_`
     * `a` → `auto`
-* `:Scrpis` → `scroll-padding-inline-start:$_`
+* `Scrpis(…)` → `scroll-padding-inline-start:$_`
     * `a` → `auto`
-* `:Scrpl` → `scroll-padding-left:$_`
+* `Scrpl(…)` → `scroll-padding-left:$_`
     * `a` → `auto`
-* `:Scrpr` → `scroll-padding-right:$_`
+* `Scrpr(…)` → `scroll-padding-right:$_`
     * `a` → `auto`
-* `:Scrpt` → `scroll-padding-top:$_`
+* `Scrpt(…)` → `scroll-padding-top:$_`
     * `a` → `auto`
-* `:Scrsa` → `scroll-snap-align:$_`
+* `Scrsa(…)` → `scroll-snap-align:$_`
     * `c` → `center`
     * `e` → `end`
     * `n` → `none`
     * `s` → `start`
-* `:Scrss` → `scroll-snap-stop:$_`
+* `Scrss(…)` → `scroll-snap-stop:$_`
     * `al` → `always`
     * `nr` → `normal`
-* `:Scrst` → `scroll-snap-type:$_`
+* `Scrst(…)` → `scroll-snap-type:$_`
     * `bl` → `block`
     * `b` → `both`
     * `il` → `inline`
     * `m` → `mandatory`
     * `n` → `none`
     * `p` → `proximity`
-* `:Scrt` → `scroll-timeline:$_`
+* `Scrt(…)` → `scroll-timeline:$_`
     * `bl` → `block`
     * `h` → `horizontal`
     * `il` → `inline`
     * `n` → `none`
     * `v` → `vertical`
-* `:Scrta` → `scroll-timeline-axis:$_`
+* `Scrta(…)` → `scroll-timeline-axis:$_`
     * `bl` → `block`
     * `h` → `horizontal`
     * `il` → `inline`
     * `v` → `vertical`
-* `:Scrtn` → `scroll-timeline-name:$_`
+* `Scrtn(…)` → `scroll-timeline-name:$_`
     * `n` → `none`
-* `:Sbc` → `scrollbar-color:$_`
+* `Sbc(…)` → `scrollbar-color:$_`
     * `a` → `auto`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Sbg` → `scrollbar-gutter:$_`
+* `Sbg(…)` → `scrollbar-gutter:$_`
     * `a` → `auto`
     * `be` → `both-edges`
     * `s` → `stable`
-* `:Sbw` → `scrollbar-width:$_`
+* `Sbw(…)` → `scrollbar-width:$_`
     * `a` → `auto`
     * `n` → `none`
     * `t` → `thin`
-* `:Shpit` → `shape-image-threshold:$_`
-* `:Shpm` → `shape-margin:$_`
-* `:Shpo` → `shape-outside:$_`
+* `Shpit(…)` → `shape-image-threshold:$_`
+* `Shpm(…)` → `shape-margin:$_`
+* `Shpo(…)` → `shape-outside:$_`
     * `bb` → `border-box`
     * `cb` → `content-box`
     * `mb` → `margin-box`
     * `n` → `none`
     * `pb` → `padding-box`
-* `:Stk` → `stroke:$_`
+* `Stk(…)` → `stroke:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Stklc` → `stroke-linecap:$_`
+* `Stklc(…)` → `stroke-linecap:$_`
     * `b` → `butt`
     * `i` → `inherit`
     * `r` → `round`
     * `s` → `square`
-* `:Stklj` → `stroke-linejoin:$_`
+* `Stklj(…)` → `stroke-linejoin:$_`
     * `b` → `bevel`
     * `i` → `inherit`
     * `m` → `miter`
     * `r` → `round`
-* `:Stkw` → `stroke-width:$_`
+* `Stkw(…)` → `stroke-width:$_`
     * `i` → `inherit`
-* `:Tbz` → `tab-size:$_`
-* `:Tbl` → `table-layout:$_`
+* `Tbz(…)` → `tab-size:$_`
+* `Tbl(…)` → `table-layout:$_`
     * `a` → `auto`
     * `f` → `fixed`
-* `:Ta` → `text-align:$_`
+* `Ta(…)` → `text-align:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `c` → `center`
@@ -2368,7 +2368,7 @@ CSS Classes
     * `mp` → `match-parent`
     * `r` → `right`
     * `s` → `start`
-* `:Tal` → `text-align-last:$_`
+* `Tal(…)` → `text-align-last:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `c` → `center`
@@ -2378,11 +2378,11 @@ CSS Classes
     * `mp` → `match-parent`
     * `r` → `right`
     * `s` → `start`
-* `:Tci` → `text-combine-upright:$_`
+* `Tci(…)` → `text-combine-upright:$_`
     * `a` → `auto`
     * `d` → `digits`
     * `n` → `none`
-* `:Td` → `text-decoration:$_`
+* `Td(…)` → `text-decoration:$_`
     * `b` → `blink`
     * `cc` → `currentcolor`
     * `ds` → `dashed`
@@ -2395,17 +2395,17 @@ CSS Classes
     * `tr` → `transparent`
     * `u` → `underline`
     * `w` → `wavy`
-* `:Tdc` → `text-decoration-color:$_`
+* `Tdc(…)` → `text-decoration-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Tdl` → `text-decoration-line:$_`
+* `Tdl(…)` → `text-decoration-line:$_`
     * `b` → `blink`
     * `lt` → `line-through`
     * `n` → `none`
     * `o` → `overline`
     * `u` → `underline`
-* `:Tdsk` → `text-decoration-skip:$_`
+* `Tdsk(…)` → `text-decoration-skip:$_`
     * `a` → `auto`
     * `bd` → `box-decoration`
     * `e` → `edges`
@@ -2414,19 +2414,19 @@ CSS Classes
     * `o` → `objects`
     * `sp` → `spaces`
     * `tsp` → `trailing-spaces`
-* `:Tdski` → `text-decoration-skip-ink:$_`
+* `Tdski(…)` → `text-decoration-skip-ink:$_`
     * `a` → `auto`
     * `n` → `none`
-* `:Tds` → `text-decoration-style:$_`
+* `Tds(…)` → `text-decoration-style:$_`
     * `ds` → `dashed`
     * `dt` → `dotted`
     * `db` → `double`
     * `s` → `solid`
     * `w` → `wavy`
-* `:Tdt` → `text-decoration-thickness:$_`
+* `Tdt(…)` → `text-decoration-thickness:$_`
     * `a` → `auto`
     * `ff` → `from-font`
-* `:Te` → `text-emphasis:$_`
+* `Te(…)` → `text-emphasis:$_`
     * `c` → `circle`
     * `cc` → `currentcolor`
     * `d` → `dot`
@@ -2437,18 +2437,18 @@ CSS Classes
     * `s` → `sesame`
     * `tr` → `transparent`
     * `t` → `triangle`
-* `:Tec` → `text-emphasis-color:$_`
+* `Tec(…)` → `text-emphasis-color:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Tep` → `text-emphasis-position:$_`
+* `Tep(…)` → `text-emphasis-position:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `l` → `left`
     * `o` → `over`
     * `r` → `right`
     * `u` → `under`
-* `:Tes` → `text-emphasis-style:$_`
+* `Tes(…)` → `text-emphasis-style:$_`
     * `c` → `circle`
     * `d` → `dot`
     * `dc` → `double-circle`
@@ -2457,34 +2457,34 @@ CSS Classes
     * `o` → `open`
     * `s` → `sesame`
     * `t` → `triangle`
-* `:Ti` → `text-indent:$_`
+* `Ti(…)` → `text-indent:$_`
     * `el` → `each-line`
     * `h` → `hanging`
-* `:Tj` → `text-justify:$_`
+* `Tj(…)` → `text-justify:$_`
     * `a` → `auto`
     * `ic` → `inter-character`
     * `iw` → `inter-word`
     * `n` → `none`
-* `:To` → `text-orientation:$_`
+* `To(…)` → `text-orientation:$_`
     * `m` → `mixed`
     * `s` → `sideways`
     * `u` → `upright`
-* `:Tov` → `text-overflow:$_`
+* `Tov(…)` → `text-overflow:$_`
     * `c` → `clip`
     * `e` → `ellipsis`
-* `:Tren` → `text-rendering:$_`
+* `Tren(…)` → `text-rendering:$_`
     * `a` → `auto`
     * `gp` → `geometricprecision`
     * `ol` → `optimizelegibility`
     * `os` → `optimizespeed`
-* `:Tsh` → `text-shadow:$_`
+* `Tsh(…)` → `text-shadow:$_`
     * `cc` → `currentcolor`
     * `n` → `none`
     * `tr` → `transparent`
-* `:Tza` → `text-size-adjust:$_`
+* `Tza(…)` → `text-size-adjust:$_`
     * `a` → `auto`
     * `n` → `none`
-* `:Tt` → `text-transform:$_`
+* `Tt(…)` → `text-transform:$_`
     * `c` → `capitalize`
     * `fzk` → `full-size-kana`
     * `fw` → `full-width`
@@ -2509,18 +2509,18 @@ CSS Classes
     * `mt` → `math-tailed`
     * `n` → `none`
     * `u` → `uppercase`
-* `:Tuo` → `text-underline-offset:$_`
+* `Tuo(…)` → `text-underline-offset:$_`
     * `a` → `auto`
-* `:Tup` → `text-underline-position:$_`
+* `Tup(…)` → `text-underline-position:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `a` → `auto`
     * `l` → `left`
     * `r` → `right`
     * `u` → `under`
-* `:T` → `top:$_`
+* `T(…)` → `top:$_`
     * `a` → `auto`
-* `:Toa` → `touch-action:$_`
+* `Toa(…)` → `touch-action:$_`
     * `a` → `auto`
     * `m` → `manipulation`
     * `n` → `none`
@@ -2533,9 +2533,9 @@ CSS Classes
     * `px` → `pan-x`
     * `py` → `pan-y`
     * `pz` → `pinch-zoom`
-* `:Trf` → `transform:$_`
+* `Trf(…)` → `transform:$_`
     * `n` → `none`
-* `:Trfb` → `transform-box:$_`
+* `Trfb(…)` → `transform-box:$_`
     * `bb` → `border-box`
     * `cb` → `content-box`
     * `fb` → `fill-box`
@@ -2543,7 +2543,7 @@ CSS Classes
     * `pb` → `padding-box`
     * `sb` → `stroke-box`
     * `vb` → `view-box`
-* `:Trfo` → `transform-origin:$_`
+* `Trfo(…)` → `transform-origin:$_`
     * `end` → `$e`
     * `start` → `$s`
     * `b` → `bottom`
@@ -2551,30 +2551,30 @@ CSS Classes
     * `l` → `left`
     * `r` → `right`
     * `t` → `top`
-* `:Trfs` → `transform-style:$_`
+* `Trfs(…)` → `transform-style:$_`
     * `f` → `flat`
     * `p` → `preserve-3d`
-* `:Matrix` → `transform:matrix($,)`
-* `:Matrix3d` → `transform:matrix3d($,)`
-* `:Rotate` → `transform:rotate($,)`
-* `:Rotate3d` → `transform:rotate3d($,)`
-* `:Rotatex` → `transform:rotateX($,)`
-* `:Rotatey` → `transform:rotateY($,)`
-* `:Rotatez` → `transform:rotateZ($,)`
-* `:Scale` → `transform:scale($,)`
-* `:Scale3d` → `transform:scale3d($,)`
-* `:Scalex` → `transform:scaleX($,)`
-* `:Scaley` → `transform:scaleY($,)`
-* `:Scalez` → `transform:scaleZ($,)`
-* `:Skew` → `transform:skew($,)`
-* `:Skewx` → `transform:skewX($,)`
-* `:Skewy` → `transform:skewY($,)`
-* `:Translate` → `transform:translate($,)`
-* `:Translate3d` → `transform:translate3d($,)`
-* `:Translatex` → `transform:translateX($,)`
-* `:Translatey` → `transform:translateY($,)`
-* `:Translatez` → `transform:translateZ($,)`
-* `:Trs` → `transition:$_`
+* `Matrix(…)` → `transform:matrix($,)`
+* `Matrix3d(…)` → `transform:matrix3d($,)`
+* `Rotate(…)` → `transform:rotate($,)`
+* `Rotate3d(…)` → `transform:rotate3d($,)`
+* `Rotatex(…)` → `transform:rotateX($,)`
+* `Rotatey(…)` → `transform:rotateY($,)`
+* `Rotatez(…)` → `transform:rotateZ($,)`
+* `Scale(…)` → `transform:scale($,)`
+* `Scale3d(…)` → `transform:scale3d($,)`
+* `Scalex(…)` → `transform:scaleX($,)`
+* `Scaley(…)` → `transform:scaleY($,)`
+* `Scalez(…)` → `transform:scaleZ($,)`
+* `Skew(…)` → `transform:skew($,)`
+* `Skewx(…)` → `transform:skewX($,)`
+* `Skewy(…)` → `transform:skewY($,)`
+* `Translate(…)` → `transform:translate($,)`
+* `Translate3d(…)` → `transform:translate3d($,)`
+* `Translatex(…)` → `transform:translateX($,)`
+* `Translatey(…)` → `transform:translateY($,)`
+* `Translatez(…)` → `transform:translateZ($,)`
+* `Trs(…)` → `transition:$_`
     * `cb` → `cubic-bezier(.1,.7,1,.1)`
     * `ea` → `ease`
     * `ei` → `ease-in`
@@ -2590,11 +2590,11 @@ CSS Classes
     * `s` → `start`
     * `se` → `step-end`
     * `ss` → `step-start`
-* `:Trsde` → `transition-delay:$,`
-* `:Trsdu` → `transition-duration:$,`
-* `:Trsp` → `transition-property:$,`
+* `Trsde(…)` → `transition-delay:$,`
+* `Trsdu(…)` → `transition-duration:$,`
+* `Trsp(…)` → `transition-property:$,`
     * `n` → `none`
-* `:Trstf` → `transition-timing-function:$,`
+* `Trstf(…)` → `transition-timing-function:$,`
     * `cb` → `cubic-bezier(.1,.7,1,.1)`
     * `ea` → `ease`
     * `ei` → `ease-in`
@@ -2609,69 +2609,69 @@ CSS Classes
     * `s` → `start`
     * `se` → `step-end`
     * `ss` → `step-start`
-* `:Tr` → `translate:$_`
+* `Tr(…)` → `translate:$_`
     * `n` → `none`
-* `:Ub` → `unicode-bidi:$_`
+* `Ub(…)` → `unicode-bidi:$_`
     * `bo` → `bidi-override`
     * `e` → `embed`
     * `i` → `isolate`
     * `io` → `isolate-override`
     * `nr` → `normal`
     * `p` → `plaintext`
-* `:Us` → `user-select:$_`
+* `Us(…)` → `user-select:$_`
     * `a` → `auto`
     * `ct` → `contain`
     * `n` → `none`
     * `t` → `text`
-* `:Va` → `vertical-align:$_`
+* `Va(…)` → `vertical-align:$_`
     * `bl` → `baseline`
     * `b` → `bottom`
     * `m` → `middle`
     * `sup` → `super`
     * `tb` → `text-bottom`
     * `tt` → `text-top`
-* `:V` → `visibility:$_`
+* `V(…)` → `visibility:$_`
     * `c` → `collapse`
     * `h` → `hidden`
     * `v` → `visible`
-* `:Whs` → `white-space:$_`
+* `Whs(…)` → `white-space:$_`
     * `bs` → `break-spaces`
     * `nr` → `normal`
     * `nw` → `nowrap`
     * `p` → `pre`
     * `pl` → `pre-line`
     * `pw` → `pre-wrap`
-* `:Wid` → `widows:$_`
-* `:W` → `width:$_`
+* `Wid(…)` → `widows:$_`
+* `W(…)` → `width:$_`
     * `a` → `auto`
     * `mac` → `max-content`
     * `mic` → `min-content`
-* `:Wc` → `will-change:$_`
+* `Wc(…)` → `will-change:$_`
     * `a` → `auto`
     * `cn` → `contents`
     * `sp` → `scroll-position`
-* `:Wob` → `word-break:$_`
+* `Wob(…)` → `word-break:$_`
     * `ba` → `break-all`
     * `bw` → `break-word`
     * `ka` → `keep-all`
     * `nr` → `normal`
-* `:Wos` → `word-spacing:$_`
+* `Wos(…)` → `word-spacing:$_`
     * `nr` → `normal`
-* `:Wow` → `word-wrap:$_`
+* `Wow(…)` → `word-wrap:$_`
     * `bw` → `break-word`
     * `n` → `none`
     * `nr` → `normal`
     * `s` → `suppress`
     * `u` → `unrestricted`
-* `:Wm` → `writing-mode:$_`
+* `Wm(…)` → `writing-mode:$_`
     * `htb` → `horizontal-tb`
     * `slr` → `sideways-lr`
     * `srl` → `sideways-rl`
     * `vlr` → `vertical-rl`
     * `vrl` → `vertical-rl`
-* `:Z` → `z-index:$_`
+* `Z(…)` → `z-index:$_`
     * `a` → `auto`
-* `:Zoo` → `zoom:1`
+* `Zoo(…)` → `zoom:1`
 
 Pseudo Classes
 --------------
