@@ -556,7 +556,7 @@
 
         // Suite: overflow
         overflowWrap: {
-            a: "anywhere",
+            an: "anywhere",
             bw: "break-word"
         },
 

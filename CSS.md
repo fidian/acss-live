@@ -2052,7 +2052,7 @@ CSS Classes
     * `s` → `scroll`
     * `v` → `visible`
 * `:Ovw` → `overflow-wrap:$_`
-    * `a` → `anywhere`
+    * `an` → `anywhere`
     * `bw` → `break-word`
     * `nr` → `normal`
 * `:Ovx` → `overflow-x:$_`
