@@ -2229,11 +2229,7 @@
                 rule = `${config.atRules[match[9]] || match[9]}{${rule}}`;
             }
 
-            // Replace $s and $e with left/right based on config
             rule = rule
-                .replace(/\$s/g, config.settings.rightToLeft ? "right" : "left")
-                .replace(/\$e/g, config.settings.rightToLeft ? "left" : "right")
-
                 // Replace $_ and $, with the list of values
                 // Look each one up in valueLookup. If it fails (falsy),
                 // use the value verbatim.
@@ -2247,7 +2243,12 @@
                                 : `var(${userValue})`
                         )
                         .join(dollarMatch === "$," ? "," : " ")
-                );
+                )
+
+                // Replace $s and $e with left/right based on config
+                .replace(/\$s/g, config.settings.rightToLeft ? "right" : "left")
+                .replace(/\$e/g, config.settings.rightToLeft ? "left" : "right");
+
 
             // DEBUG_START
             if (config.settings.debug) {

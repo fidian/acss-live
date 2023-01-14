@@ -1,6 +1,16 @@
 UPGRADING ACSS-LIVE
 ===================
 
+2.0.4 -> 2.0.5
+--------------
+
+* Fixed parsing of $s/$e in rules.
+
+2.0.3 -> 2.0.4
+--------------
+
+* Fixed documentation of CSS class names in `CSS.md`.
+
 2.0.2 -> 2.0.3
 --------------
 
