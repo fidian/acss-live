@@ -1,6 +1,11 @@
 UPGRADING ACSS-LIVE
 ===================
 
+2.0.5 -> 2.0.6
+--------------
+
+* Fixed matching of parent selector and parent pseudoelement.
+
 2.0.4 -> 2.0.5
 --------------
 

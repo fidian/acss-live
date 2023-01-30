@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Media Queries</title>
+        <script>
+            window.acssLiveConfig = {
+                settings: {
+                    debug: true
+                }
+            };
+        </script>
+        <script src="../acss-live.js"></script>
+        <style>
+            table,
+            table tr,
+            table td,
+            table th {
+                border-collapse: collapse;
+            }
+
+            table th {
+                background-color: #347dbe;
+            }
+
+            table th,
+            table td {
+                padding: 4px;
+                border: 1px solid #347dbe;
+                border-bottom-color: #015cae;
+            }
+
+            table th {
+                border-color: #015cae;
+                color: white;
+            }
+
+            table tr:nth-child(even) {
+                background-color: #c5e0f9;
+            }
+        </style>
+    </head>
+
+    <body class="x">
+        <h1 class="D(f) Jc(c) Ai(c)">Media Queries</h1>
+
+        <p>
+            There are several media queries built into ACSS-Live. When you
+            resize your screen, various elements will be indicated so you can
+            see what applies.
+        </p>
+
+        <p>
+            Because of how ACSS-Live works, order <i>does not matter</i>. There
+            is no default value and arrangements like
+            <code>D(n) D(b)--p</code> will not work. You will need to use a
+            combination of selectors when you want to conditionally present or
+            style content, such as <code>D(n)--_p D(b)--p</code>. Another way
+            is to use a higher specificity, such as <code>D(n) x_D(b)--p</code>
+            and that will look for any parent element with
+            <code>class="x"</code>, which is why this example has that class on
+            the body element.
+        </p>
+
+        <p>
+        Currently, this is using <span class="D(n)--_p Fw(b)">PRINT</span> <span class="D(n)--p Fw(b)">SCREEN</span> media. It's matching a <span class="D(n)--_s Fw(b)">SMALL</span> <span class="D(n)--_m Fw(b)">MEDIUM</span> <span class="D(n)--_l Fw(b)">LARGE</span> <span class="D(n)--_d Fw(b)">DESKTOP</span> width device. Your system prefers <span class="D(n) x_D(i)--dk Fw(b)">DARK</span> <span class="D(n) x_D(i)--lt Fw(b)">LIGHT</span> <span class="D(n)--dk D(n)--lt Fw(b)">(COLOR_SCHEME_NOT_SUPPORTED)</span> theme.
+        </p>
+
+        <p>
+            In the table below, the "Active" column lists the
+            <code>atRule</code> that is active currently. As you change the size
+            of the browser window, view this page in a print preview, or perform
+            other manipulations, the displayed text in the Active column will
+            change. The <code>atRule</code> is placed at the end of a ACSS class
+            name. A leading underscore applies the reversed form. For example,
+            <code>D(n)--p</code> will apply "display: none" to the element while
+            printing, and <code>D(n)--_p</code> will apply "display: none" when
+            the element is not printing.
+        </p>
+
+        <table>
+            <tr>
+                <th>Active</th>
+                <th>Media Query</th>
+                <th>Description</th>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--dk">--dk</span>
+                    <span class="D(n) x_D(b)--_dk">--_dk</span>
+                    <span class="D(n)--dk D(n)--_dk">neither --dk nor --_dk</span>
+                </td>
+                <td>@media (prefers-color-scheme:dark)</td>
+                <td>Applied when the user wants a dark theme.</td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--lt">--lt</span>
+                    <span class="D(n) x_D(b)--_lt">--_lt</span>
+                    <span class="D(n)--lt D(n)--_lt">neither --lt nor --_lt</span>
+                </td>
+                <td>@media (prefers-color-scheme:light)</td>
+                <td>Applied when the user wants a light theme.</td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--p">--p</span>
+                    <span class="D(n) x_D(b)--_p">--_p</span>
+                </td>
+                <td>@media print</td>
+                <td>
+                    Only applied when printing or showing the print preview.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--s">--s</span>
+                    <span class="D(n) x_D(b)--_s">--_s</span>
+                </td>
+                <td>@media (max-width: 480px)</td>
+                <td>
+                    Small screens, like phones in portrait mode.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--sm">--sm</span>
+                    <span class="D(n) x_D(b)--_sm">--_sm</span>
+                </td>
+                <td>@media (max-width: 768px)</td>
+                <td>
+                    Small or medium screens, like phones in any direction and tablets in portrait mode.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--m">--m</span>
+                    <span class="D(n) x_D(b)--_m">--_m</span>
+                </td>
+                <td>@media (min-width: 480.0001px) and (max-width: 768px)</td>
+                <td>
+                    Phones in landscape mode, tablets in portrait mode.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--sml">--sml</span>
+                    <span class="D(n) x_D(b)--_sml">--_sml</span>
+                </td>
+                <td>@media (max-width: 1024px)</td>
+                <td>
+                    Most mobile devices.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--ml">--ml</span>
+                    <span class="D(n) x_D(b)--_ml">--_ml</span>
+                </td>
+                <td>@media (min-width: 480.0001px) and (max-width: 1024px)</td>
+                <td>
+                    Mobile devices except phones in portrait mode.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--l">--l</span>
+                    <span class="D(n) x_D(b)--_l">--_l</span>
+                </td>
+                <td>@media (min-width: 768.0001px) and (max-width: 1024px)</td>
+                <td>
+                    Tablets in landscape mode.
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="D(n) x_D(b)--d">--d</span>
+                    <span class="D(n) x_D(b)--_d">--_d</span>
+                </td>
+                <td>@media (min-width: 1024.0001px)</td>
+                <td>
+                    Desktop devices.
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

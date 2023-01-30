@@ -733,10 +733,13 @@
         atRules: {
             // Color schemes
             dk: "@media(prefers-color-scheme:dark)",
+            _dk: "@media not all and(prefers-color-scheme:dark)",
             lt: "@media(prefers-color-scheme:light)",
+            _lt: "@media not all and(prefers-color-scheme:light)",
 
             // Print version
             p: "@media print",
+            _p: "@media not print",
 
             // Generally accepted screen sizes
             // S = mobile                         0      -  480px
@@ -744,12 +747,19 @@
             // L = landscape tablets            768.0001 - 1024px
             // D = default / large format      1024.0001 -    ∞
             s: "@media(max-width:480px)",
+            _s: "@media(min-width:480.0001px)",
             sm: "@media(max-width:768px)",
+            _sm: "@media(min-width:768.0001px)",
             m: "@media(min-width:480.0001px) and (max-width:768px)",
+            _m: "@media(max-width:480px) or (min-width:768.0001px)",
             sml: "@media(max-width:1024px)",
+            _sml: "@media(min-width:1024.0001px)",
             ml: "@media(min-width:480.0001px) and (max-width:1024px)",
+            _ml: "@media(max-width:480px) or (min-width:1024.0001px)",
             l: "@media(min-width:768.0001px) and (max-width:1024px)",
-            d: "@media(min-width:1024.0001px)"
+            _l: "@media(max-width:768px) or (min-width:1024.0001px)",
+            d: "@media(min-width:1024.0001px)",
+            _d: "@media(max-width:1024px)"
         },
 
         // $s and $e are replaced with left and right
@@ -920,12 +930,7 @@
             Bdiw: ["border-image-width", "a"],
             Bdinl: ["border-inline", "lineWidth", "lineStyle", "color"],
             Bdinlc: ["border-inline-color", "color"],
-            Bdinlend: [
-                "border-inline-end",
-                "lineWidth",
-                "lineStyle",
-                "color"
-            ],
+            Bdinlend: ["border-inline-end", "lineWidth", "lineStyle", "color"],
             Bdinlendc: ["border-inline-end-color", "color"],
             Bdinlends: ["border-inline-end-style", "lineStyle"],
             Bdinlendw: ["border-inline-end-width", "lineWidth"],
@@ -2139,16 +2144,15 @@
             (pseudoElement
                 ? "::" + (config.pseudoElements[pseudoElement] || pseudoElement)
                 : ""),
-        rulePattern =
-            /^((?:\w|-)*?)(?::(\w+))?([>_+~]|\|\|)?(\w+)(?:\(((?:\w|[,-/#$%])+)\))?(!)?(?::(\w+))?(?:::(\w+))?(?:--(\w+))?$/i,
-        //    1----------1    2---2  3-----------3 4---4     5----------------5    6-6     7---7       8---8       9---9
-        // 1: parent selector to match an element name, matches \w plus hyphens
-        // 2: parent pseudoclass, preferably shorthand from config.pseudoClasses, matches \w+
+        rulePattern = /^(?:([-a-z0-9]*)(?::([-a-z0-9]+))?([>_+~]|\|\|))?(\w+)(?:\(((?:\w|[,-/#$%])+)\))?(!)?(?::(\w+))?(?:::(\w+))?(?:--(\w+))?$/i,
+        //                 1----------1    2----------2  3-----------3  4---4     5----------------5    6-6     7---7       8---8       9---9
+        // 1: parent selector to match an element name, matches a-z, A-Z, 0-9, plus hyphens
+        // 2: parent pseudoclass, preferably shorthand from config.pseudoClasses, matches a-z, A-Z, 0-9, plus hyphens
         // 3: combinator, one of > _ + ~ ||
         //    || is experimental
         // 4: atomic selector, matches \w+
         // 5: atomic values, matches characters from \w plus others that can appear as values.
-        // 6: important
+        // 6: important, matches only an exclamation point
         // 7: pseudoclass, matches \w+
         // 8: pseudoelement, matches \w+
         // 9: at-rule / media query / breakpoint, matches \w+
@@ -2156,7 +2160,10 @@
         // "\w+" matches one or more characters from the set of a-z, A-Z, 0-9,
         // and underscore. This is intentionally looser than the spec for a few
         // good reasons. It minifies smaller. \w is compiled and optimized more
-        // where as [-a-zA-Z0-9] is not. There's no real reason to forbid it.
+        // where as [-a-zA-Z0-9] is not. There's no real reason to forbid it
+        // except in the parent selector and parent pseudoclass because
+        // underscore is a combinator and the pattern can get confused when the
+        // underscore is allowed in there.
         processRule = (className) => {
             // DEBUG_START
             if (config.settings.debug) {
@@ -2247,8 +2254,10 @@
 
                 // Replace $s and $e with left/right based on config
                 .replace(/\$s/g, config.settings.rightToLeft ? "right" : "left")
-                .replace(/\$e/g, config.settings.rightToLeft ? "left" : "right");
-
+                .replace(
+                    /\$e/g,
+                    config.settings.rightToLeft ? "left" : "right"
+                );
 
             // DEBUG_START
             if (config.settings.debug) {
@@ -2314,7 +2323,10 @@
 
     // Merge default config with any from user
     for (var key of Object.keys(window.acssLiveConfig || {})) {
-        config[key] = Object.assign(config[key] || {}, window.acssLiveConfig[key]);
+        config[key] = Object.assign(
+            config[key] || {},
+            window.acssLiveConfig[key]
+        );
     }
 
     // DEBUG_START

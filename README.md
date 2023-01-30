@@ -152,17 +152,16 @@ Add some JavaScript to set a global object with the sections you want to configu
         atRules: {
             s: '@media only screen', // Adding this one
 
-            // Generally accepted screen sizes
+            // Generally accepted screen sizes. There's more defined in
+            // acss-live.js and they are shown in examples/media-queries.html
+            //
             // S = mobile
             // M = tablets
             // L = small screens, eg. laptops
             // Default is desktop / tv / large format
             s: "@media(max-width:480px)",
-            sm: "@media(max-width:768px)",
-            m: "@media(min-width:481px)and(max-width:768px)",
-            sml: "@media(max-width:1024px)",
-            ml: "@media(min-width:481px)and(max-width:1024px)",
-            l: "@media(min-width:1025)and(max-width:1024px)"
+            m: "@media(min-width:481px) and (max-width:768px)",
+            l: "@media(min-width:1025) and (max-width:1024px)"
         },
 
         // Set up your own colors. These are merged with the internal list of
