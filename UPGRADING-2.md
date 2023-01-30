@@ -1,6 +1,11 @@
 UPGRADING ACSS-LIVE
 ===================
 
+2.0.6 -> 2.0.7
+--------------
+
+* Published a file with local modifications instead of the one committed.
+
 2.0.5 -> 2.0.6
 --------------
 
