@@ -732,10 +732,10 @@
         // Media queries and other at-rules
         atRules: {
             // Color schemes
-            dk: "@media(prefers-color-scheme:dark)",
-            _dk: "@media not all and(prefers-color-scheme:dark)",
-            lt: "@media(prefers-color-scheme:light)",
-            _lt: "@media not all and(prefers-color-scheme:light)",
+            dk: "@media (prefers-color-scheme:dark)",
+            _dk: "@media not all and (prefers-color-scheme:dark)",
+            lt: "@media (prefers-color-scheme:light)",
+            _lt: "@media not all and (prefers-color-scheme:light)",
 
             // Print version
             p: "@media print",
@@ -745,21 +745,18 @@
             // S = mobile                         0      -  480px
             // M = landscape mobile, tablets    480.0001 -  768px
             // L = landscape tablets            768.0001 - 1024px
-            // D = default / large format      1024.0001 -    ∞
-            s: "@media(max-width:480px)",
-            _s: "@media(min-width:480.0001px)",
-            sm: "@media(max-width:768px)",
-            _sm: "@media(min-width:768.0001px)",
-            m: "@media(min-width:480.0001px) and (max-width:768px)",
-            _m: "@media(max-width:480px) or (min-width:768.0001px)",
-            sml: "@media(max-width:1024px)",
-            _sml: "@media(min-width:1024.0001px)",
-            ml: "@media(min-width:480.0001px) and (max-width:1024px)",
-            _ml: "@media(max-width:480px) or (min-width:1024.0001px)",
-            l: "@media(min-width:768.0001px) and (max-width:1024px)",
-            _l: "@media(max-width:768px) or (min-width:1024.0001px)",
-            d: "@media(min-width:1024.0001px)",
-            _d: "@media(max-width:1024px)"
+            s: "@media (max-width:480px)",
+            _s: "@media (min-width:480.0001px)",
+            sm: "@media (max-width:768px)",
+            _sm: "@media (min-width:768.0001px)",
+            m: "@media (min-width:480.0001px) and (max-width:768px)",
+            _m: "@media (max-width:480px) or (min-width:768.0001px)",
+            sml: "@media (max-width:1024px)",
+            _sml: "@media (min-width:1024.0001px)",
+            ml: "@media (min-width:480.0001px) and (max-width:1024px)",
+            _ml: "@media (max-width:480px) or (min-width:1024.0001px)",
+            l: "@media (min-width:768.0001px) and (max-width:1024px)",
+            _l: "@media (max-width:768px) or (min-width:1024.0001px)"
         },
 
         // $s and $e are replaced with left and right

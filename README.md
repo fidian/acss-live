@@ -150,7 +150,7 @@ Add some JavaScript to set a global object with the sections you want to configu
         // specified using two hyphens after the Atomic class, so D(n)--s
         // will hide an element if being displayed on a small screen.
         atRules: {
-            s: '@media only screen', // Adding this one
+            s: '@media only screen',
 
             // Generally accepted screen sizes. There's more defined in
             // acss-live.js and they are shown in examples/media-queries.html

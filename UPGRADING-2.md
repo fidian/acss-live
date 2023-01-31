@@ -1,6 +1,12 @@
 UPGRADING ACSS-LIVE
 ===================
 
+2.0.7 -> 2.1.0
+--------------
+
+* Fixed media queries and added spaces for all of them.
+* Removed `--d` and `--_d` because they are the inverse of `--sml` and `--_sml`.
+
 2.0.6 -> 2.0.7
 --------------
 
