@@ -7,11 +7,11 @@
         "compress": "npm run compress-gzip && npm run compress-brotli",
         "compress-brotli": "which brotli && brotli < acss-live.min.js > acss-live.min.js.br || :",
         "compress-gzip": "which gzip && gzip -9 < acss-live.min.js > acss-live.min.js.gz || :",
-        "minify": "sed '/DEBUG_START/,/DEBUG_END/d' acss-live.js | uglifyjs -m -c > acss-live.min.js",
+        "minify": "sed '/DEBUG_START/,/DEBUG_END/d' acss-live.js | terser --compress --mangle --module /dev/stdin > acss-live.min.js",
         "sizes": "wc -c acss-live.js acss-live.min.*"
     },
     "devDependencies": {
-        "uglify-js": "^3.17.4"
+        "terser": "5.19.2"
     },
     "main": "acss-live.js",
     "license": "MIT"
