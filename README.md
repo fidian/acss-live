@@ -214,81 +214,81 @@ This tool follows the same shorthand as [Atomizer] and [acss-browser] with a few
 * Removed various complex rules, combined styles, and hacks. If you want to add them to your `acssLiveConfig` object (when possible) or your site's CSS, I have included examples of both for each removed item.
     * `BfcHack` - The styles supplied don't adequately solve the needs.
 
-        // CSS
-        .BfcHack { display: table-cell; width: 1600px; }
+            // CSS
+            .BfcHack { display: table-cell; width: 1600px; }
 
-        // acssLiveConfig's classes object
-        BfcHack: ["display:table-cell;width:1600px"]
+            // acssLiveConfig's classes object
+            BfcHack: ["display:table-cell;width:1600px"]
 
     * `Clearfix` - If your layout uses floating elements, either leverage `C(b)` on the next element or add the style back in.
 
-        // CSS
-        .Cf:before { content: " "; display: "table"; }
-        .Cf:after { content: " "; display: "table"; clear: both; }
+            // CSS
+            .Cf:before { content: " "; display: "table"; }
+            .Cf:after { content: " "; display: "table"; clear: both; }
 
     * `Ell` - Use `Tov(e)` for ellipsis instead.
 
-        // CSS
-        .Ell { max-width: 100%; white-space: nowrap; overflow: hidden;
-            text-overflow: ellipsis; hyphens: none }
-        .Ell:after { content: ""; font-size: 0; visibility: hidden;
-            display: inline-block; overflow: hidden; height: 0; width: 0 }
+            // CSS
+            .Ell { max-width: 100%; white-space: nowrap; overflow: hidden;
+                text-overflow: ellipsis; hyphens: none }
+            .Ell:after { content: ""; font-size: 0; visibility: hidden;
+                display: inline-block; overflow: hidden; height: 0; width: 0 }
 
-        // acssLiveConfig classes object can only do the first part
-        Ell: ["max-width:100%;white-space:nowrap;overflow:hidden;" +
-            "text-overflow:ellipsis;hyphens:none"]
+            // acssLiveConfig classes object can only do the first part
+            Ell: ["max-width:100%;white-space:nowrap;overflow:hidden;" +
+                "text-overflow:ellipsis;hyphens:none"]
 
     * `Hidden` - Hides content but keeps it available for screen readers. Use the [`hidden` HTML attribute](https://caniuse.com/hidden).
 
-        // CSS
-        .Hidden { position: absolute!important; clip: rect(1px,2px,1px,1px);
-            padding: 0!important; border: 0!important; height: 1px!important;
-            width: 1px!important; overflow: hidden }
+            // CSS
+            .Hidden { position: absolute!important; clip: rect(1px,2px,1px,1px);
+                padding: 0!important; border: 0!important; height: 1px!important;
+                width: 1px!important; overflow: hidden }
 
-        // acssLiveConfig's classes object
-        Hidden: ["position:absolute!important;clip:rect(1px,2px,1px,1px);" +
-            "padding:0!important;border:0!important;height:1px!important;" +
-            "width:1px!important;overflow:hidden"]
+            // acssLiveConfig's classes object
+            Hidden: ["position:absolute!important;clip:rect(1px,2px,1px,1px);" +
+                "padding:0!important;border:0!important;height:1px!important;" +
+                "width:1px!important;overflow:hidden"]
 
     * `IbBox` - Use `D(ib) Va(t)`.
 
-        // CSS
-        IbBox: { display: inline-block; vertical-align: top }
+            // CSS
+            IbBox: { display: inline-block; vertical-align: top }
 
-        // acssLiveConfig's classes object
-        IbBox: ["display:inline-block;vertical-align:top"]
+            // acssLiveConfig's classes object
+            IbBox: ["display:inline-block;vertical-align:top"]
 
     * `LineClamp` - Use `Lc()`, which is [supported in modern browsers](https://caniuse.com/css-line-clamp) even though it's only proposed to be added to the CSS spec.
 
-        // CSS - note that the .LineClamp class needs both N and H changed.
-        [class*=LineClamp] { display: -webkit-box; -webkit-box-orient:vertical;
-            overflow:hidden }
-        a[class*=LineClamp] { display: inline-block; display: -webkit-box; }
-        a[class*=LineClamp]:after { content: "."; font-size: 0;
-            visibility: hidden; display: inline-block; overflow: hidden;
-            height: 0; width: 0; }
-        @supports (display:-moz-box) {
-            [class*=LineClamp] { display: block }
-        }
-        .LineClamp(N,H) { -webkit-line-clamp: N; max-height: H }
+            // CSS - note that the .LineClamp class needs both N and H changed.
+            [class*=LineClamp] { display: -webkit-box; -webkit-box-orient:vertical;
+                overflow:hidden }
+            a[class*=LineClamp] { display: inline-block; display: -webkit-box; }
+            a[class*=LineClamp]:after { content: "."; font-size: 0;
+                visibility: hidden; display: inline-block; overflow: hidden;
+                height: 0; width: 0; }
+            @supports (display:-moz-box) {
+                [class*=LineClamp] { display: block }
+            }
+            .LineClamp(N,H) { -webkit-line-clamp: N; max-height: H }
 
     * `Row` - Use `C(b) D(ib) Va(t) W(100%) Bxz(bb)`.
 
-        // CSS
-        .Row { clear: both; display: inline-block; vertical-align: top;
-            width: 100%; box-sizing: border-box }
+            // CSS
+            .Row { clear: both; display: inline-block; vertical-align: top;
+                width: 100%; box-sizing: border-box }
 
-        // acssLiveConfig's classes object
-        Row: ["clear:both;display:inline-block;vertical-align:top;width:100%;box-sizing:border-box"]
+            // acssLiveConfig's classes object
+            Row: ["clear:both;display:inline-block;vertical-align:top;width:100%;box-sizing:border-box"]
 
     * `StretchedBox` - Use `Pos(a) T(0) B(0) Start(0) End(0)` to keep with ACSS philosophy of single, reusable classes.
 
-        // CSS
-        .StretchedBox: { position: absolute; top: 0; right: 0; bottom: 0;
-            left: 0 }
+            // CSS
+            .StretchedBox: { position: absolute; top: 0; right: 0; bottom: 0;
+                left: 0 }
 
-        // acssLiveConfig's classes object
-        StretchedBox: ["position:absolute;top:0;right:0;bottom:0;left:0"]
+            // acssLiveConfig's classes object
+            StretchedBox: ["position:absolute;top:0;right:0;bottom:0;left:0"]
 
 Finally, let's talk about size. This project's code is pretty large for a simple library - about 80k of source. Thankfully it shrinks well using about 32k minified and about 10k compressed. Compare this to [acss-browser]'s nearly 800k of source and just under 200k minified. This size comes with a price, and the biggest is that style parameters are not validated in any way. If you type it, the rule will be added. A few of the items from the above list also cut the size down. Any helper or rule can take any number of parameters and this library won't validate that you have the right amount. Additionally, there are a couple helper classes that have been removed (as detailed above) and the CSS that's generated isn't combined to be as small as possible when added into the browser.
 
