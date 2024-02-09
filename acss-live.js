@@ -1931,6 +1931,16 @@
                     u: "under"
                 }
             ],
+            Tw: ["text-wrap", {
+                b: "balance",
+                nw: "nowrap",
+                p: "pretty",
+                r: "revert",
+                rl: "revert-layer",
+                s: "stable",
+                u: "unset",
+                w: "wrap"
+            }],
             T: ["top", "a"],
             Toa: [
                 "touch-action",
@@ -2307,9 +2317,7 @@
 
                     if (includeChildren) {
                         for (var child of node.children) {
-                            if (child.nodeType === 1) {
-                                list.push(child);
-                            }
+                            list.push(child);
                         }
                     }
                 }

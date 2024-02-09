@@ -2518,6 +2518,15 @@ CSS Classes
     * `l` → `left`
     * `r` → `right`
     * `u` → `under`
+* `Tw(…)` → `text-wrap:$_`
+    * `b` → `balance`
+    * `nw` → `nowrap`
+    * `p` → `pretty`
+    * `r` → `revert`
+    * `rl` → `revert-layer`
+    * `s` → `stable`
+    * `u` → `unset`
+    * `w` → `wrap`
 * `T(…)` → `top:$_`
     * `a` → `auto`
 * `Toa(…)` → `touch-action:$_`
@@ -2753,13 +2762,21 @@ Pseudo Elements
 At Rules (Media Queries)
 ------------------------
 
+* `--sml` → `@media (max-width:1024px) { ... }`
+* `--s` → `@media (max-width:480px) { ... }`
+* `--_ml` → `@media (max-width:480px) or (min-width:1024.0001px) { ... }`
+* `--_m` → `@media (max-width:480px) or (min-width:768.0001px) { ... }`
+* `--sm` → `@media (max-width:768px) { ... }`
+* `--_l` → `@media (max-width:768px) or (min-width:1024.0001px) { ... }`
+* `--_sml` → `@media (min-width:1024.0001px) { ... }`
+* `--_s` → `@media (min-width:480.0001px) { ... }`
+* `--ml` → `@media (min-width:480.0001px) and (max-width:1024px) { ... }`
+* `--m` → `@media (min-width:480.0001px) and (max-width:768px) { ... }`
+* `--_sm` → `@media (min-width:768.0001px) { ... }`
+* `--l` → `@media (min-width:768.0001px) and (max-width:1024px) { ... }`
+* `--dk` → `@media (prefers-color-scheme:dark) { ... }`
+* `--lt` → `@media (prefers-color-scheme:light) { ... }`
+* `--_dk` → `@media not all and (prefers-color-scheme:dark) { ... }`
+* `--_lt` → `@media not all and (prefers-color-scheme:light) { ... }`
+* `--_p` → `@media not print { ... }`
 * `--p` → `@media print { ... }`
-* `--sml` → `@media(max-width:1024px) { ... }`
-* `--s` → `@media(max-width:480px) { ... }`
-* `--sm` → `@media(max-width:768px) { ... }`
-* `--d` → `@media(min-width:1024.0001px) { ... }`
-* `--ml` → `@media(min-width:480.0001px) and (max-width:1024px) { ... }`
-* `--m` → `@media(min-width:480.0001px) and (max-width:768px) { ... }`
-* `--l` → `@media(min-width:768.0001px) and (max-width:1024px) { ... }`
-* `--dk` → `@media(prefers-color-scheme:dark) { ... }`
-* `--lt` → `@media(prefers-color-scheme:light) { ... }`

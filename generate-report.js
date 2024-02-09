@@ -60,18 +60,18 @@ fsPromises.readFile('./acss-live.js').then((data) => data.toString()).then((data
             }
 
             if (!lookup) {
-                console.error(`Invalid lookup value found for ${shortcut}, was trying to find ${lookup}`);
+                console.error(`Invalid lookup value found for "${shortcut}", was trying to find "${lookup}"`);
                 throw new Error("Abort - problem with config");
             }
 
             for (const [lookupKey, lookupValue] of Object.entries(config[lookup] || lookup)) {
                 if (config.values[lookupKey]) {
-                    console.error(`Conflict - ${shortcut} has a value ${lookupKey} that conflicts with a global value`);
+                    console.error(`Conflict - "${shortcut}" has a value "${lookupKey}" that conflicts with a global value`);
                     throw new Error("Abort - conflict with global default value");
                 }
 
                 if (allowed.has(lookupKey) && allowed.get(lookupKey) !== lookupValue) {
-                    console.error(`Conflict - ${shortcut} has conflicting values for shortcut ${lookupKey}: ${allowed.get(lookupKey)} and ${lookupValue}`);
+                    console.error(`Conflict - "${shortcut}" has conflicting values for shortcut "${lookupKey}": ${allowed.get(lookupKey)} and ${lookupValue}`);
                     throw new Error("Abort - conflict with config");
                 }
 
