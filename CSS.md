@@ -2719,6 +2719,8 @@ Pseudo Classes
 * `:li` → `:link`
 * `:lli` → `:local-link`
 * `:m` → `:modal`
+* `:even` → `:nth-child(even)`
+* `:odd` → `:nth-child(odd)`
 * `:oc` → `:only-child`
 * `:oot` → `:only-of-type`
 * `:o` → `:optional`

@@ -667,6 +667,8 @@
             m: "modal",
             // Can not support :not()
             // Can not support :nth-child()
+            even: "nth-child(even)",
+            odd: "nth-child(odd)",
             // Can not support :nth-col()
             // Can not support :nth-last-child()
             // Can not support :nth-last-col()
