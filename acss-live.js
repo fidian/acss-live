@@ -2252,7 +2252,7 @@
                 // match[5] are the arguments from the user.
                 .replace(/\$([,_])/g, (dollarMatch) =>
                     match[5]
-                        .split(",")
+                        ?.split(",")
                         .map((userValue) =>
                             userValue.indexOf("--")
                                 ? valueLookup[userValue] || userValue
