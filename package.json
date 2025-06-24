@@ -1,6 +1,6 @@
 {
     "name": "@fidian/acss-live",
-    "version": "2.2.1",
+    "version": "3.0.0",
     "description": "ACSS rules generated live in your browser using a small library.",
     "scripts": {
         "build": "npm run minify && npm run compress && npm run sizes",
@@ -11,7 +11,7 @@
         "sizes": "wc -c acss-live.js acss-live.min.*"
     },
     "devDependencies": {
-        "terser": "5.39.2"
+        "terser": "5.43.1"
     },
     "main": "acss-live.js",
     "license": "MIT"

@@ -2274,7 +2274,7 @@
             }
             // DEBUG_END
 
-            styleElement.sheet.insertRule(rule);
+            styleSheet.insertRule(rule);
         },
         // DEBUG_START
         getElementIdentifier = (e) => {
@@ -2284,7 +2284,7 @@
                 s += "#" + e.id;
             }
 
-            for (var c of e.classList) {
+            for (var c of e.classList || []) {
                 if (c) {
                     s += "." + c;
                 }
@@ -2310,7 +2310,7 @@
                     }
                     // DEBUG_END
 
-                    for (var c of node.classList) {
+                    for (var c of node.classList || []) {
                         if (!definedClasses[c]) {
                             definedClasses[c] = 1;
                             processRule(c);
@@ -2318,7 +2318,7 @@
                     }
 
                     if (includeChildren) {
-                        for (var child of node.children) {
+                        for (var child of node.children || []) {
                             list.push(child);
                         }
                     }
@@ -2326,7 +2326,50 @@
             }
         },
         definedClasses = {},
-        styleElement = document.createElement("style");
+        styleSheet = new CSSStyleSheet(),
+        originalAttachShadow = Element.prototype.attachShadow,
+        hookToDocument = (target) => {
+            target.adoptedStyleSheets.push(styleSheet);
+            processElements([...target.childNodes], [], true);
+
+            new MutationObserver((mutations) => {
+                // DEBUG_START
+                const timerEnd = timerStart("ACSS-MUTATION");
+
+                if (config.settings.debug) {
+                    console.log("ACSS-MUTATION", "Detected mutations", mutations);
+                }
+                // DEBUG_END
+
+                var processedElements = [];
+
+                for (var mutation of mutations) {
+                    // attributes = yes
+                    // characterData = no, but not monitored
+                    // childList = no
+                    if (mutation.type[0] === "a") {
+                        processElements([mutation.target], processedElements);
+                    } else {
+                        // Using mutation.target.querySelectorAll('*') is much slower
+                        processElements(
+                            [...mutation.addedNodes].filter(
+                                (node) => node.nodeType === 1
+                            ),
+                            processedElements,
+                            true
+                        );
+                    }
+                }
+
+                // DEBUG_START
+                timerEnd();
+                // DEBUG_END
+            }).observe(target, {
+                attributeFilter: ["class"], // Enables monitoring of attributes
+                childList: true,
+                subtree: true
+            });
+        };
 
     // Merge default config with any from user
     for (var key of Object.keys(window.acssLiveConfig || {})) {
@@ -2342,53 +2385,34 @@
     }
     // DEBUG_END
 
-    document.head.appendChild(styleElement);
-
     // DEBUG_START
     if (config.settings.debug) {
         console.log("ACSS-SCAN-DOCUMENT", "Process current elements");
     }
     // DEBUG_END
 
-    processElements([document.documentElement], [], true);
+    hookToDocument(document);
 
-    new MutationObserver((mutations) => {
+    // Patch attachShadow to catch new shadow roots so they can be processed.
+    Element.prototype.attachShadow = function (init) {
         // DEBUG_START
-        const timerEnd = timerStart("ACSS-MUTATION");
+        const timerEnd = timerStart("ACSS-ATTACH-SHADOW");
 
         if (config.settings.debug) {
-            console.log("ACSS-MUTATION", "Detected mutations", mutations);
+            console.log("ACSS-ATTACH-SHADOW", "Attaching shadow root to element");
         }
         // DEBUG_END
-
-        var processedElements = [];
-
-        for (var mutation of mutations) {
-            // attributes = yes
-            // characterData = no, but not monitored
-            // childList = no
-            if (mutation.type[0] === "a") {
-                processElements([mutation.target], processedElements);
-            } else {
-                // Using mutation.target.querySelectorAll('*') is much slower
-                processElements(
-                    [...mutation.addedNodes].filter(
-                        (node) => node.nodeType === 1
-                    ),
-                    processedElements,
-                    true
-                );
-            }
-        }
+        
+        let originalShadowRoot = this.shadowRoot,
+            result = originalAttachShadow.call(this, init);
+        originalShadowRoot || hookToDocument(result);
 
         // DEBUG_START
         timerEnd();
         // DEBUG_END
-    }).observe(document, {
-        attributeFilter: ["class"], // Enables monitoring of attributes
-        childList: true,
-        subtree: true
-    });
+
+        return result;
+    };
 
     // DEBUG_START
     setupTimerEnd();

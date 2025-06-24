@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
@@ -56,6 +56,38 @@
             the demo page in an iframe.
         -->
         <script src="../acss-live.js"></script>
+        <script>
+            customElements.define(
+                "open-shadow-root",
+                class extends HTMLElement {
+                    constructor() {
+                        super();
+                        const shadowRoot = this.attachShadow({ mode: "open" });
+                        shadowRoot.innerHTML = `
+                        <div id="open-shadow-root" class="M(1em) Bdw(5px) Bdc(blue) Bds(s) P(1em) Bgc(yellow)">
+                            <slot></slot>
+                        </div>
+                    `;
+                    }
+                }
+            );
+            customElements.define(
+                "closed-shadow-root",
+                class extends HTMLElement {
+                    constructor() {
+                        super();
+                        const shadowRoot = this.attachShadow({
+                            mode: "closed"
+                        });
+                        shadowRoot.innerHTML = `
+                        <div id="closed-shadow-root" class="M(1em) Bdw(5px) Bdc(blue) Bds(s) P(1em) Bgc(yellow)">
+                            <slot></slot>
+                        </div>
+                    `;
+                    }
+                }
+            );
+        </script>
     </head>
 
     <body>
@@ -163,9 +195,39 @@
             </div>
         </div>
 
+        <div class="D(f) Jc(spe) Ai(c)">
+            <div class="Maw(30%) Bgc(#dddddd)">
+                <div
+                    class="M(1em) Bdw(5px) Bds(s) Bdc(blue) P(1em) Bgc(yellow)"
+                >
+                    <span class="Bgc(cyan)">
+                        This does not use a shadow root. Light gray outer
+                        element. Inner element has a margin to show the light
+                        gray from the parent, blue border, yellow background.
+                        The message has a teal background.
+                    </span>
+                </div>
+            </div>
+            <open-shadow-root class="D(b) Maw(30%) Bgc(#dddddd)">
+                <span class="Bgc(cyan)">
+                    This is an open shadow root. It should look the same as the
+                    one on the left. The teal background and light gray come
+                    from the light DOM's styles.
+                </span>
+            </open-shadow-root>
+            <div class="Maw(30%) Bgc(#dddddd)">
+                <closed-shadow-root>
+                    <span class="Bgc(cyan)">
+                        This is a closed shadow root. This should look the same
+                        as the first.
+                    </span>
+                </closed-shadow-root>
+            </div>
+        </div>
+
         <div class="D(f) Fxd(c) Ai(e) Pos(a) B(0) End(0)">
             <div
-                class="Mend(0.3em) Bdrs(2em) P(1em) Bdw(2px) Bds(s) Bgc(white)"
+                class="Mend(0.3em) Bdrs(2em) P(1em) Bdw(2px) Bds(s) Bgc(white) D(f) Ai(t) G(10px) W(200px)"
             >
                 <!-- https://medium.com/@clg/animated-svg-spinner-8dff32d310fc -->
                 <svg class="W(40px) H(40px)" viewBox="0 0 100 100">
@@ -177,7 +239,7 @@
                         style="stroke-dasharray: 280"
                     ></circle>
                 </svg>
-                It looks like you want to use ACSS-live ...
+                It looks like you want to use ACSS-Live ...
             </div>
             <div class="Mend(3em) Pos(r) T(-2px)">
                 <div
