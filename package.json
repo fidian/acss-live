@@ -1,6 +1,6 @@
 {
     "name": "@fidian/acss-live",
-    "version": "3.0.0",
+    "version": "3.1.0",
     "description": "ACSS rules generated live in your browser using a small library.",
     "scripts": {
         "build": "npm run minify && npm run compress && npm run sizes",
@@ -8,10 +8,11 @@
         "compress-brotli": "which brotli && brotli < acss-live.min.js > acss-live.min.js.br || :",
         "compress-gzip": "which gzip && gzip -9 < acss-live.min.js > acss-live.min.js.gz || :",
         "minify": "sed '/DEBUG_START/,/DEBUG_END/d' acss-live.js | terser --compress --mangle --module /dev/stdin > acss-live.min.js",
+        "reinstall": "rm -rf package-lock.json node_modules && npm install",
         "sizes": "wc -c acss-live.js acss-live.min.*"
     },
     "devDependencies": {
-        "terser": "5.43.1"
+        "terser": "5.46.1"
     },
     "main": "acss-live.js",
     "license": "MIT"
